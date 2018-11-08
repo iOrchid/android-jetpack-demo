@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">JetPack</string>
+    <string name="name">姓名: %1$s</string>
+    <string name="default_name">默认名称</string>
+
+    <plurals name="numbers">
+        <item quantity="one">Have %1$d an number</item>
+        <item quantity="other">Have %1$d numbers</item>
+    </plurals>
+</resources>

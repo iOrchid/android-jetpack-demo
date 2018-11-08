@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:gravity="center"
+              android:layout_height="match_parent">
+    <TextView
+            android:layout_width="wrap_content"
+            android:text="FragmentTwo"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"/>
+    <Button android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/btn_back1"
+            android:text="back_one"/>
+
+    <Button android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/btn_go3"
+            android:text="Start Three"/>
+</LinearLayout>

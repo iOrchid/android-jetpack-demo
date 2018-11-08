@@ -1,0 +1,45 @@
+dagger2 依赖注入框架
+
+使用注解
+
+    @Inject
+        在引用对象处使用，免除初始化对象
+
+    @Module
+        理解为 被注入对象类的创建工厂，内部包含对象的创建
+
+    @Provides
+        在module中使用，且一个module只能有一个 该标记
+
+    @Component
+        理解为 容器链接者，接口类型，用以链接module与调用方，
+
+
+@Singleton 单例注解，需要在创建对象处，以及提供关联处同时添加，方能生效。即，在@Provides上、@Component上都添加，才能使得一个调用方内，对象是单例的。
+     但若是再有其他调用者，其component也不同了，对象也就不是单例了。
+     只在@provides上加singleton，而component上无，则编译不过。只在component上有，不会单例。若在其他地方，也可能是编译报错，如在module上。
+
+
+依赖其他组件
+component中dependencies其他component
+
+@named 区分不同的构造函数，需要在inject处指明调用，而且named的string参数，inject处与provides处要一致。
+
+@Qualifier自定义标签
+       自定义标签，来优化named需要参数的一个不足，类似于java的普通注解定义@interface一般。只不过上面标注@Qualifier @Retention（RetentionPolicy.Runtime).如此inject使用处，便不用string参数，provides处也不用named+参数了。
+
+Lazy 懒加载
+    在inject处，使用lazy<T>类型即可
+    多次加载，也是同一个对象
+
+provider 强制重新加载
+    多次调用的话，则是新的对象
+
+@Scope 自定义生命周期
+    @singleton就是利用@Scope来实现单例的，这个由dagger内部控制。
+    若要使用@Scope来自定义标记，则需要自行控制 生命周期
+    1、定义注解 @AppScope（类似@singleton，使用@Scope、@Document、@Retention）
+    2、App作为Application级别的生命周期，就在application中初始化component。若是activityScope，则在activity中初始化component。这样就实现了绑定的生命周期内，单一对象。
+
+
+

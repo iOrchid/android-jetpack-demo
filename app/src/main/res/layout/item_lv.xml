@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+    <data>
+        <variable name="lvusr" type="in.zhiwei.jetpack.databinding.entity.CommonUser"/>
+    </data>
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                  android:orientation="horizontal"
+                  android:layout_width="match_parent"
+                  android:layout_height="match_parent">
+        <CheckBox
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="@{lvusr.single}"
+                android:id="@+id/cb_item_lv"/>
+
+        <TextView android:layout_width="0dp"
+                  android:layout_height="wrap_content"
+                  android:layout_weight="1"
+                  android:text="@{lvusr.name}"
+                  android:textColor="@color/colorAccent"
+                  android:id="@+id/tv_item_lv"/>
+    </LinearLayout>
+</layout>
