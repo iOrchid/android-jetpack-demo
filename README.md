@@ -4,10 +4,12 @@
 
 [![jetpack](https://img.shields.io/badge/android-jetpack-brightgreen.svg)](https://developer.android.com/jetpack/)[![apache2.0](https://img.shields.io/badge/license-apache2.0-brightgreen.svg)](./LICENSE)
 
+[TOC]
+
 ####  关于
 
-> **Android-Jetpack-Demo** 是一个简单的、集成当前Google主流Android技术的示例Demo，旨在帮助又需要的初级开发者，快速上手Android新技术、新架构。
-> 代码中都有详细的注释，主要操作演示关注`logcat`的日志输出
+> **Android-Jetpack-Demo** 是一个简单的、集成当前Google主流Android技术的示例Demo，旨在帮助又需要的初级开发者，快速上手Android新技术、新架构。主要使用`livedata`、`lifecycle`、`paging`、`room`、`navigation`、`workmanager`、`rxjava`、`kotlin`、`dagger2`以及`viewmodel`的**MVVM**简单架构
+> 代码中都有详细的注释，主要操作演示**关注`logcat`的日志**输出
 
 
 
@@ -33,6 +35,12 @@
   - paging
   - room
   - workmanager
+
+#### 规划
+
+- [x] 基础使用入门的代码演示
+- [ ] 进阶技术&架构的演示
+- [ ] 对应代码的详细博文
 
 
 
@@ -103,4 +111,4 @@ class KotlinActivity : AppCompatActivity() {
 
 
 
-1. 项目开发环境为AndroidStudio `3.2.1`、Jdk10、Windows10
+[^1]: 项目开发环境为AndroidStudio `3.2.1`、Jdk10、Windows10
