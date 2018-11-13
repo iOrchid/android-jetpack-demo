@@ -15,6 +15,10 @@ buildscript {
         // in the individual module build.gradle files
     }
 }
+//sonar cloud 的配置，plugins似乎只能在buildscript之后配置
+plugins {
+    id "org.sonarqube" version "2.6"
+}
 
 allprojects {
     repositories {
@@ -27,3 +31,4 @@ allprojects {
 task clean(type: Delete) {
     delete rootProject.buildDir
 }
+

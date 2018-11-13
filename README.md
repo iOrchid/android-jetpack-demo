@@ -2,24 +2,20 @@
 
 ## 🔥Android-Jetpack-Demo
 
-[![jetpack](https://img.shields.io/badge/android-jetpack-brightgreen.svg)](https://developer.android.com/jetpack/)[![apache2.0](https://img.shields.io/badge/license-apache2.0-brightgreen.svg)](./LICENSE)
+[![jetpack](https://img.shields.io/badge/android-jetpack-brightgreen.svg)](https://developer.android.com/jetpack/)[![apache2.0](https://img.shields.io/badge/license-apache2.0-brightgreen.svg)](./LICENSE)[![SonarCloud](https://sonarcloud.io/api/project_badges/measure?project=zhiwei1990_android-jetpack-demo&metric=alert_status)](https://sonarcloud.io/dashboard?id=zhiwei1990_android-jetpack-demo)[![HitCount](http://hits.dwyl.io/zhiwei1990/android-jetpack-demo.svg)](http://hits.dwyl.io/zhiwei1990/android-jetpack-demo)
 
 [TOC]
 
-####  关于
+####  一、项目简介
 
 > **Android-Jetpack-Demo** 是一个简单的、集成当前Google主流Android技术的示例Demo，旨在帮助又需要的初级开发者，快速上手Android新技术、新架构。主要使用`livedata`、`lifecycle`、`paging`、`room`、`navigation`、`workmanager`、`rxjava`、`kotlin`、`dagger2`以及`viewmodel`的**MVVM**简单架构
 > 代码中都有详细的注释，主要操作演示**关注`logcat`的日志**输出
 
+#### 二、Sample示例
 
+[下载体验apk](https://raw.githubusercontent.com/zhiwei1990/android-jetpack-demo/master/apk/app-debug.apk)
 
-#### 关注及反馈
-
-[![Github stars](https://img.shields.io/github/stars/zhiwei1990/android-jetpack-demo.svg?style=social&label=star)](https://github.com/zhiwei1990/android-jetpack-demo)[![Github followers](https://img.shields.io/github/followers/zhiwei1990.svg?style=social&label=follow)](https://github.com/zhiwei1990/android-jetpack-demo)[![Github issues](https://img.shields.io/github/issues/zhiwei1990/android-jetpack-demo.svg?style=social&label=issues)](https://github.com/zhiwei1990/android-jetpack-demo)
-
-
-
-#### 项目组成[^1]
+#### 三、项目组成[^1]
 
 项目主要简单的演示一些android技术与框架库的入门使用，RxJava操作符、Kotlin基本语法，以及JetPack的组件的简单使用。
 
@@ -36,7 +32,7 @@
   - room
   - workmanager
 
-#### 规划
+#### 四、规划
 
 - [x] 基础使用入门的代码演示
 - [ ] 进阶技术&架构的演示
@@ -44,7 +40,7 @@
 
 
 
-#### 示例内容(部分）
+#### 五、示例内容(部分）
 
 ![databinding](./images/databinding.png)![lifecycle](./images/lifecycle.png)![logcat](./images/logcat.png)
 
@@ -103,11 +99,15 @@ class KotlinActivity : AppCompatActivity() {
 
 更多详情，请下载代码，内有详细注释，**鉴于本人才学有限，若有不足之处，请大神不吝赐教**。
 
-#### 关于作者 [![jianshu](./images/jianshu.png)](https://www.jianshu.com/u/72294e6848c0)[![github](./images/github.png)](https://github.com/zhiwei1990)[![csdn](./images/csdn.png)](https://blog.csdn.net/zhiwei9001)
+#### 六、关于作者 [![jianshu](./images/jianshu.png)](https://www.jianshu.com/u/72294e6848c0)[![github](./images/github.png)](https://github.com/zhiwei1990)[![csdn](./images/csdn.png)](https://blog.csdn.net/zhiwei9001)
 
 > 作者本人只是一个，就职于某`知名`(@_@ 有名字的)互联网公司的，技术小白一枚，对于编程有着某种兴趣和热爱，然技术确实渣渣，好读书、不求甚解~~
 
 `人之为学有难易乎、为之，则难者亦易矣；不为，则易者亦难矣。`
+
+#### 七、关注及反馈
+
+[![Github stars](https://img.shields.io/github/stars/zhiwei1990/android-jetpack-demo.svg?style=social&label=star)](https://github.com/zhiwei1990/android-jetpack-demo)[![Github followers](https://img.shields.io/github/followers/zhiwei1990.svg?style=social&label=follow)](https://github.com/zhiwei1990/android-jetpack-demo)[![Github issues](https://img.shields.io/github/issues/zhiwei1990/android-jetpack-demo.svg?style=social&label=issues)](https://github.com/zhiwei1990/android-jetpack-demo)
 
 
 
