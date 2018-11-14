@@ -1,3 +1,4 @@
+language: android        #语言说明
 jdk: oraclejdk8          #jdk版本
 sudo: required           #权限要求
 env:                 #环境变量
