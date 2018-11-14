@@ -2,7 +2,7 @@
 
 ## 🔥Android-Jetpack-Demo
 
-[![jetpack](https://img.shields.io/badge/android-jetpack-brightgreen.svg)](https://developer.android.com/jetpack/)[![apache2.0](https://img.shields.io/badge/license-apache2.0-brightgreen.svg)](./LICENSE)[![SonarCloud](https://sonarcloud.io/api/project_badges/measure?project=zhiwei1990_android-jetpack-demo&metric=alert_status)](https://sonarcloud.io/dashboard?id=zhiwei1990_android-jetpack-demo)[![HitCount](http://hits.dwyl.io/zhiwei1990/android-jetpack-demo.svg)](http://hits.dwyl.io/zhiwei1990/android-jetpack-demo)
+[![jetpack](https://img.shields.io/badge/android-jetpack-brightgreen.svg)](https://developer.android.com/jetpack/) [![apache2.0](https://img.shields.io/badge/license-apache2.0-brightgreen.svg)](./LICENSE) [![Build Status](https://travis-ci.com/zhiwei1990/android-jetpack-demo.svg?branch=master)](https://travis-ci.com/zhiwei1990/android-jetpack-demo) [![SonarCloud](https://sonarcloud.io/api/project_badges/measure?project=zhiwei1990_android-jetpack-demo&metric=alert_status)](https://sonarcloud.io/dashboard?id=zhiwei1990_android-jetpack-demo) [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com) [![HitCount](http://hits.dwyl.io/zhiwei1990/android-jetpack-demo.svg)](http://hits.dwyl.io/zhiwei1990/android-jetpack-demo)
 
 [TOC]
 
