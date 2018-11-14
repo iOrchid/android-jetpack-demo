@@ -30,7 +30,7 @@ public class WorkActivity extends AppCompatActivity {
             .setRequiredNetworkType(NetworkType.CONNECTED)//联网状态
             .setRequiresBatteryNotLow(true)//低电量不操作
             .setRequiresCharging(true)//充电时候才开始
-            .setRequiresDeviceIdle(true)//待机状态下才执行，api 23 以上
+//            .setRequiresDeviceIdle(true)//待机状态下才执行，api 23 以上
             .setRequiresStorageNotLow(true)//存储空间不能太小
             .build();
 
