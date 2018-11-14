@@ -111,4 +111,4 @@ class KotlinActivity : AppCompatActivity() {
 
 
 
-[^1]: 项目开发环境为AndroidStudio `3.2.1`、Jdk10、Windows10
+[^1]: 项目开发环境为AndroidStudio `3.2.1`、Jdk8+、Windows10
