@@ -28,4 +28,5 @@ android:
   - extra
 
 script:
+  - chmod + x ./gradlew
   - "./gradlew clean test build"
