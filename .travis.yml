@@ -20,13 +20,13 @@ android:
     - add-on
     # Specify at least one system image,
     # if you need to run emulator(s) during your tests
-    - sys-img-armeabi-v7a-addon-google_apis-google-23
-    - sys-img-armeabi-v7a-google_apis-23
+    - sys-img-armeabi-v7a-android-21
     # - sys-img-x86-google_apis-26
 
 before_script:
   - chmod +x ./gradlew
-  - echo no | android create avd --force -n test -t android-23 --abi google_apis/armeabi-v7a
+  - android list targets
+  - echo no | android create avd --force -n test -t android-21 --abi armeabi-v7a
   - emulator -avd test -noskin -noaudio -no-window &
   - android-wait-for-emulator
   - adb shell input keyevent 82 &
