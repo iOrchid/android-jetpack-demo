@@ -24,15 +24,15 @@ android:
 
 before_script:
   - chmod +x ./gradlew
-  - android list targets
+  # - android list targets
   - echo no | android create avd --force -n piexl2 -t android-28
-  - emulator -avd pixel2 -no-window &
-  - emulator -list-avds
-  - android-wait-for-emulator
-  - adb shell input keyevent 82 &
+  - emulator -avd pixel2 -no-window
+  # - emulator -list-avds
+  # - android-wait-for-emulator
+  - adb shell input keyevent 82
 
 script:
-  - travis_wait ./gradlew clean jacocoDebugTestReport
+  - travis_wait
 
 before_cache:
   - rm -f  $HOME/.gradle/caches/modules-2/modules-2.lock
