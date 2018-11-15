@@ -1,4 +1,7 @@
 language: android
+cache: false
+sudo: false
+jdk: oracleJDK8
 android:
   components:
     # Uncomment the lines below if you want to
@@ -34,13 +37,3 @@ before_script:
 script:
   - ./wait_for_emulator
   - ./gradlew connectedCheck -PdisablePreDex
-
-before_cache:
-  - rm -f  $HOME/.gradle/caches/modules-2/modules-2.lock
-  - rm -fr $HOME/.gradle/caches/*/plugin-resolution/
-
-cache:
-  directories:
-    - $HOME/.gradle/caches/
-    - $HOME/.gradle/wrapper/
-    - $HOME/.android/build-cache
