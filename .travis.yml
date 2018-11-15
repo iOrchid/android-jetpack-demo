@@ -30,13 +30,8 @@ before_script:
   - android-wait-for-emulator
   - adb shell input keyevent 82 &
 
-before_install: 
-  - travis_wait
-install:
-  - travis_wait
-
 script:
-  - travis_wait 40 ./gradlew clean jacocoDebugTestReport
+  - travis_wait 5 ./gradlew clean jacocoDebugTestReport
 
 before_cache:
   - rm -f  $HOME/.gradle/caches/modules-2/modules-2.lock
