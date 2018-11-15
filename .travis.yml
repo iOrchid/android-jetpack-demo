@@ -1,7 +1,8 @@
 language: android
 cache: false
 sudo: false
-jdk: oracleJDK8
+jdk:
+ - oraclejdk8
 android:
   components:
     # Uncomment the lines below if you want to
