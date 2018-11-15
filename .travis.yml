@@ -27,6 +27,7 @@ before_script:
   - android list targets
   - echo no | android create avd --force -n piexl2 -t android-28
   - emulator -avd pixel2 -no-window &
+  - emulator -list-avds
   - android-wait-for-emulator
   - adb shell input keyevent 82 &
 
