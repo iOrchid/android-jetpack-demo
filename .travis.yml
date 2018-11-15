@@ -32,7 +32,7 @@ before_script:
   - adb shell input keyevent 82 &
 
 script:
-  - travis_wait 20 ./gradlew clean jacocoDebugTestReport
+  - travis_wait ./gradlew clean jacocoDebugTestReport
 
 before_cache:
   - rm -f  $HOME/.gradle/caches/modules-2/modules-2.lock
