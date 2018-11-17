@@ -43,9 +43,9 @@ dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
 
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
-    implementation 'androidx.appcompat:appcompat:1.0.0'
+    implementation 'androidx.appcompat:appcompat:1.0.2'
 
-    //<editor-folder desc="jetpack libs">
+    //<editor-folder desc="jetPack libs">
     implementation 'androidx.lifecycle:lifecycle-runtime:2.0.0'
     implementation 'androidx.lifecycle:lifecycle-extensions:2.0.0'
     annotationProcessor "androidx.lifecycle:lifecycle-compiler:2.0.0"
@@ -55,8 +55,8 @@ dependencies {
     annotationProcessor "androidx.room:room-compiler:2.1.0-alpha02"
     kapt "androidx.room:room-compiler:2.1.0-alpha02"
 
-    implementation 'androidx.paging:paging-runtime:2.1.0-alpha01'
-    implementation 'android.arch.work:work-runtime:1.0.0-alpha10'
+    implementation 'androidx.paging:paging-runtime:2.1.0-beta01'
+    implementation 'android.arch.work:work-runtime:1.0.0-alpha11'
     implementation 'android.arch.navigation:navigation-ui:1.0.0-alpha07'
     implementation 'android.arch.navigation:navigation-fragment:1.0.0-alpha07'
     //</editor-folder>
