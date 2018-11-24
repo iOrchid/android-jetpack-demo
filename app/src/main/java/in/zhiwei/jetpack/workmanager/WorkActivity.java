@@ -53,10 +53,10 @@ public class WorkActivity extends AppCompatActivity {
         WorkManager.getInstance().enqueue(workRequest);
         //4、通过workRequest的唯一标记id，来操作request，并获取返回数据
         //todo 这里因为在oncreate中执行，会先与work执行，toast会弹出未执行work的空结果，work变化后，还会显示出成功后的结果。这是因为observe监测worker的status变化 enqueued、RUNNING、successed、retry、failure等
-        WorkManager.getInstance().getStatusByIdLiveData(workRequest.getId())
+        WorkManager.getInstance().getWorkInfoByIdLiveData(workRequest.getId())
                 .observe(this, workStatus -> {
                     //接收从worker中返回的任务结果,最好在这里判断status为success再做具体操作
-                    if (workStatus.getState() == State.SUCCEEDED) {
+                    if (workStatus.getState() == WorkInfo.State.SUCCEEDED) {
                         Data data = workStatus.getOutputData();
                         String result = data.getString("result");
                         int status = data.getInt("status", 0);
