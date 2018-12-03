@@ -204,11 +204,11 @@ class KotlinActivity : AppCompatActivity() {
     fun labelTest() {
         //return break continue 可以配合label标签
 
-        for (s in 0..9) lab1@ {
+        lab1@ for (s in 0..9) {
             println(s)
-            for (m in 3..5) lab2@ {
+            lab2@ for (m in 3..5) {
                 println(m)
-                if (m == 4) return@lab1
+                if (m == 4 && s == 4) break@lab1
             }
         }
         val aaa = arrayOf(21, 332, 3, 23, 5, 25, 23)
@@ -221,6 +221,6 @@ class KotlinActivity : AppCompatActivity() {
     //todo open 可继承的class的修饰符，abstract 抽象，则不需要open也可以。内部类inner 关键字 final 默认都是final的。private internal，protected，public； object是关键字，表示对象。companion代码块，类似于静态
 
     companion object {
-        private val TAG: String = this.javaClass.simpleName//Tag
+        private val TAG: String = this::class.java.simpleName//Tag
     }
 }
