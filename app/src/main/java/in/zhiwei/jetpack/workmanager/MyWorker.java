@@ -4,6 +4,7 @@ import android.content.Context;
 import android.util.Log;
 import androidx.annotation.NonNull;
 import androidx.work.Data;
+import androidx.work.Result;
 import androidx.work.Worker;
 import androidx.work.WorkerParameters;
 
@@ -39,7 +40,6 @@ public class MyWorker extends Worker {
                 .putString("result", "哈哈哈，真的可以返回呀")
                 .putInt("status", 200)
                 .build();
-        setOutputData(out);
-        return Result.SUCCESS;
+        return Result.success(out);
     }
 }
