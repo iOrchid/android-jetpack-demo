@@ -20,7 +20,7 @@ public class OtherTool {
 
     //同上，不需要显示因如何调用，在xml中即可使得textview有一个 bg 的属性，app命名空间的，
     @BindingAdapter({"bg"})
-    public static void randomNem(TextView tv, String color) {
+    public static void randomName(TextView tv, String color) {
         tv.setTextColor(Color.parseColor(color));
     }
 }
