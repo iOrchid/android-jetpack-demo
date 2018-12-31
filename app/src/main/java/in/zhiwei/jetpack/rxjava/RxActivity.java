@@ -31,7 +31,7 @@ public class RxActivity extends AppCompatActivity {
 
     public void doSome(View view) {
         String s = etInput.getText().toString();
-        if (s == null || s.isEmpty()) {
+        if (s.isEmpty()) {
             Toast.makeText(this, "请输入数字", Toast.LENGTH_SHORT).show();
             return;
         }
