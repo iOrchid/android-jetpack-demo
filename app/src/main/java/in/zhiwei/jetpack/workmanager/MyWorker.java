@@ -34,7 +34,7 @@ public class MyWorker extends Worker {
         int age = data.getInt("age", 0);
         //do some work
         Log.i("test", "worker doWork() name: " + name + " age: " + age);
-        //返回任务的结果数据，使用setOutputData
+        //返回任务的结果数据，
         Data out = new Data.Builder()
                 .putString("result", "哈哈哈，真的可以返回呀")
                 .putInt("status", 200)

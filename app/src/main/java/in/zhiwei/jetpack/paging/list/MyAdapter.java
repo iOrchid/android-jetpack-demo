@@ -15,7 +15,8 @@ import in.zhiwei.jetpack.paging.db.Student;
  * Date: 2018/11/6 0006,10:42.
  */
 public class MyAdapter extends PagedListAdapter<Student, MyViewHolder> {
-    //DiffUtil好像是系统sdk提供的，用于对比和生成差异数据
+
+    //DiffUtil是RecyclerView提供的，用于对比和生成差异数据
     private static final DiffUtil.ItemCallback<Student> DIFF_CALLBACK = new DiffUtil.ItemCallback<Student>() {
         @Override
         public boolean areItemsTheSame(@NonNull Student oldItem, @NonNull Student newItem) {
@@ -35,7 +36,6 @@ public class MyAdapter extends PagedListAdapter<Student, MyViewHolder> {
      */
     public MyAdapter() {
         super(DIFF_CALLBACK);
-
     }
 
     @NonNull
@@ -47,7 +47,7 @@ public class MyAdapter extends PagedListAdapter<Student, MyViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
-        //数据源的提供来自diff    ？？
+        //数据源的提供来自diff
         holder.setName(getItem(position));
     }
 }
