@@ -11,6 +11,7 @@ import `in`.zhiwei.jetpack.paging.PagingActivity
 import `in`.zhiwei.jetpack.room.RoomActivity
 import `in`.zhiwei.jetpack.rxjava.RxActivity
 import `in`.zhiwei.jetpack.workmanager.WorkActivity
+import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
