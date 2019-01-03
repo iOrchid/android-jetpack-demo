@@ -12,8 +12,8 @@ import in.zhiwei.jetpack.BR;
  * 可响应数据变化的User类,databinding中，需要继承BaseObservable 并且在需要监测的数据上，@Bindable，set中notify,使用BR关联id 也是一个R文件
  */
 public class ObservableUser extends BaseObservable {
-    //如果用这类方式，则不需要集成BaseObservable，也不需要@bindable以及notify
 
+    //如果用这类方式，则不需要继承BaseObservable，也不需要@bindable以及notify
     public ObservableBoolean isChecked = new ObservableBoolean();//databinding中的可变属性
     public ObservableField<String> title = new ObservableField<>();
 
