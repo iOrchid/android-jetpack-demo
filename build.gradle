@@ -7,7 +7,7 @@ buildscript {
         jcenter()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.2.1'
+        classpath 'com.android.tools.build:gradle:3.3.0'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
         classpath "android.arch.navigation:navigation-safe-args-gradle-plugin:1.0.0-alpha09"
 
@@ -15,6 +15,7 @@ buildscript {
         // in the individual module build.gradle files
     }
 }
+//todo 如果出现编译gradle异常，请尝试settings--compiler 去掉--offline参数，clean，rebuild 甚至file--invalidate cache and restart，基本都ok，有的gradle可能需要科学上网
 //sonar cloud 的配置，plugins似乎只能在buildScript之后配置
 plugins {
     id "org.sonarqube" version "2.6"

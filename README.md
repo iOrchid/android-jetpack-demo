@@ -19,28 +19,27 @@
 
 #### 三、项目组成[^1]
 
-项目主要简单的演示一些android技术与框架库的入门使用，RxJava操作符、Kotlin基本语法，以及JetPack的组件的简单使用。
+项目主要简单的演示一些`android`技术与框架库的入门使用，`RxJava`操作符、`Kotlin`基本语法，以及`JetPack`的组件的简单使用。
 
-- Android Architecture Components
-- RxJava
-- Kotlin
-- Dagger2
-- Jetpack
-  - lifecycle
-  - livedata
-  - databinding
-  - navigation
-  - paging
-  - room
-  - workmanager
+- `Android Architecture Components`
+- `RxJava`
+- `Kotlin`
+- `Dagger2`
+- **Jetpack**
+  - `lifecycle`
+  - `livedata`
+  - `databinding`
+  - `navigation`
+  - `paging`
+  - `room`
+  - `workmanager`
 
 #### 四、规划
 
 - [x] 基础使用入门的代码演示
 - [ ] 进阶技术&架构的演示
 - [ ] 对应代码的详细博文
-
-
+- [ ] 其他前沿技术链接
 
 #### 五、示例内容(部分）
 
@@ -115,5 +114,5 @@ class KotlinActivity : AppCompatActivity() {
 
 
 
-[^1]: 项目开发环境为AndroidStudio `3.2.1`、Jdk8+、Windows10
+[^1]: 项目开发环境为AndroidStudio `3.2.1`+、Jdk8+、Windows10
 
