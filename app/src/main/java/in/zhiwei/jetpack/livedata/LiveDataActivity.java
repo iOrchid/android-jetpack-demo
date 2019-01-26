@@ -6,7 +6,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.arch.core.util.Function;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.Observer;
@@ -25,12 +24,7 @@ public class LiveDataActivity extends AppCompatActivity {
     //用于演示 transformation
     private MutableLiveData<LiveUser> liveUserLiveData = new MutableLiveData<>();
     //map转化liveData的返回类型，用一个liveData可以向下转化出所需要的liveData。还有一个switchmap函数类似
-    private LiveData<String> userInfo = Transformations.map(liveUserLiveData, new Function<LiveUser, String>() {
-        @Override
-        public String apply(LiveUser user) {
-            return "姓名： " + user.getName().getValue() + "年龄：" + user.getAge().getValue() + "城市：" + user.getCity();
-        }
-    });
+    private LiveData<String> userInfo = Transformations.map(liveUserLiveData, user -> "姓名： " + user.getName().getValue() + "年龄：" + user.getAge().getValue() + "城市：" + user.getCity());
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {

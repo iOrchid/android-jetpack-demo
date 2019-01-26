@@ -2,7 +2,6 @@ package in.zhiwei.jetpack.databinding;
 
 import android.os.Bundle;
 import android.util.ArrayMap;
-import android.widget.CompoundButton;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
@@ -33,9 +32,9 @@ public class DataBindingActivity extends AppCompatActivity {
 //        setContentView(R.layout.activity_databinding);//使用databindingutils来代替原有的setContentView
         binding = DataBindingUtil.setContentView(this, R.layout.activity_databinding);
 
-        binding.mTitle = "Title";
-        binding.mNumber = 22;
-        binding.mIsAdult = true;
+        binding.setTitle("Title");
+        binding.setNumber(22);
+        binding.setIsAdult(true);
         //list
         CommonUser user;
         Map<Integer, CommonUser> map = new ArrayMap<>();
@@ -48,21 +47,18 @@ public class DataBindingActivity extends AppCompatActivity {
         binding.setUserList(list);
         //include，响应式变化
         final ObservableUser observableUser = new ObservableUser(18, "小明", true);
-        binding.mObusr = observableUser;
-        binding.cbShow.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                String name = isChecked ? "checked 小明" : "unChecked 小明明";
-                observableUser.setName(name);//设置名称，则会UI变化
-            }
+        binding.setObusr(observableUser);
+        binding.cbShow.setOnCheckedChangeListener((buttonView, isChecked) -> {
+            String name = isChecked ? "checked 小明" : "unChecked 小明明";
+            observableUser.setName(name);//设置名称，则会UI变化
         });
         //envent
-        binding.mPresenter = new Presenter();
+        binding.setPresenter(new Presenter());
         //
         ObFieldUser ofU = new ObFieldUser("Of User 小明");
-        binding.mOfuser = ofU;
+        binding.setOfuser(ofU);
 
-        binding.mUser = new CommonUser(22, "张三", true);//设置user，也可以set
+        binding.setUser(new CommonUser(22, "张三", true));//设置user，也可以set
 
         //LV adapter
         LvAdapter lvAdapter = new LvAdapter();
