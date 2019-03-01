@@ -23,4 +23,5 @@ public class OtherTool {
     public static void randomName(TextView tv, String color) {
         tv.setTextColor(Color.parseColor(color));
     }
+
 }

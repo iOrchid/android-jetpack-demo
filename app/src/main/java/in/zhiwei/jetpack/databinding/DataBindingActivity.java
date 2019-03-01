@@ -50,6 +50,7 @@ public class DataBindingActivity extends AppCompatActivity {
         binding.setObusr(observableUser);
         binding.cbShow.setOnCheckedChangeListener((buttonView, isChecked) -> {
             String name = isChecked ? "checked 小明" : "unChecked 小明明";
+            observableUser.isChecked.set(isChecked);
             observableUser.setName(name);//设置名称，则会UI变化
         });
         //envent
