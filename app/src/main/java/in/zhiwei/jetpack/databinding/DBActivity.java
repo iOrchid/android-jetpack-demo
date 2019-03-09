@@ -22,9 +22,9 @@ import java.util.Map;
  * Author: zhiwei.
  * Date: 2018/11/2 0002,11:31.
  */
-public class DataBindingActivity extends AppCompatActivity {
+public class DBActivity extends AppCompatActivity {
 
-    NamedDB binding;
+    in.zhiwei.jetpack.databinding.NamedDB binding;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
