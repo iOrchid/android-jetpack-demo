@@ -4,15 +4,16 @@ import androidx.lifecycle.MediatorLiveData;
 import androidx.lifecycle.MutableLiveData;
 
 /**
+ * live属性的user数据类
  * Author: zhiwei.
  * Date: 2018/11/5 0005,11:17.
  */
 public class LiveUser {
 
-    private String city;
+    private String city;//普通属性字段
 
-    private MutableLiveData<String> name = new MediatorLiveData<>();
-    private MutableLiveData<Integer> age = new MutableLiveData<>();
+    private MutableLiveData<String> name = new MediatorLiveData<>();//live响应的属性
+    private MutableLiveData<Integer> age = new MutableLiveData<>();//live属性
 
     public LiveUser(String city, String name, Integer age) {
         this.city = city;
