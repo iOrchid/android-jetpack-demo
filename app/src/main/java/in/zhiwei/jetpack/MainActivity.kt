@@ -2,7 +2,7 @@ package `in`.zhiwei.jetpack
 
 import `in`.zhiwei.jetpack.aac.view.AacActivity
 import `in`.zhiwei.jetpack.dagger.DaggerActivity
-import `in`.zhiwei.jetpack.databinding.DataBindingActivity
+import `in`.zhiwei.jetpack.databinding.DBActivity
 import `in`.zhiwei.jetpack.kotlin.KotlinActivity
 import `in`.zhiwei.jetpack.lifecycle.LifeActivity
 import `in`.zhiwei.jetpack.livedata.LiveDataActivity
@@ -11,7 +11,6 @@ import `in`.zhiwei.jetpack.paging.PagingActivity
 import `in`.zhiwei.jetpack.room.RoomActivity
 import `in`.zhiwei.jetpack.rxjava.RxActivity
 import `in`.zhiwei.jetpack.workmanager.WorkActivity
-import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
@@ -25,7 +24,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun dataBinding(v: View) {
-        startActivity(Intent(this, DataBindingActivity::class.java))
+        startActivity(Intent(this, DBActivity::class.java))
     }
 
     fun liveData(v: View) {

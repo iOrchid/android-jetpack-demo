@@ -19,7 +19,7 @@
                 <action android:name="android.intent.action.VIEW"/>
             </intent-filter>
         </activity>
-        <activity android:name=".databinding.DataBindingActivity" android:label="DataBindingActivity"/>
+        <activity android:name=".databinding.DBActivity" android:label="DataBindingActivity"/>
         <activity android:name=".livedata.LiveDataActivity" android:label="LiveDataActivity"/>
         <activity android:name=".lifecycle.LifeActivity" android:label="LifeActivity"/>
         <activity android:name=".room.RoomActivity" android:label="RoomActivity"/>
