@@ -12,8 +12,9 @@ import java.util.List;
 @Dao//room注解
 public interface UserDao {
 
+    //todo room数据库，内部封装了对liveData的支持，可以在此直接返回的数据类型，变为LiveData<T>的，注意，不能是其子类，如multableLiveData等。注意，返回的LiveData不能直接用getValue，拿到的会是null，只有在liveData的oberve函数中才能拿到实际值。
     @Query(value = "select * from db_user")
-    List<DbUser> getAll();//查询所有数据
+    List<DbUser> getAll();//查询所有数据，若返回liveData则为 LiveData<List<DbUser>>
 
 
     @Query("SELECT * FROM db_user WHERE uid IN (:userIds)")

@@ -24,8 +24,8 @@ public class DbUser {
     private String city;
 
     @ColumnInfo
-    private int age;//如此数据表中不会有age字段
-
+    private int age;
+    //如此数据表中不会有@Ignore标记的属性字段
     @Ignore
     private boolean single;
 

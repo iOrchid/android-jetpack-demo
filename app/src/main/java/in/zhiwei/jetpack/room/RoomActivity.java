@@ -49,7 +49,7 @@ public class RoomActivity extends AppCompatActivity {
             user.setName("小明 " + i);
             user.setSingle(i % 2 == 0);
             userDao.insertAll(user);
-            sb.append(user.toString() + "\n");
+            sb.append(user.toString()).append("\n");
         }
 //        userDao.insertAll(users.get(0),users.get(1));
         tvInsert.setText(sb.toString());
@@ -106,7 +106,8 @@ public class RoomActivity extends AppCompatActivity {
                     .append(user.isSingle())
                     .append("\n");
         }
-        tvSize.setText("All Size ： " + all.size());
+        String text = "All Size ： " + all.size();
+        tvSize.setText(text);
         tvAll.setText(sb.toString());
     }
 
