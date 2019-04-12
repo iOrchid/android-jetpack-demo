@@ -16,6 +16,7 @@ android {
         versionName "1.0.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
+
         //指定room.schemaLocation生成的文件路径,或者可以在database对象类上 声明 exportSchema = false
         javaCompileOptions {
             annotationProcessorOptions {
@@ -33,10 +34,12 @@ android {
     dataBinding {
         enabled = true
     }
+
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
+        sourceCompatibility '1.8'
+        targetCompatibility '1.8'
     }
+    buildToolsVersion = '28.0.3'
 }
 
 dependencies {
@@ -48,8 +51,7 @@ dependencies {
     //<editor-folder desc="jetPack libs">
     implementation 'androidx.lifecycle:lifecycle-runtime:2.0.0'
     implementation 'androidx.lifecycle:lifecycle-extensions:2.0.0'
-    annotationProcessor "androidx.lifecycle:lifecycle-compiler:2.0.0"
-    kapt "androidx.lifecycle:lifecycle-compiler:2.0.0"
+    annotationProcessor "androidx.lifecycle:lifecycle-common-java8:2.0.0"
 
     implementation 'androidx.room:room-runtime:2.1.0-alpha06'
     annotationProcessor "androidx.room:room-compiler:2.1.0-alpha06"
@@ -58,8 +60,8 @@ dependencies {
     implementation 'androidx.paging:paging-runtime:2.1.0'
     implementation 'android.arch.work:work-runtime:1.0.0'
     //注意配置navigation版本号的时候，project下的build.gradle的class path也需要同步navigation的版本号配置
-    implementation 'android.arch.navigation:navigation-ui:1.0.0-rc02'
-    implementation 'android.arch.navigation:navigation-fragment:1.0.0-rc02'
+    implementation 'android.arch.navigation:navigation-ui:1.0.0'
+    implementation 'android.arch.navigation:navigation-fragment:1.0.0'
     //</editor-folder>
 
     implementation 'com.google.dagger:dagger:2.19'
