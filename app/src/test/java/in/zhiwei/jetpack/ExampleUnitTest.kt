@@ -13,4 +13,11 @@ class ExampleUnitTest {
     fun addition_isCorrect() {
         assertEquals(4, 2 + 2)
     }
+
+    @Test
+    fun testKt() {
+        //数据类型
+//        KotlinSyntax02().testV()
+//        KotlinSyntax02().testK2()
+    }
 }

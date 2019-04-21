@@ -1,7 +1,7 @@
 package `in`.zhiwei.jetpack.kotlin
 
 /**
- * Kotlin基础语法，变量/常量/注释，基础数据类型
+ * Kotlin基础语法（一），变量/常量/注释，基础数据类型
  * Author: zhiwei.
  * Github: https://github.com/zhiwei1990
  * Date: 2019/3/17,19:25.
@@ -47,7 +47,8 @@ class KotlinSyntax01 {
 //<editor-folder desc="kotlin 变量/常量的 Top Level中定义,也就是kt文件根结点定义">
 
 
-//以下的变量/常量声明，是在kt文件的顶级节点下，
+//以下的变量/常量声明，是在kt文件的顶级节点下，根据public，private等修饰权限，对于整个module是有效的。所以
+//这里的topLevel中定义的public的变量，在其他kotlin文件中，顶级位置，就不能再次定义同名变量，会冲突。
 var a: Int = 7//变量声明变量的标准格式 var name：type = xxx 其中xxx表示直接赋值或者实例化对象
 var b = 6//自动推到数据类型,如 6 推断为Int，而 6.0则推断为Double
 
