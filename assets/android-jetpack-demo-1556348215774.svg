@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="173.5" height="28">
+	<g shape-rendering="crispEdges">
+		<path fill="#555" d="M0 0h94.5v28H0z"/>
+		<path fill="#007ec6" d="M94.5 0h79v28H94.5z"/>
+	</g>
+	<g fill="#fff" text-anchor="middle" font-family="DejaVu Sans,Verdana,Geneva,sans-serif" font-size="100">
+		<text x="472.5" y="175" transform="scale(.1)" textLength="705">REPO SIZE</text>
+		<text x="1340" y="175" font-weight="bold" transform="scale(.1)" textLength="550">3.79 MB</text>
+	</g>
+</svg>
