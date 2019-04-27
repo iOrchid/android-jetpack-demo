@@ -3,8 +3,8 @@
 ## 🔥Android-Jetpack-Demo
 
 [![jetpack](https://img.shields.io/badge/志威-Jetpack-brightgreen.svg)](https://developer.android.com/jetpack/) [![apache2.0](https://img.shields.io/badge/license-apache2.0-brightgreen.svg)](./LICENSE)![Gitter](https://img.shields.io/gitter/room/zhiwei1990/android-jetpack-demo.svg?style=flat-square)
-[![API](https://img.shields.io/badge/API-21%2B-brightgreen.svg?style=flat)](https://android-arsenal.com/api?level=21)[![Build Status](https://travis-ci.org/zhiwei1990/android-jetpack-demo.svg?branch=master)](https://travis-ci.org/zhiwei1990/android-jetpack-demo) [![SonarCloud](https://sonarcloud.io/api/project_badges/measure?project=zhiwei1990_android-jetpack-demo&metric=alert_status)](https://sonarcloud.io/dashboard?id=zhiwei1990_android-jetpack-demo)![GitHub repo size](https://img.shields.io/github/repo-size/zhiwei1990/android-jetpack-demo.svg?style=flat)![GitHub code size in bytes](assets/android-jetpack-demo-1556348148264.svg)![GitHub Release Date](assets/android-jetpack-demo-1556347898172.svg)![GitHub language count](assets/android-jetpack-demo-1556348476542.svg)![GitHub top language](https://img.shields.io/github/languages/top/zhiwei1990/android-jetpack-demo.svg?style=flat-square)[![version](https://img.shields.io/github/release/zhiwei1990/android-jetpack-demo.svg)](https://github.com/zhiwei1990/android-jetpack-demo/releases) 
-![GitHub last commit](assets/android-jetpack-demo-1556347861744.svg)![GitHub commit activity](assets/android-jetpack-demo.svg)[![GitHub All Releases](assets/total.svg)![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com)[![Average time to resolve an issue](http://isitmaintained.com/badge/resolution/zhiwei1990/android-jetpack-demo.svg)](http://isitmaintained.com/project/zhiwei1990/android-jetpack-demo "Average time to resolve an issue")[![Percentage of issues still open](http://isitmaintained.com/badge/open/zhiwei1990/android-jetpack-demo.svg)](http://isitmaintained.com/project/zhiwei1990/android-jetpack-demo "Percentage of issues still open")[![HitCount](http://hits.dwyl.io/zhiwei1990/android-jetpack-demo.svg)](http://hits.dwyl.io/zhiwei1990/android-jetpack-demo)![GitHub search hit counter](https://img.shields.io/github/search/zhiwei1990/android-jetpack-demo/jetpack.svg?style=flat-square)
+[![API](https://img.shields.io/badge/API-21%2B-brightgreen.svg?style=flat)](https://android-arsenal.com/api?level=21)[![Build Status](https://travis-ci.org/zhiwei1990/android-jetpack-demo.svg?branch=master)](https://travis-ci.org/zhiwei1990/android-jetpack-demo) [![SonarCloud](https://sonarcloud.io/api/project_badges/measure?project=zhiwei1990_android-jetpack-demo&metric=alert_status)](https://sonarcloud.io/dashboard?id=zhiwei1990_android-jetpack-demo)![GitHub repo size](https://img.shields.io/github/repo-size/zhiwei1990/android-jetpack-demo.svg?style=flat-square)![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/zhiwei1990/android-jetpack-demo.svg?style=flat-square)![GitHub Release Date](https://img.shields.io/github/release-date/zhiwei1990/android-jetpack-demo.svg?color=orange&style=flat-square)![GitHub language count](https://img.shields.io/github/languages/count/zhiwei1990/android-jetpack-demo.svg)![GitHub top language](https://img.shields.io/github/languages/top/zhiwei1990/android-jetpack-demo.svg?style=flat-square)[![version](https://img.shields.io/github/release/zhiwei1990/android-jetpack-demo.svg)](https://github.com/zhiwei1990/android-jetpack-demo/releases) 
+![GitHub last commit](https://img.shields.io/github/last-commit/zhiwei1990/android-jetpack-demo.svg?style=flat-square)![GitHub commit activity](https://img.shields.io/github/commit-activity/m/zhiwei1990/android-jetpack-demo.svg?style=flat-square)![GitHub All Releases](https://img.shields.io/github/downloads/zhiwei1990/android-jetpack-demo/total.svg?style=flat-square)![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com)[![Average time to resolve an issue](http://isitmaintained.com/badge/resolution/zhiwei1990/android-jetpack-demo.svg)](http://isitmaintained.com/project/zhiwei1990/android-jetpack-demo "Average time to resolve an issue")[![Percentage of issues still open](http://isitmaintained.com/badge/open/zhiwei1990/android-jetpack-demo.svg)](http://isitmaintained.com/project/zhiwei1990/android-jetpack-demo "Percentage of issues still open")[![HitCount](http://hits.dwyl.io/zhiwei1990/android-jetpack-demo.svg)](http://hits.dwyl.io/zhiwei1990/android-jetpack-demo)![GitHub search hit counter](https://img.shields.io/github/search/zhiwei1990/android-jetpack-demo/jetpack.svg?style=flat-square)
 
 [TOC]
 
@@ -153,4 +153,20 @@ object Single {
 
 
 [^1]: 项目开发环境为AndroidStudio `3.2.1`+、Jdk8+、Windows10
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
