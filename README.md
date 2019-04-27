@@ -47,57 +47,93 @@
 
 ![databinding](./images/databinding.png)![lifecycle](./images/lifecycle.png)![logcat](./images/logcat.png)
 
+- `Kotlin`语法及部分博文[Kotlin](https://www.jianshu.com/p/bdbe2ab6e9b2)
+
 ```kotlin
-class KotlinActivity : AppCompatActivity() {
+package `in`.zhiwei.jetpack.kotlin
 
-    //todo kotlin都是封装类型，不能自动的类型转换,lazy懒加载也可以
-    val lazyStr: String by lazy {
-        println("这条语句，只会在第一次加载时候调用，再次调用这个变量的时候，就不会打印了")
-        "懒加载的返回值"
+/**
+ * Kotlin基础语法（一），变量/常量/注释，基础数据类型
+ * Author: zhiwei.
+ * Github: https://github.com/zhiwei1990
+ * Date: 2019/3/17,19:25.
+ * You never know what you can do until you try !
+ */
+
+//<editor-folder desc="kotlin 变量/常量的 类中定义">
+
+/*
+Kotlin中的单行、多行、文档注释与Java的注释无区别。
+唯一不同的是在kotlin的注释中，多行/文档 注释内，可以且套多行注释。
+/*
+这个就是多行注释中的多行注释
+ */
+ * 要是在Java中就会报错了。但是他们都能在多行注释中嵌套单行注释
+ */
+class KotlinSyntax01 {
+
+    //类属性的常量/变量的声明及初始化，大体和顶级toplevel中的声明，差不多。
+    var cA: Int = 10
+    var cB = 11
+    val cC = 3.1415926
+    lateinit var cS: String//不可空
+    private var cE: String? = null//声明可空，则需要?
+    //kotlin中class、var、function等默认修饰符不写，就是public，另有 protected、internal、private，类似于Java
+    //使用by lazy延迟初始化，则必须是val修饰，不可变，引用类型，基础类型不能延迟初始化。涉及到栈 堆
+    val list: Array<String> by lazy { arrayOf("cdd", "ddd", "dddd", "ddwecd") }
+
+    //init 为kotlin中class文件实例化必然调用的函数，不论构造函数有几个，都会调用init的
+    init {
+        cE = "null string"
     }
 
-
-    var age: Int = 0 //变量的声明，kotlin不需要 ; 分号来结束语句.但是一行若有多个语句，可以用 ; 分割
-    val PI: Float = 3.1415926f// var 声明变量 val 声明常量。格式为 var/val name:Type = init ,:Type 也可以省略
-    //这里演示 一行多条语句，分号分割，但是IDE格式化后，就不会在一行了。
-    //    var b: Byte = 0x08;    var st: Short = 0x16;var i: Int = 0x32;var l: Long = 64L; var f: Float = 32.0f;var d:Double=64.0;
-    var b: Byte = 0x08
-    var st: Short = 0x16
-    var i: Int = 0x32
-    var l: Long = 64L
-    var f: Float = 32.0f
-    var d: Double = 64.0
-    val str: String = "zifuchuan"
-    var cc: Char = '9'//不能直接写9 需要单引号，不同于java。只能是单个字符
-
-    //可用下划线分割长的数字
-    var millon: Int = 1_242_143_253
-
-
-    //fun 关键字，定义函数
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_kotlin)
-        //多参数
-        getSum(1, 2, 3, 4, 9)
-        //匿名函数定义
-        sumLambda(1, 32)
-		//...
-    }
-
-    /* 注释，类似于java的注释，不过这个多行注释，内部可以嵌套单行注释//，而java的不行
-        //定义一个函数，返回值为空 格式：
-        //fun functionName():returnType 返回类型为空 Unit。类似于java中的void,Unit可省略。其他不行。
-    */
-    fun doNothing(): Unit {
-        println("do Nothing()")
-    }
-
-    // 带参数，返回值的函数 可以简写为  fun getSum(a: Int, b: Int)=a+b
-    fun getSum(a: Int, b: Int): Int {
-        return a + b
+    //伴生对象，每个类都会有自己个一个伴生对象，不论它实例化多少个对象，这个object对当前类可理解为单例，静态
+    companion object {
+        const val PI = 3.1415926
     }
 }
+
+//</editor-folder>
+
+
+//<editor-folder desc="kotlin 变量/常量的 Top Level中定义,也就是kt文件根结点定义">
+
+
+//以下的变量/常量声明，是在kt文件的顶级节点下，根据public，private等修饰权限，对于整个module是有效的。所以
+//这里的topLevel中定义的public的变量，在其他kotlin文件中，顶级位置，就不能再次定义同名变量，会冲突。
+var a: Int = 7//变量声明变量的标准格式 var name：type = xxx 其中xxx表示直接赋值或者实例化对象
+var b = 6//自动推到数据类型,如 6 推断为Int，而 6.0则推断为Double
+
+//kotlin中一切皆对象形式，没有Java中的那种基础数据类型。变量的声明必须初始化，要么null，要么延迟初始化，而且null的对象和非空对象，声明也不一样。
+var s1: String? = null
+var s2: String? = "abc"//类型后加个?表示这个变量可以为null，见36行
+var s3: String = "abc"//上两个还可以s1=null，s2=null，但是s3是不可以的，因为类型是String，而不是String?
+lateinit var d: String//如果想要延迟初始化，可以用lateinit关键字修饰,但是?与lateinit不能共用
+val str: String by lazy { "sss val str" }//lazy 为高阶函数，延迟初始化，by连接词，但是不能与lateinit共用，且必须是val类型。
+val ee: Int = 900//val表示不可变量
+
+fun Test() {
+    d = "dddf"//延迟初始化的
+//        ee = 3//不可变量，常量，都是不能修改的。
+//        s3 = null//这里s3=null的话，编译就会报错
+    //局部变量，不可变量的声明
+    val sd = "ss 20010"
+    var ssa = 10080
+
+}
+
+//Java中不允许在类外定义常量，变量之类的，但是kotlin中可以。Java中一个.java文件只能又一个public的类，但是kotlin中可以有多个。
+val lenggth: Int = 100//val 表示不可变量，可以为顶级，类成员，局部不变量。
+const val PI: Double =
+    3.1415926//const 修饰的val，表示常量，必须在top level或者companion object中声明，不能作为普通的类成员常量。其中单例类可以理解为伴生类就是自身的一个kotlin的类
+//by lazy 延迟实例化，一个对象只会执行依次初始化
+val ccc: String by lazy { "fdf" }
+
+//object  可以理解为一个单例类
+object Single {
+    const val sP = 3.1415926
+}
+//</editor-folder>
 ```
 
 更多详情，请下载代码，内有详细注释，**鉴于本人才学有限，若有不足之处，请大神不吝赐教**。
