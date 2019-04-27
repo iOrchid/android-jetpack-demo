@@ -1,5 +1,6 @@
 package `in`.zhiwei.jetpack
 
+import `in`.zhiwei.jetpack.kotlin.KotlinSyntax03
 import org.junit.Assert.assertEquals
 import org.junit.Test
 
@@ -19,5 +20,6 @@ class ExampleUnitTest {
         //数据类型
 //        KotlinSyntax02().testV()
 //        KotlinSyntax02().testK2()
+        KotlinSyntax03().testBRC()
     }
 }
