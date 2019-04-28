@@ -1,5 +1,6 @@
 package in.zhiwei.jetpack.paging.list;
 
+import android.annotation.SuppressLint;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,6 +25,7 @@ public class MyAdapter extends PagedListAdapter<Student, MyViewHolder> {
             return oldItem.getId() == newItem.getId();
         }
 
+        @SuppressLint("DiffUtilEquals")
         @Override
         public boolean areContentsTheSame(@NonNull Student oldItem, @NonNull Student newItem) {
 
