@@ -80,5 +80,8 @@ val ccc: String by lazy { "fdf" }
 //object  可以理解为一个单例类
 object Single {
     const val sP = 3.1415926
+    fun ttSingle() {
+        println("hh single")
+    }
 }
 //</editor-folder>
