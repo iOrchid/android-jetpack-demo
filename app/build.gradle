@@ -7,13 +7,15 @@ apply plugin: 'kotlin-kapt'
 apply plugin: "androidx.navigation.safeargs"
 
 android {
-    compileSdkVersion 28
+    compileSdkVersion 29
+    buildToolsVersion = '29.0.0'
+
     defaultConfig {
-        applicationId "in.zhiwei.jetpack"
+        applicationId "org.zhiwei.jetpack"
         minSdkVersion 21
-        targetSdkVersion 28
-        versionCode 1
-        versionName "1.0.0"
+        targetSdkVersion 29
+        versionCode 2
+        versionName "1.1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
 
@@ -39,7 +41,7 @@ android {
         sourceCompatibility '1.8'
         targetCompatibility '1.8'
     }
-    buildToolsVersion = '28.0.3'
+
 }
 
 dependencies {
@@ -53,12 +55,12 @@ dependencies {
     implementation 'androidx.lifecycle:lifecycle-extensions:2.0.0'
     annotationProcessor "androidx.lifecycle:lifecycle-common-java8:2.0.0"
 
-    implementation 'androidx.room:room-runtime:2.1.0-alpha06'
-    annotationProcessor "androidx.room:room-compiler:2.1.0-alpha06"
-    kapt "androidx.room:room-compiler:2.1.0-alpha06"
+    implementation 'androidx.room:room-runtime:2.1.0'
+    annotationProcessor "androidx.room:room-compiler:2.1.0"
+    kapt "androidx.room:room-compiler:2.1.0"
 
     implementation 'androidx.paging:paging-runtime:2.1.0'
-    implementation 'android.arch.work:work-runtime:1.0.0'
+    implementation 'android.arch.work:work-runtime:1.0.1'
     //注意配置navigation版本号的时候，project下的build.gradle的class path也需要同步navigation的版本号配置
     implementation 'android.arch.navigation:navigation-ui:1.0.0'
     implementation 'android.arch.navigation:navigation-fragment:1.0.0'
@@ -68,12 +70,12 @@ dependencies {
     annotationProcessor 'com.google.dagger:dagger-compiler:2.22.1'
     kapt 'com.google.dagger:dagger-compiler:2.22.1'
 
-    implementation 'io.reactivex.rxjava2:rxjava:2.2.8'
+    implementation 'io.reactivex.rxjava2:rxjava:2.2.9'
     implementation 'io.reactivex.rxjava2:rxandroid:2.1.1'
 
     //<editor-folder desc="test libs">
     testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'androidx.test:core:1.1.0'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.1'
+    androidTestImplementation 'androidx.test:core:1.2.0'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
     //</editor-folder>
 }

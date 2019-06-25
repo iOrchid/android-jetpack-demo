@@ -4,10 +4,13 @@
 	<!--layout下的data节点，用于配置在xml中使用的导入java类,这里配置了class属性，自定义生成的binding类的名称，若不配置，则默认为xml布局名称的某种转换，如ActivityMainDataBinding，此xml则是DataBindingDataBinding-->
 	<data class="NamedDB">
 		<!--导入类，可以alias别名-->
-		<import type="in.zhiwei.jetpack.databinding.entity.CommonUser" alias="CUser"/>
+		<import
+				type="org.zhiwei.jetpack.databinding.entity.CommonUser"
+				alias="CUser"/>
 		<!--这里是定义一个对象，指定类型，类型可以是原生类型，可以是类型的别名。这里就是CommonUser的对象，使用它的别名,这里需要在java中set才能使用-->
 		<variable name="user" type="CUser"/>
-		<import type="in.zhiwei.jetpack.databinding.tool.Tools"/>
+
+		<import type="org.zhiwei.jetpack.databinding.tool.Tools"/>
 		<import type="android.view.View"/>
 		<import type="java.util.List"/>
 		<import type="java.util.Map"/>
@@ -20,13 +23,26 @@
 		<variable name="userList" type="List&lt;CUser>"/>
 		<variable name="userMap" type="Map&lt;Integer,CUser>"/>
 
-		<variable name="obusr" type="in.zhiwei.jetpack.databinding.entity.ObservableUser"/>
-		<variable name="presenter" type="in.zhiwei.jetpack.databinding.tool.Presenter"/>
-		<variable name="ofuser" type="in.zhiwei.jetpack.databinding.entity.ObFieldUser"/>
+		<variable
+				name="obusr"
+				type="org.zhiwei.jetpack.databinding.entity.ObservableUser"/>
+
+		<variable
+				name="presenter"
+				type="org.zhiwei.jetpack.databinding.tool.Presenter"/>
+
+		<variable
+				name="ofuser"
+				type="org.zhiwei.jetpack.databinding.entity.ObFieldUser"/>
 
 		<!--adapter-->
-		<variable name="lvadapter" type="in.zhiwei.jetpack.databinding.adapter.LvAdapter"/>
-		<variable name="rvadapter" type="in.zhiwei.jetpack.databinding.adapter.RvAdapter"/>
+		<variable
+				name="lvadapter"
+				type="org.zhiwei.jetpack.databinding.adapter.LvAdapter"/>
+
+		<variable
+				name="rvadapter"
+				type="org.zhiwei.jetpack.databinding.adapter.RvAdapter"/>
 
 	</data>
 	<ScrollView
@@ -132,7 +148,8 @@
 					android:text="@{user}"
 					app:bg="@{`#ffff00`}"
 					android:layout_height="wrap_content"/>
-			<in.zhiwei.jetpack.databinding.adapter.HListView
+
+			<org.zhiwei.jetpack.databinding.adapter.HListView
 					android:id="@+id/lv"
 					android:adapter="@{lvadapter}"
 					android:layout_width="match_parent"
