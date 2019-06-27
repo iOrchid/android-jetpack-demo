@@ -10,16 +10,31 @@
 
 ####  一、项目简介
 
-> **Android-Jetpack-Demo** 是一个简单的、集成当前Google主流Android技术的示例Demo，旨在帮助有需要的初级开发者，快速上手Android新技术、新架构。主要使用`livedata`、`lifecycle`、`paging`、`room`、`navigation`、`workmanager`、`rxjava`、`kotlin`、`dagger2`以及`viewmodel`的**MVVM**简单架构
+> **Android-Jetpack-Demo** 是一个简单的、集成当前Google主流Android技术的示例Demo，旨在帮助有需要的初级开发者，快速上手Android新技术、新架构。主要使用`livedata`、`lifecycle`、`paging`、`room`、`navigation`、`workmanager`、`rxjava`、`kotlin`、`dagger2`以及`viewmodel`的**MVVM**简单架构。
+>
 > 代码中都有详细的注释，主要操作演示**关注`logcat`的日志**输出
 
-#### 二、Sample示例
+#### 二、更新日志
+
+- v1.1.0（2019年6月27日）
+  - 更新`AndroidStudio`以及`Gradle`编译版本
+  - 更新`jetpack`及`kotlin`版本为当前最新
+  - 压缩存档，以备模块化版本
+  - `kotlin`初级语法的基础博文
+- v1.0.0（2018年11月14日）
+  - 实现`jetpack`组件的初级基础用法的演示
+  - `dagger2`的基础用法演示
+  - `kotlin`初级语法的整理注释
+  - `databinding`的基础用法
+  - `AAC`的初级使用
+
+#### 三、Sample示例
 
 [下载体验apk](https://raw.githubusercontent.com/zhiwei1990/android-jetpack-demo/master/apk/app-debug.apk)或者手机扫描二维码下载`Demo`的`apk`包
 
 ![扫描下载](./images/QR_Jetpack.png)
 
-#### 三、项目组成[^1]
+#### 四、项目组成[^1]
 
 项目主要简单的演示一些`android`技术与框架库的入门使用，`RxJava`操作符、`Kotlin`基本语法，以及`JetPack`的组件的简单使用。
 
@@ -36,21 +51,21 @@
   - `room`
   - `workmanager`
 
-#### 四、规划
+#### 五、规划
 
 - [x] 基础使用入门的代码演示
 - [ ] 进阶技术&架构的演示
 - [ ] 对应代码的详细博文
 - [ ] 其他前沿技术链接
 
-#### 五、示例内容(部分）
+#### 六、示例内容(部分）
 
 ![databinding](./images/databinding.png)![lifecycle](./images/lifecycle.png)![logcat](./images/logcat.png)
 
 - `Kotlin`语法及部分博文[Kotlin](https://www.jianshu.com/p/bdbe2ab6e9b2)
 
 ```kotlin
-package `in`.zhiwei.jetpack.kotlin
+package org.zhiwei.jetpack.kotlin
 
 /**
  * Kotlin基础语法（一），变量/常量/注释，基础数据类型
@@ -138,35 +153,34 @@ object Single {
 
 更多详情，请下载代码，内有详细注释，**鉴于本人才学有限，若有不足之处，请大神不吝赐教**。
 
-#### 六、关于作者 [![jianshu](./images/jianshu.png)](https://www.jianshu.com/u/72294e6848c0)[![github](./images/github.png)](https://github.com/zhiwei1990)[![csdn](./images/csdn.png)](https://blog.csdn.net/zhiwei9001)
+#### 七、关于作者 [![jianshu](./images/jianshu.png)](https://www.jianshu.com/u/72294e6848c0)[![github](./images/github.png)](https://github.com/zhiwei1990)[![csdn](./images/csdn.png)](https://blog.csdn.net/zhiwei9001)
 
 > 作者本人只是一个，就职于某`知名`(@_@ 有名字的)互联网公司的，技术小白一枚，对于编程有着某种兴趣和热爱，然技术确实渣渣，好读书、不求甚解~~
 
 `人之为学有难易乎、为之，则难者亦易矣；不为，则易者亦难矣。`
 
-#### 七、关注及反馈
-
 倘若本项目对你有一丝丝的帮助和价值，烦请给个`star`,或者有什么好的建议或意见，也可以发个`issues`，谢谢！:happy:
 
 [![Github stars](https://img.shields.io/github/stars/zhiwei1990/android-jetpack-demo.svg?style=social&label=star)](https://github.com/zhiwei1990/android-jetpack-demo)[![Github followers](https://img.shields.io/github/followers/zhiwei1990.svg?style=social&label=follow)](https://github.com/zhiwei1990/android-jetpack-demo)[![Github issues](https://img.shields.io/github/issues/zhiwei1990/android-jetpack-demo.svg?style=social&label=issues)](https://github.com/zhiwei1990/android-jetpack-demo)
 
+- **License**
+
+```markdown
+Copyright 2019 zhiwei1990
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+	http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+```
 
 
-[^1]: 项目开发环境为AndroidStudio `3.2.1`+、Jdk8+、Windows10
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+[^1]: 项目开发环境为AndroidStudio `3.4.1`+、Jdk8+、Windows10
