@@ -166,7 +166,7 @@ object Single {
 - **License**
 
 ```markdown
-Copyright 2019 zhiwei1990
+Copyright 2019 zhiwei.org
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -183,4 +183,5 @@ limitations under the License.
 
 
 
-[^1]: 作者项目开发环境为AndroidStudio `3.4.1`、`gradle 5.1.1`、Jdk8`、`Windows10`
+[^1]: 作者项目开发环境为AndroidStudio `3.4.1`、`gradle 5.1.1`、`Jdk8`、`Windows10`
+
