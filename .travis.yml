@@ -25,7 +25,10 @@ android:
   - platform-tools
   - android-${ANDROID_API}
   - build-tools-${ANDROID_BUILD_TOOLS}
-  - extra
+  - extra-android-m2repository
+  - extra-google-m2repository
+  - extra-android-support
+  - extra-google-google_play_services
 addons:
   sonarcloud:
     organization: "zhiwei1990-github" # the key of the org you chose at step #3
