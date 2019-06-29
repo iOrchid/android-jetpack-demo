@@ -26,7 +26,13 @@ android:
   - android-${ANDROID_API}
   - build-tools-${ANDROID_BUILD_TOOLS}
   - extra
-
+addons:
+  sonarcloud:
+    organization: "zhiwei1990-github" # the key of the org you chose at step #3
+      # token:
+    # secure: "*********" # encrypted value of your token
 script:
+  # other script steps might be done before running the actual analysis
   - chmod +x ./gradlew
   - "./gradlew clean test build"
+  - sonar-scanner
