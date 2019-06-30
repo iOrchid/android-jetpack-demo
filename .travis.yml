@@ -1,45 +1,43 @@
 language: android
-sudo: required
 jdk: oraclejdk8
-
-before_cache:
-  - rm -f  $HOME/.gradle/caches/modules-2/modules-2.lock
-  - rm -rf $HOME/.gradle/caches/*/plugin-resolution/
-
-cache:
-  directories:
-  - $HOME/.gradle/caches/
-  - $HOME/.gradle/wrapper/
-  - $HOME/.android/build-cache
-
-env:
- global:
-   - ANDROID_API=29
-   - ANDROID_BUILD_TOOLS=29.0.0
- - ADB_INSTALL_TIMEOUT=5 # Minutes.
-
+sudo: false
 android:
   components:
+  - build-tools-28.0.3
+  - android-28
   - tools
-  - tools # Running this twice get's the latest build tools (https://github.com/codepath/android_guides/wiki/Setting-up-Travis-CI)
   - platform-tools
-  - android-${ANDROID_API}
-  - build-tools-${ANDROID_BUILD_TOOLS}
   - extra-android-m2repository
-  - extra-google-m2repository
   - extra-android-support
+  - extra-google-m2repository
   - extra-google-google_play_services
+before_cache:
+- rm -f  $HOME/.gradle/caches/modules-2/modules-2.lock
+- rm -rf $HOME/.gradle/caches/*/plugin-resolution/
+cache:
+  directories:
+  - "$HOME/.gradle/caches/"
+  - "$HOME/.gradle/wrapper/"
+  - "$HOME/.android/build-cache"
 addons:
   sonarcloud:
-    organization: "zhiwei1990-github" # the key of the org you chose at step #3
-      # token:
-    # secure: "*********" # encrypted value of your token
-before_install:
-  - mkdir "$ANDROID_HOME/licenses" || true
-  - echo -e "\n8933bad161af4178b1185d1a37fbf41ea5269c55" > "$ANDROID_HOME/licenses/android-sdk-license"
-  - echo -e "\n84831b9409646a918e30573bab4c9c91346d8abd" > "$ANDROID_HOME/licenses/android-sdk-preview-license"
+    organization: zhiwei1990-github
+before_script:
+- chmod +x gradlew
 script:
-  # other script steps might be done before running the actual analysis
-  - chmod +x ./gradlew
-  - "./gradlew clean test build"
-  - sonar-scanner
+- "./gradlew assemble"
+- sonar-scanner
+before_install:
+- openssl aes-256-cbc -K $encrypted_cc48737a0442_key -iv $encrypted_cc48737a0442_iv
+- in githubKeyStore.jks.enc -out githubKeyStore.jks -d
+deploy:
+  provider: releases
+  api_key:
+    secure: VERCb+2U7BcgZSyim5vkgdL0s8BGPcEOsqvpzzUjZjdYTEItB2SNCKUhbn0ugNYUFmFTacZ+NPi6veUQwqWrSPLQPuJe6ePZeOAaYgBrGGkeYnJ2EsnADYKiJypEsICWYScdKk6BSKjnYn6KaPAN2MvPiMfaLIDEOLmLpHR+hcC8sohl5by7LFySFI9Iqzx/Qga0ZmnviBIULO3ttyGA6r6jOpt4qKCEmcmywU8j8WzoMA4M8OQBamkSh1EvxUIujAJWle/ccOn7J5jx53o6pKfOeKKebEnZ25I4SDzGAQZ+bv98JlBTwqkbdWB+Ud5w3eZrNim5FqFOc7xVKjCW3Lylljj1Yt/k/9GuhpieIH21hYsKivTYzsINgPk1NC6Sjv7jBoyN3WkuPYJ9+z1JTqIrD6w6xIPsQlYEWZi4mFtvqVKofY+zX4vVE6xGEhRMfhjjw2luE2AXLGC2sRU9NIntikx+srnjp5hb8bCnbPjV+Y+Nu6KkDuU1O+tGlVr29p95fo5leaM/uFNB5vpyZHdAfL0utDcv3axGJITRJNZRPseQNlY3H49/booOvsoqk4jngsnPhZAcugkB2KYyI3BRdnTkNxS7LAHNt2JFxmnE/7BU1/IdnBJf+Vx3AL84JX6lkz6YyiAzhuMOQxpocFOQlpwRiRBqmRVx3xWDphE=
+  file: app/build/outputs/apk/apk-release.apk
+  # 这句手动添加
+  skip_cleanup: true
+  on:
+    repo: zhiwei1990/android-jetpack-demo
+    # 这句手动添加
+    tags: true
