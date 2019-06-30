@@ -1,5 +1,6 @@
 language: android
 sudo: required
+dist: trusty
 jdk: oraclejdk8
 
 before_cache:
@@ -14,8 +15,8 @@ cache:
 
 env:
   global:
-    - ANDROID_API=28
-    - ANDROID_BUILD_TOOLS=28.0.3
+    - ANDROID_API=29
+    - ANDROID_BUILD_TOOLS=29.0.0
 
 android:
   components:
@@ -24,7 +25,12 @@ android:
     - platform-tools
     - android-${ANDROID_API}
     - build-tools-${ANDROID_BUILD_TOOLS}
+    - add-on
     - extra
+  licenses:
+    - 'android-sdk-preview-license-52d11cd2'
+    - 'android-sdk-license-.+'
+    - 'google-gdk-license-.+'
 
 script:
   - chmod +x ./gradlew
