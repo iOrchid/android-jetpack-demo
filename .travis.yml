@@ -44,17 +44,17 @@ script:
   - "./gradlew clean test build"
   - sonar-scanner
 
-#before_install:
-#  - openssl aes-256-cbc -K $encrypted_cc48737a0442_key -iv $encrypted_cc48737a0442_iv
-#  - in githubKeyStore.jks.enc -out githubKeyStore.jks -d
-#deploy:
-#  provider: releases
-#  api_key:
-#    secure: VERCb+2U7BcgZSyim5vkgdL0s8BGPcEOsqvpzzUjZjdYTEItB2SNCKUhbn0ugNYUFmFTacZ+NPi6veUQwqWrSPLQPuJe6ePZeOAaYgBrGGkeYnJ2EsnADYKiJypEsICWYScdKk6BSKjnYn6KaPAN2MvPiMfaLIDEOLmLpHR+hcC8sohl5by7LFySFI9Iqzx/Qga0ZmnviBIULO3ttyGA6r6jOpt4qKCEmcmywU8j8WzoMA4M8OQBamkSh1EvxUIujAJWle/ccOn7J5jx53o6pKfOeKKebEnZ25I4SDzGAQZ+bv98JlBTwqkbdWB+Ud5w3eZrNim5FqFOc7xVKjCW3Lylljj1Yt/k/9GuhpieIH21hYsKivTYzsINgPk1NC6Sjv7jBoyN3WkuPYJ9+z1JTqIrD6w6xIPsQlYEWZi4mFtvqVKofY+zX4vVE6xGEhRMfhjjw2luE2AXLGC2sRU9NIntikx+srnjp5hb8bCnbPjV+Y+Nu6KkDuU1O+tGlVr29p95fo5leaM/uFNB5vpyZHdAfL0utDcv3axGJITRJNZRPseQNlY3H49/booOvsoqk4jngsnPhZAcugkB2KYyI3BRdnTkNxS7LAHNt2JFxmnE/7BU1/IdnBJf+Vx3AL84JX6lkz6YyiAzhuMOQxpocFOQlpwRiRBqmRVx3xWDphE=
-#  file: app/build/outputs/apk/apk-release.apk
-#  # 这句手动添加
-#  skip_cleanup: true
-#  on:
-#    repo: zhiwei1990/android-jetpack-demo
-#    # 这句手动添加
-#    tags: true
+before_install:
+  - openssl aes-256-cbc -K $encrypted_cc48737a0442_key -iv $encrypted_cc48737a0442_iv
+  - in githubKeyStore.jks.enc -out githubKeyStore.jks -d
+deploy:
+  provider: releases
+  api_key:
+    secure: VERCb+2U7BcgZSyim5vkgdL0s8BGPcEOsqvpzzUjZjdYTEItB2SNCKUhbn0ugNYUFmFTacZ+NPi6veUQwqWrSPLQPuJe6ePZeOAaYgBrGGkeYnJ2EsnADYKiJypEsICWYScdKk6BSKjnYn6KaPAN2MvPiMfaLIDEOLmLpHR+hcC8sohl5by7LFySFI9Iqzx/Qga0ZmnviBIULO3ttyGA6r6jOpt4qKCEmcmywU8j8WzoMA4M8OQBamkSh1EvxUIujAJWle/ccOn7J5jx53o6pKfOeKKebEnZ25I4SDzGAQZ+bv98JlBTwqkbdWB+Ud5w3eZrNim5FqFOc7xVKjCW3Lylljj1Yt/k/9GuhpieIH21hYsKivTYzsINgPk1NC6Sjv7jBoyN3WkuPYJ9+z1JTqIrD6w6xIPsQlYEWZi4mFtvqVKofY+zX4vVE6xGEhRMfhjjw2luE2AXLGC2sRU9NIntikx+srnjp5hb8bCnbPjV+Y+Nu6KkDuU1O+tGlVr29p95fo5leaM/uFNB5vpyZHdAfL0utDcv3axGJITRJNZRPseQNlY3H49/booOvsoqk4jngsnPhZAcugkB2KYyI3BRdnTkNxS7LAHNt2JFxmnE/7BU1/IdnBJf+Vx3AL84JX6lkz6YyiAzhuMOQxpocFOQlpwRiRBqmRVx3xWDphE=
+  file: app/build/outputs/apk/apk-release.apk
+  # 这句手动添加
+  skip_cleanup: true
+  on:
+    repo: zhiwei1990/android-jetpack-demo
+    # 这句手动添加
+    tags: true
