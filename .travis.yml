@@ -6,9 +6,9 @@ android:
   - build-tools-28.0.3
   - android-28
   - tools
+  - tools
   - platform-tools
   - extra-android-m2repository
-  - extra-android-support
   - extra-google-m2repository
   - extra-google-google_play_services
 before_cache:
