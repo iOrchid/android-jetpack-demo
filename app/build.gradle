@@ -6,16 +6,26 @@ apply plugin: 'kotlin-kapt'
 
 apply plugin: "androidx.navigation.safeargs"
 
+//定义使用当前分支的commit次数作为int值，用于versionCode
+static def getGitVersionCode() {
+    return 'git rev-list HEAD --first-parent --count'.execute().text.trim().toInteger()
+}
+//使用git中的tag作为versionName
+static def getGitVersionName() {
+    //因为指令获取的是 v1.1.1-13-ge084397 格式的，所以需要有效部分即可
+    return 'git describe --tags'.execute().text.trim().substring(0,6)
+}
+
 android {
     compileSdkVersion 29
-    buildToolsVersion = '29.0.0'
+    buildToolsVersion = '29.0.1'
 
     defaultConfig {
         applicationId "org.zhiwei.jetpack"
         minSdkVersion 21
         targetSdkVersion 29
-        versionCode 2
-        versionName "1.1.2"
+        versionCode getGitVersionCode()
+        versionName getGitVersionName()
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
 
