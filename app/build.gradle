@@ -1,10 +1,8 @@
 apply plugin: 'com.android.application'
 
-apply plugin: 'kotlin-android'
-apply plugin: 'kotlin-android-extensions'
-apply plugin: 'kotlin-kapt'
-
 apply plugin: "androidx.navigation.safeargs"
+//引用dependencies中的配置
+apply from: '../dependencies.gradle'
 
 //定义使用当前分支的commit次数作为int值，用于versionCode
 static def getGitVersionCode() {
@@ -13,17 +11,16 @@ static def getGitVersionCode() {
 //使用git中的tag作为versionName
 static def getGitVersionName() {
     //因为指令获取的是 v1.1.1-13-ge084397 格式的，所以需要有效部分即可
-    return 'git describe --tags'.execute().text.trim().substring(0,6)
+    return 'git describe --tags'.execute().text.trim().substring(0, 6)
 }
 
 android {
-    compileSdkVersion 29
-    buildToolsVersion = '29.0.1'
+    //一些其他参数配置，放在了dependencies.gradle中，多个模块共用
 
     defaultConfig {
         applicationId "org.zhiwei.jetpack"
-        minSdkVersion 21
-        targetSdkVersion 29
+        minSdkVersion min_sdk_verion
+        targetSdkVersion target_sdk_version
         versionCode getGitVersionCode()
         versionName getGitVersionName()
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
@@ -37,57 +34,23 @@ android {
         }
     }
 
-    buildTypes {
-        release {
-            minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-        }
-    }
-
-    dataBinding {
-        enabled = true
-    }
-
-    compileOptions {
-        sourceCompatibility '1.8'
-        targetCompatibility '1.8'
-    }
-
 }
 
 dependencies {
-    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    //在gradle.properties中配置的字段，读取出来是string的，所以toBoolean才是布尔值
+    if (!singleModule.toBoolean()) {
+        //依赖其他模块，path 字段可以省略
+        implementation project(path: ':aac')
+        implementation project(path: ':workmanager')
+        implementation project(path: ':livedata')
+        implementation project(path: ':room')
+        implementation project(path: ':paging')
+        implementation project(':rxjava')
+        implementation project(':dagger2')
+        implementation project(path: ':lifecycle')
+        implementation project(path: ':kotlin')
+        implementation project(path: ':databinding')
+        implementation project(path: ':navigation')
+    }
 
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
-    implementation 'androidx.appcompat:appcompat:1.0.2'
-
-    //<editor-folder desc="jetPack libs">
-    implementation 'androidx.lifecycle:lifecycle-runtime:2.0.0'
-    implementation 'androidx.lifecycle:lifecycle-extensions:2.0.0'
-    annotationProcessor "androidx.lifecycle:lifecycle-common-java8:2.0.0"
-    kapt "androidx.lifecycle:lifecycle-common-java8:2.0.0"
-
-    implementation 'androidx.room:room-runtime:2.1.0'
-    annotationProcessor "androidx.room:room-compiler:2.1.0"
-    kapt "androidx.room:room-compiler:2.1.0"
-
-    implementation 'androidx.paging:paging-runtime:2.1.0'
-    implementation 'android.arch.work:work-runtime:1.0.1'
-    //注意配置navigation版本号的时候，project下的build.gradle的class path也需要同步navigation的版本号配置
-    implementation 'android.arch.navigation:navigation-ui:1.0.0'
-    implementation 'android.arch.navigation:navigation-fragment:1.0.0'
-    //</editor-folder>
-
-    implementation 'com.google.dagger:dagger:2.22.1'
-    annotationProcessor 'com.google.dagger:dagger-compiler:2.22.1'
-    kapt 'com.google.dagger:dagger-compiler:2.22.1'
-
-    implementation 'io.reactivex.rxjava2:rxjava:2.2.9'
-    implementation 'io.reactivex.rxjava2:rxandroid:2.1.1'
-
-    //<editor-folder desc="test libs">
-    testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'androidx.test:core:1.2.0'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
-    //</editor-folder>
 }

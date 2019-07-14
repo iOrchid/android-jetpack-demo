@@ -1,0 +1,84 @@
+//统一配置一些共用参数
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
+
+
+android {
+    compileSdkVersion compile_sdk_version
+    buildToolsVersion = build_tools_version
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+    //共用配置，主要针对其他module，作为独立模块运行的时候，它需要一个启动Activity的主入口配置
+    sourceSets {
+        //默认没有配置flavors的情况，只有main主体渠道
+        main{
+            //如果该module作为独立app运行，使用的配置
+            if (singleModule.toBoolean()) {
+               manifest {
+                   manifest.srcFile 'src/debug/AndroidManifest.xml'
+                   //同理，可配置res.srcDirs之类的
+               }
+            }else {
+                manifest.srcFile 'src/main/AndroidManifest.xml'
+                //作为module的时候，就不需要debug包下的文件，排除掉
+                java {
+                    exclude 'src/debug/'
+                }
+            }
+        }
+    }
+
+    dataBinding {
+        enabled = true
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+}
+
+//创建一个dependencies管理的文件，可以在各自module的build.gradle文件里，apply form 该文件的相对路径(包含fileName)，如 apply form ../dependencies.gradle
+dependencies {
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
+    implementation 'androidx.appcompat:appcompat:1.0.2'
+
+    //<editor-folder desc="jetPack libs">
+    implementation 'androidx.lifecycle:lifecycle-runtime:2.0.0'
+    implementation 'androidx.lifecycle:lifecycle-extensions:2.0.0'
+    annotationProcessor "androidx.lifecycle:lifecycle-common-java8:2.0.0"
+    kapt "androidx.lifecycle:lifecycle-common-java8:2.0.0"
+
+    implementation 'androidx.room:room-runtime:2.1.0'
+    annotationProcessor "androidx.room:room-compiler:2.1.0"
+    kapt "androidx.room:room-compiler:2.1.0"
+
+    implementation 'androidx.paging:paging-runtime:2.1.0'
+    implementation 'android.arch.work:work-runtime:1.0.1'
+    //注意配置navigation版本号的时候，project下的build.gradle的class path也需要同步navigation的版本号配置
+    implementation 'android.arch.navigation:navigation-ui:1.0.0'
+    implementation 'android.arch.navigation:navigation-fragment:1.0.0'
+    //</editor-folder>
+
+    implementation 'com.google.dagger:dagger:2.22.1'
+    annotationProcessor 'com.google.dagger:dagger-compiler:2.22.1'
+    kapt 'com.google.dagger:dagger-compiler:2.22.1'
+
+    implementation 'io.reactivex.rxjava2:rxjava:2.2.9'
+    implementation 'io.reactivex.rxjava2:rxandroid:2.1.1'
+
+    //<editor-folder desc="test libs">
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'androidx.test:core:1.2.0'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+    //</editor-folder>
+}
