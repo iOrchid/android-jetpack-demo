@@ -17,7 +17,7 @@
 	* [四、项目组成[^1]]()
 	* [五、规划]()
 	* [六、示例内容(部分）]()
-	* [七、关于作者 [![jianshu](./images/jianshu.png)](https://www.jianshu.com/u/72294e6848c0) [![github](./images/github.png)](https://github.com/zhiwei1990) [![csdn](./images/csdn.png)](https://blog.csdn.net/zhiwei9001))
+	* [七、关于作者]()[![jianshu](./images/jianshu.png)](https://www.jianshu.com/u/72294e6848c0)[![github](./images/github.png)](https://github.com/zhiwei1990)[![csdn](./images/csdn.png)](https://blog.csdn.net/zhiwei9001)
 
 ####  一、项目简介
 
