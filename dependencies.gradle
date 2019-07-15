@@ -16,20 +16,21 @@ android {
     }
     //共用配置，主要针对其他module，作为独立模块运行的时候，它需要一个启动Activity的主入口配置
     sourceSets {
-        //默认没有配置flavors的情况，只有main主体渠道
-        main{
-            //如果该module作为独立app运行，使用的配置
+        //默认没有配置flavors的情况，只有main主体渠道 分类debug 和release 两种favorites
+        //如果该module作为独立app运行，使用的配置
+        debug {
             if (singleModule.toBoolean()) {
-               manifest {
-                   manifest.srcFile 'src/debug/AndroidManifest.xml'
-                   //同理，可配置res.srcDirs之类的
-               }
-            }else {
+                manifest.srcFile 'src/debug/AndroidManifest.xml'
+                //同理，可配置res.srcDirs之类的
+            } else {
                 manifest.srcFile 'src/main/AndroidManifest.xml'
-                //作为module的时候，就不需要debug包下的文件，排除掉
-                java {
-                    exclude 'src/debug/'
-                }
+            }
+        }
+
+        release {
+            //作为module的时候，就不需要debug包下的文件，排除掉
+            java {
+                exclude 'src/debug/**'
             }
         }
     }
