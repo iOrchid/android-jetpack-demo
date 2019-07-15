@@ -17,9 +17,7 @@
 	* [四、项目组成[^1]]()
 	* [五、规划]()
 	* [六、示例内容(部分）]()
-	* [七、关于作者 <a href="https://www.jianshu.com/u/72294e6848c0" rel="nofollow"><img src="/zhiwei1990/android-jetpack-demo/raw/master/images/jianshu.png" alt="jianshu" style="max-width:100\x;"></a><a href="https://github.com/zhiwei1990"><img src="/zhiwei1990/android-jetpack-demo/raw/master/images/github.png" alt="github" style="max-width:100\x;"></a><a href="https://blog.csdn.net/zhiwei9001" rel="nofollow"><img src="/zhiwei1990/android-jetpack-demo/raw/master/images/csdn.png" alt="csdn" style="max-width:100\x;"></a>](https://www.jianshu.com/u/72294e6848c0)
-
-Created by [gh-md-toc](https://github.com/ekalinin/github-markdown-toc)
+	* [七、关于作者 [![jianshu](./images/jianshu.png)](https://www.jianshu.com/u/72294e6848c0) [![github](./images/github.png)](https://github.com/zhiwei1990) [![csdn](./images/csdn.png)](https://blog.csdn.net/zhiwei9001))
 
 ####  一、项目简介
 
