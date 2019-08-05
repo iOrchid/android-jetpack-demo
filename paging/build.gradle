@@ -14,7 +14,7 @@ android {
     defaultConfig {
         //只有独立运行时候才需要applicationId
         if (singleModule.toBoolean()) {
-            applicationId "org.zhiwei.jetpack.paging"
+            applicationId "org.zhiwei.jetpack.page"
         }
         minSdkVersion min_sdk_verion
         targetSdkVersion target_sdk_version

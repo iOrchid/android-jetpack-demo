@@ -1,4 +1,4 @@
-package org.zhiwei.jetpack.databinding
+package org.zhiwei.jetpack.room
 
 import android.app.Application
 import androidx.test.core.app.ApplicationProvider
