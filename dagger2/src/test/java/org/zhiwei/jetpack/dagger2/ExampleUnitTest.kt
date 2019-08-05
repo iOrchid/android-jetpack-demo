@@ -1,4 +1,4 @@
-package org.zhiwe.jetpack.dagger2
+package org.zhiwei.jetpack.dagger2
 
 import org.junit.Assert.assertEquals
 import org.junit.Test

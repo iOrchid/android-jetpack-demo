@@ -2,9 +2,9 @@
 <layout>
     <data>
 
-	    <variable
-			    name="obUser"
-			    type="org.zhiwei.jetpack.databinding.entity.ObservableUser"/>
+        <variable
+                name="obUser"
+                type="org.zhiwei.jetpack.databinding.entity.ObservableUser"/>
     </data>
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
                   android:orientation="vertical"

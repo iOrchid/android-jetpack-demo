@@ -1,2 +1,8 @@
-<manifest
-		package="org.zhiwei.jetpack.work"/>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+          package="org.zhiwei.jetpack.work">
+
+    <application>
+        <activity android:name=".WorkActivity" android:screenOrientation="portrait" android:launchMode="singleTop"/>
+    </application>
+
+</manifest>

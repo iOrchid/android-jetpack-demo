@@ -1,2 +1,6 @@
-<manifest
-		package="org.zhiwei.jetpack.kt"/>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+          package="org.zhiwei.jetpack.kt">
+    <application>
+        <activity android:name=".KtActivity" android:launchMode="singleTop" android:screenOrientation="portrait"/>
+    </application>
+</manifest>

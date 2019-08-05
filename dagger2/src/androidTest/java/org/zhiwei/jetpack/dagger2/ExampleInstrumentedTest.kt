@@ -1,4 +1,4 @@
-package org.zhiwe.jetpack.dagger2
+package org.zhiwei.jetpack.dagger2
 
 import android.app.Application
 import androidx.test.core.app.ApplicationProvider

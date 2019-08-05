@@ -2,9 +2,9 @@
 <layout>
     <data>
 
-	    <variable
-			    name="lvusr"
-			    type="org.zhiwei.jetpack.databinding.entity.CommonUser"/>
+        <variable
+                name="lvusr"
+                type="org.zhiwei.jetpack.databinding.entity.CommonUser"/>
     </data>
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
                   android:orientation="horizontal"

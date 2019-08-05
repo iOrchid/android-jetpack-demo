@@ -1,167 +1,167 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--databinding的根节点使用layout，包裹原有正常布局即可,也因此使得Studio的格式化显示不那么好用了-->
 <layout>
-	<!--layout下的data节点，用于配置在xml中使用的导入java类,这里配置了class属性，自定义生成的binding类的名称，若不配置，则默认为xml布局名称的某种转换，如ActivityMainDataBinding，此xml则是DataBindingDataBinding-->
-	<data class="NamedDB">
-		<!--导入类，可以alias别名-->
-		<import
-				type="org.zhiwei.jetpack.databinding.entity.CommonUser"
-				alias="CUser"/>
-		<!--这里是定义一个对象，指定类型，类型可以是原生类型，可以是类型的别名。这里就是CommonUser的对象，使用它的别名,这里需要在java中set才能使用-->
-		<variable name="user" type="CUser"/>
+    <!--layout下的data节点，用于配置在xml中使用的导入java类,这里配置了class属性，自定义生成的binding类的名称，若不配置，则默认为xml布局名称的某种转换，如ActivityMainDataBinding，此xml则是DataBindingDataBinding-->
+    <data class="NamedDB">
+        <!--导入类，可以alias别名-->
+        <import
+                type="org.zhiwei.jetpack.databinding.entity.CommonUser"
+                alias="CUser"/>
+        <!--这里是定义一个对象，指定类型，类型可以是原生类型，可以是类型的别名。这里就是CommonUser的对象，使用它的别名,这里需要在java中set才能使用-->
+        <variable name="user" type="CUser"/>
 
-		<import type="org.zhiwei.jetpack.databinding.tool.Tools"/>
-		<import type="android.view.View"/>
-		<import type="java.util.List"/>
-		<import type="java.util.Map"/>
+        <import type="org.zhiwei.jetpack.databinding.tool.Tools"/>
+        <import type="android.view.View"/>
+        <import type="java.util.List"/>
+        <import type="java.util.Map"/>
 
-		<!--基础数据类型的使用-->
-		<variable name="title" type="String"/>
-		<variable name="number" type="int"/>
-		<variable name="isAdult" type="boolean"/>
-		<!--引入数据,部分符号需要转意 -->
-		<variable name="userList" type="List&lt;CUser>"/>
-		<variable name="userMap" type="Map&lt;Integer,CUser>"/>
+        <!--基础数据类型的使用-->
+        <variable name="title" type="String"/>
+        <variable name="number" type="int"/>
+        <variable name="isAdult" type="boolean"/>
+        <!--引入数据,部分符号需要转意 -->
+        <variable name="userList" type="List&lt;CUser>"/>
+        <variable name="userMap" type="Map&lt;Integer,CUser>"/>
 
-		<variable
-				name="obusr"
-				type="org.zhiwei.jetpack.databinding.entity.ObservableUser"/>
+        <variable
+                name="obusr"
+                type="org.zhiwei.jetpack.databinding.entity.ObservableUser"/>
 
-		<variable
-				name="presenter"
-				type="org.zhiwei.jetpack.databinding.tool.Presenter"/>
+        <variable
+                name="presenter"
+                type="org.zhiwei.jetpack.databinding.tool.Presenter"/>
 
-		<variable
-				name="ofuser"
-				type="org.zhiwei.jetpack.databinding.entity.ObFieldUser"/>
+        <variable
+                name="ofuser"
+                type="org.zhiwei.jetpack.databinding.entity.ObFieldUser"/>
 
-		<!--adapter-->
-		<variable
-				name="lvadapter"
-				type="org.zhiwei.jetpack.databinding.adapter.LvAdapter"/>
+        <!--adapter-->
+        <variable
+                name="lvadapter"
+                type="org.zhiwei.jetpack.databinding.adapter.LvAdapter"/>
 
-		<variable
-				name="rvadapter"
-				type="org.zhiwei.jetpack.databinding.adapter.RvAdapter"/>
+        <variable
+                name="rvadapter"
+                type="org.zhiwei.jetpack.databinding.adapter.RvAdapter"/>
 
-	</data>
-	<ScrollView
-			xmlns:android="http://schemas.android.com/apk/res/android"
-			xmlns:app="http://schemas.android.com/apk/res-auto"
-			android:layout_width="match_parent"
-			android:layout_height="match_parent">
-		<LinearLayout
-				android:orientation="vertical"
-				android:focusableInTouchMode="true"
-				android:focusable="true"
-				android:layout_width="match_parent"
-				android:padding="20dp"
-				android:layout_height="match_parent">
-			<!--使用databinding，则会将每个配置id的控件在对应的Java的binding类中，生成控件引用
-			使用@{}符号引用导入/定义的属性，但是这些引入对象，需要在本xml对应的activity/fragment中的binding设置set-->
-			<!--普通引用-->
-			<TextView
-					android:text="@{title}"
-					android:layout_width="wrap_content"
-					android:layout_height="wrap_content"/>
-			<!--引用资源、format、默认值,静态函数-->
-			<TextView
-					android:text="@{@string/name(Tools.addHeader(title)),default=@string/default_name}"
-					android:layout_width="wrap_content"
-					android:layout_height="wrap_content"/>
-			<!--null 处理，使用??判断，-->
-			<TextView
-					android:text="@{Tools.getNull(title) ?? `def of null`}"
-					android:layout_width="wrap_content"
-					android:layout_height="wrap_content"/>
-			<!--内部拼接，转换-->
-			<TextView
-					android:text="@{`number: `+String.valueOf(number)}"
-					android:layout_width="wrap_content"
-					android:layout_height="wrap_content"/>
-			<TextView
-					android:text="显示出来"
-					android:visibility="@{isAdult?View.VISIBLE:View.GONE}"
-					android:layout_width="wrap_content"
-					android:layout_height="wrap_content"/>
-			<!--list使用-->
-			<TextView
-					android:text="@{userList[3].toString()}"
-					android:layout_width="wrap_content"
-					android:layout_height="wrap_content"/>
-			<!--map使用-->
-			<TextView
-					android:text="@{userMap[2].toString()}"
-					android:layout_width="wrap_content"
-					android:layout_height="wrap_content"/>
-			<!--====================复数 不太会用!!!========================-->
-			<TextView
-					android:text="@{@plurals/numbers(1)}"
-					android:layout_width="wrap_content"
-					android:layout_height="wrap_content"/>
-			<!--include -->
-			<include layout="@layout/content_databinding" app:obUser="@{obusr}"/>
-			<TextView
-					android:textColor="@color/colorAccent"
-					android:text="根据check来显示/隐藏"
-					android:visibility="@{Tools.visi(obusr.isChecked)}"
-					android:layout_width="wrap_content"
-					android:layout_height="wrap_content"/>
-			<CheckBox
-					android:id="@+id/cb_show"
-					android:layout_width="wrap_content"
-					android:layout_height="wrap_content"/>
-			<TextView
-					android:id="@+id/tv_user_disk_address"
-					android:text="@{@string/name+user.name}"
-					android:textColor="@{user.single?@color/red:@color/blue}"
-					android:layout_width="wrap_content"
-					android:layout_height="wrap_content"/>
-			<!--使用运算符在@{}之中，string字符串需要使用引用模式@string，或者用反引号``-->
+    </data>
+    <ScrollView
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+        <LinearLayout
+                android:orientation="vertical"
+                android:focusableInTouchMode="true"
+                android:focusable="true"
+                android:layout_width="match_parent"
+                android:padding="20dp"
+                android:layout_height="match_parent">
+            <!--使用databinding，则会将每个配置id的控件在对应的Java的binding类中，生成控件引用
+            使用@{}符号引用导入/定义的属性，但是这些引入对象，需要在本xml对应的activity/fragment中的binding设置set-->
+            <!--普通引用-->
+            <TextView
+                    android:text="@{title}"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+            <!--引用资源、format、默认值,静态函数-->
+            <TextView
+                    android:text="@{@string/name(Tools.addHeader(title)),default=@string/default_name}"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+            <!--null 处理，使用??判断，-->
+            <TextView
+                    android:text="@{Tools.getNull(title) ?? `def of null`}"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+            <!--内部拼接，转换-->
+            <TextView
+                    android:text="@{`number: `+String.valueOf(number)}"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+            <TextView
+                    android:text="显示出来"
+                    android:visibility="@{isAdult?View.VISIBLE:View.GONE}"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+            <!--list使用-->
+            <TextView
+                    android:text="@{userList[3].toString()}"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+            <!--map使用-->
+            <TextView
+                    android:text="@{userMap[2].toString()}"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+            <!--====================复数 不太会用!!!========================-->
+            <TextView
+                    android:text="@{@plurals/numbers(1)}"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+            <!--include -->
+            <include layout="@layout/content_databinding" app:obUser="@{obusr}"/>
+            <TextView
+                    android:textColor="@color/colorAccent"
+                    android:text="根据check来显示/隐藏"
+                    android:visibility="@{Tools.visi(obusr.isChecked)}"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+            <CheckBox
+                    android:id="@+id/cb_show"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+            <TextView
+                    android:id="@+id/tv_user_disk_address"
+                    android:text="@{@string/name+user.name}"
+                    android:textColor="@{user.single?@color/red:@color/blue}"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+            <!--使用运算符在@{}之中，string字符串需要使用引用模式@string，或者用反引号``-->
 
-			<!--事件-->
-			<Button
-					android:layout_width="wrap_content"
-					android:layout_height="wrap_content"
-					android:onClick="@{presenter::showToast}"
-					android:text="静态点击"/>
-			<Button
-					android:layout_width="wrap_content"
-					android:layout_height="wrap_content"
-					android:onClick="@{()->presenter.show(context)}"
-					android:text="context点击"/>
-			<!--双向绑定 UI变化》model变化 》 UI变化-->
-			<TextView
-					android:textColor="@color/colorAccent"
-					android:layout_width="wrap_content"
-					android:text="@{`外部: `+ofuser.name}"
-					android:layout_height="wrap_content"/>
-			<!--在et变化内容时候，使用这个name值的UI也会变化。但是这里的name属性需要是Observabel的，若是使用obuser的那么，include的由于引用可以数显，而直接在这里textview中写的就不能刷新。
-			比如这个edittext绑定obusr的话，上面这个textview即使也是obusr.name也不会刷新，而include内的会。-->
-			<EditText android:layout_width="match_parent"
-			          android:layout_height="wrap_content"
-			          android:text="@={ofuser.name}"/>
-			<!--text不支持对象属性的，这里因为otherTools中有@bindingconver会自动将对象转为string
-			且自定义bg属性,命名空间，使用app而不是android，而且layout中也不必引入这个otherTools-->
-			<TextView
-					android:layout_width="wrap_content"
-					android:text="@{user}"
-					app:bg="@{`#ffff00`}"
-					android:layout_height="wrap_content"/>
+            <!--事件-->
+            <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:onClick="@{presenter::showToast}"
+                    android:text="静态点击"/>
+            <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:onClick="@{()->presenter.show(context)}"
+                    android:text="context点击"/>
+            <!--双向绑定 UI变化》model变化 》 UI变化-->
+            <TextView
+                    android:textColor="@color/colorAccent"
+                    android:layout_width="wrap_content"
+                    android:text="@{`外部: `+ofuser.name}"
+                    android:layout_height="wrap_content"/>
+            <!--在et变化内容时候，使用这个name值的UI也会变化。但是这里的name属性需要是Observabel的，若是使用obuser的那么，include的由于引用可以数显，而直接在这里textview中写的就不能刷新。
+            比如这个edittext绑定obusr的话，上面这个textview即使也是obusr.name也不会刷新，而include内的会。-->
+            <EditText android:layout_width="match_parent"
+                      android:layout_height="wrap_content"
+                      android:text="@={ofuser.name}"/>
+            <!--text不支持对象属性的，这里因为otherTools中有@bindingconver会自动将对象转为string
+            且自定义bg属性,命名空间，使用app而不是android，而且layout中也不必引入这个otherTools-->
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:text="@{user}"
+                    app:bg="@{`#ffff00`}"
+                    android:layout_height="wrap_content"/>
 
-			<org.zhiwei.jetpack.databinding.adapter.HListView
-					android:id="@+id/lv"
-					android:adapter="@{lvadapter}"
-					android:layout_width="match_parent"
-					android:layout_height="wrap_content"/>
-			<View android:layout_width="match_parent" android:layout_height="2dp"
-			      android:background="#0000ff"/>
-			<androidx.recyclerview.widget.RecyclerView
-					android:layout_width="match_parent"
-					android:id="@+id/rv"
-					android:adapter="@{rvadapter}"
-					android:orientation="vertical"
-					android:layout_height="wrap_content"/>
-		</LinearLayout>
-	</ScrollView>
+            <org.zhiwei.jetpack.databinding.adapter.HListView
+                    android:id="@+id/lv"
+                    android:adapter="@{lvadapter}"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+            <View android:layout_width="match_parent" android:layout_height="2dp"
+                  android:background="#0000ff"/>
+            <androidx.recyclerview.widget.RecyclerView
+                    android:layout_width="match_parent"
+                    android:id="@+id/rv"
+                    android:adapter="@{rvadapter}"
+                    android:orientation="vertical"
+                    android:layout_height="wrap_content"/>
+        </LinearLayout>
+    </ScrollView>
 </layout>

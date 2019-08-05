@@ -7,39 +7,39 @@
               android:layout_width="match_parent"
               android:layout_height="match_parent">
 
-	<TextView
-			android:layout_width="wrap_content"
-			android:id="@+id/tv_age_live"
-			android:textSize="18sp"
-			tools:text="Age"
-			android:layout_height="wrap_content"/>
+    <TextView
+            android:layout_width="wrap_content"
+            android:id="@+id/tv_age_live"
+            android:textSize="18sp"
+            tools:text="Age"
+            android:layout_height="wrap_content"/>
 
-	<TextView
-			android:layout_width="wrap_content"
-			android:textSize="18sp"
-			tools:text="Name"
-			android:id="@+id/tv_name_live"
-			android:layout_height="wrap_content"/>
+    <TextView
+            android:layout_width="wrap_content"
+            android:textSize="18sp"
+            tools:text="Name"
+            android:id="@+id/tv_name_live"
+            android:layout_height="wrap_content"/>
 
-	<TextView
-			android:layout_width="wrap_content"
-			android:textSize="18sp"
-			tools:text="City"
-			android:textColor="@color/red"
-			android:id="@+id/tv_city_live"
-			android:layout_height="wrap_content"/>
+    <TextView
+            android:layout_width="wrap_content"
+            android:textSize="18sp"
+            tools:text="City"
+            android:textColor="@color/red"
+            android:id="@+id/tv_city_live"
+            android:layout_height="wrap_content"/>
 
-	<Button
-			android:onClick="changeLive"
-			android:text="变更LiveUser属性"
-			android:textAllCaps="false"
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"/>
+    <Button
+            android:onClick="changeLive"
+            android:text="变更LiveUser属性"
+            android:textAllCaps="false"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
 
-	<TextView
-			android:layout_width="wrap_content"
-			tools:text="user info message"
-			android:textColor="@color/blue"
-			android:id="@+id/tv_info_live"
-			android:layout_height="wrap_content"/>
+    <TextView
+            android:layout_width="wrap_content"
+            tools:text="user info message"
+            android:textColor="@color/blue"
+            android:id="@+id/tv_info_live"
+            android:layout_height="wrap_content"/>
 </LinearLayout>

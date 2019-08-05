@@ -2,7 +2,7 @@
 
 buildscript {
 
-    ext{
+    ext {
         kotlin_version = '1.3.41'
         compile_sdk_version = 29
         build_tools_version = '29.0.1'
