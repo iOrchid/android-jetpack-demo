@@ -5,8 +5,8 @@ import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import org.zhiwei.jetpack.aac.view.AacActivity
+import org.zhiwei.jetpack.binding.BindingActivity
 import org.zhiwei.jetpack.dagger.DaggerActivity
-import org.zhiwei.jetpack.databinding.DBActivity
 import org.zhiwei.jetpack.kotlin.KotlinActivity
 import org.zhiwei.jetpack.lifecycle.LifeActivity
 import org.zhiwei.jetpack.livedata.LiveDataActivity
@@ -24,7 +24,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun dataBinding(v: View) {
-        startActivity(Intent(this, DBActivity::class.java))
+        startActivity(Intent(this, BindingActivity::class.java))
     }
 
     fun liveData(v: View) {
