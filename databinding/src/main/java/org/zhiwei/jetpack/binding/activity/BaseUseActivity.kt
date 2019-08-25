@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import org.zhiwei.jetpack.binding.R
 import org.zhiwei.jetpack.binding.databinding.ActivityBaseUseBinding
+import org.zhiwei.jetpack.binding.tools.BindHelp
 
 /**
  * 作者： 志威  zhiwei.org
@@ -42,7 +43,21 @@ class BaseUseActivity : AppCompatActivity() {
 		super.onCreate(savedInstanceState)
 		//Activity使用DataBindingUtil.setContentView的方式关联xml布局文件，替代原有的setContentView方式。其中`ActivityBaseUseBinding`为databinding根据xml自动生成的类文件
 		//命名方式为layout的name+Binding。(可以自定义名称，在<data>标签内的className属性)
-		DataBindingUtil.setContentView<ActivityBaseUseBinding>(this, R.layout.activity_base_use)
+		val binding =
+			DataBindingUtil.setContentView<ActivityBaseUseBinding>(this, R.layout.activity_base_use)
+		//设置在xml中声明的变量值
+		binding.age = 10
+		binding.isStudent = true
+		binding.name = "BindName"
+		binding.title = "BD标题"
+		//list,map,这里的ages和map，赋值给xml中的变量
+		val ages = listOf("20", "18", "19")
+		val map = mapOf(19 to "Lily", 21 to "Jim", 20 to "Aili")
+		binding.ages = ages
+		binding.map = map
+		//静态点击的helper
+		binding.helper = BindHelp
 	}
+
 
 }

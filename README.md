@@ -196,5 +196,5 @@ limitations under the License.
 
 
 
-[^1]: 作者项目开发环境为AndroidStudio `3.4.1`、`gradle 5.1.1`、`Jdk8`、`Windows10`
+[^1]: 项目当前`（2019/08/25）`开发环境为AndroidStudio `3.5.0`、`gradle 5.4.1`、`Jdk8`
 

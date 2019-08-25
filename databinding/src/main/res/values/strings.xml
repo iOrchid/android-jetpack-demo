@@ -1,3 +1,14 @@
 <resources>
 	<string name="app_name">DataBinding</string>
+	<string name="str_reference">str引用</string>
+
+
+	<string name="str_format">姓名: %1$s</string>
+	<string name="str_def_name">默认名称</string>
+
+	<plurals name="str_numbers">
+		<item quantity="one">Have %1$d an number</item>
+		<item quantity="other">Have %1$d numbers</item>
+	</plurals>
+
 </resources>

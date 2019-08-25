@@ -4,10 +4,17 @@
 	<application>
 		<activity
 				android:name=".BindingActivity"
+				android:label="DataBinding演示"
 				android:launchMode="singleTop"
 				android:screenOrientation="portrait" />
-		<activity android:name=".activity.BaseUseActivity" />
-		<activity android:name=".activity.CommonUseActivity" />
-		<activity android:name=".activity.AdvancedUseActivity" />
+		<activity
+				android:name=".activity.BaseUseActivity"
+				android:label="Binding基础用法" />
+		<activity
+				android:name=".activity.CommonUseActivity"
+				android:label="Binding进阶用法" />
+		<activity
+				android:name=".activity.AdvancedUseActivity"
+				android:label="Binding高级用法" />
 	</application>
 </manifest>
