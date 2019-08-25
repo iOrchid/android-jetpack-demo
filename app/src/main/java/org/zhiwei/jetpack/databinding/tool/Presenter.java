@@ -10,11 +10,11 @@ import android.widget.Toast;
  */
 public class Presenter {
 
-    public static void showToast(View view) {
-        Toast.makeText(view.getContext(), "Static show of Button", Toast.LENGTH_SHORT).show();
-    }
+	public static void showToast(View view) {
+		Toast.makeText(view.getContext(), "Static show of Button", Toast.LENGTH_SHORT).show();
+	}
 
-    public void show(Context context) {
-        Toast.makeText(context, "Context show of Button", Toast.LENGTH_SHORT).show();
-    }
+	public void show(Context context) {
+		Toast.makeText(context, "Context show of Button", Toast.LENGTH_SHORT).show();
+	}
 }

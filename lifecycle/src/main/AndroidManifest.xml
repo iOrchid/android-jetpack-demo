@@ -1,6 +1,10 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-		  package="org.zhiwei.jetpack.life">
+		package="org.zhiwei.jetpack.life">
+
 	<application>
-		<activity android:name=".LifeActivity" android:launchMode="singleTop" android:screenOrientation="portrait"/>
+		<activity
+				android:name=".LifeActivity"
+				android:launchMode="singleTop"
+				android:screenOrientation="portrait" />
 	</application>
 </manifest>

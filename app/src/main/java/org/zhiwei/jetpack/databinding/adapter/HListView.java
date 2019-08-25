@@ -10,21 +10,21 @@ import android.widget.ListView;
  * Date: 2018/11/5 0005,10:40.
  */
 public class HListView extends ListView {
-    public HListView(Context context) {
-        super(context, null);
-    }
+	public HListView(Context context) {
+		super(context, null);
+	}
 
-    public HListView(Context context, AttributeSet attrs) {
-        super(context, attrs, 0);
-    }
+	public HListView(Context context, AttributeSet attrs) {
+		super(context, attrs, 0);
+	}
 
-    public HListView(Context context, AttributeSet attrs, int defStyleAttr) {
-        super(context, attrs, defStyleAttr);
-    }
+	public HListView(Context context, AttributeSet attrs, int defStyleAttr) {
+		super(context, attrs, defStyleAttr);
+	}
 
-    @Override
-    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
-        int heightSpec = MeasureSpec.makeMeasureSpec(Integer.MAX_VALUE >> 2, MeasureSpec.AT_MOST);
-        super.onMeasure(widthMeasureSpec, heightSpec);
-    }
+	@Override
+	protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
+		int heightSpec = MeasureSpec.makeMeasureSpec(Integer.MAX_VALUE >> 2, MeasureSpec.AT_MOST);
+		super.onMeasure(widthMeasureSpec, heightSpec);
+	}
 }

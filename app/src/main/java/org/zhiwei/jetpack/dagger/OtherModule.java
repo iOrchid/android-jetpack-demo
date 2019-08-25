@@ -9,14 +9,14 @@ import dagger.Provides;
  */
 @Module()
 public class OtherModule {
-    String info;
+	String info;
 
-    public OtherModule(String info) {
-        this.info = info;
-    }
+	public OtherModule(String info) {
+		this.info = info;
+	}
 
-    @Provides
-    public String provideInfo() {
-        return this.info;
-    }
+	@Provides
+	public String provideInfo() {
+		return this.info;
+	}
 }

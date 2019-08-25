@@ -1,9 +1,10 @@
 package org.zhiwei.jetpack.rxjava.op;
 
+import org.zhiwei.jetpack.rxjava.op.base.BaseOp;
+
 import io.reactivex.Observable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
-import org.zhiwei.jetpack.rxjava.op.base.BaseOp;
 
 /**
  * Author: zhiwei.
@@ -11,17 +12,17 @@ import org.zhiwei.jetpack.rxjava.op.base.BaseOp;
  */
 public class OperateTake extends BaseOp {
 
-    private static String TAG = "OperateTake";
+	private static String TAG = "OperateTake";
 
-    /*
-     *  take操作符，摘取指定长度的数据指令，或者按时间来摘取
-     */
-    public static void doSome() {
-        Observable.just("A", "B", "C", "D", "E", "F")
-                .take(3)
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(getObserver(TAG, ""));
-    }
+	/*
+	 *  take操作符，摘取指定长度的数据指令，或者按时间来摘取
+	 */
+	public static void doSome() {
+		Observable.just("A", "B", "C", "D", "E", "F")
+				.take(3)
+				.subscribeOn(Schedulers.io())
+				.observeOn(AndroidSchedulers.mainThread())
+				.subscribe(getObserver(TAG, ""));
+	}
 
 }

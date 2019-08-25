@@ -20,10 +20,10 @@ import androidx.appcompat.app.AppCompatActivity
  */
 class CommonUseActivity : AppCompatActivity() {
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
+	override fun onCreate(savedInstanceState: Bundle?) {
+		super.onCreate(savedInstanceState)
 
 
-    }
+	}
 
 }

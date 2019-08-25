@@ -14,17 +14,17 @@ import java.util.List;
  */
 @Dao
 public interface StudentDao {
-    /**
-     * 这里就是使用了paging的DataSource，用于便捷加载分页数据
-     *
-     * @return
-     */
-    @Query("SELECT * FROM Student ORDER BY name COLLATE NOCASE ASC")
-    DataSource.Factory<Integer, Student> getAllStudent();
+	/**
+	 * 这里就是使用了paging的DataSource，用于便捷加载分页数据
+	 *
+	 * @return
+	 */
+	@Query("SELECT * FROM Student ORDER BY name COLLATE NOCASE ASC")
+	DataSource.Factory<Integer, Student> getAllStudent();
 
-    @Insert
-    void insert(List<Student> students);
+	@Insert
+	void insert(List<Student> students);
 
-    @Insert
-    void insert(Student student);
+	@Insert
+	void insert(Student student);
 }

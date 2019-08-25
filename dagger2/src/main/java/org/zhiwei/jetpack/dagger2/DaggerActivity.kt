@@ -20,9 +20,9 @@ import androidx.appcompat.app.AppCompatActivity
  */
 class DaggerActivity : AppCompatActivity() {
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_dagger2)
-    }
+	override fun onCreate(savedInstanceState: Bundle?) {
+		super.onCreate(savedInstanceState)
+		setContentView(R.layout.activity_dagger2)
+	}
 
 }

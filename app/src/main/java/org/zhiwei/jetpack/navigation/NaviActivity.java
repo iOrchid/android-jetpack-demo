@@ -1,9 +1,11 @@
 package org.zhiwei.jetpack.navigation;
 
 import android.os.Bundle;
+
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.navigation.Navigation;
+
 import org.zhiwei.jetpack.R;
 
 /**
@@ -14,19 +16,19 @@ import org.zhiwei.jetpack.R;
  * Date: 2018/11/5 0005,17:49.
  */
 public class NaviActivity extends AppCompatActivity {
-    @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_navigation);
-    }
+	@Override
+	protected void onCreate(@Nullable Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.activity_navigation);
+	}
 
-    /**
-     * navigation相关的操作
-     *
-     * @return 是否向上返回 栈
-     */
-    @Override
-    public boolean onSupportNavigateUp() {
-        return Navigation.findNavController(this, R.id.fg_main_navi).navigateUp();
-    }
+	/**
+	 * navigation相关的操作
+	 *
+	 * @return 是否向上返回 栈
+	 */
+	@Override
+	public boolean onSupportNavigateUp() {
+		return Navigation.findNavController(this, R.id.fg_main_navi).navigateUp();
+	}
 }

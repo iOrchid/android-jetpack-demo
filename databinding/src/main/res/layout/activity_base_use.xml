@@ -1,27 +1,37 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--在正常的布局外，用layout标签包裹-->
+<?xml version="1.0" encoding="utf-8"?><!--在正常的布局外，用layout标签包裹-->
 <layout>
-    <!--用于xml布局中binding数据的一些变量，类的声明引用-->
-    <data>
+	<!--用于xml布局中binding数据的一些变量，类的声明引用-->
+	<data>
 
-        <!--变量声明 ，使用variable 需要在代码中初始化和赋值。 基础数据类型的使用-->
-        <variable name="title" type="String"/>
-        <variable name="name" type="String"/>
-        <variable name="age" type="int"/>
-        <variable name="isStudent" type="Boolean"/>
+		<!--变量声明 ，使用variable 需要在代码中初始化和赋值。 基础数据类型的使用-->
+		<variable
+				name="title"
+				type="String" />
 
-    </data>
+		<variable
+				name="name"
+				type="String" />
 
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                  android:orientation="vertical"
-                  android:layout_width="match_parent"
-                  android:layout_height="match_parent">
-        <!--title-->
-        <androidx.appcompat.widget.AppCompatTextView
-                android:layout_width="wrap_content"
-                android:text="@{title}"
-                android:layout_height="wrap_content"/>
+		<variable
+				name="age"
+				type="int" />
 
-    </LinearLayout>
+		<variable
+				name="isStudent"
+				type="Boolean" />
+
+	</data>
+
+	<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+			android:layout_width="match_parent"
+			android:layout_height="match_parent"
+			android:orientation="vertical">
+		<!--title-->
+		<androidx.appcompat.widget.AppCompatTextView
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:text="@{title}" />
+
+	</LinearLayout>
 
 </layout>

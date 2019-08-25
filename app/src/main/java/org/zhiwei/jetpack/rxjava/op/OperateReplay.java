@@ -1,8 +1,9 @@
 package org.zhiwei.jetpack.rxjava.op;
 
+import org.zhiwei.jetpack.rxjava.op.base.BaseOp;
+
 import io.reactivex.observables.ConnectableObservable;
 import io.reactivex.subjects.PublishSubject;
-import org.zhiwei.jetpack.rxjava.op.base.BaseOp;
 
 /**
  * Author: zhiwei.
@@ -10,33 +11,33 @@ import org.zhiwei.jetpack.rxjava.op.base.BaseOp;
  */
 public class OperateReplay extends BaseOp {
 
-    private static String TAG = "OperateReplay";
+	private static String TAG = "OperateReplay";
 
-    /*
-     *  根据设定的replay容量大小，来缓存一个的数据指令，给下一个observer，即使是已经complete。需要配合ConnectableObservable使用
-     *
-     */
-    public static void doSome() {
-        PublishSubject<String> subject = PublishSubject.create();
+	/*
+	 *  根据设定的replay容量大小，来缓存一个的数据指令，给下一个observer，即使是已经complete。需要配合ConnectableObservable使用
+	 *
+	 */
+	public static void doSome() {
+		PublishSubject<String> subject = PublishSubject.create();
 
-        ConnectableObservable<String> connectableObservable = subject.replay(3);//默认是全部
-        connectableObservable.connect();//开启关联
+		ConnectableObservable<String> connectableObservable = subject.replay(3);//默认是全部
+		connectableObservable.connect();//开启关联
 
-        subject.onNext("A");
+		subject.onNext("A");
 
-        connectableObservable.subscribe(getObserver(TAG, "First"));//也会有A指令，因为replay=3
+		connectableObservable.subscribe(getObserver(TAG, "First"));//也会有A指令，因为replay=3
 
-        subject.onNext("B");
-        subject.onNext("C");
-        subject.onNext("D");
+		subject.onNext("B");
+		subject.onNext("C");
+		subject.onNext("D");
 
-        connectableObservable.subscribe(getObserver(TAG, "Second"));
+		connectableObservable.subscribe(getObserver(TAG, "Second"));
 
-        subject.onNext("E");
-        subject.onNext("F");
-        subject.onComplete();
+		subject.onNext("E");
+		subject.onNext("F");
+		subject.onComplete();
 
-        connectableObservable.subscribe(getObserver(TAG, "Third"));//只有D、E、F 3 个 以及complete指令，
+		connectableObservable.subscribe(getObserver(TAG, "Third"));//只有D、E、F 3 个 以及complete指令，
 
         /*
         First d.isDisposed():false
@@ -63,6 +64,6 @@ public class OperateReplay extends BaseOp {
 
 
          */
-    }
+	}
 
 }

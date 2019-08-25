@@ -14,10 +14,10 @@ import org.junit.runner.RunWith
  */
 @RunWith(AndroidJUnit4ClassRunner::class)
 class ExampleInstrumentedTest {
-    @Test
-    fun useAppContext() {
-        // Context of the app under test.
-        val appContext = ApplicationProvider.getApplicationContext<Context>()
-        assertEquals("org.zhiwei.jetpack", appContext.packageName)
-    }
+	@Test
+	fun useAppContext() {
+		// Context of the app under test.
+		val appContext = ApplicationProvider.getApplicationContext<Context>()
+		assertEquals("org.zhiwei.jetpack", appContext.packageName)
+	}
 }

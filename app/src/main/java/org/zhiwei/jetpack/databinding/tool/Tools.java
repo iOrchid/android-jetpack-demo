@@ -8,20 +8,20 @@ import android.view.View;
  */
 public class Tools {
 
-    public static String addHeader(String str) {
-        return "[Header] " + str;
-    }
+	public static String addHeader(String str) {
+		return "[Header] " + str;
+	}
 
-    public static String getNull(String title) {
-        return null;
-    }
+	public static String getNull(String title) {
+		return null;
+	}
 
 
-    public static int visi(boolean b) {
-        if (b) {
-            return View.VISIBLE;
-        } else {
-            return View.GONE;
-        }
-    }
+	public static int visi(boolean b) {
+		if (b) {
+			return View.VISIBLE;
+		} else {
+			return View.GONE;
+		}
+	}
 }
