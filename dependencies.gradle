@@ -70,9 +70,9 @@ dependencies {
     implementation 'android.arch.navigation:navigation-fragment:1.0.0'
     //</editor-folder>
 
-    implementation 'com.google.dagger:dagger:2.23.2'
-    annotationProcessor 'com.google.dagger:dagger-compiler:2.23.2'
-    kapt 'com.google.dagger:dagger-compiler:2.23.2'
+    implementation 'com.google.dagger:dagger:2.24'
+    annotationProcessor 'com.google.dagger:dagger-compiler:2.24'
+    kapt 'com.google.dagger:dagger-compiler:2.24'
 
     implementation 'io.reactivex.rxjava2:rxjava:2.2.10'
     implementation 'io.reactivex.rxjava2:rxandroid:2.1.1'

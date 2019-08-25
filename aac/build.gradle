@@ -18,6 +18,7 @@ android {
         }
         minSdkVersion min_sdk_verion
         targetSdkVersion target_sdk_version
+        //todo 注意在模块化开发中，各自模块自身的versionCode，versionName作用于自身module中，勿认为运行app时候会被app的module设置覆盖。
         versionCode 1
         versionName "1.0"
 
