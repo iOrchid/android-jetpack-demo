@@ -145,7 +145,7 @@
 				android:text="@{ages[0]+map[20]}"
 				android:textColor="@android:color/holo_purple"
 				tools:text="list和map" />
-		<!--10、点击按钮事件的响应，在onclick函数中，有多种写法-->
+		<!--10、函数调用。点击按钮事件的响应，在onclick函数中，有多种写法（todo 其实这也是binding在xml中函数调用的一种写法。只不过这里函数是click而已）-->
 		<androidx.appcompat.widget.AppCompatButton
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
