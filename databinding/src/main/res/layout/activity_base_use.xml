@@ -41,8 +41,10 @@
 		<import type="org.zhiwei.jetpack.binding.tools.BindTool" />
 
 		<import type="org.zhiwei.jetpack.binding.tools.BindUtilKt" />
-
-		<import type="org.zhiwei.jetpack.binding.tools.BindUtil" />
+		<!--可使使用alias 命名别名，就可以在xml内部应用时候使用别名，优化书写和区分-->
+		<import
+				alias="BU"
+				type="org.zhiwei.jetpack.binding.tools.BindUtil" />
 
 		<import type="org.zhiwei.jetpack.binding.tools.BindHelp" />
 
@@ -100,6 +102,7 @@
 					android:layout_margin="5dp"
 					android:text="@{@string/str_format(`zhiwei`)}"
 					tools:text="str的格式化" />
+
 			<!--6、字符拼接-->
 			<androidx.appcompat.widget.AppCompatTextView
 					android:layout_width="wrap_content"
@@ -117,6 +120,14 @@
 				android:text="是学生就显示"
 				android:textColor="@android:color/holo_green_light"
 				android:visibility="@{isStudent?View.VISIBLE:View.GONE,default=`gone`}" />
+		<!--复数，与自然语言相关，特别是不同国家的语言对应不同的单复数。目前没有业务场景使用到，未做研究-->
+		<androidx.appcompat.widget.AppCompatTextView
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_margin="5dp"
+				android:text="@{@plurals/str_numbers(5)}"
+				tools:text="str的格式化" />
+
 		<!--8、使用静态函数值,分别是java方式，kotlin的两种方式-->
 		<androidx.appcompat.widget.AppCompatTextView
 				android:layout_width="wrap_content"
@@ -131,11 +142,11 @@
 				android:text="@{BindUtilKt.ageName(age,name)}"
 				android:textColor="@{isStudent?@android:color/holo_blue_light:@android:color/holo_purple}"
 				tools:text="Kt静态函数" />
-
+		<!--注意这里BU是上面定义的BindUtil的别名-->
 		<androidx.appcompat.widget.AppCompatTextView
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
-				android:text="@{BindUtil.ageAge(age)+BindHelp.nameName(name)}"
+				android:text="@{BU.ageAge(age)+BindHelp.nameName(name)}"
 				android:textColor="@android:color/holo_purple"
 				tools:text="Kt object 静态函数" />
 		<!--9、List和Map-->

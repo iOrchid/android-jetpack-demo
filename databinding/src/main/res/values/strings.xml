@@ -5,10 +5,14 @@
 
     <string name="str_format">姓名: %1$s</string>
     <string name="str_def_name">默认名称</string>
-
+    <!--不同的自然语言，量词用法不同。如中文有量词，无单复数的区分。应为中1个是单数，多个是复数，也就是one 和other的区分，其他语言也有特殊，如捷克语，威尔士语等对2，3等词单复数区分。-->
     <plurals name="str_numbers">
-        <item quantity="one">Have %1$d an number</item>
-        <item quantity="other">Have %1$d numbers</item>
+        <item quantity="zero">Have %1$d zero Boy</item>
+        <item quantity="one">Have %1$d one Boll</item>
+        <item quantity="two">Have %1$d two Boy</item>
+        <item quantity="few">Have %1$d few Boy</item>
+        <item quantity="many">Have %1$d many Boy</item>
+        <item quantity="other">Have %1$d other Boy</item>
     </plurals>
 
 </resources>
