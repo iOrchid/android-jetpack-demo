@@ -4,21 +4,19 @@
 	<data>
 
 		<variable
-				name="obUser"
-				type="org.zhiwei.jetpack.databinding.entity.ObservableUser" />
+				name="user"
+				type="org.zhiwei.jetpack.binding.bean.ObUser" />
 	</data>
 
 	<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
-			android:gravity="center"
-			android:orientation="vertical"
-			android:padding="10dp">
-
-		<TextView
+			android:orientation="vertical">
+		<!--简单的演示，这里就是用了observable 的user-->
+		<androidx.appcompat.widget.AppCompatTextView
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
-				android:text="@{`ObUser: `+obUser.name}"
-				android:textColor="@color/colorPrimary" />
+				android:text="@{user.toString()}" />
+
 	</LinearLayout>
 </layout>

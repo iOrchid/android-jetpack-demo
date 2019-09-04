@@ -20,9 +20,6 @@
 			</intent-filter>
 		</activity>
 		<activity
-				android:name=".databinding.DBActivity"
-				android:label="DataBindingActivity" />
-		<activity
 				android:name=".livedata.LiveDataActivity"
 				android:label="LiveDataActivity" />
 		<activity

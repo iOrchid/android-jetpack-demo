@@ -10,6 +10,8 @@ import androidx.databinding.ObservableField
 import androidx.databinding.ObservableInt
 import kotlinx.android.synthetic.main.activity_common_use.*
 import org.zhiwei.jetpack.binding.R
+import org.zhiwei.jetpack.binding.adapter.LAdapter
+import org.zhiwei.jetpack.binding.adapter.RAdapter
 import org.zhiwei.jetpack.binding.bean.CommonUser
 import org.zhiwei.jetpack.binding.bean.FieldUser
 import org.zhiwei.jetpack.binding.bean.ObUser
@@ -29,6 +31,9 @@ import org.zhiwei.jetpack.binding.databinding.ActivityCommonUseBinding
  * You never know what you can do until you try !
  * ----------------------------------------------------------------
  * DataBinding的进阶用法的演示界面
+ * 1、响应式user对象的演示
+ * 2、list、recyclerView的演示使用
+ * 3、kotlin中binding的写法的优势
  */
 class CommonUseActivity : AppCompatActivity(), View.OnClickListener {
 
@@ -75,6 +80,14 @@ class CommonUseActivity : AppCompatActivity(), View.OnClickListener {
         binding.ouser = obuser
         //lateinit延迟初始化
         tvObservable = tv_ob_user_info
+        //checkbox的响应
+        cb_common.setOnCheckedChangeListener { button, checked ->
+            //设置变量
+            binding.show = checked
+        }
+        //adapter设置
+        binding.ladapter = LAdapter()
+        binding.radapter = RAdapter()
     }
 
     //点击事件的处理

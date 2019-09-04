@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:tools="http://schemas.android.com/tools">
+<layout xmlns:app="http://schemas.android.com/apk/res-auto"
+		xmlns:tools="http://schemas.android.com/tools">
 
 	<data>
 		<!--普通的user对象-->
@@ -18,6 +19,22 @@
 				type="org.zhiwei.jetpack.binding.bean.ObUser" />
 
 		<import type="org.zhiwei.jetpack.binding.tools.UserTool" />
+
+		<import type="android.view.View" />
+
+		<!--单独的observableBoolean-->
+		<variable
+				name="show"
+				type="Boolean" />
+		<!--listView的adapter-->
+		<variable
+				name="ladapter"
+				type="org.zhiwei.jetpack.binding.adapter.LAdapter" />
+
+		<variable
+				name="radapter"
+				type="org.zhiwei.jetpack.binding.adapter.RAdapter" />
+
 	</data>
 
 	<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -39,7 +56,6 @@
 				android:id="@+id/btn_change_common"
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
-				android:layout_margin="5dp"
 				android:text="改变普通" />
 
 		<!--部分属性响应 的 user对象-->
@@ -56,7 +72,6 @@
 				android:id="@+id/btn_change_field"
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
-				android:layout_margin="5dp"
 				android:text="改变Field" />
 
 		<!--Observable的 user对象-->
@@ -68,13 +83,53 @@
 				android:text="@{ouser.toString()}"
 				android:textColor="@android:color/holo_green_dark"
 				tools:text="Observable user的数据信息" />
-
+		<!--注意这里点击改变observable user的数据，上面以及下面include的user数据会同步响应变化-->
 		<androidx.appcompat.widget.AppCompatButton
 				android:id="@+id/btn_change_ob"
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
-				android:layout_margin="5dp"
 				android:text="改变Observable" />
+		<!--直观的数据绑定view的显示隐藏-->
+		<androidx.appcompat.widget.AppCompatTextView
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:text="这是一个显示/隐藏文案，根据checkbox的状态"
+				android:visibility="@{show?View.VISIBLE:View.INVISIBLE}" />
+
+		<androidx.appcompat.widget.AppCompatCheckBox
+				android:id="@+id/cb_common"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:text="控制显示文案" />
+
+		<!--include 导入layout的使用 在这里声明内部layout用到的对象，变量。-->
+		<include
+				layout="@layout/layout_user"
+				user="@{ouser}" />
+
+		<!--list列表、recyclerView的列表使用-->
+		<LinearLayout
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:orientation="horizontal">
+
+			<ListView
+					android:layout_width="0dp"
+					android:layout_height="match_parent"
+					android:layout_weight="1"
+					app:adapter="@{ladapter}"
+					tools:listitem="@layout/item_lv" />
+
+			<!--RecyclerView可以在xml中写好layoutManager以及adapter的引用，这些有时候xml不会提示和补全-->
+			<androidx.recyclerview.widget.RecyclerView
+					android:layout_width="0dp"
+					android:layout_height="match_parent"
+					android:layout_weight="1"
+					app:adapter="@{radapter}"
+					app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+					tools:listitem="@layout/item_lv" />
+
+		</LinearLayout>
 
 	</LinearLayout>
 </layout>
