@@ -1,7 +1,19 @@
 package org.zhiwei.jetpack.binding.activity
 
 import android.os.Bundle
+import android.view.View
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.AppCompatTextView
+import androidx.databinding.DataBindingUtil
+import androidx.databinding.ObservableField
+import androidx.databinding.ObservableInt
+import kotlinx.android.synthetic.main.activity_common_use.*
+import org.zhiwei.jetpack.binding.R
+import org.zhiwei.jetpack.binding.bean.CommonUser
+import org.zhiwei.jetpack.binding.bean.FieldUser
+import org.zhiwei.jetpack.binding.bean.ObUser
+import org.zhiwei.jetpack.binding.databinding.ActivityCommonUseBinding
 
 /**
  * 作者： 志威  zhiwei.org
@@ -18,12 +30,76 @@ import androidx.appcompat.app.AppCompatActivity
  * ----------------------------------------------------------------
  * DataBinding的进阶用法的演示界面
  */
-class CommonUseActivity : AppCompatActivity() {
-
-	override fun onCreate(savedInstanceState: Bundle?) {
-		super.onCreate(savedInstanceState)
+class CommonUseActivity : AppCompatActivity(), View.OnClickListener {
 
 
-	}
+    //<editor-folder desc="成员变量代码块">
+
+    //这是一种懒加载的初始化控件的方式
+    private val tvCommon: AppCompatTextView by lazy { findViewById<AppCompatTextView>(R.id.tv_common_user_info) }
+    //这是由于使用了apply plugin: 'kotlin-android-extensions'，会自动将xml中的id，关联为控件。（也可以在代码中直接用tv_field_user_info）
+    private val tvField: AppCompatTextView by lazy { tv_field_user_info }
+    //这是稍后初始化的方式
+    private lateinit var tvObservable: AppCompatTextView
+
+
+    private lateinit var user: CommonUser//普通user对象
+    private lateinit var fuser: FieldUser//部分属性可变的user
+    private lateinit var obuser: ObUser//observable的user
+
+    //</editor-folder>
+
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        //关联布局，binding对象
+        val binding = DataBindingUtil.setContentView<ActivityCommonUseBinding>(
+            this,
+            R.layout.activity_common_use
+        )
+        //普通的类似java的方式，关联控件和注册事件
+        binding.btnChangeCommon.setOnClickListener(this)
+        binding.btnChangeField.setOnClickListener(this)
+        binding.btnChangeOb.setOnClickListener(this)
+        //初始化user、fuser、obuser的对象，并赋值到binding中去
+        user = CommonUser("张三", 33, 1, "张家第三代庶支嫡传葵花宝典继承人")
+        binding.user = user
+        fuser = FieldUser(
+            "李四",
+            ObservableInt(44),
+            0,
+            ObservableField<String>("李四，据说不是李斯，李白第32世无名弟子的后人")
+        )
+        binding.fuser = fuser
+        obuser = ObUser("王二", 22, 0, "你会看到，这个王二的性别，你是改不了的，因为内部val声明了不可变量")
+        binding.ouser = obuser
+        //lateinit延迟初始化
+        tvObservable = tv_ob_user_info
+    }
+
+    //点击事件的处理
+    override fun onClick(view: View?) {
+        //kotlin中的when，类似于java中的switch case，用法更灵活
+        when (view?.id) {
+            R.id.btn_change_common -> {
+                user.age = 10;user.desc = "张三的改变desc，普通user对象不会响应binding"
+                Toast.makeText(this, "注意上面的common user的info信息不会变化", Toast.LENGTH_SHORT).show()
+                //当然，如果你在此处,显式的代码设置text，会变化。但是这不是数据绑定，因为你每次改变都要setText才生效
+//                tvCommon.text = user.toString()
+            }
+            R.id.btn_change_field -> {
+                fuser.name = "李四/里斯"
+                fuser.age.set(20);fuser.desc.set("这两个field可以改变，你会发现名字name是不改变的")
+            }
+            R.id.btn_change_ob -> {
+                obuser.name = "王二二"
+                obuser.age = 222;obuser.desc = "王二的名字，年龄，描述都会响应binding的变化"
+            }
+            else -> {
+                //do nothing
+            }
+        }
+    }
+
 
 }

@@ -1,14 +1,80 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout>
+<layout xmlns:tools="http://schemas.android.com/tools">
 
 	<data>
+		<!--普通的user对象-->
+		<variable
+				name="user"
+				type="org.zhiwei.jetpack.binding.bean.CommonUser" />
 
+		<!--包含部分observable的属性的user对象-->
+		<variable
+				name="fuser"
+				type="org.zhiwei.jetpack.binding.bean.FieldUser" />
+
+		<!--Observable的user对象-->
+		<variable
+				name="ouser"
+				type="org.zhiwei.jetpack.binding.bean.ObUser" />
+
+		<import type="org.zhiwei.jetpack.binding.tools.UserTool" />
 	</data>
 
 	<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
 			android:layout_width="match_parent"
 			android:layout_height="match_parent"
-			android:orientation="vertical">
+			android:gravity="center_horizontal"
+			android:orientation="vertical"
+			android:padding="10dp">
+		<!--普通user对象，不会响应dataBinding的变化-->
+		<androidx.appcompat.widget.AppCompatTextView
+				android:id="@+id/tv_common_user_info"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:gravity="center"
+				android:text="@{user.name+user.age+user.sex+user.desc}"
+				tools:text="普通user的数据信息" />
+
+		<androidx.appcompat.widget.AppCompatButton
+				android:id="@+id/btn_change_common"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_margin="5dp"
+				android:text="改变普通" />
+
+		<!--部分属性响应 的 user对象-->
+		<androidx.appcompat.widget.AppCompatTextView
+				android:id="@+id/tv_field_user_info"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:gravity="center"
+				android:text="@{fuser.name+fuser.age+fuser.sex+fuser.desc}"
+				android:textColor="@android:color/holo_blue_bright"
+				tools:text="Field的user的数据信息" />
+
+		<androidx.appcompat.widget.AppCompatButton
+				android:id="@+id/btn_change_field"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_margin="5dp"
+				android:text="改变Field" />
+
+		<!--Observable的 user对象-->
+		<androidx.appcompat.widget.AppCompatTextView
+				android:id="@+id/tv_ob_user_info"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:gravity="center"
+				android:text="@{ouser.toString()}"
+				android:textColor="@android:color/holo_green_dark"
+				tools:text="Observable user的数据信息" />
+
+		<androidx.appcompat.widget.AppCompatButton
+				android:id="@+id/btn_change_ob"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_margin="5dp"
+				android:text="改变Observable" />
 
 	</LinearLayout>
 </layout>
