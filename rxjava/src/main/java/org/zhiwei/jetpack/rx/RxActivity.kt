@@ -1,8 +1,5 @@
 package org.zhiwei.jetpack.rx
 
-import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
-
 /**
  * 作者： 志威  zhiwei.org
  * 主页： Github: https://github.com/zhiwei1990
@@ -18,11 +15,11 @@ import androidx.appcompat.app.AppCompatActivity
  * ----------------------------------------------------------------
  * rxJava的演示界面
  */
-class RxActivity : AppCompatActivity() {
-
-	override fun onCreate(savedInstanceState: Bundle?) {
-		super.onCreate(savedInstanceState)
-		setContentView(R.layout.activity_rxjava)
-	}
-
-}
+//class RxActivity : AppCompatActivity() {
+//
+//	override fun onCreate(savedInstanceState: Bundle?) {
+//		super.onCreate(savedInstanceState)
+//		setContentView(R.layout.activity_rxjava)
+//	}
+//
+//}

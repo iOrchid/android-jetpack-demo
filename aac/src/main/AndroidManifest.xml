@@ -3,7 +3,7 @@
 
 	<application>
 		<activity
-				android:name=".AacActivity"
+				android:name=".view.AacActivity"
 				android:launchMode="singleTop"
 				android:screenOrientation="portrait" />
 	</application>

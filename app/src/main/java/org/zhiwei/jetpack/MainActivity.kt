@@ -6,15 +6,15 @@ import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import org.zhiwei.jetpack.aac.view.AacActivity
 import org.zhiwei.jetpack.binding.BindingActivity
-import org.zhiwei.jetpack.dagger.DaggerActivity
-import org.zhiwei.jetpack.kotlin.KotlinActivity
-import org.zhiwei.jetpack.lifecycle.LifeActivity
-import org.zhiwei.jetpack.livedata.LiveDataActivity
-import org.zhiwei.jetpack.navigation.NaviActivity
-import org.zhiwei.jetpack.paging.PagingActivity
+import org.zhiwei.jetpack.dagger2.temp.DaggerActivity
+import org.zhiwei.jetpack.kt.KtActivity
+import org.zhiwei.jetpack.life.temp.LifeActivity
+import org.zhiwei.jetpack.live.temp.LiveDataActivity
+import org.zhiwei.jetpack.nav.NaviActivity
+import org.zhiwei.jetpack.page.PagingActivity
 import org.zhiwei.jetpack.room.RoomActivity
-import org.zhiwei.jetpack.rxjava.RxActivity
-import org.zhiwei.jetpack.workmanager.WorkActivity
+import org.zhiwei.jetpack.rx.RxActivity
+import org.zhiwei.jetpack.work.temp.WorkActivity
 
 class MainActivity : AppCompatActivity() {
 
@@ -56,7 +56,7 @@ class MainActivity : AppCompatActivity() {
 	}
 
 	fun kotlin(v: View) {
-		startActivity(Intent(this, KotlinActivity::class.java))
+		startActivity(Intent(this, KtActivity::class.java))
 	}
 
 	fun aac(v: View) {

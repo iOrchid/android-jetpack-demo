@@ -1,8 +1,5 @@
 package org.zhiwei.jetpack.room
 
-import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
-
 /**
  * 作者： 志威  zhiwei.org
  * 主页： Github: https://github.com/zhiwei1990
@@ -18,11 +15,11 @@ import androidx.appcompat.app.AppCompatActivity
  * ----------------------------------------------------------------
  * Room数据库的演示界面
  */
-class RoomActivity : AppCompatActivity() {
-
-	override fun onCreate(savedInstanceState: Bundle?) {
-		super.onCreate(savedInstanceState)
-		setContentView(R.layout.activity_room)
-	}
-
-}
+//class RoomActivity : AppCompatActivity() {
+//
+//	override fun onCreate(savedInstanceState: Bundle?) {
+//		super.onCreate(savedInstanceState)
+//		setContentView(R.layout.activity_room)
+//	}
+//
+//}

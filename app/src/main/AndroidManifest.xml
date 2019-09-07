@@ -20,31 +20,31 @@
 			</intent-filter>
 		</activity>
 		<activity
-				android:name=".livedata.LiveDataActivity"
+				android:name=".live.temp.LiveDataActivity"
 				android:label="LiveDataActivity" />
 		<activity
-				android:name=".lifecycle.LifeActivity"
+				android:name=".life.temp.LifeActivity"
 				android:label="LifeActivity" />
 		<activity
 				android:name=".room.RoomActivity"
 				android:label="RoomActivity" />
 		<activity
-				android:name=".navigation.NaviActivity"
+				android:name=".nav.NaviActivity"
 				android:label="NaviActivity" />
 		<activity
-				android:name=".paging.PagingActivity"
+				android:name=".page.PagingActivity"
 				android:label="PagingActivity" />
 		<activity
-				android:name=".workmanager.WorkActivity"
+				android:name=".work.temp.WorkActivity"
 				android:label="WorkActivity" />
 		<activity
 				android:name=".aac.view.AacActivity"
 				android:label="AacActivity" />
 		<activity
-				android:name=".dagger.DaggerActivity"
+				android:name=".dagger2.temp.DaggerActivity"
 				android:label="DaggerActivity" />
 		<activity
-				android:name=".kotlin.KotlinActivity"
+				android:name=".kt.KtActivity"
 				android:label="KotlinActivity" />
 		<activity
 				android:name=".rxjava.RxActivity"

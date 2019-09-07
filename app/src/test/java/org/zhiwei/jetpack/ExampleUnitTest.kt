@@ -2,7 +2,7 @@ package org.zhiwei.jetpack
 
 import org.junit.Assert.assertEquals
 import org.junit.Test
-import org.zhiwei.jetpack.kotlin.KotlinSyntax04
+import org.zhiwei.jetpack.kt.base.KotlinSyntax04
 
 /**
  * Example local unit test, which will execute on the development machine (host).
