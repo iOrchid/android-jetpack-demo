@@ -1,15 +1,55 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout>
+<layout xmlns:tools="http://schemas.android.com/tools">
 
 	<data>
+
+		<variable
+				name="user"
+				type="org.zhiwei.jetpack.binding.bean.ObUser" />
+
+		<!--用于加载图片的url-->
+		<variable
+				name="url"
+				type="String" />
 
 	</data>
 
 	<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
 			android:layout_width="match_parent"
 			android:layout_height="match_parent"
+			android:gravity="center_horizontal"
 			android:orientation="vertical">
+		<!--1、双向绑定，使用的是@={} 下面输入框的修改，就会同步修改user的那么字段-->
+		<androidx.appcompat.widget.AppCompatTextView
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:text="@{`Name: `+user.name}"
+				android:textSize="12sp"
+				tools:text="在输入框修改user的name，这里会变" />
 
+		<androidx.appcompat.widget.AppCompatEditText
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:hint="这里演示的输入名字，更改为user的name"
+				android:text="@={user.name}" />
+		<!--1、转换，也就是将原有不支持的属性，转换为支持，兼容，如background的属性不能设置普通string，
+		这里可以通过@BindingConversion的静态函数，来适配-->
+		<androidx.appcompat.widget.AppCompatTextView
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:background="@{`red`}"
+				android:text="这个文案的背景色属性，就是通过converters转换才行的" />
+
+		<!--3、添加或扩展已有控件的属性，或者给它的set支持dataBinding
+		因为dataBinding只是控件属性set/get，需要标准的函数命名getXXX，setXXX才会识别该属性。
+		如果不是这样命名的函数属性set，就不会支持dataBinding。这里我们可以扩展兼容-->
+
+		<!--这里的src属性，并不支持网络加载url，或者uri，我们可以在静态函数中，适配兼容-->
+		<androidx.appcompat.widget.AppCompatImageView
+				imgSrc="@{url}"
+				android:layout_width="wrap_content"
+				android:layout_height="100dp"
+				android:src="@drawable/img_banner" />
 	</LinearLayout>
 
 </layout>

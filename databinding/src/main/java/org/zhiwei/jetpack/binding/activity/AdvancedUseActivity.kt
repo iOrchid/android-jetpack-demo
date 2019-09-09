@@ -2,6 +2,12 @@ package org.zhiwei.jetpack.binding.activity
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.databinding.DataBindingUtil
+import com.bumptech.glide.Glide
+import com.bumptech.glide.GlideBuilder
+import org.zhiwei.jetpack.binding.R
+import org.zhiwei.jetpack.binding.bean.ObUser
+import org.zhiwei.jetpack.binding.databinding.ActivityAdvancedUseBinding
 
 /**
  * 作者： 志威  zhiwei.org
@@ -17,12 +23,28 @@ import androidx.appcompat.app.AppCompatActivity
  * You never know what you can do until you try !
  * ----------------------------------------------------------------
  * DataBinding的高级用法的演示
+ * 1、双向绑定
+ * 2、自定义属性
+ * 3、转换器converters
+ * 4、自定义控件支持dataBinding,@BindingMethods等
  */
 class AdvancedUseActivity : AppCompatActivity() {
 
-	override fun onCreate(savedInstanceState: Bundle?) {
-		super.onCreate(savedInstanceState)
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        //glide的初始化
+        Glide.init(this, GlideBuilder())
 
+        val binding = DataBindingUtil.setContentView<ActivityAdvancedUseBinding>(
+            this,
+            R.layout.activity_advanced_use
+        )
+        //user设置
+        val user = ObUser("张三", 30, 1, "没有修改名字前的数据")
+        binding.user = user
 
-	}
+        //url
+        val url = "http://img.redocn.com/sheying/20140731/qinghaihuyuanjing_2820969.jpg"
+        binding.url = url
+    }
 }

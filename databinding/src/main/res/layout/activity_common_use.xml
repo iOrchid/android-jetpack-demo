@@ -18,8 +18,6 @@
 				name="ouser"
 				type="org.zhiwei.jetpack.binding.bean.ObUser" />
 
-		<import type="org.zhiwei.jetpack.binding.tools.UserTool" />
-
 		<import type="android.view.View" />
 
 		<!--单独的observableBoolean-->
