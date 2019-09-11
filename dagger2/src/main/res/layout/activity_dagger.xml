@@ -10,7 +10,7 @@
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
 			android:text="CommonPerson info"
-			android:textColor="@color/colorAccent" />
+			android:textColor="@color/design_default_color_primary" />
 
 	<TextView
 			android:id="@+id/tv_info_inject_person"
@@ -18,5 +18,5 @@
 			android:layout_height="wrap_content"
 			android:layout_marginTop="20dp"
 			android:text="InjectPerson info"
-			android:textColor="@color/colorPrimary" />
+			android:textColor="@color/design_default_color_primary_dark" />
 </LinearLayout>
