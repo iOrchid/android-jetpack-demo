@@ -12,6 +12,9 @@
 				name="url"
 				type="String" />
 
+		<variable
+				name="myBg"
+				type="android.graphics.drawable.Drawable" />
 	</data>
 
 	<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -50,6 +53,16 @@
 				android:layout_width="wrap_content"
 				android:layout_height="100dp"
 				android:src="@drawable/img_banner" />
+		<!--这里是用的自定义的view，使用img属性，在view中添加set函数，这样和上面的@bindinAdapter对比，上面更方面，扩展性强-->
+		<org.zhiwei.jetpack.binding.view.MyImageView
+				img="@{myBg}"
+				android:layout_width="wrap_content"
+				android:layout_height="100dp" />
+		<!--这里的image属性，是原控件没有的，而是通过@bindMethod来实现 函数映射-->
+		<androidx.appcompat.widget.AppCompatImageView
+				image="@{myBg}"
+				android:layout_width="wrap_content"
+				android:layout_height="100dp" />
 	</LinearLayout>
 
 </layout>
