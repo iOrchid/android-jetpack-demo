@@ -9,5 +9,5 @@
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
 			android:text="主要看控制台输出数据"
-			android:textColor="@color/colorAccent" />
+			android:textColor="@color/design_default_color_primary" />
 </LinearLayout>
