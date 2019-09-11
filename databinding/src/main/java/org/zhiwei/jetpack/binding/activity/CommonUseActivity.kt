@@ -75,6 +75,8 @@ class CommonUseActivity : AppCompatActivity(), View.OnClickListener {
             0,
             ObservableField<String>("李四，据说不是李斯，李白第32世无名弟子的后人")
         )
+//        fuser.desc.get()//在代码中要获取desc这样的observable的属性，就需要用get()，而且get()的是可null的返回，
+//        在xml中则直接用user.desc即可，不需要写.get()。写了也无妨
         binding.fuser = fuser
         obuser = ObUser("王二", 22, 0, "你会看到，这个王二的性别，你是改不了的，因为内部val声明了不可变量")
         binding.ouser = obuser

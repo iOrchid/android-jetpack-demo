@@ -56,7 +56,7 @@
 				android:layout_height="wrap_content"
 				android:text="改变普通" />
 
-		<!--部分属性响应 的 user对象-->
+		<!--部分属性响应 的 user对象 在代码中desc属性需要get()，xml里可以不用-->
 		<androidx.appcompat.widget.AppCompatTextView
 				android:id="@+id/tv_field_user_info"
 				android:layout_width="match_parent"
