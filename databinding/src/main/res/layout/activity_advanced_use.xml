@@ -1,7 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:tools="http://schemas.android.com/tools">
+<layout xmlns:app="http://schemas.android.com/apk/res-auto"
+		xmlns:tools="http://schemas.android.com/tools">
 
 	<data>
+
+		<!--用于演示双向绑定，刷新view的swipeRefreshLayout控件需要用到-->
+		<variable
+				name="activity"
+				type="org.zhiwei.jetpack.binding.activity.AdvancedUseActivity" />
 
 		<variable
 				name="user"
@@ -51,18 +57,31 @@
 		<androidx.appcompat.widget.AppCompatImageView
 				imgSrc="@{url}"
 				android:layout_width="wrap_content"
-				android:layout_height="100dp"
+				android:layout_height="50dp"
 				android:src="@drawable/img_banner" />
 		<!--这里是用的自定义的view，使用img属性，在view中添加set函数，这样和上面的@bindinAdapter对比，上面更方面，扩展性强-->
 		<org.zhiwei.jetpack.binding.view.MyImageView
 				img="@{myBg}"
 				android:layout_width="wrap_content"
-				android:layout_height="100dp" />
+				android:layout_height="50dp" />
 		<!--这里的image属性，是原控件没有的，而是通过@bindMethod来实现 函数映射-->
 		<androidx.appcompat.widget.AppCompatImageView
 				image="@{myBg}"
 				android:layout_width="wrap_content"
-				android:layout_height="100dp" />
+				android:layout_height="50dp" />
+
+		<!--4、自定义View 双向绑定演示 记住双向绑定使用@={}-->
+		<androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				app:sfl_refreshing="@={activity.refreshing}">
+
+			<androidx.appcompat.widget.AppCompatTextView
+					android:id="@+id/tv_long_text_ad_binding"
+					android:layout_width="match_parent"
+					android:layout_height="match_parent"
+					android:text="long text 长文本" />
+		</androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 	</LinearLayout>
 
 </layout>

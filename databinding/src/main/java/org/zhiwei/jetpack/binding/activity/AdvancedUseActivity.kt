@@ -1,8 +1,11 @@
 package org.zhiwei.jetpack.binding.activity
 
 import android.os.Bundle
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.Observer
 import com.bumptech.glide.Glide
 import com.bumptech.glide.GlideBuilder
 import org.zhiwei.jetpack.binding.R
@@ -31,6 +34,8 @@ import org.zhiwei.jetpack.binding.databinding.ActivityAdvancedUseBinding
  */
 class AdvancedUseActivity : AppCompatActivity() {
 
+    val refreshing = MutableLiveData<Boolean>()//标记是否刷新中的liveData对象。不能private，因为要用在xml中
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         //glide的初始化
@@ -49,6 +54,19 @@ class AdvancedUseActivity : AppCompatActivity() {
         binding.url = url
         //设置myView的img参数
         binding.myBg = resources.getDrawable(R.drawable.img_banner)
+        //演示自定义View实现双向绑定
+        // 1、先单向绑定 也就是将viewModel的数据变化，通知UI来刷新；(这里也就是在[BCTool]中static声明自定义属性，refreshing)
+        // 2、将UI的变化，反向绑定，来通知数据模型的状态变化。
+        // 3、完成双向绑定，避免死循环。
+        //这里是个长文本，配合演示swipeRefreshLayout的状态感知
+        binding.tvLongTextAdBinding.text = strText
+        //
+        binding.activity = this
+        //这里记录log，liveData感知，也就证明，ui的刷新，将状态反向绑定给了data
+        refreshing.observe(this, Observer<Boolean> {
+            Log.i("AdvancedUseActivity", "refreshing $it")
+        })
+
     }
     /*
     问题：1、@{user.name}如果user为null，是否运行崩溃
@@ -61,3 +79,24 @@ class AdvancedUseActivity : AppCompatActivity() {
     3、双向绑定也不会死循环，因为实现类会做old==new的value值校验，并return，避免陷入双向刷新的死循环。
      */
 }
+
+const val strText = """
+James Ray edited this page on 2 Apr · 241 revisions
+Welcome to the Ethereum Wiki!
+Documentation chat standard-readme compliant
+Ethereum wiki covering all things related to Ethereum
+Contents
+Issues and pull requests
+Contribution guidelines
+Introduction
+Fixing vandalism
+Page titles
+Wikipedia pillars
+Translating
+License and contributor license agreement
+Editing locally (requires access permission)
+Setup
+Usage
+Getting started
+
+"""
