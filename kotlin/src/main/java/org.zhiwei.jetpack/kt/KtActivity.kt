@@ -3,6 +3,7 @@ package org.zhiwei.jetpack.kt
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
+import org.zhiwei.jetpack.kt.base.topPermInternalValue
 
 /**
  * 作者： 志威  zhiwei.org

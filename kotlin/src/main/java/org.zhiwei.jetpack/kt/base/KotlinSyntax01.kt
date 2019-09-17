@@ -20,6 +20,8 @@ Kotlin中的单行、多行、文档注释与Java的注释无区别。
  */
 class KotlinSyntax01 {
 
+	protected val permValue = 3
+
 	//类属性的常量/变量的声明及初始化，大体和顶级toplevel中的声明，差不多。
 	var cA: Int = 10
 	var cB = 11

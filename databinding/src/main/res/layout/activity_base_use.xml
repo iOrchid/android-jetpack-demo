@@ -161,7 +161,7 @@
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
 				android:onClick="@{()->BindTool.log()}"
-				android:text="普通无参" />
+				android:text="普通无参(看logcat)" />
 
 		<androidx.appcompat.widget.AppCompatButton
 				android:layout_width="wrap_content"

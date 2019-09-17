@@ -13,4 +13,14 @@ class ExampleUnitTest {
 	fun addition_isCorrect() {
 		assertEquals(4, (2 + 2).toLong())
 	}
+
+	@Test
+	fun testKt() {
+		println("Byte范围: ${Byte.MIN_VALUE}~${Byte.MAX_VALUE}")
+		println("Short范围: ${Short.MIN_VALUE}~${Short.MAX_VALUE}")
+		println("Int范围: ${Int.MIN_VALUE}~${Int.MAX_VALUE}")
+		println("Long范围: ${Long.MIN_VALUE}~${Long.MAX_VALUE}")
+		println("Float范围: ${Float.MIN_VALUE}~${Float.MAX_VALUE}")
+		println("Double范围: ${Double.MIN_VALUE}~${Double.MAX_VALUE}")
+	}
 }
