@@ -56,8 +56,11 @@ var topString = """
     也可以这么写
 """.trimIndent()//kotlin中也可以使用"""三引号，用于多行大量的字符串声明，并且可以trim各种函数操作字符串的格式
 
-val topName: String = "名字，不可修改，所以是不可变量 val 修饰"
-var topNum = 20//省略类型标记，默认推导为Int，如果小数点的，就是默认Double，除非手动添加L/l、F/f表示Long，Float
+val topName: String = "名字，不可修改，所以是不可变量 val 修饰"//不可变量，类似于java的final，而没有static
+
+private const val PI =
+    3.1415926//静态常量，圆周率。静态常量需要在object中，或者是toplevel声明，根据修饰符权限，作用范围。类似于java的static的final常量
+var topNum = 20//省略类型标记，默认推导为Int，如果小数点的，就是默认Double，除非手动添加L/l、F/f表示Long，Float。
 
 lateinit var topLateNum: String//这里是使用lateinit var 声明变量，可以在第一次使用该变量之前，初始化。
 // 而且lateinit 和var 搭配的，不能是val。且类型不能是?的可null的，比如这里就不能是String?的
@@ -96,7 +99,17 @@ private fun getAppName(): String {
 }
 
 //无参，返回String类型的函数，简写
-private fun getUserName() = "Android JetPackDemo"
+internal fun getUserName() = "Android JetPackDemo"
 
 
 //</editor-folder>
+
+//简单演示在同一个kt文件中，除了上面top level的声明之外，还可以有其他public的class 或者object（kotlin中 object修饰表示一个单例类，也是一个class）
+public class TopTestClass {
+    //私有类,关于class的详细信息，后续进阶会有描述
+}
+
+//单例类
+private object TopTestObject {
+    private const val finalA = "final a"
+}

@@ -2,6 +2,7 @@ package org.zhiwei.jetpack.kt
 
 import org.junit.Assert.assertEquals
 import org.junit.Test
+import org.zhiwei.jetpack.kt.base.KtClazz4
 
 /**
  * Example local unit test, which will execute on the development machine (host).
@@ -22,5 +23,11 @@ class ExampleUnitTest {
 		println("Long范围: ${Long.MIN_VALUE}~${Long.MAX_VALUE}")
 		println("Float范围: ${Float.MIN_VALUE}~${Float.MAX_VALUE}")
 		println("Double范围: ${Double.MIN_VALUE}~${Double.MAX_VALUE}")
+	}
+
+	@Test
+	fun testKtClazz() {
+		val tt = KtClazz4("名字")
+		println(tt.toString())
 	}
 }
