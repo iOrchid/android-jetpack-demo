@@ -3,6 +3,7 @@ package org.zhiwei.jetpack.kt
 import org.junit.Assert.assertEquals
 import org.junit.Test
 import org.zhiwei.jetpack.kt.base.KtClazz4
+import org.zhiwei.jetpack.kt.base.User
 
 /**
  * Example local unit test, which will execute on the development machine (host).
@@ -28,6 +29,7 @@ class ExampleUnitTest {
 	@Test
 	fun testKtClazz() {
 		val tt = KtClazz4("名字")
+		val (name, age, sex, desc) = User("小明", 22, 1, "小明是个男的，大学生一枚")
 		println(tt.toString())
 	}
 }

@@ -214,7 +214,8 @@ private class subKtClazz : opKtClazz(), IProxy {
 //<editor-folder desc="数据类，单例类">
 
 //数据类，就是final的不能open，不能abstract，就一个主构造函数，不能有其他构造函数。可以有类代码体，变量声明，以及函数等。
-// todo 但是，多数情况都是作为单独的数据bean封装
+// todo 但是，多数情况都是作为单独的数据bean封装。实例化数据类的时候，可以单独为一个变量，也可以直接将属性实例化，但是只能实例非私有的
+//val (name, age, sex, desc) = org.zhiwei.jetpack.kt.base.User("小明", 22, 1, "小明是个男的，大学生一枚")
 data class User(
     private val name: String,
     protected var age: Int,//因为final，所以protected也就失效，类似private
