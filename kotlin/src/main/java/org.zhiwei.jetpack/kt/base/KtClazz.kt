@@ -139,7 +139,7 @@ class KtClazz4 {
 
 //接口的定义
 private interface IProxy {
-
+    //    public var name: String//kotlin接口内可以定义属性，但是不能设置默认值，实现类就必须实现这个属性
     //kotlin中接口函数可以有默认的自定义内容，这样的话，实现接口的时候，就不必须实现这个有默认实现的函数方法
     public fun proxy(): String {
         println("默认定义接口的实现函数内容")
