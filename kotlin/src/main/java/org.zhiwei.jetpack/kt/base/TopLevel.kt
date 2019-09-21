@@ -59,7 +59,7 @@ var topString = """
 val topName: String = "名字，不可修改，所以是不可变量 val 修饰"//不可变量，类似于java的final，而没有static
 
 private const val PI =
-    3.1415926//静态常量，圆周率。静态常量需要在object中，或者是toplevel声明，根据修饰符权限，作用范围。类似于java的static的final常量
+	3.1415926//静态常量，圆周率。静态常量需要在object中，或者是toplevel声明，根据修饰符权限，作用范围。类似于java的static的final常量
 var topNum = 20//省略类型标记，默认推导为Int，如果小数点的，就是默认Double，除非手动添加L/l、F/f表示Long，Float。
 
 lateinit var topLateNum: String//这里是使用lateinit var 声明变量，可以在第一次使用该变量之前，初始化。
@@ -74,10 +74,10 @@ var topNullStr: String? = null//这是声明一个可null的变量
  */
 
 public var topPermPublicValue =
-    "public permission"//用String类型来演示权限修饰符，public修饰符是默认的，所以可以省略不写。public范围公开
+	"public permission"//用String类型来演示权限修饰符，public修饰符是默认的，所以可以省略不写。public范围公开
 internal var topPermInternalValue = "internal permission"//模块内可访问的修饰符，权限是同一个module模块都可以
 private var topPermPrivateValue =
-    "private permission"//私有修饰符，作用范围为同一kt文件的同一阶层,及其内部类中。如此文件内声明class或object，都可以访问这个，
+	"private permission"//私有修饰符，作用范围为同一kt文件的同一阶层,及其内部类中。如此文件内声明class或object，都可以访问这个，
 //而且kt文件就不能访问。并且，如果在一个class或object内的private变量，class/object外就不能访问。
 
 
@@ -88,14 +88,14 @@ private var topPermPrivateValue =
  */
 //无参数，空返回类型，返回可以不写
 private fun getVoid(): Unit {
-    //由于是返回Unit类型，return这个语句可以不写
-    return Unit
+	//由于是返回Unit类型，return这个语句可以不写
+	return Unit
 }
 
 //返回string类型
 private fun getAppName(): String {
-    //类似简短语句的返回，可以直接简写
-    return "Android JetPack Demo"
+	//类似简短语句的返回，可以直接简写
+	return "Android JetPack Demo"
 }
 
 //无参，返回String类型的函数，简写
@@ -106,10 +106,10 @@ internal fun getUserName() = "Android JetPackDemo"
 
 //简单演示在同一个kt文件中，除了上面top level的声明之外，还可以有其他public的class 或者object（kotlin中 object修饰表示一个单例类，也是一个class）
 public class TopTestClass {
-    //私有类,关于class的详细信息，后续进阶会有描述
+	//私有类,关于class的详细信息，后续进阶会有描述
 }
 
 //单例类
 private object TopTestObject {
-    private const val finalA = "final a"
+	private const val finalA = "final a"
 }

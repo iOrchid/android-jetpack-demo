@@ -1,35 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-		android:layout_width="match_parent"
-		android:layout_height="match_parent"
-		android:gravity="center_horizontal"
-		android:orientation="vertical"
-		android:padding="10dp">
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	android:gravity="center_horizontal"
+	android:orientation="vertical"
+	android:padding="10dp">
 
 	<androidx.appcompat.widget.AppCompatButton
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:layout_margin="10dp"
-			android:onClick="baseUse"
-			android:text="基础用法" />
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_margin="10dp"
+		android:onClick="baseUse"
+		android:text="基础用法" />
 
 	<androidx.appcompat.widget.AppCompatButton
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:onClick="commonUse"
-			android:text="进阶用法" />
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:onClick="commonUse"
+		android:text="进阶用法" />
 
 	<androidx.appcompat.widget.AppCompatButton
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:layout_margin="10dp"
-			android:onClick="advancedUse"
-			android:text="高级用法" />
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_margin="10dp"
+		android:onClick="advancedUse"
+		android:text="高级用法" />
 
 	<androidx.appcompat.widget.AppCompatTextView
-			android:id="@+id/tv_notice_binding"
-			android:layout_width="match_parent"
-			android:layout_height="match_parent"
-			android:text="DataBinding的注意事项点：" />
+		android:id="@+id/tv_notice_binding"
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"
+		android:text="DataBinding的注意事项点：" />
 
 </LinearLayout>

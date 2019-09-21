@@ -1,31 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-		android:layout_width="match_parent"
-		android:layout_height="match_parent"
-		android:gravity="center_horizontal"
-		android:orientation="vertical"
-		android:padding="10dp">
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	android:gravity="center_horizontal"
+	android:orientation="vertical"
+	android:padding="10dp">
 
 	<TextView
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:text="1、先看topLevel的代码文件，主要是kotlin的基础语法的第一部分
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:text="1、先看topLevel的代码文件，主要是kotlin的基础语法的第一部分
 包括变量/常量，函数的定义，以及基础的数据类型"
-			android:textColor="@color/colorPrimary" />
+		android:textColor="@color/colorPrimary" />
 
 	<TextView
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:layout_marginTop="10dp"
-			android:text="2、看KtClazz，主要是讲class内的变量/常量、函数的定义，以及kotlin中类
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_marginTop="10dp"
+		android:text="2、看KtClazz，主要是讲class内的变量/常量、函数的定义，以及kotlin中类
 、接口和object，构造函数等"
-			android:textColor="@color/colorAccent" />
+		android:textColor="@color/colorAccent" />
 
 	<TextView
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:layout_marginTop="10dp"
-			android:text="3、advanced高级语法的代码演示，包括高阶函数、协程/纤程、常用Api的释义等"
-			android:textColor="@color/colorPrimaryDark" />
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_marginTop="10dp"
+		android:text="3、advanced高级语法的代码演示，包括高阶函数、协程/纤程、常用Api的释义等"
+		android:textColor="@color/colorPrimaryDark" />
 
 </LinearLayout>

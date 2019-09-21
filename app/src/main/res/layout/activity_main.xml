@@ -1,92 +1,92 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-		android:layout_width="match_parent"
-		android:layout_height="match_parent">
+	android:layout_width="match_parent"
+	android:layout_height="match_parent">
 
 	<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-			xmlns:tools="http://schemas.android.com/tools"
-			android:layout_width="match_parent"
-			android:layout_height="match_parent"
-			android:orientation="vertical"
-			android:padding="10dp"
-			tools:context=".MainActivity">
+		xmlns:tools="http://schemas.android.com/tools"
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"
+		android:orientation="vertical"
+		android:padding="10dp"
+		tools:context=".MainActivity">
 
 		<Button
-				android:layout_width="wrap_content"
-				android:layout_height="wrap_content"
-				android:layout_gravity="center"
-				android:onClick="dataBinding"
-				android:text="DataBinding" />
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_gravity="center"
+			android:onClick="dataBinding"
+			android:text="DataBinding" />
 
 		<Button
-				android:layout_width="wrap_content"
-				android:layout_height="wrap_content"
-				android:layout_gravity="center"
-				android:onClick="liveData"
-				android:text="LiveData" />
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_gravity="center"
+			android:onClick="liveData"
+			android:text="LiveData" />
 
 		<Button
-				android:layout_width="wrap_content"
-				android:layout_height="wrap_content"
-				android:layout_gravity="center"
-				android:onClick="lifeCycle"
-				android:text="LifeCycle" />
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_gravity="center"
+			android:onClick="lifeCycle"
+			android:text="LifeCycle" />
 
 		<Button
-				android:layout_width="wrap_content"
-				android:layout_height="wrap_content"
-				android:layout_gravity="center"
-				android:onClick="room"
-				android:text="Room" />
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_gravity="center"
+			android:onClick="room"
+			android:text="Room" />
 
 		<Button
-				android:layout_width="wrap_content"
-				android:layout_height="wrap_content"
-				android:layout_gravity="center"
-				android:onClick="navi"
-				android:text="Navigation" />
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_gravity="center"
+			android:onClick="navi"
+			android:text="Navigation" />
 
 		<Button
-				android:layout_width="wrap_content"
-				android:layout_height="wrap_content"
-				android:layout_gravity="center"
-				android:onClick="paging"
-				android:text="Paging" />
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_gravity="center"
+			android:onClick="paging"
+			android:text="Paging" />
 
 		<Button
-				android:layout_width="wrap_content"
-				android:layout_height="wrap_content"
-				android:layout_gravity="center"
-				android:onClick="work"
-				android:text="Work" />
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_gravity="center"
+			android:onClick="work"
+			android:text="Work" />
 
 		<Button
-				android:layout_width="wrap_content"
-				android:layout_height="wrap_content"
-				android:layout_gravity="center"
-				android:onClick="rxjava"
-				android:text="RxJava" />
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_gravity="center"
+			android:onClick="rxjava"
+			android:text="RxJava" />
 
 		<Button
-				android:layout_width="wrap_content"
-				android:layout_height="wrap_content"
-				android:layout_gravity="center"
-				android:onClick="kotlin"
-				android:text="Kotlin" />
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_gravity="center"
+			android:onClick="kotlin"
+			android:text="Kotlin" />
 
 		<Button
-				android:layout_width="wrap_content"
-				android:layout_height="wrap_content"
-				android:layout_gravity="center"
-				android:onClick="aac"
-				android:text="AAC" />
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_gravity="center"
+			android:onClick="aac"
+			android:text="AAC" />
 
 		<Button
-				android:layout_width="wrap_content"
-				android:layout_height="wrap_content"
-				android:layout_gravity="center"
-				android:onClick="dagger"
-				android:text="Dagger" />
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_gravity="center"
+			android:onClick="dagger"
+			android:text="Dagger" />
 
 
 	</LinearLayout>
