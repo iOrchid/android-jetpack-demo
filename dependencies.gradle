@@ -77,9 +77,9 @@ dependencies {
 	implementation 'io.reactivex.rxjava2:rxjava:2.2.12'
 	implementation 'io.reactivex.rxjava2:rxandroid:2.1.1'
 	//glide
-	implementation 'com.github.bumptech.glide:glide:4.9.0'
-	annotationProcessor 'com.github.bumptech.glide:compiler:4.9.0'//java的用annotationProcessor
-	kapt 'com.github.bumptech.glide:compiler:4.9.0'//kotlin代码需要这个kapt注入进程
+	implementation 'com.github.bumptech.glide:glide:4.10.0'
+	annotationProcessor 'com.github.bumptech.glide:compiler:4.10.0'//java的用annotationProcessor
+	kapt 'com.github.bumptech.glide:compiler:4.10.0'//kotlin代码需要这个kapt注入进程
 
 	//<editor-folder desc="test libs">
 	testImplementation 'junit:junit:4.12'
