@@ -110,6 +110,14 @@ class KtSyntax {
 		//这个是判空，若空就return了，return后也可以跟一个语句，由于这个testIf是返回为Unit的，所以return的语句，也只能是Unit的。
 		nStr ?: return
 		nStr ?: return print("return的语句，是返回空的语句就行")
+		//if...else if ...else 就是多重条件
+		if (a < 0) {
+			//
+		} else if (a == 0) {
+			//
+		} else {
+			//
+		}
 	}
 
 	//区间，或者 until，都是从小到大，如果第一个数大于后面的数，是输不出来的
@@ -137,6 +145,95 @@ class KtSyntax {
 
 	}
 
+	//while 循环,简单模拟语法，所以代码语句条件不一定就成立合理
+	private fun testWhile() {
+		var a = 3
+		do {
+			println("hhh")
+			a++
+		} while (a < 9)
+
+		while (a < 7) {
+			println("a < 7")
+			a++
+		}
+		//不论是while还是for循环，都要避免死循环。而且括号内抽象来说，接收的就是一个条件语句，任何语句都行
+		while (a in 0..3) {
+			println(a)
+			a++
+		}
+		//虽然这里面也能写step，但是无效
+		while (a in 1 until 5) {
+			println(a)
+			//a=a+2的简写
+			a += 2
+		}
+
+	}
+
+	//when 类似于java中的switch case，但是相比较更为强大
+	private fun testWhen() {
+		//1、代替if
+		var a = 3
+		//因为boolean只有两个取值，所以下面分支就true和false，可以不写else,或者省略ture或false的一个也行。
+		when (a > 9) {
+			//注意这里的写法，属于函数式简写，若只有一条语句，{}可以省略
+			true -> {
+				println("true")
+			}
+			false -> println("false ")
+			else -> println("nothing")
+		}
+
+		//2、类似switch case时候，但是更灵活，更强大，因为它的case语句可以"任意表达"
+		var b: Any = "xxx"
+		when (b) {
+			9 -> println("9")
+			is Number -> println("is Number")
+			!is Int -> println("not is int")
+			"ss" -> println("ss")
+			'c' -> println("is a char")
+			true -> println("true")
+			a != 3 -> println("可以是和b没有任何关系的case预计")
+			else -> println("兜底的，else语句")
+		}
+		//可以没有括号条件句
+		when {
+			a > 3 -> println("a>3")
+			else -> println("else")
+		}
+
+	}
+
+	//</editor-folder>
+
+	//<editor-folder desc="4、break、continue、return以及@label">
+	//类似于java语言，break中断，continue，继续，return返回函数，@标签标记
+	private fun testCtrl() {
+		//输出结果是1，2，
+		for (i in 1..10) {
+			if (i == 3) break//根据条件，中断循环，其实也就是提前结束
+			println("i=$i")
+		}
+		//输出结果是1，2，3，4，6，7，8，9
+		for (i in 1..9) {
+			if (i == 5) continue//满足条件时，结束本次循环，继续下一次，在此之后的语句，这次循环就不会执行了，
+			println(i)
+		}
+		//输出结果是
+		for (i in 1..7) {
+			if (i == 4) return//满足条件，就return出整个函数testCtrl
+			println(i)
+		}
+		println("这个输出语句，不会执行，因为上面的for，其中有个return条件")
+	}
+
+	private fun testLabel() {
+
+
+		println()
+
+	}
 
 	//</editor-folder>
 

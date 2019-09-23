@@ -33,4 +33,13 @@ class ExampleUnitTest {
 		}
 //        println(tt.toString())
 	}
+
+	@Test
+	fun testWhile() {
+		var a = 2
+		while (a in 1 until 5) {
+			println(a)
+			a += 2
+		}
+	}
 }
