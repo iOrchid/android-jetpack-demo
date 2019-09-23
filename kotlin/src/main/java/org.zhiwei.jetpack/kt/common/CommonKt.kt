@@ -13,7 +13,7 @@ package org.zhiwei.jetpack.kt.common
  *
  * You never know what you can do until you try !
  * ----------------------------------------------------------------
- * 进阶语法的演示操作类
+ * 进阶语法的演示操作类，主要有扩展函数/属性、伴生对象扩展/作用域扩展，密封类/copy函数、泛型/约束/型变/星号引用、枚举常量、对象表达式/委托，
  */
 class CommonKt {
 
