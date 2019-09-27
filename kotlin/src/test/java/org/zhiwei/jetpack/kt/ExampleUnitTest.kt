@@ -42,4 +42,45 @@ class ExampleUnitTest {
             a += 2
         }
     }
+
+    var String.middle: Int
+        get() = this.length / 2
+        set(value) {
+            println("v:$value")
+        }
+
+
+    @Test
+    fun testEx() {
+        open class C {
+            fun doo() {
+                println("DDD")
+            }
+        }//C类
+
+        class D : C()//D继承C
+
+        fun C.foo() {//对C扩展foo
+            println("C.foo")
+        }
+
+        fun C.doo() {
+            println("C.doo")
+        }
+
+        fun D.foo() {//对D扩展foo
+            println("D.foo")
+        }
+
+        fun printFoo(c: D) {
+            c.foo()
+        }
+
+        printFoo(D())
+        C().doo()
+        val s = "abcedfajkgja"
+        s.middle = 999//
+
+//        println("${s.middle}")
+    }
 }
