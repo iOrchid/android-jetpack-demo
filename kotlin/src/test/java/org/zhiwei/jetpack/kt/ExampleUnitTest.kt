@@ -83,4 +83,17 @@ class ExampleUnitTest {
 
 //        println("${s.middle}")
     }
+
+    private open class GGG
+    private data class CC(var a: Int) : GGG()
+
+    @Test
+    fun testCZ() {
+
+        //数据类的copy并修改值
+        val c1 = CC(2)
+        val c2 = c1.copy(a = 3)
+
+        println(c2)
+    }
 }

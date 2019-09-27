@@ -21,10 +21,13 @@ package org.zhiwei.jetpack.kt.common
  * 5、扩展函数针对于类，类的伴生对象也可以
  * 6、扩展函数作用域，类似于普通的导包，如果定义在一个kt文件的topLevel中，在外部使用就导入该kt的包就行。
  * 7、在一个类中，定义另一个类的扩展函数，则在扩展函数内，就会有多个隐式的对象引用，即引用当前类和被扩展类的引用
+ * 8、扩展函数，在定义类及其子类中，可以被覆盖重写，但是针对于具体被扩展类，扩展函数是静态加载的。
+ * 9、数据类可以实现其他接口或继承其他类，copy函数便于快速创建数据对象，系统提供了Pair、Triple等标准数据类
+ * 10、密封类，用于限定数据的类型，理解为特殊的数据类，枚举类型的扩展，相对更为灵活。其声明和子类继承，都必须在topLevel中，布恩那个在其它类中
  */
 class CommonKt {
 
-    //<editor-folder desc="扩展函数、扩展属性">
+    //<editor-folder desc="1、扩展函数、扩展属性">
 
     //1、扩展函数就是对已有的类，添加新方法，但是不修改原有类。todo 可以写在topLevel级别，可以写在某个类内，也可以有权限声明，根据业务场景需要。
     fun String.getStudentName(i: Int): String {
@@ -153,9 +156,55 @@ class CommonKt {
     //</editor-folder>
 
 
+    //<editor-folder desc="2、密封类/copy函数">
+
+    //1、数据类可以实现其他接口，以及继承类,网上教程说是不能继承类，其实新版本kotlin可以的，
+    private open class GGG
+
+    private data class CC(var a: Int) : GGG()
+
+    //2、密封类，算是一个特别的数据类。不能open，也不要interface，abstract。用作限定数据类型，相比枚举类型，更为灵活。
+    // 枚举是一个类，多个数值，而密封类，是一个类，可以有很多种子类，打得属于一个类型就行。作为类型限制.
+    //todo 参照文件底部Expr声明,这样就能限定参数是expr类型，相比于枚举类型，较为灵活一些
+    private fun textExpr(e: Expr) {
+        when (e) {
+            is Const -> {
+                //这里就不些具体代码了，
+            }
+            is NotNumber -> {
+//如果能确定所有类型，其实else可以不写
+            }
+            is BigNumber -> {
+//密封类就主要用于替换枚举，用于一些要求宽泛的限定数据类型的地方
+            }
+            else -> {
+                //
+            }
+        }
+    }
+
+    private fun testCz() {
+        //数据类的copy并修改值
+        val c1 = CC(2)
+        val c2 = c1.copy(a = 3)
+    }
+
+    //</editor-folder>
+
+
 }
 
 //这个是 toplevel级别的扩展函数，并加了权限修饰
 private fun String.getStudentAge(): Int {
     return 22
 }
+
+//密封类，必须生命在kt文件根节点，不要放在某个类内部，实现子类可以放在该文件的任意位置，哪怕其他class内
+sealed class Expr//限定某个函数的参数只能是expr的类型
+
+//下面就是属于expr类型的不同数据，
+data class Const(var name: Double) : Expr()
+
+data class BigNumber(val bb: Double) : Expr()
+private data class CommonNum(var a: Int) : Expr()
+object NotNumber : Expr()
