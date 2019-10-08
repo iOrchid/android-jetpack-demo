@@ -1,5 +1,10 @@
 package org.zhiwei.jetpack.kt.common
 
+import android.content.Context
+import android.widget.Button
+import android.widget.EditText
+import android.widget.TextView
+
 /**
  * 作者： 志威  zhiwei.org
  * 主页： Github: https://github.com/zhiwei1990
@@ -24,6 +29,7 @@ package org.zhiwei.jetpack.kt.common
  * 8、扩展函数，在定义类及其子类中，可以被覆盖重写，但是针对于具体被扩展类，扩展函数是静态加载的。
  * 9、数据类可以实现其他接口或继承其他类，copy函数便于快速创建数据对象，系统提供了Pair、Triple等标准数据类
  * 10、密封类，用于限定数据的类型，理解为特殊的数据类，枚举类型的扩展，相对更为灵活。其声明和子类继承，都必须在topLevel中，布恩那个在其它类中
+ * 11、泛型，类似于java的泛型，kotlin中泛型可用于类、接口和函数，可用于上界约束，并且可以多个上界同时作用，使用where关键字
  */
 class CommonKt {
 
@@ -191,6 +197,71 @@ class CommonKt {
 
     //</editor-folder>
 
+    //<editor-folder desc="3、泛型相关">
+    //1、kotlin的泛型类似于java的，可用于类、接口和函数
+    private class Tc01<T>(t: T) {
+        //这里就是在class的类上，配置泛型T，接收不同的类型，则value就是不同类型的
+        var value = t
+    }
+
+    //2、函数的泛型声明
+    private fun <T> funT(t: T): Tc01<T> {
+        //这里声明一个函数，接收T类型，返回一个tc01的对象
+        return Tc01(t)
+    }
+
+    //3、泛型约束，约束上界。就是业务中常见的，允许接受某个参数，必须是某种类型的子类。（根据业务，可以考虑枚举，密封类，泛型）
+    private fun <T : TextView> getTv(t: TextView): String {
+        //这里演示，函数接收参数位textView的，或者其子类，并返回text字符串
+        return t.text.toString()
+    }
+
+    //4、多约束，在业务中存在要求某个参数是某个类或子类，同时还要其是某个接口的实现类，如此就存在了多个上界约束条件,在kotlin中使用where
+    private interface FunT {
+        fun getName() = "default name"
+    }
+
+    private fun <T> testMultiT(t1: T, t2: T): String where T : TextView, T : FunT {
+        //这里演示的就是，参数同时满足多个上界条件约束
+        return "t1，t2 是TextView的子类对象，${t1.text}，t1 t2是FunT的实现类的对象，${t2.getName()}"
+    }
+
+    //5、型变,kotlin中没有通配符，而是有 声明处型变、类型投影来作用。in 逆变，out 协变
+    private class Tc02<out A>(val a: A) {
+        //这里定义一个class，接收参数A类型，使用out修饰，则对应A类型就只能作为出参和返回类型。类似的 in 关键字修饰，就作为入参
+        fun foo(): A {
+            return a
+        }
+    }
+
+    private fun testT() {
+        //1、测试泛型类，不同的T类型，它的value就是不同类型的数据。<>尖括号内有时候能自动推断的，可以省略不写
+        val t1 = Tc01<Int>(4)
+        println(t1.value is Int)
+        val 她 = Tc01<String>("她，目前来说，不少编程语言的变量和函数声明可以使用中文名称，但是不保证一定没问题，所以呢，保持规范，还是标准命名规范")
+        println(她.value)
+        她.value is String
+
+        //2、测试泛型 函数的使用
+        println(funT(1))
+        funT<Int>(2)//如果能自动推断类型，可以省略尖括号
+        println(funT("string"))
+        //3、泛型约束,约束上界，这里演示都是textView的子类
+        val context: Context? = null
+        val btn = Button(context)
+        val et = EditText(context)
+        getTv<Button>(btn)
+        getTv<EditText>(et)
+        //3、型变,如同java一样，kotlin中，List<TextView>和List<Button>它们不是一个类型的，也不是子类于扩展，如何
+        val a1 = Tc02<String>("this is a String value class")
+        var a2 = Tc02<Any>(333)
+        a2 = a1
+        println(a2.foo())
+
+    }
+
+
+    //<editor-folder>
 
 }
 
