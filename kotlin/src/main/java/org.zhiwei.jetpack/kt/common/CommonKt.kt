@@ -1,6 +1,8 @@
 package org.zhiwei.jetpack.kt.common
 
 import android.content.Context
+import android.content.DialogInterface
+import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
@@ -30,6 +32,11 @@ import android.widget.TextView
  * 9、数据类可以实现其他接口或继承其他类，copy函数便于快速创建数据对象，系统提供了Pair、Triple等标准数据类
  * 10、密封类，用于限定数据的类型，理解为特殊的数据类，枚举类型的扩展，相对更为灵活。其声明和子类继承，都必须在topLevel中，布恩那个在其它类中
  * 11、泛型，类似于java的泛型，kotlin中泛型可用于类、接口和函数，可用于上界约束，并且可以多个上界同时作用，使用where关键字
+ * 12、todo 泛型的协变，型变，以及星号投影的深入学习
+ * 13、枚举，自身就有的属性是name，ordinal（在枚举类中的序号）,也可以有自己构造参数，添加额外属性字段.不能继承其它类,可以实现接口，但是每个枚举对象都必须实现接口函数
+ * 14、对象表达式，匿名对象中声明的变量属性只作用于内部范围，不论是不是public的，外部都无法访问到。object可以用于定义单例（作为对象修饰的时候，不同于表达式，访问方式二号作用域也不同
+ * 不能访问外部类的任何东西，外部类对象也不能引用它，只能用外部类.引用。），伴生对象companion修饰的object，可以有名字，可以没有，它不受签名括号内的限制。
+ * todo 在演示代码中，函数/类的定义，较多使用private，为的是避免其他地方写代码出现引用混乱和命名重复
  */
 class CommonKt {
 
@@ -198,6 +205,7 @@ class CommonKt {
     //</editor-folder>
 
     //<editor-folder desc="3、泛型相关">
+
     //1、kotlin的泛型类似于java的，可用于类、接口和函数
     private class Tc01<T>(t: T) {
         //这里就是在class的类上，配置泛型T，接收不同的类型，则value就是不同类型的
@@ -226,13 +234,22 @@ class CommonKt {
         return "t1，t2 是TextView的子类对象，${t1.text}，t1 t2是FunT的实现类的对象，${t2.getName()}"
     }
 
-    //5、型变,kotlin中没有通配符，而是有 声明处型变、类型投影来作用。in 逆变，out 协变
+    //todo 还需深入理解！！ 5、型变,kotlin中没有通配符，而是有 声明处型变、类型投影来作用。in 逆变，out 协变
     private class Tc02<out A>(val a: A) {
         //这里定义一个class，接收参数A类型，使用out修饰，则对应A类型就只能作为出参和返回类型。类似的 in 关键字修饰，就作为入参
         fun foo(): A {
             return a
         }
     }
+
+    private class Tc03<in B>(b: B) {
+        fun boo() {
+            println("in 标记，作为入参限制，所以B不能为返回类型")
+        }
+    }
+
+    //6、星号投影，针对于in，out的限定泛型使用，对于一个函数可能有多个参数的未知类型约束，可用*投射表示，根据位置来表示in或out的限定
+    //todo 还需要深入学习理解！！
 
     private fun testT() {
         //1、测试泛型类，不同的T类型，它的value就是不同类型的数据。<>尖括号内有时候能自动推断的，可以省略不写
@@ -252,16 +269,148 @@ class CommonKt {
         val et = EditText(context)
         getTv<Button>(btn)
         getTv<EditText>(et)
-        //3、型变,如同java一样，kotlin中，List<TextView>和List<Button>它们不是一个类型的，也不是子类于扩展，如何
+        //3、型变,如同java一样，kotlin中，List<TextView>和List<Button>它们不是一个类型的，也不是子类于扩展，
         val a1 = Tc02<String>("this is a String value class")
         var a2 = Tc02<Any>(333)
-        a2 = a1
-        println(a2.foo())
+        a2 = a1//todo 称之为协变（Any 应用于String，高类型用于子类）
+        println(a2.foo())//这样的话，输出的结果就是“this is ...”这个string，而不是333
+        //
+        var b1 = Tc03<String>("bbb")
+        var b2 = Tc03<Any>(666)
+//        b2 = b1//这里就不能这么写了，因为in修饰型变限制为入参泛型
+        b1 = b2//但是b1可以=b2，todo 称之为 逆变（string的应用于Any，子类逆向用于基类）
 
     }
 
+    //</editor-folder>
 
-    //<editor-folder>
+    //<editor-folder desc="4、枚举，对象表达式">
+
+    //1、枚举，类似于java中，每个枚举都是一个对象实例.默认情况下枚举对象的名称，就是自己的value，可以在都构造函数中添加参数初始值(不能在其他地方声明)
+    private enum class E1 {
+        E1001, E1002, E1003
+    }
+
+    //带有自定义参数和默认值的枚举
+    private enum class E2(val num: Int = 0) {
+        E2000(),//上面写了默认值，这里可以不修改参数
+        E2001(100),
+        E2002(200),
+        E2003(300)
+    }
+
+    //2、可以实现接口
+    private enum class E3 : DialogInterface.OnClickListener {
+        E3001,
+        E3002;
+
+        override fun onClick(p0: DialogInterface?, p1: Int) {
+            //do something
+        }
+    }
+
+    //如果枚举包含自定义参数的话，每个枚举对象都要单独实现接口函数
+    private enum class E4(age: Int) : DialogInterface.OnClickListener {
+        E4001(22) {
+            override fun onClick(p0: DialogInterface?, p1: Int) {
+                //do something
+            }
+        },
+        E4002(33) {
+            override fun onClick(p0: DialogInterface?, p1: Int) {
+                //do something
+            }
+        }
+    }
+
+    //3、可以有自己的匿名类，以及函数,以及在对象中重写函数
+    private enum class E5 {
+        //枚举对象就要实现枚举类的抽象函数，也可以覆写存在的其他函数（如果是open的话，因为kotlin的class和函数都是默认final的）
+        E5001 {
+            override fun e5Boo() {
+
+            }
+
+            override fun e5Foo() {}
+
+        };
+
+        open fun e5Foo() {}
+        abstract fun e5Boo()
+    }
+
+    private fun testEnum() {
+        //E1的枚举对象，value就是自身名称,
+        E1.E1001
+        E2.E2001.num//添加的属性
+        //
+        E2.valueOf("E2002")//根据枚举对象的名称，来获取该枚举对象
+        E2.values()//获得一个array数组，枚举类的所有对象值
+        enumValueOf<E2>("E2001")//扩展函数的写法
+        enumValues<E2>()
+    }
+
+
+    //4、对象表达式，object实现匿名类
+
+    private open class AnC(age: Int) {
+        open val mAge = age
+    }
+
+    open class AnCC
+    private interface AnI {
+        fun ioo()
+    }
+
+    //5、匿名对象可用作类内和私有作用域,这里就创建一个匿名类的对象，赋值给anFoo函数的返回值
+    private fun anFoo() = object {
+        val xxx = "xxxxxxx"
+    }
+
+    //因为AnC是private，所以对象出来也必须是private
+    private val anC = object : AnC(33) {
+
+    }
+    val anCC = object : AnCC() {}
+
+    fun anBoo() = object {
+        val yyy = "yyyyyy"
+    }
+
+    //6、object可以用于定义一个对象类，也就是单例类，不能饮用commonKt的其他变量和函数，如果使用它，就只能用CommonKt.SingleObj.testSingle操作（这里为了演示使用了private，限制了好多操作）
+    private object SingleObj {
+        fun testSingle() {}
+    }
+
+    //其是这两个变量引用的都是同一个对象
+    private val s1 = SingleObj
+    private val s2 = SingleObj
+
+    private fun testAnony() {
+        val ctx: Context? = null
+        val btn = Button(ctx)
+        //1、对象表达式之，匿名对象
+        btn.setOnClickListener(object : View.OnClickListener {
+            override fun onClick(p0: View?) {
+
+            }
+        })
+        //2、对象用于继承类或者接口,这里的ci就是一个对象，object表示的匿名对象实现了接口和类的继承
+        val ci: AnC = object : AnC(33), AnI {
+            val name = "jj"
+            override fun ioo() {
+                //do something
+
+            }
+        }
+//        ci.name//访问不到的
+        //匿名类
+        anFoo().xxx
+//        anBoo().yyy//访问不到,因为anBoo()多代指的对象是public的
+    }
+
+
+    //</editor-folder>
 
 }
 
