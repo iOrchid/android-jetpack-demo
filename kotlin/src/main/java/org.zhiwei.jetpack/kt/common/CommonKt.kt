@@ -6,6 +6,7 @@ import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
+import androidx.lifecycle.Observer
 
 /**
  * 作者： 志威  zhiwei.org
@@ -20,7 +21,7 @@ import android.widget.TextView
  *
  * You never know what you can do until you try !
  * ----------------------------------------------------------------
- * 进阶语法的演示操作类，主要有扩展函数/属性、伴生对象扩展/作用域扩展，密封类/copy函数、泛型/约束/型变/星号引用、枚举常量、对象表达式/委托，
+ * 进阶语法的演示操作类，主要有扩展函数/属性、伴生对象扩展/作用域扩展，密封类/copy函数、泛型/约束/型变/星号引用、枚举常量、对象表达式/委托，别名/内联类
  * 1、扩展函数，可以topLevel/类中，而扩展函数是静态解析的，不是动态加载
  * 2、扩展函数若于成员函数重名，优先调用成员函数
  * 3、扩展空对象，this可以代指被扩展类的对象
@@ -37,6 +38,8 @@ import android.widget.TextView
  * 14、对象表达式，匿名对象中声明的变量属性只作用于内部范围，不论是不是public的，外部都无法访问到。object可以用于定义单例（作为对象修饰的时候，不同于表达式，访问方式二号作用域也不同
  * 不能访问外部类的任何东西，外部类对象也不能引用它，只能用外部类.引用。），伴生对象companion修饰的object，可以有名字，可以没有，它不受签名括号内的限制。
  * todo 在演示代码中，函数/类的定义，较多使用private，为的是避免其他地方写代码出现引用混乱和命名重复
+ * 15、别名定义，可以设定访问权限，便于代码约定，实质不改变底层虚拟机的类名指向。
+ * 16、内联类，inline 关键词，1.3版本才有，实验性的特性，类似于内联函数，用于优化内存开销与占用。
  */
 class CommonKt {
 
@@ -428,3 +431,12 @@ data class Const(var name: Double) : Expr()
 data class BigNumber(val bb: Double) : Expr()
 private data class CommonNum(var a: Int) : Expr()
 object NotNumber : Expr()
+
+//todo  typealias 用于定义别名，便于再调用出简写，同时对于多个同名不同包的类，可以区分。
+// 比如Observable，在Rx，LifeCycle中都有，而且在同一个class文件中可能都有引用，那么在参数或者声明类的时候，就必须使用完整包名来区分。如此代码冗长，不便。所以可以在适当位置定义别名，就能简化区分。
+
+typealias NoN = NotNumber//用NoN简写代指 NotNumber类，
+typealias lObserver = Observer<View>
+typealias rObserver = io.reactivex.Observer<View>
+//内联类，目前还是实验特性，要求必须有且只有一个主函数的参数，作为内联参数，且val
+//private inline class TinClazz(val a: Int) {}
