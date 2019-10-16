@@ -23,6 +23,8 @@ import java.nio.file.Paths
  * ----------------------------------------------------------------
  * Kotlin进阶语法的索引演示,
  * 1、基础补充，集合包含、map遍历、lambda、?符号、let、with、also等
+ * 2、函数继承时候，代码执行顺序，构造函数先实例化成员属性，然后是init代码块，然后是 类内的其他成员属性，然后是子类的，依次如此。如果有伴生对象object，会限制性object，因为它是静态的。
+ * 3、
  */
 private class CommonKt2 {
 
@@ -133,6 +135,71 @@ private class CommonKt2 {
     //7、泛型函数支持泛型信息,这里就不引用Gson包了，下面的函数，就是json解析为对象的函数
 //    private inline fun <reified T:Any> Gson.fromJson(json:JsonElement):T = this.fromJson(json,T::class.java)
 
+
+    //8、== 与 === ，前者表示 值 判断，后者表示 指针判断，也就是对象实例的判断
+    private data class CC(val a: Int)
+
+    private val s1 = CC(2)
+    private val s2 = CC(2)
+    private fun testS() {
+        println(s1 == s2)//都是 2 ，所以true
+        println(s2 === s2)//并不是同一个对象实例，所以 false
+    }
+
+    //9、类继承中的函数执行顺序，一般是先基类的init函数，然后构造函数，再是子类的init函数和构造函数，但是主构造函数不同,如果有主构造函数含有成员变量，会初始化成员变量
+    private open class Base(val name: String) {
+
+        init {
+            println("Base的Init代码块")
+        }
+
+        open val size: Int =
+            name.length.also { println("Base的成员属性，不是在构造函数内的: $it") }
+    }
+
+    private class Derived(
+        name: String,
+        val lastName: String
+    ) : Base(name.capitalize().also { println("传给 Base 构造函数内的成员属性参数: $it") }) {
+
+        init {
+            println("Derived 的 init 代码块")
+        }
+
+        override val size: Int =
+            (super.size + lastName.length).also { println("Derived 覆写 base的属性的执行 : $it") }
+    }
+
+    private fun testEx() {
+        val dd = Derived("ddd", "eee")
+        println(dd)
+        //得到的结果是
+        /*
+传给 Base 构造函数内的成员属性参数: Agdd
+Base的Init代码块
+Base的成员属性，不是在构造函数内的: 4
+Derived 的 init 代码块
+Derived 覆写 base的属性的执行 : 7
+org.zhiwei.jetpack.kt.ExampleUnitTest$Derived@156643d4
+         */
+        //原因是，代码执行顺序，构造函数先实例化成员属性，然后是init代码块，然后是 类内的其他成员属性，然后是子类的，依次如此。如果有伴生对象object，会限制性object，因为它是静态的。
+    }
+
+    //10、幕后字段 field 幕后属性 使用下划线开头，并私有化
+    private var ssf: Int = 0
+        //可以自己设置，比如 field = value + 100,那么set值的时候，就默认加100了
+        set(value) {
+            field = value
+        }
+        get() {
+            return field
+        }
+    private var _pint: Int = 100//私有属性，在下面用作幕后属性
+    private val publicInt: Int
+        //对外属性，不支持修改，并且实际获取的是内部的_pint值，类似于 代理模式
+        get() {
+            return _pint
+        }
 
     //</editor-folder>
 

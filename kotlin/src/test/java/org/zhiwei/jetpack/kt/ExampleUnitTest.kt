@@ -91,9 +91,38 @@ class ExampleUnitTest {
     fun testCZ() {
 
         //数据类的copy并修改值
-        val c1 = CC(2)
-        val c2 = c1.copy(a = 3)
+//        val c1 = CC(2)
+//        val c2 = CC(a = 2)
+////
+////        println(c2)
+//
+//        println(c1 == c2)//都是"a=2"，所以true
+//        println(c1 === c2)//并不是同一个对象实例，所以 false
 
-        println(c2)
+        val d = Derived("agdd", "jjj")
+        println(d)
+    }
+
+    private open class Base(val name: String) {
+
+        init {
+            println("Base的Init代码块")
+        }
+
+        open val size: Int =
+            name.length.also { println("Base的成员属性，不是在构造函数内的: $it") }
+    }
+
+    private class Derived(
+        name: String,
+        val lastName: String
+    ) : Base(name.capitalize().also { println("传给 Base 构造函数内的成员属性参数: $it") }) {
+
+        init {
+            println("Derived 的 init 代码块")
+        }
+
+        override val size: Int =
+            (super.size + lastName.length).also { println("Derived 覆写 base的属性的执行 : $it") }
     }
 }
