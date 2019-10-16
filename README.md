@@ -21,7 +21,7 @@
 
 ####  一、项目简介
 
-**近期一直忙于公司项目，github更新缓慢，稍后会将项目实践中的问题沉淀总结一下，期待各位斧正～**
+**[2019/10/16] 近期一直忙于公司项目，github更新缓慢，稍后会将项目实践中的问题沉淀总结一下，期待各位斧正～,也欢迎有意向一同学习的同学，提交`PR`，在`issues`中讨论，按模块共同学习。或者提交建议**
 
 > **Android-Jetpack-Demo** 是一个简单的、集成当前Google主流Android技术的示例Demo，旨在帮助有需要的初级开发者，快速上手Android新技术、新架构。主要使用`livedata`、`lifecycle`、`paging`、`room`、`navigation`、`workmanager`、`rxjava`、`kotlin`、`dagger2`以及`viewmodel`的**MVVM**简单架构。
 >
@@ -364,5 +364,5 @@ limitations under the License.
 
 
 
-[^1]: 项目当前`（2019/09/20`开发环境为AndroidStudio `3.5.0`、`gradle 5.4.1`、`Jdk8`
+[^1]: 项目当前`（2019/10/16`开发环境为AndroidStudio `3.5.1`、`gradle 5.4.1`、`Jdk8`、`Kotlin 1.3.51`
 
