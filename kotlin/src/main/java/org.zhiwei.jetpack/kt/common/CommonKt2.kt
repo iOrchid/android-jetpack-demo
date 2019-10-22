@@ -24,7 +24,13 @@ import java.nio.file.Paths
  * Kotlin进阶语法的索引演示,
  * 1、基础补充，集合包含、map遍历、lambda、?符号、let、with、also等
  * 2、函数继承时候，代码执行顺序，构造函数先实例化成员属性，然后是init代码块，然后是 类内的其他成员属性，然后是子类的，依次如此。如果有伴生对象object，会限制性object，因为它是静态的。
- * 3、
+ * 3、幕后字段 field  幕后属性，
+ * 4、尾递归函数 tailrec,用于优化堆栈内存的循环调用，不可用于try catch finally 中； 中缀函数 infix ，优先级较低
+ *
+ * 5、集合相关：List，是 一组有序的元素列表，可重复。Set是一组不重复的元素的集合。Map是一组键值对，key是唯一。Kotlin中集合默认是可读，如List，若要可写，则是MutableList。
+ *   集合是型变的，List<Any>作为限定的话，可以传入List<String>。Map的值是可型变的，key不行。Map<Int,Any>可以接收Map<Int,String>的传入。空的emptyList，emptySet，emptyMap
+ * 6、List默认实现是ArrayList，Set默认实现是LinkedHashSet，Map默认实现是LinkedHashMap，保持插入顺序的。Set和Map只要大小相同，元素彼此互有，不论顺序，认为相等。
+ * 7、集合的构建方式有：1、listof，setof，mapof之类的。2、空集合emptyList、emptySet、emptyMap。3、类型实例化List<String>(){}类似的。4、复制，toList，toMap等其他数据集的转化。5、操作符的转化，filter,map等。
  */
 private class CommonKt2 {
 
@@ -204,4 +210,69 @@ org.zhiwei.jetpack.kt.ExampleUnitTest$Derived@156643d4
     //</editor-folder>
 
 
+    //<editor-folder desc="2、进阶补充，函数">
+    //1、中缀函数，infix 关键字，必须是成员函数或扩展函数，必须只有一个参数，且不能有默认值，不能是可变参数。
+    infix fun String.hh(c: Char): String {
+        //随意定义了一个扩展String的中缀函数 hh
+        return "${this.length} 中缀 $c"
+    }
+
+    private fun testhh() {
+        //使用中缀函数,两种写法都对，系统提供了Pair的生成方式 to 中缀函数，以及数字位操作符shl shr等
+        "hahah".hh('c')
+        "heihei" hh 'i'
+    }
+
+    //2、尾递归函数 tailrec，常规的循环写法可能引起堆栈溢出的风险，tailrec在编译器就优化了递归，更为高效
+    private val eps = 1E-10//10的-15次方,指定一个精度，用于计算下面的不动点的常数
+
+    //数学上的，计算余弦的不动点，得到的是常数，递归的写法。
+    private tailrec fun findPoint(x: Double = 1.0): Double {
+        return if (Math.abs(x - Math.cos(x)) < eps) x else findPoint(Math.cos(x))
+    }
+
+    //常规写法,这样就消耗大量的堆栈内存占用，对象声明之类的
+    private fun testTail(): Double {
+        var x = 1.0
+        while (true) {
+            val y = Math.cos(x)
+            if (Math.abs(x - y) < eps) return x
+            x = Math.cos(x)
+        }
+    }
+
+    //</editor-folder>
+
+
+    //<editor-folder desc="3、集合相关">
+    //1、集合可型变，
+    private val map1 = mapOf<Int, Any>(1.to("jjj"))
+    private val map2 =
+        mapOf<Int, Any>(1.to('c'))//你看这里，前面写了<Int,Any>所以可以传String，或者char，但是如果前面限定了，后面就不能乱写了。
+    //2、List Set 实现了结合Collection的接口，而map相对独立，他们都有对应的Mutable的List、Set、Map。kotlin中List的默认实现是ArrayList，可调整长度的数组
+    private val list = List<String>(5) { i -> "" }//初始化list，五个元素长度
+
+    //3、set 是顺序无关的一组集合，元素具有唯一性，Null元素也是唯一一个。Kotlin中Set的默认实现是LinkedHashSet，也就是能保留插入顺序的set集合。若两个set大小相同，且一个set中的任何元素，都在另一个set中，就认为它们相等。无关顺序
+
+    private val numbers: MutableSet<Int> = mutableSetOf(1, 2, 3, 4)//为了演示操作，使用mutableSet
+    private fun testSet() {
+        //在set中可以直接操作元素，没有index索引，
+        numbers.remove(2)
+        numbers.add(5)
+        for (number in numbers) {
+            println(number)
+        }
+    }
+
+    //4、map ，不是Collections的实现类，但是也认为是一种集合。map包含的都是键值对，只要两个map大小相同，键值对都有彼此的。就认为它们相等，不需要顺序一致。默认实现是LinkedHashMap，保留插入顺序的一种。
+    private val levels = mutableMapOf<Int, String>(
+        30 to "D",
+        40.to("D"),
+        60 to "C",
+        80 to "B",
+        90 to "A",
+        100 to "S"
+    )
+
+    //</editor-folder>
 }

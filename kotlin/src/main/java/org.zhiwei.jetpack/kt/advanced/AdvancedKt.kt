@@ -13,8 +13,14 @@ package org.zhiwei.jetpack.kt.advanced
  *
  * You never know what you can do until you try !
  * ----------------------------------------------------------------
- * Kotlin高级语法函数，如 协程、高阶函数，
+ * Kotlin高级语法函数，如 协程、高阶函数，反射、
  */
 class AdvancedKt {
+
+    //<editor-folder desc="1、高阶函数">
+    //集合函数的操作符 fold
+
+
+    //</editor-folder>
 
 }

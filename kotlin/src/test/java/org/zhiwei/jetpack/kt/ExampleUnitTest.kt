@@ -125,4 +125,18 @@ class ExampleUnitTest {
         override val size: Int =
             (super.size + lastName.length).also { println("Derived 覆写 base的属性的执行 : $it") }
     }
+
+    private val numbers: MutableSet<Int> = mutableSetOf(1, 2, 3, 4)//为了演示操作，使用mutableSet
+    private fun testSet() {
+        numbers.remove(2)
+        numbers.add(5)
+        for (number in numbers) {
+            println(number)
+        }
+    }
+
+    @Test
+    fun testKt2() {
+        testSet()
+    }
 }
