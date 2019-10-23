@@ -244,7 +244,7 @@ org.zhiwei.jetpack.kt.ExampleUnitTest$Derived@156643d4
     //</editor-folder>
 
 
-    //<editor-folder desc="3、集合相关">
+    //<editor-folder desc="3、集合相关，这里只是基础的示例，详细的参见对应文件">
     //1、集合可型变，
     private val map1 = mapOf<Int, Any>(1.to("jjj"))
     private val map2 =
