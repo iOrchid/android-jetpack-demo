@@ -1,5 +1,8 @@
 package org.zhiwei.jetpack.kt
 
+import org.junit.Test
+import org.zhiwei.jetpack.kt.common.CollectionsApi
+
 /**
  * 作者： 志威  zhiwei.org
  * 主页： Github: https://github.com/zhiwei1990
@@ -17,5 +20,8 @@ package org.zhiwei.jetpack.kt
  */
 class CollectionsUnitTest {
 
-
+    @Test
+    fun testColl() {
+        CollectionsApi().testCC()
+    }
 }
