@@ -2,6 +2,7 @@ package org.zhiwei.jetpack.kt
 
 import org.junit.Test
 import org.zhiwei.jetpack.kt.common.CollectionsApi
+import org.zhiwei.jetpack.kt.common.MapApi
 
 /**
  * 作者： 志威  zhiwei.org
@@ -23,5 +24,10 @@ class CollectionsUnitTest {
     @Test
     fun testColl() {
         CollectionsApi().testCC()
+    }
+
+    @Test
+    fun testMapApi() {
+        MapApi.testMap()
     }
 }
