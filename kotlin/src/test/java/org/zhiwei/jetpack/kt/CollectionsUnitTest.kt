@@ -2,6 +2,7 @@ package org.zhiwei.jetpack.kt
 
 import org.junit.Test
 import org.zhiwei.jetpack.kt.common.CollectionsApi
+import org.zhiwei.jetpack.kt.common.ListApi
 import org.zhiwei.jetpack.kt.common.MapApi
 
 /**
@@ -29,5 +30,10 @@ class CollectionsUnitTest {
     @Test
     fun testMapApi() {
         MapApi.testMap()
+    }
+
+    @Test
+    fun testListApi() {
+        ListApi.testList()
     }
 }

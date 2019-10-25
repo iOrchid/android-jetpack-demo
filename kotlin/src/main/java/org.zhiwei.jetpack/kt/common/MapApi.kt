@@ -124,7 +124,7 @@ object MapApi {
 //		}
 //
 //
-//		//4、有点类似apply,无返回值
+//		//4、有点类似apply,返回最后的执行结果
 //		mapOne.run {/*mapIt->*/
 //			//代码块内有this引用，代之mapOne，所以可以直接调用它的函数。但是如果有了命名的mapIt，那么就不能这么省略this的写法了
 //			this.set(3,"fjdjjs")
