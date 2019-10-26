@@ -142,51 +142,118 @@ object ListApi {
 //        listOne.elementAt(3)
 //        println(listOne.elementAtOrElse(99) { i -> 5 + i })//返回对应下标的元素值，如果越界，就返回指定规则的结果
         println(listOne.elementAtOrNull(99))//越界就返回null
-//        listOne.fill()
-//        listOne.filter {  }
-//        listOne.filterIndexedTo()
-//        listOne.filterIsInstance()
-//        listOne.filterIsInstanceTo()
-//        listOne.filterNot {  }
-//        listOne.filterNotNull()
-//        listOne.filterNotNullTo()
-//        listOne.filterNotTo()
-//        listOne.find {  }
-//        listOne.findLast {  }
-//        listOne.first()
-//        listOne.firstOrNull {  }
-//        listOne.flatMap {  }
+
+//        listOne.fill(10080)//将list所有元素替换为指定值
+//        //过滤boolean条件的元素，得到过滤后的list
+//        val filter = listOne.filter { it > 99 }
+//        //过滤listOne满足一定条件的item，添加到另一个list中去，得到新的list
+//        val filterIndexedTo =
+//            listOne.filterIndexedTo(listTwo, { index, i -> index > 10 && i > 100 })
+//        val filterIsInstance =
+//            listOne.filterIsInstance<Int>()//kotlin中list的元素可以是多个类型的，该api就是过滤同一类型的元素为新的list
+//        //这里就是演示，将listOne中指定类型的元素，过滤出来，添加到listTwo中去。
+//        val filterIsInstanceTo =
+//            listOne.filterIsInstanceTo<MutableList<Int>, Int>(listTwo, Int::class.java)
+//        val filterNot = listOne.filterNot { it > 100 }//过滤出不满足条件的元素组成新的list
+////        listOne.filterNotTo()//类似上面，只不过将过滤后的元素添加的指定的list中去，得到新的list
+//        val filterNotNull = listOne.filterNotNull()//剔除掉null元素，
+//
+////        listOne.filterNotNullTo()
+//        //过滤是得到的数组list，查找得到的是单个元素，第一个匹配的
+//        val find = listOne.find { it > 100 }
+//        val findLast = listOne.findLast { it > 100 }//list中最后一个匹配的
+//        val first = listOne.first()
+//        val firstOrNull = listOne.firstOrNull { it > 10000 }//返回第一个匹配的元素，没有就是null
+	    //将listOne中的每个元素item，转换为一个可遍历的对象，重新组合成新的list
+//        val flatMap = listOne.flatMap { item -> arrayListOf(item,"dd") }
+//        println(flatMap)
 //        listOne.flatMapTo()
-//        listOne.fold()
-//        listOne.foldIndexed()
-//        listOne.foldRight()
-//        listOne.foldRightIndexed()
+
+	    //这个理解有点麻烦，首先就是有个原始值 tt，然后根据指定规则（这里是"【$acc==item$item】"）生成一个新的结果，
+	    //再用这个结果，继续按照规则生成下一个结果，一直循环list的item个数次.todo 这个特性好像可用于一些复杂算法，斐波那契，阶乘或者兔子问题之类的。
+//        var counter = 0
+//        val fold = listOne.fold("tt", { acc, item ->
+//            counter++
+//            "【$acc==item$item】"
+//        })
+//        println(fold)
+//        println("counter$counter, listOne.size ${listOne.size}")
+//        listOne.foldIndexed("tt",{index,acc,item->""})//类似上面，这里用到的index
+//        listOne.foldRight("tt",{item,acc->""})//与fold类似，只不过这个是从list尾部开始向前
+//        listOne.foldRightIndexed()//类似，多了index
+
+	    //下面是循环，带index循环，获取元素，以及带有规则的get
 //        listOne.forEach {  }
 //        listOne.forEachIndexed { index, i ->  }
 //        listOne.get()
 //        listOne.getOrElse()
 //        listOne.getOrNull()
-//        listOne.groupBy {  }
-//        listOne.groupByTo()
-//        listOne.groupingBy {  }
-//        listOne.ifEmpty {  }
+
+	    //给list的元素，按照某种规则分组，得到一个map，key是指定的类型，value是当前组的list元素
+//        val groupBy = listOne.groupBy {
+//            when {
+//                it > 200 -> {
+//                    ">200"
+//                }
+//                it in 101..199 -> "100~200"
+//                else -> {
+//                    "<100"
+//                }
+//            }
+//        }
+//        println(groupBy)
+//        listOne.groupByTo()//类似上面，只不过多了个指定map组合
+	    //得到一个新的Grouping对象类型的数据
+//        val groupingBy = listOne.groupingBy {
+//            when {
+//                it > 200 -> {
+//                    ">200"
+//                }
+//                it in 101..199 -> "100~200"
+//                else -> {
+//                    "<100"
+//                }
+//            }
+//        }
+	    //如果list是没有元素的（size==0），就根据块内规则，变成默认的数据了，这里就是得到一个string，如果有元素，那么就返回list自身了。
+//        val ifEmpty = listOf<Int>().ifEmpty {
+//            "的的的"
+//        }
+//        println(ifEmpty)
+
+	    //以下函数，顾名思义，不做演示
 //        listOne.indexOf()
 //        listOne.indexOfFirst {  }
 //        listOne.indexOfLast {  }
-//        listOne.indices
-//        listOne.intersect()
+//        listOne.indices//用于循环遍历，得到一个下标所以的range值
+//
+//        //两集合的交集，得到一个set，保持原有元素的顺序，不重复
+//        val intersect = listOne.intersect(listTwo)
+
 //        listOne.isEmpty()
 //        listOne.isNotEmpty()
 //        listOne.isNullOrEmpty()
-//        listOne.iterator()
-//        listOne.joinTo()
+//        listOne.iterator()//迭代器
+
+	    //将list转为string，并插入一下字符
+//        val joinTo =
+//            listOne.joinTo(StringBuffer(), " ^^ ", "pre-\n", "\n-pos", 5, "***", { i -> "tans == $i" })
+//
+//        println(joinTo)
 //        listOne.joinToString {  }
+
 //        listOne.last {  }
 //        listOne.lastIndex
 //        listOne.lastIndexOf()
 //        listOne.lastOrNull {  }
-//        listOne.listIterator()
-//        listOne.map {  }
+
+	    listOne.listIterator()//得到一个listIterator对象
+
+	    //list的item转化为指定规则的结果，得到新的list
+	    val map = listOne.map {
+		    "¥it $it"
+	    }
+	    //如下类似
 //        listOne.mapIndexed { index, i ->  }
 //        listOne.mapIndexedNotNull()
 //        listOne.mapIndexedNotNullTo()
@@ -194,62 +261,104 @@ object ListApi {
 //        listOne.mapNotNull {  }
 //        listOne.mapNotNullTo()
 //        listOne.mapTo()
+
+	    //list中最大，最小值，或者可以自定对比规则
 //        listOne.max()
 //        listOne.maxBy {  }
 //        listOne.maxWith()
 //        listOne.min()
-//        listOne.minBy {  }
-//        listOne.minus()
-//        listOne.minusAssign()
-//        listOne.minusElement()
+//        listOne.minBy {}
 //        listOne.minWith()
+
+	    //list的元素移除操作，移除第一个匹配到的，返回一个新的list
+//        println(listOne.minus(2))
+//        listOne.minusElement()//等同上
+
+//        listOne.minusAssign(2)//移除第一个匹配到的，操作原list对象
+//        println(listOne)
+
 //        listOne.none {  }
 //        listOne.onEach {  }
-//        listOne.orEmpty()
-//        listOne.parallelStream()
-//        listOne.partition {  }
+//        listOne.orEmpty()//如果null，返回emptyList
+
+//        listOne.parallelStream()//得到steam流对象
+	    //切分成一对list，根据指定的boolean规则
+//        listOne.partition {
+//            it>100
+//        }
+
+	    //类似于minus，这里是添加操作
 //        listOne.plus()
 //        listOne.plusAssign()
 //        listOne.plusElement()
-//        listOne.random()
+
+//        listOne.random()//随机一个元素出来
+	    //有点类似于fold操作符，只不过这里初始值是list第一个item，从头至尾，下面的right，从尾至前
 //        listOne.reduce { acc, i ->        }
 //        listOne.reduceIndexed()
 //        listOne.reduceRight()
 //        listOne.reduceRightIndexed { index, i, acc ->  }
+
+	    //顾名思义的操作
 //        listOne.remove()
 //        listOne.removeAll {  }
 //        listOne.removeAt()
 //        listOne.removeIf {  }
 //        listOne.replaceAll()
+
+	    //顺序反转
 //        listOne.reverse()
 //        listOne.reversed()
+
 //        listOne.set()
+
+	    //随机顺序打乱
 //        listOne.shuffle()
 //        listOne.shuffled()
-//        listOne.single()
+
+//        listOne.single()//单元素获取，或者null和异常
 //        listOne.singleOrNull {  }
-//        listOne.slice()
-//        listOne.sortBy {  }
+	    // 切片指定位置的list出来
+	    val slice = listOne.slice(0..3)
+
+	    //排序，list的一些操作是需要基于排序的基础上的。
+//        listOne.sort()
+//        listOne.sortBy {}
 //        listOne.sortedByDescending {  }
 //        listOne.sortWith()
-//        listOne.spliterator()
-//        listOne.stream()
-//        listOne.subList()
-//        listOne.subtract()
+
+//        listOne.spliterator()//转化为spliterator对象
+//        listOne.stream()//java的stream流对象
+
+	    val subList = listOne.subList(0, 9)//子列表，不如slice灵活
+	    val subtract = listOne.subtract(listTwo)//返回余集，也就是属于listOne，但是不属于list'Two的
 //        listOne.sum()
 //        listOne.sumByDouble {  }
-//        listOne.take()
-//        listOne.takeLast()
-//        listOne.takeLastWhile {  }
-//        listOne.takeWhile {  }
+//        listOne.take(4)//从前开始，提出指定个数的元素为一个新的list
+
+//        listOne.takeLast(5)//后面开始
+//        listOne.takeLastWhile {  }//从后开始，并满足条件，不满足就没有。
+//        listOne.takeWhile {  }//从前开始满足条件的
+
 //        listOne.toArray()
 //        listOne.toSortedSet()
+
 //        listOne.trimToSize()
-//        listOne.union()
-//        listOne.windowed()
-//        listOne.withIndex()
-//        listOne.zip()
-//        listOne.zipWithNext { a, b ->  }
+
+	    //两个list合并为一个set
+	    val union = listOne.union(listTwo)
+
+	    //得到一个list<list>,其中item的list是根据下面指定大小，指定偏移step，来提取listOne得到的。partialWindows=true表示不满足size大小也提取，false则不。最后一个参数是将list《list》的item形式的list转化为某种对象
+	    println(listOne.windowed(5, 2, true, {
+		    it.size
+	    }))
+	    listOne.withIndex()//得到一个迭代器
+	    //zip操作符号，是将两个list的item元素依次对应组合成pair，成一个新的list,也可以指定配对规则,得到一个list<V>而不是list《pair》
+	    val zip = listOne.zip(listStr)
+
+	    val zipWithNext = listOne.zipWithNext { a, b ->
+		    "a b $a,$b"
+	    }
 
 
     }
