@@ -4,6 +4,7 @@ import org.junit.Test
 import org.zhiwei.jetpack.kt.common.CollectionsApi
 import org.zhiwei.jetpack.kt.common.ListApi
 import org.zhiwei.jetpack.kt.common.MapApi
+import org.zhiwei.jetpack.kt.common.SetApi
 
 /**
  * 作者： 志威  zhiwei.org
@@ -35,5 +36,10 @@ class CollectionsUnitTest {
     @Test
     fun testListApi() {
         ListApi.testList()
+    }
+
+    @Test
+    fun testSetApi() {
+        SetApi.testSet()
     }
 }

@@ -15,5 +15,15 @@ package org.zhiwei.jetpack.kt.common
  * ----------------------------------------------------------------
  * 演示Set的Api示例
  */
-class SetApi {
+object SetApi {
+
+	private val setOne = mutableSetOf(1, 8, 3, 2, 0, 100, 39, 93, 2033, 12, 3, 8)
+	private val setTwo = mutableSetOf(12, 3, 8, 99, 22, 1, 0)
+	private val setStr = mutableSetOf("a", "c,", "SSD", "dde", "ppt", "word")
+
+	fun testSet() {
+		//集合 转化为数组，
+		setOne.toTypedArray()
+		//todo 其实set，list,array 都是集合，整体上都具有Collections的api，所以这set的函数和listApi中的基本类似，便不做演示。
+	}
 }

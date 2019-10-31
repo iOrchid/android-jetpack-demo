@@ -241,6 +241,20 @@ org.zhiwei.jetpack.kt.ExampleUnitTest$Derived@156643d4
         }
     }
 
+	private data class MoreResult(val name: String, var age: Int, val sex: Int)
+
+	private fun testMoreResult(): MoreResult {
+		//函数可以返回多个数据值，kotlin需要将其组装成一个data class，系统提供了Pair,Triple用于组装两个/三个数据
+		val p = Triple("a", 3, 'c')
+		return MoreResult("xx", 20, 0)
+	}
+
+	private fun testMore() {
+		//在取返回值的时候，可以成一个变量，也可以多个属性值直接出来。
+		val (name, age, sex) = testMoreResult()
+		println(name)
+	}
+
     //</editor-folder>
 
 
