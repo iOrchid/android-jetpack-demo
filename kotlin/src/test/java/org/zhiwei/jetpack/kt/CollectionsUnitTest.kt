@@ -1,10 +1,7 @@
 package org.zhiwei.jetpack.kt
 
 import org.junit.Test
-import org.zhiwei.jetpack.kt.common.CollectionsApi
-import org.zhiwei.jetpack.kt.common.ListApi
-import org.zhiwei.jetpack.kt.common.MapApi
-import org.zhiwei.jetpack.kt.common.SetApi
+import org.zhiwei.jetpack.kt.common.*
 
 /**
  * 作者： 志威  zhiwei.org
@@ -41,5 +38,10 @@ class CollectionsUnitTest {
     @Test
     fun testSetApi() {
         SetApi.testSet()
+    }
+
+    @Test
+    fun testOperatorApi() {
+        OperatorApi.testStr()
     }
 }
