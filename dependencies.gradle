@@ -51,17 +51,17 @@ dependencies {
 	implementation fileTree(include: ['*.jar'], dir: 'libs')
 
 	implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
-	implementation 'androidx.appcompat:appcompat:1.0.2'
+	implementation 'androidx.appcompat:appcompat:1.1.0'
 
 	//<editor-folder desc="jetPack libs">
-	implementation 'androidx.lifecycle:lifecycle-runtime:2.0.0'
-	implementation 'androidx.lifecycle:lifecycle-extensions:2.0.0'
-	annotationProcessor "androidx.lifecycle:lifecycle-common-java8:2.0.0"
-	kapt "androidx.lifecycle:lifecycle-common-java8:2.0.0"
+	implementation 'androidx.lifecycle:lifecycle-runtime:2.1.0'
+	implementation 'androidx.lifecycle:lifecycle-extensions:2.1.0'
+	annotationProcessor "androidx.lifecycle:lifecycle-common-java8:2.1.0"
+	kapt "androidx.lifecycle:lifecycle-common-java8:2.1.0"
 
-	implementation 'androidx.room:room-runtime:2.1.0'
-	annotationProcessor "androidx.room:room-compiler:2.1.0"
-	kapt "androidx.room:room-compiler:2.1.0"
+	implementation 'androidx.room:room-runtime:2.2.1'
+	annotationProcessor "androidx.room:room-compiler:2.2.1"
+	kapt "androidx.room:room-compiler:2.2.1"
 
 	implementation 'androidx.paging:paging-runtime:2.1.0'
 	implementation 'android.arch.work:work-runtime:1.0.1'
@@ -74,7 +74,7 @@ dependencies {
 	annotationProcessor 'com.google.dagger:dagger-compiler:2.24'
 	kapt 'com.google.dagger:dagger-compiler:2.24'
 
-	implementation 'io.reactivex.rxjava2:rxjava:2.2.12'
+	implementation 'io.reactivex.rxjava2:rxjava:2.2.14'
 	implementation 'io.reactivex.rxjava2:rxandroid:2.1.1'
 	//glide
 	implementation 'com.github.bumptech.glide:glide:4.10.0'
