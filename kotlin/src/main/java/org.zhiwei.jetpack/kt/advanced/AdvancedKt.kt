@@ -113,6 +113,8 @@ object AdvancedKt {
      * 7、takeUnless 函数块内 如果不满足，就返回调用者。满足，就null
      * 8、with 函数块内操作 this 引用接收者，然后最后一个结果返回给代码块。有点类似let,run
      * 9、run 函数内操作this 接收者，返回后一个代码结果。会异常。类似的runCatching，会兜住异常。
+     *
+     * 10、反射，Kotlin属于Jvm语言，支持Java的反射，
      */
     private val ssr = "ssr"
 
@@ -208,5 +210,60 @@ object AdvancedKt {
 
     //</editor-folder>
 
+
+    //<editor-folder desc="3、反射">
+    //1、Java中的反射
+
+    private val abStr = "this is abc String"
+    fun testJavaReflect() {
+        //1、获取class对象的三种方式
+        val forName = Class.forName("String")
+        val javaClass = String.javaClass
+        val objJavaClass = abStr.javaClass
+
+        //2、获取构造函数 5种方式
+        val constructors = forName.constructors//获取public的所有构造函数，
+        val declaredConstructors =
+            forName.declaredConstructors//指定参数列表类型的，构造函数，可以public，protected，private
+        val enclosingConstructor =
+            forName.enclosingConstructor//如果类生命在其它类的构造函数中，返回该类所在的构造函数，如存在则返回，不存在则null
+        val constructor = forName.getConstructor(Char.javaClass)//获得public的 指定参数类型的构造函数
+        val declaredConstructor = forName.getDeclaredConstructor()//获取类自身生命的构造函数
+
+        //3、获取类的成员变量,4种方式
+        javaClass.declaredFields
+        javaClass.fields
+        javaClass.getDeclaredField("get")
+        javaClass.getField("length")
+
+        //4、成员函数的获取，5种方式
+        objJavaClass.methods
+        objJavaClass.getMethod("get")
+        objJavaClass.getDeclaredMethod("subString")
+        objJavaClass.enclosingMethod
+        objJavaClass.declaredMethods
+
+    }
+
+    private val ssKt = "ss kt "
+    fun testKtRef() {
+        //1、获取class对象 2种方式
+        val javaClass = ssKt.javaClass
+        val java = String::class.java
+        //kotlin的
+        {
+            val kClass = String::class
+            val kotlin = ssKt.javaClass.kotlin
+            kotlin
+        }
+        //2、获取构造函数
+        javaClass.constructors
+        //3、其他函数，有获取成员变量、成员属性、私有变量，是否枚举，枚举常量、是否抽象类等等。
+        javaClass.modifiers
+        javaClass.isMemberClass
+        javaClass.signers
+    }
+
+    //</editor-folder>
 
 }
