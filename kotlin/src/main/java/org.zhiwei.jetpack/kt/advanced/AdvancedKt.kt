@@ -19,6 +19,8 @@ import kotlin.reflect.KProperty
  * 1、类委托，by 关键字 a、声明接口或抽象类；b、实现接口/抽象类，得到实现类real；c、委托类，实现接口/抽象类，但是并不实际实现函数，而是持有一个接口实现类对象的引用，委托它来操作函数。
  * 2、属性委托 by 关键字 a、定义委托属性管理类，并做好getValue setValue函数的声明，需要operator关键词，以及方法签名的类型是需要委托的类型。2、在使用类中，定义委托属性。
  * 标准库中提供lazy，只用于val属性的委托，接收lambda表达式。
+ *
+ * 3、高阶函数
  */
 object AdvancedKt {
 
@@ -96,7 +98,115 @@ object AdvancedKt {
     }
 
 
+    //</editor-folder>
+
+    //<editor-folder desc="2、高阶函数">
+
+    /**
+     * Kotlin中常见的高阶函数，有also、let、apply、repeat、lazy、takeUnless、takeIf、with、run、runCatching
+     * 1、also 函数代码块内 it 代指调用者，可执行针对 调用者的 多种函数操作，代码块外，依旧是该引用对象。
+     * 2、let 函数块内也是 it 代指调用者，可执行多种代码块，但是返回最后一个语句的结果，作为let块的返回值
+     * 3、apply 函数块内是 this 代指调用者 内部可执行多个调用者的函数，返回的依旧是自身。
+     * 4、repeat 函数内也就是个for循环，重复执行某种操作
+     * 5、lazy 函数实现懒加载，内部持有_value 私有和公有value，只有在初次调用初始化时候，才赋值。适用于低频，大变量的实例化
+     * 6、takeIf 函数块内，满足的话，返回该调用者，否则 null
+     * 7、takeUnless 函数块内 如果不满足，就返回调用者。满足，就null
+     * 8、with 函数块内操作 this 引用接收者，然后最后一个结果返回给代码块。有点类似let,run
+     * 9、run 函数内操作this 接收者，返回后一个代码结果。会异常。类似的runCatching，会兜住异常。
+     */
+    private val ssr = "ssr"
+
+
+    // 函数可以 直接 引用另一个函数定义
+    fun aFun() = ssr.asSequence()
+
+    fun testAdFun() {
+        //also
+        val also = ssr.also {
+            "also ssr = $ssr"
+            33
+        }
+        println(also)
+
+        //let
+        val let = ssr.let {
+            "let ssr + $ssr rrs"
+            99
+        }
+        println(let)
+        //apply
+        val apply = ssr.apply {
+            length
+            indexOf('s')
+            99
+        }
+        println(apply)
+        //repeat函数，重复执行的动作，有点类似循环遍历
+        repeat(3) { i -> println("第$i 次 repeat") }
+
+        //takeIf
+        val takeIf = ssr.takeIf {
+            it.length > 2
+            2 > 0
+        }
+        //takeUnless
+        ssr.takeUnless {
+            it.length > 2
+        }
+
+        //with
+        val with = with(ssr) {
+            length > 2
+            'd'
+            "jjjjj"
+            999
+        }
+        //run
+        val run = ssr.run {
+            length > 2
+            'd'
+            "jjjjj"
+            999
+        }
+        //runCatching
+        ssr.runCatching {
+            length > 2
+            'd'
+            null
+            999
+        }
+
+        //todo 调用函数引用,实质调用的就是ssr.asSequence
+        aFun()
+        ::aFun//有点类似java的静态引用，
+
+    }
+
+    //演示基础高阶函数lambda用法
+    private fun test(a: Int, b: Int): Int {
+        return a + b
+    }
+
+    //函数作为参数，随意定了个规则，没有实际意义的，仅仅为了演示
+    private fun testL(a: Int, b: (a1: Int, b1: Int) -> Int): Int {
+
+        return b.invoke(a, a + 2)
+    }
+
+
+    private fun sumAB(num1: Int, num2: Int): Int {
+        return num1 + num2
+    }
+
+    fun testAdFun2() {
+        //调用方式1
+        test(2, sumAB(22, 12))
+        //
+        testL(29) { a, b -> a + b }
+    }
+
 
     //</editor-folder>
+
 
 }
