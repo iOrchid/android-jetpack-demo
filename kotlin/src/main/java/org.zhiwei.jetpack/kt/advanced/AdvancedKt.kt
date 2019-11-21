@@ -286,7 +286,9 @@ object AdvancedKt {
      * 8、runBlocking和launch类似，只是它的delay会阻塞线程。async阻塞的是协程，而不是线程。
      */
     fun testCor() {
-        CoroutineKt.testCon()
+        //演示模拟
+//        CoroutineKt.testCon()
+        CoroutineKt2.testCor2()
     }
     //</editor-folder>
 

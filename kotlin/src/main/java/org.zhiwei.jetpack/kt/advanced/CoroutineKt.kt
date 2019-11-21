@@ -3,6 +3,7 @@ package org.zhiwei.jetpack.kt.advanced
 import kotlinx.coroutines.*
 import kotlin.concurrent.thread
 import kotlin.coroutines.EmptyCoroutineContext
+import kotlin.system.measureTimeMillis
 
 /**
  * 作者： 志威  zhiwei.org
@@ -17,7 +18,7 @@ import kotlin.coroutines.EmptyCoroutineContext
  *
  * You never know what you can do until you try !
  * ----------------------------------------------------------------
- * 用于演示协程相关使用的代码
+ * 用于演示协程相关使用的代码，简单的job调用、cancel、join，生命周期以及timeOut
  */
 object CoroutineKt {
     /**
@@ -291,4 +292,144 @@ object CoroutineKt {
 
     //</editor-folder>
 
+}
+
+/**
+ * 写成的进阶用法
+ * 1、组合挂起函数。async类似于launch都是创建新的协程，但是async是返回的job的子类，deferred，观察者模式的，延迟获取数据。所以job的操作，如join、cancel都是可以的。
+ */
+object CoroutineKt2 {
+
+    //演示 入口
+    fun testCor2() {
+//        common2()
+//        async2()
+//        asyncLazy2()
+
+//        asyncTest()
+//        asyncTest2()
+
+        constructTest()
+
+    }
+
+    //1、模拟业务场景，两个耗时操作，得到结果后，合并结果操作
+    private fun common2() = runBlocking {
+        //计算函数耗时的
+        val measureTimeMillis = measureTimeMillis {
+            val a = numOne()
+            val b = numTwo()
+            println("两个耗时结果，共同操作 ${a + b}")
+        }
+
+        println("顺序执行函数耗时： $measureTimeMillis")
+    }
+
+
+    //2、使用async并发，优化函数调用.这样执行结果，会快很多。todo 注意a、b都是Deferred，不要val a = async { numOne()}.await(),反而会更加耗时
+    private fun async2() = runBlocking {
+        //计算函数耗时的
+        val measureTimeMillis = measureTimeMillis {
+            val a = async { numOne() }
+            val b = async { numTwo() }
+            println("两个耗时结果，共同操作 ${a.await() + b.await()}")
+        }
+
+        println("顺序执行函数耗时： $measureTimeMillis")
+    }
+
+    private fun asyncLazy2() = runBlocking {
+        //添加了lazy的启动策略，得到的a、b只有在a.start，b.start调用时候，才会真的执行协程创建。或者直接用await获取结果时候，才执行(此时，就耗时了，不如start那样可以异步)。
+        val measureTimeMillis = measureTimeMillis {
+            val a = async(start = CoroutineStart.LAZY) { numOne() }
+            val b = async(start = CoroutineStart.LAZY) { numTwo() }
+            //开始执行,
+            a.start()
+            b.start()
+            println("两个耗时结果，共同操作 ${a.await() + b.await()}")
+        }
+
+        println("顺序执行函数耗时： $measureTimeMillis")
+    }
+
+    //3、演示异步函数的组合定义，使用，这里外部不需要定义为挂起函数，只是在结果处理时候，用到挂起函数块
+    private fun asyncTest() {
+        val time = measureTimeMillis {
+            //非挂起函数，可以在任何地方调用，但是想得到结果去操作，就需要在挂起函数块内执行
+            val a = numOneAsync()
+            val b = numTwoAsync()
+
+            runBlocking {
+                println("异步函数的两个结果 ${a.await() + b.await()}")
+            }
+        }
+        println("耗时: $time")
+    }
+
+    // 合理封装的异步，结构化的并发
+    private fun asyncTest2() = runBlocking {
+        val millis = measureTimeMillis {
+            println("异步封装后，计算结果： " + cooperationSum())
+        }
+        println("代码执行耗时： $millis")
+    }
+
+
+    private fun constructTest() = runBlocking<Unit> {
+        //执行的协程，会有异常
+        try {
+            simulateError()
+        } catch (e: ArithmeticException) {
+            println("捕获到 协程的异常")
+        }
+    }
+
+    //模拟出错的 结构化并发协程
+    private suspend fun simulateError(): Int = coroutineScope {
+        val a = async<Int> {
+            try {
+                delay(Long.MAX_VALUE)
+                42
+            } finally {
+                println("在asyncOne中的finally模块代码，被取消的时候执行了。")
+            }
+        }
+
+        val b = async<Int> {
+            println("这里模拟抛出异常")
+            throw ArithmeticException()
+        }
+        //return 的结果
+        a.await() + b.await()
+    }
+
+
+    //todo Kotlin 推荐的封装方式
+    private suspend fun cooperationSum(): Int = coroutineScope {
+        val a = async { numOne() }
+        val b = async { numTwo() }
+        a.await() + b.await()
+    }
+
+
+    //todo 2、模拟两个异步的函数 注意这不是挂起函数，因此可以在任何地方调用，只是是个异步的。
+    // 这里用的是Global的生命周期Scope。但是Kotlin中不推荐这么封装!!!!不能够结构化并发
+    private fun numOneAsync() = GlobalScope.async {
+        numOne()
+    }
+
+    private fun numTwoAsync() = GlobalScope.async {
+        numTwo()
+    }
+
+    //todo 1、两个模拟耗时的挂起函数
+    private suspend fun numOne(): Int {
+        delay(1000L)
+        return 12
+    }
+
+    private suspend fun numTwo(): Int {
+        delay(800L)
+        return 20
+    }
 }
