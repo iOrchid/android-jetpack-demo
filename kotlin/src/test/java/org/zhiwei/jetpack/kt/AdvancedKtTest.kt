@@ -22,8 +22,10 @@ class AdvancedKtTest {
 
     @Test
     fun testAdKt() {
-        AdvancedKt.testDelegate()
-        AdvancedKt.testProperty()
+//        AdvancedKt.testDelegate()
+//        AdvancedKt.testProperty()
+
+        AdvancedKt.testCor()
     }
 
 

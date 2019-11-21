@@ -20,7 +20,9 @@ import kotlin.reflect.KProperty
  * 2、属性委托 by 关键字 a、定义委托属性管理类，并做好getValue setValue函数的声明，需要operator关键词，以及方法签名的类型是需要委托的类型。2、在使用类中，定义委托属性。
  * 标准库中提供lazy，只用于val属性的委托，接收lambda表达式。
  *
- * 3、高阶函数
+ * 3、高阶函数 Kotlin中常见的高阶函数，有also、let、apply、repeat、lazy、takeUnless、takeIf、with、run、runCatching
+ *
+ * 4、Kotlin的协程 coroutine 简言之就是 替代回调 简化异步
  */
 object AdvancedKt {
 
@@ -120,7 +122,7 @@ object AdvancedKt {
 
 
     // 函数可以 直接 引用另一个函数定义
-    fun aFun() = ssr.asSequence()
+    private fun aFun() = ssr.asSequence()
 
     fun testAdFun() {
         //also
@@ -264,6 +266,28 @@ object AdvancedKt {
         javaClass.signers
     }
 
+    //</editor-folder>
+
+    //<editor-folder desc="4、协程">
+
+    /*
+     * 1、协程，又称纤程，在go、python、kotlin中有的概念，理解为一种轻量的线程。用以替换callback回调的谜之缩进，使用表达式，优化代码和异步处理。
+     * 2、挂起函数 suspend修饰，存在suspend和resume两种操作
+     * 3、指定协程的运行所在线程，需要Dispatchers来分发调度，分为Dispatchers.Main/IO/Default，分别用于主线程、IO密集操作、CPU密集操作等类型，通过withContext指定。
+     * 4、每个线程有一个调用栈，suspend函数会被复制到其他地方（开分支），完成操作后，resume复制回调用栈。
+     * 5、协程需要一个CoroutineScope，也就是生命周期管理，接收CoroutineContext参数。用以控制协程任务
+     * //launch 启动协程，返回job，可用于取消协程，异常则抛；
+     * //async 启动带有返回结果的协程，Deferred.await()获取结果。内部异常不抛，只有在await时候才会感知到异常。
+     * //withContext 启动协程，入参CoroutineContext来改变协程的运行上下环境。
+     * 6、结构化并发，即A协程中启动B协程，且B协程任务，在A完成之前就结束。如此，构成 结构化并发。
+     * //协程追踪，如果丢失操作管控，就造成协程泄露，被泄露的协程，resume时候会消耗内存、cpu、磁盘、网络等资源。所以通过CoroutineScope控制追踪，有cancel函数。
+     * //系统提供viewModelScope和UIScope。coroutineScope会在任意一个协程发生异常后取消所有的子协程的运行，而supervisorScope并不会取消其他的子协程。
+     * 7、GlobalScope创建协程，launch、async、withContext，和额外的runBlocking，
+     * 8、runBlocking和launch类似，只是它的delay会阻塞线程。async阻塞的是协程，而不是线程。
+     */
+    fun testCor() {
+        CoroutineKt.testCon()
+    }
     //</editor-folder>
 
 }
