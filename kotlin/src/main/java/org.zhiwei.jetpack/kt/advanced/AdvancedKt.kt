@@ -288,7 +288,9 @@ object AdvancedKt {
     fun testCor() {
         //演示模拟
 //        CoroutineKt.testCon()
-        CoroutineKt2.testCor2()
+//        CoroutineKt2.testCor2()
+
+        CoroutineKt3.testDisCtx()
     }
     //</editor-folder>
 

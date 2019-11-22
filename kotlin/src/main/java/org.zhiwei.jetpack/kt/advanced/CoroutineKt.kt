@@ -295,7 +295,7 @@ object CoroutineKt {
 }
 
 /**
- * 写成的进阶用法
+ * 协程的进阶用法
  * 1、组合挂起函数。async类似于launch都是创建新的协程，但是async是返回的job的子类，deferred，观察者模式的，延迟获取数据。所以job的操作，如join、cancel都是可以的。
  */
 object CoroutineKt2 {
@@ -432,4 +432,150 @@ object CoroutineKt2 {
         delay(800L)
         return 20
     }
+}
+
+/**
+ * 协程调度器、context上下文
+ */
+object CoroutineKt3 {
+
+    //演示入口，dispatcher、context
+    fun testDisCtx() {
+//        testDispatcher()
+//        testUnLimitedDispatcher()
+//        testCtx()
+//        testJobScope()
+//        testJobScope2()
+        namedCor()
+
+    }
+
+    //1、演示调度器的类型及作用 Dispatchers.Default/Unconfined/IO/Main(这个需要添加额外的android依赖库)
+    private fun testDispatcher() = runBlocking {
+        //工作在上层的协程中，这里就是runBlocking的主协程
+        launch { println("运行在父协程（runBlocking）的context中： thread=${Thread.currentThread().name}") }
+        //工作在不受限制的协程中，也就是主线程了
+        launch(Dispatchers.Unconfined) { println("运行在Unconfined： thread=${Thread.currentThread().name}") }
+        //工作在默认的调度器
+        launch(Dispatchers.Default) { println("运行在Default： thread=${Thread.currentThread().name}") }
+        //工作在一个新的线程中的协程里
+        val context = newSingleThreadContext("自定义NewThread")
+        launch(context) { println("运行在自定义新线程： thread=${Thread.currentThread().name}") }
+        context.close()//newSingleThreadContext是开启一个新的专用线程，这个很浪费资源，需要的时候，要关闭
+
+        println("外层的runBlocking的代码块 thread=${Thread.currentThread().name}")
+
+    }
+
+    //2、受限&非受限调度器,Unconfined,适合用于不消耗cpu时间的任务，
+    private fun testUnLimitedDispatcher() = runBlocking {
+
+        println("RunBlocking根节点的Thread协程 ${Thread.currentThread().name}")
+
+        //使用的是Unconfined的非受限调度器，注意这里delay前后，运行线程的区别。挂起&恢复
+        launch(Dispatchers.Unconfined) {
+            println("Unconfined delay之前thread ${Thread.currentThread().name}")
+            delay(500L)
+            println("Unconfined ==delay后thread== ${Thread.currentThread().name}")
+        }
+        //默认的，就是使用上层的协程context，
+        launch {
+            println("runBlocking的 delay之前thread ${Thread.currentThread().name}")
+            delay(1000L)
+            println("runBlocking的 ==delay后thread== ${Thread.currentThread().name}")
+        }
+
+        /*todo 运行结果如下：可以看出Unconfined的调度，挂起之前是继承上层的context，恢复的时候，就到默认的DefaultExecutor中去了。一般不推荐使用Unconfined。
+           这就体现了一个特点：协程可以在一个线程挂起，而在另一个线程恢复。
+        RunBlocking根节点的Thread协程 main @coroutine#1
+        Unconfined delay之前thread main @coroutine#2
+        runBlocking的 delay之前thread main @coroutine#3
+        Unconfined ==delay后thread== kotlinx.coroutines.DefaultExecutor @coroutine#2
+        runBlocking的 ==delay后thread== main @coroutine#3
+         */
+    }
+
+
+    //3、线程间跳转，context的切换
+    private fun testCtx() {
+        //use函数，会自动关闭资源
+        newSingleThreadContext("Ctx1").use { ctx1 ->
+            newSingleThreadContext("Ctx2").use { ctx2 ->
+                runBlocking(ctx1) {
+                    println("runBlocking 使用Ctx1")
+                    withContext(ctx2) {
+                        println("withContext 使用Ctx2")
+                    }
+                    println("在withContext之后，回归Ctx的runBlocking")
+                }
+            }
+        }
+    }
+
+    //3、在协程CoroutineScope内部启动新的协程，就构成了子协程的关系，如果父协程被取消，它生命周期内的子协程会被递归取消。GlobalScope特殊点，它没有父协程
+    private fun testJobScope() = runBlocking {
+        //模拟一个耗时请求，内部有两个协程，一个Global，一个直接继承当前Scope的
+        val requestJob = launch {
+            //GlobalScope的，它创建的协程，没有父协程ctx，它的生命周期，就不受外层scope影响控制
+            GlobalScope.launch {
+                println("GlobalScope中，delay之前")
+                delay(1000L)
+                println("== GlobalScope中，delay之后 ==")
+            }
+            //普通的scope 协程，属于上层的子协程，生命周期收上层控制
+            launch {
+                delay(100L)
+                println("子协程中")
+                delay(1000L)//由于时间设置的问题，下面的print执行时候，其实已经调用了requestJob的cancel，所以不会输出。但是global中的可以输出。不受影响的。
+                println("== 子协程中，delay之后 ==")
+            }
+
+        }
+        //演示延迟以下，看看cancel后，global中的会怎样,延时也是为了保活jvm，以便观看global的执行。业务写法不能这么
+        delay(500L)
+        requestJob.cancel()
+        delay(1000L)
+        println("------结束了-----")
+
+    }
+
+    private fun testJobScope2() = runBlocking {
+        val request = launch {
+            repeat(3) {
+                launch {
+                    delay(it * 500L)
+                    println("子协程的任务输出")
+                }
+            }
+            println("外层协程的   输出text")
+        }
+        //这里只需join最外的协程，不必join内部的子协程，依然可以保证等到所有子协程执行完毕
+        request.join()
+        println("----------------over----------------")
+    }
+
+    //todo 4、给协程命名，便于管理追踪，协程的context，可以由多种元素拼接
+    private fun namedCor() = runBlocking {
+        val launch = launch(CoroutineName("协程launch")) {
+            println("launch coroutine kotlin name ")
+        }
+        //组合元素，协程的context，可以由多种元素拼接 使用+
+        val async = async(CoroutineName("async 协程名") + Dispatchers.Default) {
+            println(
+                "async 异步 协程 name"
+            )
+            999
+        }
+
+        println("launch $launch \n async ${async.await()}")
+    }
+
+
+    //5、协程生命周期的管控.在activity需要同步协程周期于activity的ui周期，可以用MainScope得到对象，然后在destroy中cancel，控制协程
+
+    private fun testScope()= runBlocking {
+        val coroutineScope = CoroutineScope(Dispatchers.Default)
+        coroutineScope
+    }
+
 }
