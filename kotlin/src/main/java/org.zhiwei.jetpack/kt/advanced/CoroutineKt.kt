@@ -1,6 +1,7 @@
 package org.zhiwei.jetpack.kt.advanced
 
 import kotlinx.coroutines.*
+import kotlinx.coroutines.flow.*
 import kotlin.concurrent.thread
 import kotlin.coroutines.EmptyCoroutineContext
 import kotlin.system.measureTimeMillis
@@ -446,8 +447,9 @@ object CoroutineKt3 {
 //        testCtx()
 //        testJobScope()
 //        testJobScope2()
-        namedCor()
+//        namedCor()
 
+        testThread()
     }
 
     //1、演示调度器的类型及作用 Dispatchers.Default/Unconfined/IO/Main(这个需要添加额外的android依赖库)
@@ -571,11 +573,204 @@ object CoroutineKt3 {
     }
 
 
-    //5、协程生命周期的管控.在activity需要同步协程周期于activity的ui周期，可以用MainScope得到对象，然后在destroy中cancel，控制协程
+    //5、协程生命周期的管控.在activity需要同步协程周期于activity的ui周期，可以用MainScope得到对象，然后在destroy中cancel，控制协程，也可以让activity实现协程生命周期CoroutineScope接口
 
-    private fun testScope()= runBlocking {
+    private fun testScope() = runBlocking {
+        //1、 获取mainScope,在destroy中cancel,需要的地方，用来produce或者launch函数
+        val mainScope = MainScope()
+
+        //2、让activity实现接口,并委托给CoroutineScope配置管理生命周期，如此，在activity被销毁的时候，内部的协程，会被自动cancel
+        class Activity : CoroutineScope by CoroutineScope(Dispatchers.Default) {}
+
+
         val coroutineScope = CoroutineScope(Dispatchers.Default)
         coroutineScope
     }
 
+    //todo 6、线程局部数据。协程，并不同于线程，它可能不依赖据特定线程，所以将线程内的数据共享与不同的协程之间，就需要额外的context。
+    private val threadLocal = ThreadLocal<String?>()//声明的线程局部变量
+
+    private fun testThread() = runBlocking {
+        threadLocal.set("This is a Value of Main")
+        println("pre main-------------------当前线程 ${Thread.currentThread()} 线程内局部变量 ${threadLocal.get()}------------------------")
+        val launch =
+            launch(Dispatchers.Default + threadLocal.asContextElement("That value of Launch")) {
+                println("开始launch ，当前线程是 ${Thread.currentThread()} 线程内局部变量：${threadLocal.get()}")
+                yield()//调用yield，使线程取消
+                println("yield 之后 ，当前线程是 ${Thread.currentThread()} 线程内局部变量：${threadLocal.get()}")
+            }
+        launch.join()
+        println("post main-------------------当前线程 ${Thread.currentThread()} 线程内局部变量 ${threadLocal.get()}------------------------")
+
+        /* 运行结果:表明，协程间的数据改变，不会传递。如果想同步共享，需要用withContext asContextElement，ThreadContextElement之类的。
+pre main-------------------当前线程 Thread[main @coroutine#1,5,main] 线程内局部变量 This is a Value of Main------------------------
+开始launch ，当前线程是 Thread[DefaultDispatcher-worker-2 @coroutine#2,5,main] 线程内局部变量：That value of Launch
+yield 之后 ，当前线程是 Thread[DefaultDispatcher-worker-3 @coroutine#2,5,main] 线程内局部变量：That value of Launch
+post main-------------------当前线程 Thread[main @coroutine#1,5,main] 线程内局部变量 This is a Value of Main------------------------
+
+         */
+    }
+
+
+}
+
+/**
+ * 协程 异步流
+ * yield作用
+ * 1.暂时打断一件长耗时的任务，并且让其他任务一个公平的机会去执行
+ * 2.检查当前任务是否是被取消，这个任务可能并没有在最后检查自己是否被取消
+ * 3.当你的入栈的任务数大于当前允许并行的数目时，允许子任务执行。这个对与任务依赖很重要。
+ *  map、filter、transform、flow、take、collect等操作符，类似于rxJava中的操作符。
+ */
+object CoroutineKt4 {
+
+    fun testKt4() {
+
+//        testSeq()
+//        testFlow()
+//        testMap()
+//        testTrans()
+//        testChangeCtx()
+        testCom()
+
+    }
+
+    //1、Sequence表示一个序列数据,同步计算数据流，传统的数据方式，这里会阻塞线程
+    private fun foo(): Sequence<Int> = sequence {
+        for (i in 1..3) {
+            Thread.sleep(1000)
+            yield(i)//产生数据
+        }
+    }
+
+    //异步模拟数据结果
+    private suspend fun foo2(): List<Int> {
+        delay(1000)
+        return listOf(1, 2, 3)
+    }
+
+    private fun testSeq() {
+        //普通的foo函数，产生数据会阻塞线程
+//        foo().forEach { println("value=$it") }
+        //这里是使用协程异步的函数调用
+        runBlocking {
+            foo2().forEach { println("coroutine value=$it") }
+        }
+    }
+
+    //todo 2、kotlin高阶函数，产生流数据,需要匹配collect收集来操作
+    // ,flow代码块内的函数可以挂起，而且自身就是一个挂起函数,!!! 注意，flow数据流，成为冷数据流，只有在调用collect的时候，才会执行。单独的调用foo，并不会。
+    // 流数据可以取消；还有flowOf，asFlow，flow{}用于构建流数据
+    private fun fooFlow(): Flow<Int> = flow {
+        for (i in 1..3) {
+            delay(100)
+            emit(i)
+        }
+    }
+
+    //演示 kotlin 流数据的处理
+    private fun testFlow() = runBlocking {
+        launch {
+            for (i in 1..3) {
+                println("这个输出就是为了验证，并发携程并没有阻塞主线程")
+                delay(1000)
+            }
+        }
+        fooFlow().collect { println("流数据的结果 $it") }
+
+        //不同的构造方式
+        (1..3).asFlow()
+        flowOf(1, 23, 32)
+
+        flow {
+            emit(999)
+        }
+    }
+
+    //3、过渡流map、filter 。流数据于sequence的区别在于，流操作符内的代码块可以是挂起函数。
+    private suspend fun longTimeRequest(request: Int): String {
+        //模拟耗时请求的结果响应
+        delay(1000)
+        return "Response for request $request"
+    }
+
+    //模拟map数据流的操作
+    private fun testMap() = runBlocking {
+        (1..3).asFlow().map { req ->
+            //模拟调用请求
+            longTimeRequest(req)
+        }.collect { rsp ->
+            println("得到响应的数据结果--//-- $rsp")
+        }
+    }
+
+    //4、转换操作符 transform
+    private fun testTrans() = runBlocking {
+        (1..3).asFlow().transform { req ->
+            emit("==开始请求== request $req")
+            emit(longTimeRequest(req))
+        }.collect { rsp ->
+            println("transform的rsp： $rsp")
+        }
+    }
+
+    //todo 5、操作符演示使用:限长操作符take、末端流操作符（toList/toSet/first/single/reduce/fold）。
+    // 流的收集发生在调用协程的context中。
+    private fun testOperator() = runBlocking {
+        (1..99).asFlow()
+            .take(10)//摘取指定个数
+            .reduce { a, b -> a + b }//将流数据的元素，按照规则，整合为一个
+        fooFlow().zip(fooFlow()) { a, b -> "$a , $b" }//关于flow流的zip合并操作符
+    }
+
+    //6、切换context的场景
+    private fun testChangeCtx() = runBlocking {
+        //todo flow流数据的发射应在搜集的协程ctx，而不能单独配置ctx，会异常 Flow invariant is violated
+        fun foo() = flow {
+            kotlinx.coroutines.withContext(Dispatchers.Default) {
+                for (i in 1..3) {
+                    delay(200)
+                    emit(i)
+                }
+            }
+        }
+        //注释掉，异常
+//        foo().collect { println(it) }
+
+        // todo 正确的切换ctx方式是flowOn
+        fun boo() = flow {
+            for (i in 1..3) {
+                delay(200)
+                emit(i)
+            }
+        }.flowOn(Dispatchers.Default)
+        boo().collect { println(it) }
+    }
+
+    //7、测试缓存，如上flow发射数据单个元素耗时，collect搜集时候，也是耗时。可以考虑将发射元素放在buffer内，就能再发射时候进行异步发射。
+    private fun testBuffer() = runBlocking {
+        fooFlow()
+            .buffer()//使用buffer缓存，这样发射耗时就会节省很多
+            .conflate()//操作符的作用是，跳过不必要的数值，直接给最新值。用于收集器太慢的时候
+
+//            .collectLatest()//只搜集最后一个值
+    }
+
+    //todo 操作符 combine
+    private fun testCom() = runBlocking {
+        val nums = (1..3).asFlow().onEach { delay(300) } // 发射数字 1..3，间隔 300 毫秒
+        val strs = flowOf("one", "two", "three").onEach { delay(400) } // 每 400 毫秒发射一次字符串
+        val startTime = System.currentTimeMillis() // 记录开始的时间
+        nums.zip(strs) { a, b -> "$a -> $b" } // 使用“zip”组合单个字符串
+            .collect { value ->
+                // 收集并打印
+                println("Zip操作符 $value at ${System.currentTimeMillis() - startTime} ms from start")
+            }
+        // combine操作符，就好比，两个栈取数值，然后组合计算，不同的时间，各自栈顶的数都要运行计算。而zip，则是元素数匹配，按照最慢的节奏来一对一合并。
+        nums.combine(strs) { a, b -> "$a -> $b" } // 使用combine操作符，不同于zip的结果
+            .collect { value ->
+                // 收集并打印
+                println("-- combine 操作符 $value at ${System.currentTimeMillis() - startTime} ms from start -- ")
+            }
+    }
 }

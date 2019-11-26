@@ -290,7 +290,10 @@ object AdvancedKt {
 //        CoroutineKt.testCon()
 //        CoroutineKt2.testCor2()
 
-        CoroutineKt3.testDisCtx()
+//        CoroutineKt3.testDisCtx()
+
+        CoroutineKt4.testKt4()
+
     }
     //</editor-folder>
 
