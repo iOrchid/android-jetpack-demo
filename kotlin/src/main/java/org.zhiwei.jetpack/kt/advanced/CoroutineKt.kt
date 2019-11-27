@@ -631,7 +631,12 @@ object CoroutineKt4 {
 //        testMap()
 //        testTrans()
 //        testChangeCtx()
-        testCom()
+//        testCom()
+//        testFlowMap()
+
+//        testEx()
+//        testEx2()
+        testEx3()
 
     }
 
@@ -772,5 +777,127 @@ object CoroutineKt4 {
                 // 收集并打印
                 println("-- combine 操作符 $value at ${System.currentTimeMillis() - startTime} ms from start -- ")
             }
+    }
+
+    //展平流，将每个流元素，转化为flow流，类似的有flatten flatMap，flattenConcat，flatMapConcat
+    private fun testFlowMap() {
+        fun requestFlow(i: Int): Flow<String> = flow {
+            emit("$i: First")
+            delay(500)
+            emit("$i: Second")
+        }
+        /*
+        1: First collect输出，展平流
+        1: Second collect输出，展平流
+        2: First collect输出，展平流
+        2: Second collect输出，展平流
+        3: First collect输出，展平流
+        3: Second collect输出，展平流
+         */
+        runBlocking {
+            //                        (1..3).asFlow()
+//                .map { requestFlow(it) }
+//                .collect { flow ->
+//                    flow.collect {
+//                        println("$it collect输出，展平流 112233")
+//                    }
+//                }
+
+            //flatMapMerge 略有不同，会将流的结果单独展开,
+            /*
+                1: First collect输出，展平流
+                2: First collect输出，展平流
+                3: First collect输出，展平流
+                1: Second collect输出，展平流
+                2: Second collect输出，展平流
+                3: Second collect输出，展平流
+             */
+//            (1..3).asFlow()
+//                .flatMapMerge { requestFlow(it) }
+//                .collect { flow ->
+//                    println("$flow collect输出，展平流 123 123")
+//                }
+
+            //flatMapLastest emit如果耗时，会接收最新值，取消所有其他的，直接执行最新的那个流元素
+            (1..3).asFlow()
+                .flatMapLatest { requestFlow(it) }
+                .collect { flow ->
+                    println("$flow collect输出，展平流 1233")
+                }
+        }
+    }
+
+    //测试流 异常 try catch
+    private fun testEx() {
+        fun foo(): Flow<Int> = flow {
+            for (i in 1..3) {
+                println("Emitting $i")
+                emit(i) // emit next value
+            }
+        }
+
+        runBlocking {
+            try {
+                foo().collect { value ->
+                    check(value <= 1) { "Collected $value" }
+                    //check是内联函数，满足条件则运行，否则抛异常
+                    println(value)
+                }
+            } catch (e: Throwable) {
+                println("Caught $e")
+            }
+        }
+    }
+
+    //上面的异常捕获实在搜集端，这里的是在发射端
+    private fun testEx2() {
+        fun foo() = flow {
+            for (i in 1..3) {
+                println("Emitting $i")
+                emit(i) // emit next value
+            }
+        }.map {
+            check(it <= 1) { "检查出现异常 $it" }
+            "正常值 $it"
+        }
+
+        runBlocking {
+            try {
+                foo()
+//                    .catch { e->emit("异常了，这个元素 $e 也挺特别的") }//将异常信息再次转化为流元素发射
+                    .collect { value -> println(value) }
+            } catch (e: Throwable) {
+                println("Caught $e")
+            } finally {
+                //最终代码块，必然执行
+                println("Done Done Done!!!")
+            }
+
+            fooFlow()
+                .onCompletion { println("完成时候的执行") }
+                .collect { println("it it it $it") }
+
+        }
+    }
+
+    private fun testEx3() {
+        fun foo(): Flow<Int> = flow {
+            emit(1)
+            throw RuntimeException()
+        }
+
+        runBlocking {
+            foo().onCompletion { cause -> if (cause != null) println("声明式发现异常信息，但不会捕获，并输出") }
+                .catch { cause -> println("catch 才真正的捕获异常") }
+                .collect { println("it ex it $it") }
+        }
+    }
+
+    private fun testOther() {
+        runBlocking {
+            (1..3).asFlow()
+                .onEach { println("onEach $it") }
+                .launchIn(this)
+        }
     }
 }
