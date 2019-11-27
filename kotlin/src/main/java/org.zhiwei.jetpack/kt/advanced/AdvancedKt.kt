@@ -292,7 +292,9 @@ object AdvancedKt {
 
 //        CoroutineKt3.testDisCtx()
 
-        CoroutineKt4.testKt4()
+//        CoroutineKt4.testKt4()
+
+        Pip.testPip()
 
     }
     //</editor-folder>
