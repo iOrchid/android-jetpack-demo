@@ -12,8 +12,9 @@ static def getGitVersionCode() {
 static def getGitVersionName() {
 	//因为指令获取的是 v1.1.1-13-ge084397 格式的，所以需要有效部分即可
 	def trim = 'git describe --tags'.execute().text.trim()
-	if (trim.size() > 6)
-		return trim.substring(0, 6)
+//	if (trim.size() > 6)
+//		return trim.substring(0, 6)
+	//使用AS打tag，名字就规范些
 	return trim
 }
 
