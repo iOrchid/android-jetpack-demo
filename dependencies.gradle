@@ -6,7 +6,7 @@ apply plugin: 'kotlin-kapt'
 
 android {
 	compileSdkVersion compile_sdk_version
-	buildToolsVersion = build_tools_version
+	buildToolsVersion build_tools_version
 
 	buildTypes {
 		release {
