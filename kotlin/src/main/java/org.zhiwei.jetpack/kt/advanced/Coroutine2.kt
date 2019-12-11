@@ -108,7 +108,7 @@ object Pip {
 
     //todo 多个协程，发送数据到同一个通道
     //发送string，
-    suspend fun sendStr(channel: SendChannel<String>, s: String, time: Long) {
+    private suspend fun sendStr(channel: SendChannel<String>, s: String, time: Long) {
         while (true) {
             delay(time)
             channel.send(s)
