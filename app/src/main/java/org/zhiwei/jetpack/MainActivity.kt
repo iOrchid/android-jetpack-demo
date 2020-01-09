@@ -10,7 +10,7 @@ import org.zhiwei.jetpack.dagger2.temp.DaggerActivity
 import org.zhiwei.jetpack.kt.KtActivity
 import org.zhiwei.jetpack.life.LifeActivity
 import org.zhiwei.jetpack.live.LiveActivity
-import org.zhiwei.jetpack.nav.NaviActivity
+import org.zhiwei.jetpack.nav.NavActivity
 import org.zhiwei.jetpack.page.PagingActivity
 import org.zhiwei.jetpack.room.RoomActivity
 import org.zhiwei.jetpack.rx.RxActivity
@@ -40,7 +40,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun navi(v: View) {
-        startActivity(Intent(this, NaviActivity::class.java))
+        startActivity(Intent(this, NavActivity::class.java))
     }
 
     fun paging(v: View) {

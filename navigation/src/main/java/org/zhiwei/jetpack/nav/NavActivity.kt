@@ -2,6 +2,7 @@ package org.zhiwei.jetpack.nav
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.navigation.Navigation
 
 /**
  * 作者： 志威  zhiwei.org
@@ -25,4 +26,12 @@ class NavActivity : AppCompatActivity() {
 		setContentView(R.layout.activity_navigation)
 	}
 
+	/**
+	 * navigation相关的操作
+	 *
+	 * @return 是否向上返回 栈
+	 */
+	override fun onSupportNavigateUp(): Boolean {
+		return Navigation.findNavController(this, R.id.fg_main_navi).navigateUp()
+	}
 }
