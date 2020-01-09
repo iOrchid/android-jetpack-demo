@@ -8,7 +8,7 @@ import org.zhiwei.jetpack.aac.view.AacActivity
 import org.zhiwei.jetpack.binding.BindingActivity
 import org.zhiwei.jetpack.dagger2.temp.DaggerActivity
 import org.zhiwei.jetpack.kt.KtActivity
-import org.zhiwei.jetpack.life.temp.LifeActivity
+import org.zhiwei.jetpack.life.LifeActivity
 import org.zhiwei.jetpack.live.temp.LiveDataActivity
 import org.zhiwei.jetpack.nav.NaviActivity
 import org.zhiwei.jetpack.page.PagingActivity
