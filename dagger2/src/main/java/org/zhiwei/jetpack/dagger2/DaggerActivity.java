@@ -1,4 +1,4 @@
-package org.zhiwei.jetpack.dagger2.temp;
+package org.zhiwei.jetpack.dagger2;
 
 import android.os.Bundle;
 import android.util.Log;
@@ -7,7 +7,8 @@ import android.widget.TextView;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-import org.zhiwei.jetpack.dagger2.R;
+import org.zhiwei.jetpack.dagger2.temp.DaggerOtherComponent;
+import org.zhiwei.jetpack.dagger2.temp.DaggerPersonComponent;
 
 import javax.inject.Inject;
 import javax.inject.Provider;

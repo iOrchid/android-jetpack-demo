@@ -35,13 +35,13 @@
 			android:name=".page.PagingActivity"
 			android:label="PagingActivity" />
 		<activity
-			android:name=".work.temp.WorkActivity"
+			android:name=".work.WorkActivity"
 			android:label="WorkActivity" />
 		<activity
 			android:name=".aac.view.AacActivity"
 			android:label="AacActivity" />
 		<activity
-			android:name=".dagger2.temp.DaggerActivity"
+			android:name=".dagger2.DaggerActivity"
 			android:label="DaggerActivity" />
 		<activity
 			android:name=".kt.KtActivity"

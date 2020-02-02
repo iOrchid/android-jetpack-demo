@@ -6,7 +6,7 @@ import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import org.zhiwei.jetpack.aac.view.AacActivity
 import org.zhiwei.jetpack.binding.BindingActivity
-import org.zhiwei.jetpack.dagger2.temp.DaggerActivity
+import org.zhiwei.jetpack.dagger2.DaggerActivity
 import org.zhiwei.jetpack.kt.KtActivity
 import org.zhiwei.jetpack.life.LifeActivity
 import org.zhiwei.jetpack.live.LiveActivity
@@ -14,7 +14,7 @@ import org.zhiwei.jetpack.nav.NavActivity
 import org.zhiwei.jetpack.page.PagingActivity
 import org.zhiwei.jetpack.room.RoomActivity
 import org.zhiwei.jetpack.rx.RxActivity
-import org.zhiwei.jetpack.work.temp.WorkActivity
+import org.zhiwei.jetpack.work.WorkActivity
 
 class MainActivity : AppCompatActivity() {
 

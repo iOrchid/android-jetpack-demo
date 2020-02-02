@@ -1,4 +1,4 @@
-package org.zhiwei.jetpack.dagger2.temp;
+package org.zhiwei.jetpack.dagger2;
 
 import dagger.Module;
 import dagger.Provides;
