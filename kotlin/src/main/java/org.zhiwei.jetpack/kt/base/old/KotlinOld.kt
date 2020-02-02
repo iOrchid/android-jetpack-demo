@@ -218,8 +218,9 @@ class KotlinOld {
 		val aaa = arrayOf(21, 332, 3, 23, 5, 25, 23)
 		aaa.forEach {
 			//it代表便利的index对应的对象值
-			println(it)
-			if (it == 23) return@forEach//匿名标签
+			println("return@forEach 之前 $it")
+			if (it == 23) return@forEach//匿名标签，这里return@forEach，就类似于普通for循环中的continue作用，如果是return，不带标签，就return整个函数了。所以这里只是结束单次循环，可以验证注意下面的输出
+			println("return@forEach 之后 $it")
 		}
 	}
 	//todo open 可继承的class的修饰符，abstract 抽象，则不需要open也可以。内部类inner 关键字 final 默认都是final的。private internal，protected，public； object是关键字，表示对象。companion代码块，类似于静态

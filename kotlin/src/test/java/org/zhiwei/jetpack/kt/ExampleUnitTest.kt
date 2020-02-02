@@ -3,12 +3,14 @@ package org.zhiwei.jetpack.kt
 import org.junit.Assert.assertEquals
 import org.junit.Test
 
+
 /**
  * Example local unit test, which will execute on the development machine (host).
  *
  * @see [Testing documentation](http://d.android.com/tools/testing)
  */
 class ExampleUnitTest {
+
     @Test
     fun addition_isCorrect() {
         assertEquals(4, (2 + 2).toLong())
@@ -137,6 +139,16 @@ class ExampleUnitTest {
 
     @Test
     fun testKt2() {
-        testSet()
+//        testSet()
+        testFor()
+    }
+
+    private fun testFor() {
+        val list = arrayListOf(2, "agjg", null, 999, 'c', true, "agdklagjld")
+
+        list.forEach {
+            it ?: return@forEach
+            println("it $it")
+        }
     }
 }

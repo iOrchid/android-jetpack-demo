@@ -110,7 +110,7 @@ dependencies {
 	kapt 'com.github.bumptech.glide:compiler:4.10.0'//kotlin代码需要这个kapt注入进程
 
 	//<editor-folder desc="test libs">
-	testImplementation 'junit:junit:4.13'
+	testImplementation 'junit:junit:4.12'
 	androidTestImplementation 'androidx.test:core:1.2.0'
 	androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
 	//</editor-folder>
