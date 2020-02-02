@@ -20,9 +20,25 @@ import androidx.appcompat.app.AppCompatActivity
  */
 class LifeActivity : AppCompatActivity() {
 
-	override fun onCreate(savedInstanceState: Bundle?) {
-		super.onCreate(savedInstanceState)
-		setContentView(R.layout.activity_lifecycle)
-	}
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_lifecycle)
+        //调用定位
+        MockLocation(this, object : MockLocation.LocationCallBack {
+            override fun onSuccess() {
+                //此时的回调，就是确保了，已经在UI显示的状态，
+
+            }
+
+        }).startLocation()
+
+    }
+    /*
+    1、使用mockLocation，此LifeActivity是ComponentActivity的子类，所以也是LifeCycleOwner的实现类
+    2、MOckLocation模拟定位服务，这里面就持有了lifeCycleOwner，且其实现了LifeCycleObserver，就能感知到UI的生命周期
+    3、如此调用，则定位服务就能根据生命周期，来决定回调。
+    4、倘若没有这类生命周期管理，需要手动关联，onStart定位 onStop 停止，则会出现在onCreate中调用startLocation的话，
+    由于某些异常情况，导致可能会出现，先走到了location的onStop，后 onStart，可能就出异常报错。
+     */
 
 }

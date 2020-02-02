@@ -103,7 +103,7 @@
 				android:text="@{@string/str_format(`zhiwei`)}"
 				tools:text="str的格式化" />
 
-			<!--6、字符拼接-->
+			<!--6、字符拼接 这种写法，如果是中文，就可能编译报错，无奈-->
 			<androidx.appcompat.widget.AppCompatTextView
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
