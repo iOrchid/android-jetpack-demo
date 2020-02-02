@@ -2,6 +2,12 @@ package org.zhiwei.jetpack.page
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.Observer
+import androidx.paging.PagedList
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import org.zhiwei.jetpack.page.db.Student
+import org.zhiwei.jetpack.page.list.MyAdapter
 
 /**
  * 作者： 志威  zhiwei.org
@@ -18,11 +24,21 @@ import androidx.appcompat.app.AppCompatActivity
  * ----------------------------------------------------------------
  * paging的演示界面
  */
-class PageActivity : AppCompatActivity() {
-
+class PagingActivity : AppCompatActivity() {
+	//滑动list的时候，可以看到滚动条的变化，感知到数据的平滑加载
 	override fun onCreate(savedInstanceState: Bundle?) {
 		super.onCreate(savedInstanceState)
 		setContentView(R.layout.activity_paging)
+		val recyclerView = findViewById<RecyclerView>(R.id.rv_paging)
+		recyclerView.layoutManager = LinearLayoutManager(this)
+		val adapter = MyAdapter()
+		recyclerView.adapter = adapter
+		val presenter = MyPresenter(this)
+		presenter.allStudents.observe(
+			this,
+			Observer { pagedList: PagedList<Student> ->
+				adapter.submitList(pagedList)
+			}
+		)
 	}
-
 }

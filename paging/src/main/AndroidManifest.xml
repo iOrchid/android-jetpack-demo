@@ -3,7 +3,7 @@
 
 	<application>
 		<activity
-			android:name=".PageActivity"
+			android:name=".PagingActivity"
 			android:launchMode="singleTop"
 			android:screenOrientation="portrait" />
 	</application>
