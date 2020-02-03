@@ -67,14 +67,14 @@
 			<androidx.appcompat.widget.AppCompatTextView
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
-				android:layout_margin="5dp"
+				android:layout_margin="2dp"
 				android:text="@{age+` years old`}"
 				tools:text="title text" />
 			<!--2、使用资源引用(不只是string，可以color，drawable等其他需要的。)：在@{}里面写@string的时候，不会自动提示和补全，所以切记别写错了，否则编译错误，排查问题都不容易-->
 			<androidx.appcompat.widget.AppCompatTextView
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
-				android:layout_margin="5dp"
+				android:layout_margin="2dp"
 				android:text="@{@string/str_reference}"
 				tools:text="str引用" />
 			<!--3、默认值的使用：default用,分号分隔，只是用于预览作用，运行时无效。
@@ -82,7 +82,7 @@
 			<androidx.appcompat.widget.AppCompatTextView
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
-				android:layout_margin="5dp"
+				android:layout_margin="2dp"
 				android:text="@{name , default=`默认Name`}" />
 			<!--4、判空null，并设置默认值，使用?? 若空则显示默认值。
 			 todo 注意，``反引号内尽量避免中文，因为编码会显示乱码，或者运行时可能报错。
@@ -93,13 +93,13 @@
 			<androidx.appcompat.widget.AppCompatTextView
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
-				android:layout_margin="5dp"
+				android:layout_margin="2dp"
 				android:text="@{title ?? ` null of  title`}" />
 			<!--5、使用string的format-->
 			<androidx.appcompat.widget.AppCompatTextView
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
-				android:layout_margin="5dp"
+				android:layout_margin="2dp"
 				android:text="@{@string/str_format(`zhiwei`)}"
 				tools:text="str的格式化" />
 
@@ -107,7 +107,7 @@
 			<androidx.appcompat.widget.AppCompatTextView
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
-				android:layout_margin="5dp"
+				android:layout_margin="2dp"
 				android:text="@{`Pre_`+@string/str_reference+title}"
 				tools:text="str的拼接" />
 		</LinearLayout>
