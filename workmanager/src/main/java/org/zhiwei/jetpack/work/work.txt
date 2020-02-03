@@ -2,7 +2,7 @@ Worker
     任务的执行者，是一个抽象类，需要继承它实现要执行的任务。
 
 WorkRequest
-    指定让哪个 Woker 执行任务，指定执行的环境，执行的顺序等。
+    指定让哪个 Worker 执行任务，指定执行的环境，执行的顺序等。
     要使用它的子类 OneTimeWorkRequest 或 PeriodicWorkRequest。
 
 WorkManager

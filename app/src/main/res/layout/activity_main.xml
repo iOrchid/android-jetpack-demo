@@ -16,78 +16,92 @@
 			android:layout_height="wrap_content"
 			android:layout_gravity="center"
 			android:onClick="dataBinding"
-			android:text="DataBinding" />
-
-		<Button
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:layout_gravity="center"
-			android:onClick="liveData"
-			android:text="LiveData" />
-
-		<Button
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:layout_gravity="center"
-			android:onClick="lifeCycle"
-			android:text="LifeCycle" />
-
-		<Button
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:layout_gravity="center"
-			android:onClick="room"
-			android:text="Room" />
-
-		<Button
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:layout_gravity="center"
-			android:onClick="navi"
-			android:text="Navigation" />
-
-		<Button
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:layout_gravity="center"
-			android:onClick="paging"
-			android:text="Paging" />
-
-		<Button
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:layout_gravity="center"
-			android:onClick="work"
-			android:text="Work" />
-
-		<Button
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:layout_gravity="center"
-			android:onClick="rxjava"
-			android:text="RxJava" />
+			android:text="DataBinding"
+			android:textAllCaps="false" />
 
 		<Button
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
 			android:layout_gravity="center"
 			android:onClick="kotlin"
-			android:text="Kotlin" />
+			android:text="Kotlin"
+			android:textAllCaps="false" />
+
+
+		<Button
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_gravity="center"
+			android:onClick="navi"
+			android:text="Navigation"
+			android:textAllCaps="false" />
+
+
+		<Button
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_gravity="center"
+			android:onClick="room"
+			android:text="Room"
+			android:textAllCaps="false" />
+
+
+		<Button
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_gravity="center"
+			android:onClick="work"
+			android:text="Work"
+			android:textAllCaps="false" />
+
+		<Button
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_gravity="center"
+			android:onClick="liveData"
+			android:text="LiveData"
+			android:textAllCaps="false" />
+
+		<Button
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_gravity="center"
+			android:onClick="paging"
+			android:text="Paging"
+			android:textAllCaps="false" />
+
+		<Button
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_gravity="center"
+			android:onClick="lifeCycle"
+			android:text="LifeCycle"
+			android:textAllCaps="false" />
+
 
 		<Button
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
 			android:layout_gravity="center"
 			android:onClick="aac"
-			android:text="AAC" />
+			android:text="AAC"
+			android:textAllCaps="false" />
+
+		<Button
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_gravity="center"
+			android:onClick="rxjava"
+			android:text="RxJava"
+			android:textAllCaps="false" />
 
 		<Button
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
 			android:layout_gravity="center"
 			android:onClick="dagger"
-			android:text="Dagger" />
-
+			android:text="Dagger"
+			android:textAllCaps="false" />
 
 	</LinearLayout>
 </androidx.core.widget.NestedScrollView>
