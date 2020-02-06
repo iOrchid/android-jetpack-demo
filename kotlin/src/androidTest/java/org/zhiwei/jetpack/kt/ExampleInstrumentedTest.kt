@@ -18,6 +18,6 @@ class ExampleInstrumentedTest {
 	fun useAppContext() {
 		// Context of the app under test.
 		val appContext = ApplicationProvider.getApplicationContext<Application>()
-		assertEquals("org.zhiwei.jetpack.kt", appContext.packageName)
+		assertEquals("org.zhiwei.jetpack.kt.test", appContext.packageName)
 	}
 }
