@@ -41,7 +41,7 @@ class KtSyntax {
     private var dStr = "this is a string !"
     private val ePi = "3.14"
 
-    private lateinit var ssValue: Any
+    private lateinit var ssValue: Any//在使用前要记得初始化，也可以做初始化检测 this::ssValue.isInitialized 来判断
 
     private fun testConvert() {
         //1、使用数据类型的扩展函数，toDouble，toFloat等转换

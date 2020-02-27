@@ -89,7 +89,7 @@ dependencies {
 
 	implementation 'androidx.work:work-runtime:2.3.2'
 	implementation 'androidx.work:work-runtime-ktx:2.3.2'
-	implementation 'androidx.work:work-rxjava2:2.3.0'
+	implementation 'androidx.work:work-rxjava2:2.3.2'
 	//注意配置navigation版本号的时候，project下的build.gradle的class path也需要同步navigation的版本号配置
 	implementation "androidx.navigation:navigation-ui:$navigation_version"
 	implementation "androidx.navigation:navigation-ui-ktx:$navigation_version"
