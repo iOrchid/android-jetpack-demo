@@ -336,7 +336,7 @@ object SingleApple {
 
 更多详情，请下载代码，内有详细注释，**鉴于本人才学有限，若有不足之处，请大神不吝赐教**。
 
-#### 七、关于作者 [![jianshu](./images/jianshu.png)](https://www.jianshu.com/u/72294e6848c0)[![github](./images/github.png)](https://github.com/zhiwei1990)[![csdn](./images/csdn.png)](https://blog.csdn.net/zhiwei9001)
+#### 七、关于作者 [![jianshu](./images/jianshu.svg)](https://www.jianshu.com/u/72294e6848c0)[![github](./images/github.svg)](https://github.com/zhiwei1990)[![csdn](./images/csdn.svg)](https://blog.csdn.net/zhiwei9001)
 
 > 作者本人只是一个，就职于某`知名`(@_@ 有名字的)互联网公司的，技术小白一枚，对于编程有着某种兴趣和热爱，然技术确实渣渣，好读书、不求甚解~~
 
@@ -344,12 +344,18 @@ object SingleApple {
 
 倘若本项目对你有一丝丝的帮助和价值，烦请给个`star`,或者有什么好的建议或意见，也可以发个`issues`，谢谢！:happy:
 
+- **Donations**![donation](./images/donation.svg)
+
+  > 测试一下`Github`爱心💗**sponsor**功能,说不定您心血来潮了呢😂
+
+  ![img](./images/admireCode.png)![alipay](./images/alipay2QR.png)
+
 [![Github stars](https://img.shields.io/github/stars/zhiwei1990/android-jetpack-demo.svg?style=social&label=star)](https://github.com/zhiwei1990/android-jetpack-demo)[![Github followers](https://img.shields.io/github/followers/zhiwei1990.svg?style=social&label=follow)](https://github.com/zhiwei1990/android-jetpack-demo)[![Github issues](https://img.shields.io/github/issues/zhiwei1990/android-jetpack-demo.svg?style=social&label=issues)](https://github.com/zhiwei1990/android-jetpack-demo)
 
 - **License**
 
 ```markdown
-Copyright 2019 zhiwei.org
+Copyright 2018~2020 zhiwei.org
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -366,5 +372,5 @@ limitations under the License.
 
 
 
-[^1]: 项目当前`（2019/11/28`开发环境为AndroidStudio `3.5.2`、`gradle 5.4.1`、`Jdk8`、`Kotlin 1.3.61`
+[^1]: 项目当前`（2020/03/04`开发环境为AndroidStudio `3.6.1`、`gradle 5.6.4`、`Jdk8`、`Kotlin 1.3.70`
 
