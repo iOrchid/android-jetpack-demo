@@ -372,5 +372,4 @@ limitations under the License.
 
 
 
-[^1]: 项目当前`（2020/03/04`开发环境为AndroidStudio `3.6.1`、`gradle 5.6.4`、`Jdk8`、`Kotlin 1.3.70`
-
+[^1]: 项目当前`(2020/03/04)`开发环境为AndroidStudio `3.6.1`、`gradle 5.6.4`、`Jdk8`、`Kotlin 1.3.70`
