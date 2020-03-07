@@ -290,3 +290,5 @@ org.zhiwei.jetpack.kt.ExampleUnitTest$Derived@156643d4
 
     //</editor-folder>
 }
+//此处证明，在密封类的文件外，是无法继承的
+//object AACCC: Expr()

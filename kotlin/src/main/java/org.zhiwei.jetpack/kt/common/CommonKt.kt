@@ -31,7 +31,7 @@ import androidx.lifecycle.Observer
  * 7、在一个类中，定义另一个类的扩展函数，则在扩展函数内，就会有多个隐式的对象引用，即引用当前类和被扩展类的引用
  * 8、扩展函数，在定义类及其子类中，可以被覆盖重写，但是针对于具体被扩展类，扩展函数是静态加载的。
  * 9、数据类可以实现其他接口或继承其他类，copy函数便于快速创建数据对象，系统提供了Pair、Triple等标准数据类
- * 10、密封类，用于限定数据的类型，理解为特殊的数据类，枚举类型的扩展，相对更为灵活。其声明和子类继承，都必须在topLevel中，布恩那个在其它类中
+ * 10、密封类，用于限定数据的类型，理解为特殊的数据类，枚举类型的扩展，相对更为灵活。其声明和子类继承，都必须在同一个文件内，且在topLevel或密封类自身的类代码块中
  * 11、泛型，类似于java的泛型，kotlin中泛型可用于类、接口和函数，可用于上界约束，并且可以多个上界同时作用，使用where关键字
  * 12、todo 泛型的协变，型变，以及星号投影的深入学习
  * 13、枚举，自身就有的属性是name，ordinal（在枚举类中的序号）,也可以有自己构造参数，添加额外属性字段.不能继承其它类,可以实现接口，但是每个枚举对象都必须实现接口函数
@@ -180,7 +180,7 @@ class CommonKt {
     private data class CC(var a: Int) : GGG()
 
     //2、密封类，算是一个特别的数据类。不能open，也不要interface，abstract。用作限定数据类型，相比枚举类型，更为灵活。
-    // 枚举是一个类，多个数值，而密封类，是一个类，可以有很多种子类，打得属于一个类型就行。作为类型限制.
+    // 枚举是一个类，多个数值，而密封类，是一个类，可以有很多种子类，大的属于一个类型就行。作为类型限制.
     //todo 参照文件底部Expr声明,这样就能限定参数是expr类型，相比于枚举类型，较为灵活一些
     private fun textExpr(e: Expr) {
         when (e) {
@@ -415,6 +415,7 @@ class CommonKt {
 
     //</editor-folder>
 
+
 }
 
 //这个是 toplevel级别的扩展函数，并加了权限修饰
@@ -422,16 +423,30 @@ private fun String.getStudentAge(): Int {
     return 22
 }
 
-//密封类，必须生命在kt文件根节点，不要放在某个类内部，实现子类可以放在该文件的任意位置，哪怕其他class内
+//密封类，必须声明在kt文件根节点，不要放在某个类内部，实现子类可以放在toplevel，或者密封类自身内部嵌套，哪怕在内部多层class内也行
 sealed class Expr//限定某个函数的参数只能是expr的类型
-
+{
+	//在密封类自身内部，可以声明子类
+	class cccc : Expr() {
+		//甚至在嵌套的内部，也可以，
+		object ggg : Expr()
+	}
+}
 //下面就是属于expr类型的不同数据，
 data class Const(var name: Double) : Expr()
 
 data class BigNumber(val bb: Double) : Expr()
 private data class CommonNum(var a: Int) : Expr()
-object NotNumber : Expr()
+object NotNumber : Expr() {
+	//密封类的子类中，再声明 密封类的子类，是不行的
+	//object ddjjjd:Expr()//这是不不对的
+}
 
+//虽在同一文件，但是再其他类中，也是不可以声明密封类的子类
+object dddd {
+	//这是错的
+	//object dddj:Expr()
+}
 //todo  typealias 用于定义别名，便于再调用出简写，同时对于多个同名不同包的类，可以区分。
 // 比如Observable，在Rx，LifeCycle中都有，而且在同一个class文件中可能都有引用，那么在参数或者声明类的时候，就必须使用完整包名来区分。如此代码冗长，不便。所以可以在适当位置定义别名，就能简化区分。
 
