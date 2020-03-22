@@ -56,40 +56,36 @@ dependencies {
 	implementation fileTree(include: ['*.jar'], dir: 'libs')
 
 	implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
-	implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.3.3"
-	implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.3.3"
+	implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.3.5"
+	implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.3.5"
 	implementation 'androidx.appcompat:appcompat:1.1.0'
-	implementation 'androidx.fragment:fragment-ktx:1.2.2'
+	implementation 'androidx.fragment:fragment-ktx:1.2.3'
 
 	//<editor-folder desc="jetPack libs">
 	implementation 'androidx.lifecycle:lifecycle-extensions:2.2.0'
 	implementation 'androidx.lifecycle:lifecycle-livedata:2.2.0'
 	implementation 'androidx.lifecycle:lifecycle-viewmodel:2.2.0'
-
 	implementation 'androidx.lifecycle:lifecycle-runtime:2.2.0'
 	implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.2.0'
 	implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.2.0'
-
-	annotationProcessor "androidx.lifecycle:lifecycle-common-java8:2.2.0"
 	kapt "androidx.lifecycle:lifecycle-common-java8:2.2.0"
 
-	implementation 'androidx.room:room-runtime:2.2.4'
-	implementation 'androidx.room:room-rxjava2:2.2.4'
-	implementation 'androidx.room:room-common:2.2.4'
-	implementation 'androidx.room:room-ktx:2.2.4'
-	annotationProcessor "androidx.room:room-compiler:2.2.4"//针对所有compiler java代码用这个annotationProcessor
-	kapt "androidx.room:room-compiler:2.2.4"//kotlin的用这个kapt
+	implementation 'androidx.room:room-runtime:2.2.5'
+	implementation 'androidx.room:room-rxjava2:2.2.5'
+	implementation 'androidx.room:room-common:2.2.5'
+	implementation 'androidx.room:room-ktx:2.2.5'
+	kapt "androidx.room:room-compiler:2.2.5"
 
-	implementation 'androidx.paging:paging-runtime:2.1.1'
-	implementation 'androidx.paging:paging-runtime-ktx:2.1.1'
-	implementation 'androidx.paging:paging-common:2.1.1'
-	implementation 'androidx.paging:paging-common-ktx:2.1.1'
-	implementation 'androidx.paging:paging-rxjava2:2.1.1'
-	implementation 'androidx.paging:paging-rxjava2-ktx:2.1.1'
+	implementation 'androidx.paging:paging-runtime:2.1.2'
+	implementation 'androidx.paging:paging-runtime-ktx:2.1.2'
+	implementation 'androidx.paging:paging-common:2.1.2'
+	implementation 'androidx.paging:paging-common-ktx:2.1.2'
+	implementation 'androidx.paging:paging-rxjava2:2.1.2'
+	implementation 'androidx.paging:paging-rxjava2-ktx:2.1.2'
 
-	implementation 'androidx.work:work-runtime:2.3.2'
-	implementation 'androidx.work:work-runtime-ktx:2.3.2'
-	implementation 'androidx.work:work-rxjava2:2.3.2'
+	implementation 'androidx.work:work-runtime:2.3.4'
+	implementation 'androidx.work:work-runtime-ktx:2.3.4'
+	implementation 'androidx.work:work-rxjava2:2.3.4'
 	//注意配置navigation版本号的时候，project下的build.gradle的class path也需要同步navigation的版本号配置
 	implementation "androidx.navigation:navigation-ui:$navigation_version"
 	implementation "androidx.navigation:navigation-ui-ktx:$navigation_version"
@@ -99,18 +95,16 @@ dependencies {
 	//</editor-folder>
 
 	implementation 'com.google.dagger:dagger:2.26'
-	annotationProcessor 'com.google.dagger:dagger-compiler:2.26'
 	kapt 'com.google.dagger:dagger-compiler:2.26'
 
 	implementation 'io.reactivex.rxjava2:rxjava:2.2.15'
 	implementation 'io.reactivex.rxjava2:rxandroid:2.1.1'
 	//glide
 	implementation 'com.github.bumptech.glide:glide:4.11.0'
-	annotationProcessor 'com.github.bumptech.glide:compiler:4.11.0'//java的用annotationProcessor
-	kapt 'com.github.bumptech.glide:compiler:4.11.0'//kotlin代码需要这个kapt注入进程
+	kapt 'com.github.bumptech.glide:compiler:4.11.0'
 
 	//<editor-folder desc="test libs">
-	testImplementation 'junit:junit:4.12'
+	testImplementation 'junit:junit:4.13'
 	androidTestImplementation 'androidx.test:core:1.2.0'
 	androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
 	//</editor-folder>

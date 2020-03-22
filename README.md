@@ -69,15 +69,13 @@
 #### 五、规划
 
 - [x] 基础使用入门的代码演示
-  - [x] `DataBinding`代码详解
-  - [x] `Kotlin`代码详解
-  - [ ] `jetpack`组件的使用详解
-  - [ ] `rxJava`的使用详解
-  - [ ] `dagger/koin`注入框架的演示详解
-  - [ ] `App`架构相关的详解
+- [x] `DataBinding`代码详解
+- [x] `Kotlin`代码详解
+- [ ] `jetpack`组件的使用详解
+- [ ] `rxJava`的使用详解
+- [ ] `dagger/koin`注入框架的演示详解
+- [ ] `App`架构相关的详解
 - [ ] 进阶技术&架构的演示
-- [ ] 对应代码的详细博文
-- [ ] 其他前沿技术链接
 
 #### 六、示例内容(部分）
 
@@ -372,4 +370,4 @@ limitations under the License.
 
 
 
-[^1]: 项目当前`(2020/03/04)`开发环境为AndroidStudio `3.6.1`、`gradle 5.6.4`、`Jdk8`、`Kotlin 1.3.70`
+[^1]: 项目当前`(2020/03/22)`开发环境为AndroidStudio `3.6.1`、`gradle 5.6.4`、`Jdk8`、`Kotlin 1.3.70`
