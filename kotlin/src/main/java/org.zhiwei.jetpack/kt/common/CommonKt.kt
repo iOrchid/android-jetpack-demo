@@ -438,8 +438,8 @@ data class Const(var name: Double) : Expr()
 data class BigNumber(val bb: Double) : Expr()
 private data class CommonNum(var a: Int) : Expr()
 object NotNumber : Expr() {
-	//密封类的子类中，再声明 密封类的子类，是不行的
-	//object ddjjjd:Expr()//这是不不对的
+	//密封类的子类中，再声明 密封类的子类，是不行的，不是内部嵌套的。
+	//object ddjjjd:Expr()//这是不对的
 }
 
 //虽在同一文件，但是再其他类中，也是不可以声明密封类的子类
