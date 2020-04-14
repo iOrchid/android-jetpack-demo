@@ -3,7 +3,7 @@
 buildscript {
 
     ext {
-        kotlin_version = '1.3.71'
+        kotlin_version = '1.3.72'
         compile_sdk_version = 29
         build_tools_version = '29.0.3'
         min_sdk_verion = 21
@@ -13,9 +13,10 @@ buildscript {
 
     repositories {
         //如果遇到AS拉取依赖库缓慢或者连接官方仓库失败，可以注释掉下面的google(),jcenter()，用阿里的仓库代替
-//        maven { url 'https://maven.aliyun.com/repository/google' }
-//        maven { url 'https://maven.aliyun.com/repository/jcenter' }
-//        maven { url 'http://maven.aliyun.com/nexus/content/groups/public/' }
+        maven { url 'https://maven.aliyun.com/repository/central' }
+        maven { url 'https://maven.aliyun.com/repository/google' }
+        maven { url 'https://maven.aliyun.com/repository/jcenter' }
+        maven { url 'http://maven.aliyun.com/nexus/content/groups/public/' }
         google()
         jcenter()
     }
@@ -37,9 +38,10 @@ plugins {
 allprojects {
     repositories {
         //如果遇到AS拉取依赖库缓慢或者连接官方仓库失败，可以注释掉下面的google(),jcenter()，用阿里的仓库代替
-//        maven { url 'https://maven.aliyun.com/repository/google' }
-//        maven { url 'https://maven.aliyun.com/repository/jcenter' }
-//        maven { url 'http://maven.aliyun.com/nexus/content/groups/public/' }
+        maven { url 'https://maven.aliyun.com/repository/central' }
+        maven { url 'https://maven.aliyun.com/repository/google' }
+        maven { url 'https://maven.aliyun.com/repository/jcenter' }
+        maven { url 'http://maven.aliyun.com/nexus/content/groups/public/' }
         google()
         jcenter()
     }

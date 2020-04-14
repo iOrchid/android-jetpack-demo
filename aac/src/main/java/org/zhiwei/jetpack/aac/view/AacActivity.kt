@@ -5,7 +5,7 @@ import android.view.View
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
+import androidx.lifecycle.ViewModelProvider
 import org.zhiwei.jetpack.aac.R
 import org.zhiwei.jetpack.aac.model.UserModel
 import org.zhiwei.jetpack.aac.viewmodel.UserViewModel
@@ -36,10 +36,8 @@ class AacActivity : AppCompatActivity() {
 		setContentView(R.layout.activity_aac)
 		tvList = findViewById(R.id.tv_user_list_aac)
 		tvInfo = findViewById(R.id.tv_user_info_aac)
-		viewModel = ViewModelProviders.of(this)
-			.get(
-				UserViewModel::class.java
-			)
+		viewModel =
+			ViewModelProvider.AndroidViewModelFactory(application).create(UserViewModel::class.java)
 		viewModel!!.userList.observe(
 			this,
 			Observer { userModels: List<UserModel> ->
