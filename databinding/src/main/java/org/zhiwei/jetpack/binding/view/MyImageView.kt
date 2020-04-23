@@ -26,20 +26,20 @@ import androidx.databinding.BindingMethods
  * 3、通过@BindMethod方式，做函数映射。todo 这里注意，@BindMethods可以用于任何使用类上面，只要内部的BindMethod设置需要的view以及函数即可。
  */
 @BindingMethods(
-	BindingMethod(
-		type = AppCompatImageView::class,
-		attribute = "image",
-		method = "setImageDrawable"
-	)
+    BindingMethod(
+        type = AppCompatImageView::class,
+        attribute = "image",
+        method = "setImageDrawable"
+    )
 )
 //2、这里自定义View，实现setImg函数，就可以在xml中使用MyImageView来databinding用img属性
-class MyImageView(context: Context?, attrs: AttributeSet?) : AppCompatImageView(context, attrs) {
+class MyImageView(context: Context, attrs: AttributeSet?) : AppCompatImageView(context, attrs) {
 
-	/**
-	 * 添加setImg函数，才能在xml中使用img的属性
-	 */
-	fun setImg(drawable: Drawable) {
-		setImageDrawable(drawable)
-	}
+    /**
+     * 添加setImg函数，才能在xml中使用img的属性
+     */
+    fun setImg(drawable: Drawable) {
+        setImageDrawable(drawable)
+    }
 
 }

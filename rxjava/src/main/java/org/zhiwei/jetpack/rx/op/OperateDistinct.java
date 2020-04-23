@@ -3,7 +3,7 @@ package org.zhiwei.jetpack.rx.op;
 
 import org.zhiwei.jetpack.rx.op.base.BaseOp;
 
-import io.reactivex.Observable;
+import io.reactivex.rxjava3.core.Observable;
 
 /**
  * Author: zhiwei.

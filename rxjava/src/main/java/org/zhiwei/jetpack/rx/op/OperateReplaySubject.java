@@ -3,7 +3,7 @@ package org.zhiwei.jetpack.rx.op;
 
 import org.zhiwei.jetpack.rx.op.base.BaseOp;
 
-import io.reactivex.subjects.ReplaySubject;
+import io.reactivex.rxjava3.subjects.ReplaySubject;
 
 /**
  * Author: zhiwei.

@@ -7,7 +7,8 @@ import org.zhiwei.jetpack.rx.op.base.onNextObserver;
 
 import java.util.List;
 
-import io.reactivex.Observable;
+import io.reactivex.rxjava3.core.Observable;
+
 
 /**
  * Author: zhiwei.

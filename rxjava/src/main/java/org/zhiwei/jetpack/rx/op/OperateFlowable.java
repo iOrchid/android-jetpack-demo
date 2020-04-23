@@ -4,9 +4,9 @@ import android.util.Log;
 
 import org.zhiwei.jetpack.rx.op.base.BaseOp;
 
-import io.reactivex.SingleObserver;
-import io.reactivex.disposables.Disposable;
-import io.reactivex.internal.operators.flowable.FlowableFromObservable;
+import io.reactivex.rxjava3.core.SingleObserver;
+import io.reactivex.rxjava3.disposables.Disposable;
+import io.reactivex.rxjava3.internal.operators.flowable.FlowableFromObservable;
 
 /**
  * Author: zhiwei.

@@ -8,7 +8,7 @@ buildscript {
         build_tools_version = '29.0.3'
         min_sdk_verion = 21
         target_sdk_version = 29
-        navigation_version = '2.2.0'
+        navigation_version = '2.3.0-alpha05'
     }
 
     repositories {
@@ -21,7 +21,7 @@ buildscript {
         jcenter()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.6.2'
+        classpath 'com.android.tools.build:gradle:3.6.3'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
         classpath "androidx.navigation:navigation-safe-args-gradle-plugin:$navigation_version"//和navigation版本号一致
 

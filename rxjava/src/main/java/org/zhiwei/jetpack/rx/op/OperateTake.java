@@ -3,9 +3,10 @@ package org.zhiwei.jetpack.rx.op;
 
 import org.zhiwei.jetpack.rx.op.base.BaseOp;
 
-import io.reactivex.Observable;
-import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.schedulers.Schedulers;
+import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
+import io.reactivex.rxjava3.core.Observable;
+import io.reactivex.rxjava3.schedulers.Schedulers;
+
 
 /**
  * Author: zhiwei.

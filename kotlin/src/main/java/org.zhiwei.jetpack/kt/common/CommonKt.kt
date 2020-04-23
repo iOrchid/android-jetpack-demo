@@ -426,32 +426,33 @@ private fun String.getStudentAge(): Int {
 //密封类，必须声明在kt文件根节点，不要放在某个类内部，实现子类可以放在toplevel，或者密封类自身内部嵌套，哪怕在内部多层class内也行
 sealed class Expr//限定某个函数的参数只能是expr的类型
 {
-	//在密封类自身内部，可以声明子类
-	class cccc : Expr() {
-		//甚至在嵌套的内部，也可以，
-		object ggg : Expr()
-	}
+    //在密封类自身内部，可以声明子类
+    class cccc : Expr() {
+        //甚至在嵌套的内部，也可以，
+        object ggg : Expr()
+    }
 }
+
 //下面就是属于expr类型的不同数据，
 data class Const(var name: Double) : Expr()
 
 data class BigNumber(val bb: Double) : Expr()
 private data class CommonNum(var a: Int) : Expr()
 object NotNumber : Expr() {
-	//密封类的子类中，再声明 密封类的子类，是不行的，不是内部嵌套的。
-	//object ddjjjd:Expr()//这是不对的
+    //密封类的子类中，再声明 密封类的子类，是不行的，不是内部嵌套的。
+    //object ddjjjd:Expr()//这是不对的
 }
 
 //虽在同一文件，但是再其他类中，也是不可以声明密封类的子类
 object dddd {
-	//这是错的
-	//object dddj:Expr()
+    //这是错的
+    //object dddj:Expr()
 }
 //todo  typealias 用于定义别名，便于再调用出简写，同时对于多个同名不同包的类，可以区分。
 // 比如Observable，在Rx，LifeCycle中都有，而且在同一个class文件中可能都有引用，那么在参数或者声明类的时候，就必须使用完整包名来区分。如此代码冗长，不便。所以可以在适当位置定义别名，就能简化区分。
 
 typealias NoN = NotNumber//用NoN简写代指 NotNumber类，
 typealias lObserver = Observer<View>
-typealias rObserver = io.reactivex.Observer<View>
+typealias rObserver = io.reactivex.rxjava3.core.Observer<View>
 //内联类，目前还是实验特性，要求必须有且只有一个主函数的参数，作为内联参数，且val
 //private inline class TinClazz(val a: Int) {}

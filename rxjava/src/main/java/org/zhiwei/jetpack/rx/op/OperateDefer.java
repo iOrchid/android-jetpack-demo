@@ -3,10 +3,7 @@ package org.zhiwei.jetpack.rx.op;
 
 import org.zhiwei.jetpack.rx.op.base.BaseOp;
 
-import java.util.concurrent.Callable;
-
-import io.reactivex.Observable;
-import io.reactivex.ObservableSource;
+import io.reactivex.rxjava3.core.Observable;
 
 /**
  * Author: zhiwei.
@@ -35,7 +32,7 @@ public class OperateDefer extends BaseOp {
 
 		//todo 实现延迟加载 defer操作符
 		public Observable<String> getBrand() {
-			return Observable.defer((Callable<ObservableSource<String>>) () -> Observable.just(brand));
+			return Observable.defer(() -> Observable.just(brand));
 		}
 
 		public void setBrand(String brand) {

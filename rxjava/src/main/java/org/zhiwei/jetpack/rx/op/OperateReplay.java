@@ -3,8 +3,9 @@ package org.zhiwei.jetpack.rx.op;
 
 import org.zhiwei.jetpack.rx.op.base.BaseOp;
 
-import io.reactivex.observables.ConnectableObservable;
-import io.reactivex.subjects.PublishSubject;
+import io.reactivex.rxjava3.observables.ConnectableObservable;
+import io.reactivex.rxjava3.subjects.PublishSubject;
+
 
 /**
  * Author: zhiwei.
