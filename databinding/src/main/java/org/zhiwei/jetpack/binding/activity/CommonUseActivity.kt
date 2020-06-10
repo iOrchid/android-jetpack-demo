@@ -104,7 +104,9 @@ class CommonUseActivity : AppCompatActivity(), View.OnClickListener {
 			}
 			R.id.btn_change_field -> {
 				fuser.name = "李四/里斯"
-				fuser.age.set(20);fuser.desc.set("这两个field可以改变，你会发现名字name是不改变的")
+				fuser.age.set(20)
+				fuser.sex = 1
+				fuser.desc.set("虽然只有两个observable的field，但是整个user对象都会被刷新。")
 			}
 			R.id.btn_change_ob -> {
 				obuser.name = "王二二"

@@ -62,7 +62,7 @@
 				android:layout_width="match_parent"
 				android:layout_height="wrap_content"
 				android:gravity="center"
-				android:text="@{fuser.name+fuser.age+fuser.sex+fuser.desc}"
+				android:text="@{fuser.name+`    `+fuser.age+`    `+fuser.sex+`    `+fuser.desc}"
 				android:textColor="@android:color/holo_blue_bright"
 				tools:text="Field的user的数据信息" />
 
