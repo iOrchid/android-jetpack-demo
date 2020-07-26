@@ -39,6 +39,7 @@ class LiveActivity : AppCompatActivity() {
     val liveTwo = MutableLiveData<String>()
     val mediatorLive = MediatorLiveData<Pair<String, String>>()
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_livedata)
@@ -91,7 +92,7 @@ class LiveActivity : AppCompatActivity() {
         }
         mediatorLive.addSource(liveTwo) {
             Log.d("LiveActivity", "LiveActivity中 LiveTwo ---> $it")
-            mediatorLive.value = "two >>>>" to it
+            mediatorLive.value = "two >>>>>" to it
         }
         mediatorLive.observe(this, Observer {
 //            Log.w("LiveActivity", "LiveActivity中 mediatorLive ---> $it")

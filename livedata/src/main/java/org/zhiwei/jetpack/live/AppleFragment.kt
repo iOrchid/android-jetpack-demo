@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.map
+import androidx.lifecycle.switchMap
 import kotlinx.android.synthetic.main.fg_apple.*
 
 /**
@@ -65,6 +66,17 @@ class AppleFragment : Fragment() {
                 tv_media_live_apple.text = it.toString()
                 Log.w("AppleFragment", "AppleFragment中 mediatorLive ---> $it")
             })
+
+            //switch map 结合mediator，通过条件，控制选择数据源,这里模拟的是，it的数字奇偶，控制最终输出
+            val swLive = mediatorLive.switchMap {
+                if (it.second.takeLast(1).toInt() % 2 == 0) liveOne else liveTwo
+            }
+            //UI可以看出，不论是one，还是 two，改变的话，只有满足条件，才会生效。
+            swLive.observe(viewLifecycleOwner, Observer {
+                tv_switch_live_apple.text = it
+                Log.w("AppleFragment", "AppleFragment中 switchMap ---> $it")
+            })
+
         }
 
     }
