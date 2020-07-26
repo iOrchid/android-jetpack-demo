@@ -38,6 +38,11 @@ class AppleFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+    }
+
+    override fun onResume() {
+        super.onResume()
+
         (requireActivity() as LiveActivity).apply {
             liveAppleData.observe(viewLifecycleOwner, Observer {
                 tv_live_apple.text = it
@@ -53,7 +58,14 @@ class AppleFragment : Fragment() {
                 tv_mapped_live_apple.text = it.toString()
                 Log.w("AppleFragment", "LiveData在AppleFragment中 map后的数据 $it")
             })
-        }
-    }
 
+            //mediator
+            mediatorLive.observe(this, Observer {
+                //如果在inactive状态下，one two都变化了，它resume后只接受最新的
+                tv_media_live_apple.text = it.toString()
+                Log.w("AppleFragment", "AppleFragment中 mediatorLive ---> $it")
+            })
+        }
+
+    }
 }
