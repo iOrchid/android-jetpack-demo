@@ -41,14 +41,6 @@ class LAdapter : BaseAdapter() {
 	override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
 		val inflater = LayoutInflater.from(parent?.context)
 		val binding = ItemLvBinding.inflate(inflater)
-		//java 写法
-//            if (convertView == null) {
-//              binding=  DataBindingUtil.inflate<ItemLvBinding>(inflater, R.layout.item_lv, parent, false);
-//            } else {
-//              binding-  DataBindingUtil.getBinding(convertView);
-//            }
-//        binding.setVariable(BR.user,users.get(position));
-
 		binding.user = users[position]
 		return binding.root
 	}
