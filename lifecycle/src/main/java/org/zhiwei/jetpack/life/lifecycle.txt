@@ -1,9 +1,0 @@
-## lifecycle 是androidx的一个框架库，实现与Activity/Fragment等View的生命周期的同步处理，也避免引起内存泄漏等问题。
-
-先前若自定义listener等，在activity的onStart、onStop中分别回调listener的 onStart、onStop来周期同步，但是存在异常现象
-如listener的onStart做了耗时操作，而Activity已经onStart，用户返回则onStop，同步调用了listener的onStop，就出现了listener的onStart尚未完成便被onStop的问题。
-
-## 使用lifeCycle需要继承appcompatActivity(其父类ComponentActivity实现了lifecycle接口)，而不能是Activity，因为Activity没有实现对应的接口。20181105当前看的版本接口里如此，以后或许会变。
-
-LifeCycle持有Activity/Fragment的生命状态的信息，并能追踪其状态变化
-

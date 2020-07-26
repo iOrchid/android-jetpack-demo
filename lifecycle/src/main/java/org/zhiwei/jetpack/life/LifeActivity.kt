@@ -2,6 +2,7 @@ package org.zhiwei.jetpack.life
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.lifecycleScope
 
 /**
  * 作者： 志威  zhiwei.org
@@ -31,6 +32,10 @@ class LifeActivity : AppCompatActivity() {
             }
 
         }).startLocation()
+
+        lifecycleScope.launchWhenCreated {
+
+        }
 
     }
     /*

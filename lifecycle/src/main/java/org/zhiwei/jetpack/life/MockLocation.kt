@@ -1,7 +1,7 @@
 package org.zhiwei.jetpack.life
 
 import androidx.lifecycle.Lifecycle
-import androidx.lifecycle.LifecycleObserver
+import androidx.lifecycle.LifecycleEventObserver
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.OnLifecycleEvent
 
@@ -10,11 +10,12 @@ import androidx.lifecycle.OnLifecycleEvent
  * Date: 2018/11/5 0005,14:31.
  */
 class MockLocation(private val owner: LifecycleOwner?, private val callBack: LocationCallBack?) :
-    LifecycleObserver {
+/*LifecycleObserver,*/LifecycleEventObserver {
 
     private var enable = false
 
-    //如此则会自动感知生命周期，并调用相应操作
+    // region 如此则会自动感知生命周期，并调用相应操作 ,如果是实现LifecycleObserver的接口，可以这么根据event单独处理。
+    //如果是实现了LifecycleEventObserver，就不需要这个region块，而是使用onStateChanged的处理
     @OnLifecycleEvent(Lifecycle.Event.ON_START)
     fun onStart() {
         if (enable) {
@@ -22,6 +23,13 @@ class MockLocation(private val owner: LifecycleOwner?, private val callBack: Loc
             // 而未真的start定位之前，activity就被stop，同时listener也被调用stop，即出现了本listener在start之前调用了stop的异常现象
         }
     }
+
+    @OnLifecycleEvent(Lifecycle.Event.ON_STOP)
+    fun onStop() {
+        //do some stop operate
+    }
+
+    //endregion
 
     /**
      * 模拟开始定位
@@ -34,13 +42,25 @@ class MockLocation(private val owner: LifecycleOwner?, private val callBack: Loc
         }
     }
 
-    @OnLifecycleEvent(Lifecycle.Event.ON_STOP)
-    fun onStop() {
-        //do some stop operate
-    }
-
     interface LocationCallBack {
         fun onSuccess()
+    }
+
+    override fun onStateChanged(source: LifecycleOwner, event: Lifecycle.Event) {
+        when (event) {
+            Lifecycle.Event.ON_CREATE -> {
+            }
+            Lifecycle.Event.ON_START -> {
+            }
+            Lifecycle.Event.ON_RESUME -> {
+            }
+            Lifecycle.Event.ON_PAUSE -> {
+            }
+            Lifecycle.Event.ON_STOP -> {
+            }
+            Lifecycle.Event.ON_DESTROY -> {
+            }
+        }
     }
 
 }
