@@ -1,45 +1,59 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-	xmlns:tools="http://schemas.android.com/tools"
-	android:layout_width="match_parent"
-	android:layout_height="match_parent"
-	android:gravity="center_horizontal"
-	android:orientation="vertical"
-	android:padding="10dp">
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+		android:layout_width="match_parent"
+		android:layout_height="match_parent">
 
-	<TextView
-		android:id="@+id/tv_age_live"
-		android:layout_width="wrap_content"
-		android:layout_height="wrap_content"
-		android:textSize="18sp"
-		tools:text="Age" />
+	<androidx.appcompat.widget.LinearLayoutCompat
+			android:layout_width="match_parent"
+			android:layout_height="match_parent"
+			android:gravity="center_horizontal"
+			android:orientation="vertical"
+			android:padding="10dp">
 
-	<TextView
-		android:id="@+id/tv_name_live"
-		android:layout_width="wrap_content"
-		android:layout_height="wrap_content"
-		android:textSize="18sp"
-		tools:text="Name" />
+		<androidx.appcompat.widget.AppCompatTextView
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:text="LiveData使用演示" />
 
-	<TextView
-		android:id="@+id/tv_city_live"
-		android:layout_width="wrap_content"
-		android:layout_height="wrap_content"
-		android:textColor="@color/red"
-		android:textSize="18sp"
-		tools:text="City" />
+		<androidx.appcompat.widget.AppCompatTextView
+				android:id="@+id/tv_live_data_activity"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:text="当前liveData的值: " />
 
-	<Button
-		android:layout_width="wrap_content"
-		android:layout_height="wrap_content"
-		android:onClick="changeLive"
-		android:text="变更LiveUser属性"
-		android:textAllCaps="false" />
 
-	<TextView
-		android:id="@+id/tv_info_live"
-		android:layout_width="wrap_content"
-		android:layout_height="wrap_content"
-		android:textColor="@color/blue"
-		tools:text="user info message" />
-</LinearLayout>
+		<FrameLayout
+				android:id="@+id/fl_container_live"
+				android:layout_width="match_parent"
+				android:layout_height="300dp"
+				android:layout_marginTop="20dp"
+				android:background="@android:color/darker_gray" />
+
+		<androidx.appcompat.widget.AppCompatButton
+				android:id="@+id/btn_create_fg_live"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_marginTop="10dp"
+				android:padding="5dp"
+				android:text="创建fragment" />
+
+		<androidx.appcompat.widget.AppCompatButton
+				android:id="@+id/btn_destroy_fg_live"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_marginTop="20dp"
+				android:padding="5dp"
+				android:text="销毁fragment" />
+
+
+		<androidx.appcompat.widget.AppCompatButton
+				android:id="@+id/btn_change_live"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_marginTop="20dp"
+				android:padding="5dp"
+				android:text="变更LiveData值" />
+
+	</androidx.appcompat.widget.LinearLayoutCompat>
+
+</androidx.core.widget.NestedScrollView>
