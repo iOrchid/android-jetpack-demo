@@ -1,11 +1,13 @@
 package org.zhiwei.jetpack.live
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
+import androidx.lifecycle.map
 import kotlinx.android.synthetic.main.fg_apple.*
 
 /**
@@ -25,6 +27,7 @@ import kotlinx.android.synthetic.main.fg_apple.*
  */
 class AppleFragment : Fragment() {
 
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -35,9 +38,22 @@ class AppleFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        (requireActivity() as LiveActivity).liveAppleData.observe(viewLifecycleOwner, Observer {
-            tv_live_apple.text = it
-        })
+        (requireActivity() as LiveActivity).apply {
+            liveAppleData.observe(viewLifecycleOwner, Observer {
+                tv_live_apple.text = it
+                Log.i("AppleFragment", "LiveData在AppleFragment中 $it")
+            })
+
+            val liveMapApple = liveAppleData.map {
+                Log.d("AppleFragment", "LiveData在AppleFragment中 map $it")
+                "it mapped it ${it.takeLast(4)}"
+            }
+            //在inActive状态下，是不会感知数据的，但是一旦resume，就会得到最新的数据
+            liveMapApple.observe(viewLifecycleOwner, Observer {
+                tv_mapped_live_apple.text = it.toString()
+                Log.w("AppleFragment", "LiveData在AppleFragment中 map后的数据 $it")
+            })
+        }
     }
 
 }

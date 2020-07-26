@@ -21,6 +21,13 @@
 				android:layout_height="wrap_content"
 				android:text="当前liveData的值: " />
 
+		<androidx.appcompat.widget.AppCompatTextView
+				android:id="@+id/tv_mapped_data_activity"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:text="Map后liveData值: "
+				android:textColor="@color/colorPrimary" />
+
 
 		<FrameLayout
 				android:id="@+id/fl_container_live"

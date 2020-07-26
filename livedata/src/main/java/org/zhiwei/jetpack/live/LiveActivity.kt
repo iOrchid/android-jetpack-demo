@@ -1,9 +1,11 @@
 package org.zhiwei.jetpack.live
 
 import android.os.Bundle
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
+import androidx.lifecycle.map
 import kotlinx.android.synthetic.main.activity_livedata.*
 
 /**
@@ -26,6 +28,11 @@ class LiveActivity : AppCompatActivity() {
 
     val liveAppleData = MutableLiveData<String>()
 
+
+    val liveMappedData = liveAppleData.map {
+        Pair<Int, String>(it.hashCode(), it)
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_livedata)
@@ -46,9 +53,16 @@ class LiveActivity : AppCompatActivity() {
         btn_change_live.setOnClickListener {
             liveAppleData.value = "当前liveData的值：${System.currentTimeMillis()}"
         }
+
         //观察值
         liveAppleData.observe(this, Observer {
             tv_live_data_activity.text = it
+            Log.i("LiveActivity", "LiveData在LiveActivity中 $it")
+        })
+        //map转换后的数值
+        liveMappedData.observe(this, Observer {
+            tv_mapped_data_activity.text = it.toString()
+            Log.i("LiveActivity", "LiveData在LiveActivity中 map 后 $it")
         })
 
     }
