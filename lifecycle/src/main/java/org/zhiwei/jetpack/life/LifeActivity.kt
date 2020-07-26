@@ -1,8 +1,11 @@
 package org.zhiwei.jetpack.life
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
+import kotlinx.android.synthetic.main.activity_lifecycle.*
+import org.zhiwei.jetpack.life.vm.VmActivity
 
 /**
  * 作者： 志威  zhiwei.org
@@ -21,9 +24,14 @@ import androidx.lifecycle.lifecycleScope
  */
 class LifeActivity : AppCompatActivity() {
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_lifecycle)
+
+        btn_life_vm.setOnClickListener {
+            startActivity(Intent(this, VmActivity::class.java))
+        }
         //调用定位
         MockLocation(this, object : MockLocation.LocationCallBack {
             override fun onSuccess() {

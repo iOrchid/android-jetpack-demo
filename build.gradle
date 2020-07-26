@@ -8,7 +8,7 @@ buildscript {
         build_tools_version = '29.0.3'
         min_sdk_verion = 21
         target_sdk_version = 29
-        navigation_version = '2.3.0-alpha05'
+        navigation_version = '2.3.0'
     }
 
     repositories {
