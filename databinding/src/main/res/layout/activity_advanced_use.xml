@@ -56,6 +56,7 @@
 		<!--这里的src属性，并不支持网络加载url，或者uri，我们可以在静态函数中，适配兼容-->
 		<androidx.appcompat.widget.AppCompatImageView
 			imgSrc="@{url}"
+			android:id="@+id/iv_image_advance"
 			android:layout_width="wrap_content"
 			android:layout_height="50dp"
 			android:src="@drawable/img_banner" />
@@ -74,6 +75,7 @@
 		<androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
+			android:id="@+id/sfl_advance"
 			app:sfl_refreshing="@={activity.refreshing}">
 
 			<androidx.appcompat.widget.AppCompatTextView

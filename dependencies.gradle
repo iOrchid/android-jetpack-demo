@@ -82,15 +82,15 @@ dependencies {
 	implementation 'androidx.room:room-ktx:2.3.0-alpha01'
 	kapt "androidx.room:room-compiler:2.3.0-alpha01"
 
-	implementation 'androidx.paging:paging-runtime:3.0.0-alpha02'
-	implementation 'androidx.paging:paging-runtime-ktx:3.0.0-alpha02'
-	implementation 'androidx.paging:paging-common:3.0.0-alpha02'
-	implementation 'androidx.paging:paging-common-ktx:3.0.0-alpha02'
+	implementation 'androidx.paging:paging-runtime:3.0.0-alpha03'
+	implementation 'androidx.paging:paging-runtime-ktx:3.0.0-alpha03'
+	implementation 'androidx.paging:paging-common:3.0.0-alpha03'
+	implementation 'androidx.paging:paging-common-ktx:3.0.0-alpha03'
 //	implementation 'androidx.paging:paging-rxjava2:2.1.2'
 //	implementation 'androidx.paging:paging-rxjava2-ktx:2.1.2'
 
-	implementation 'androidx.work:work-runtime:2.4.0-rc01'
-	implementation 'androidx.work:work-runtime-ktx:2.4.0-rc01'
+	implementation 'androidx.work:work-runtime:2.4.0'
+	implementation 'androidx.work:work-runtime-ktx:2.4.0'
 //	implementation 'androidx.work:work-rxjava2:2.4.0-alpha02'
 	//注意配置navigation版本号的时候，project下的build.gradle的class path也需要同步navigation的版本号配置
 	implementation "androidx.navigation:navigation-ui:$navigation_version"

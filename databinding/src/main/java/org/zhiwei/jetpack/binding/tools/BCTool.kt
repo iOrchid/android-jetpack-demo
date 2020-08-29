@@ -98,5 +98,4 @@ object BCTool {
 		return view.isRefreshing
 	}
 
-
 }

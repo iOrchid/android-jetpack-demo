@@ -62,10 +62,15 @@ class AdvancedUseActivity : AppCompatActivity() {
 		binding.tvLongTextAdBinding.text = strText
 		//
 		binding.activity = this
+		binding.lifecycleOwner = this
 		//这里记录log，liveData感知，也就证明，ui的刷新，将状态反向绑定给了data
 		refreshing.observe(this, Observer<Boolean> {
 			Log.i("AdvancedUseActivity", "refreshing $it")
 		})
+
+		binding.ivImageAdvance.setOnClickListener {
+			refreshing.value = (false)
+		}
 
 	}
 	/*

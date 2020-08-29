@@ -63,8 +63,8 @@ class ObUser() : BaseObservable() {
 		//kotlin的成员属性必须初始化（或者lateinit）
 		set(value) {
 			//BR.name表示通知name这个属性的变化。 notifyChange() 通知所有变化
-			notifyPropertyChanged(BR.name)
 			field = value
+			notifyPropertyChanged(BR.name)
 		}
 		@Bindable
 		get() = field
@@ -73,8 +73,8 @@ class ObUser() : BaseObservable() {
 	@Bindable
 	var age = 18
 		set(value) {
-			notifyPropertyChanged(BR.age)
 			field = value
+			notifyPropertyChanged(BR.age)
 		}
 		get() = field
 
@@ -91,7 +91,7 @@ class ObUser() : BaseObservable() {
 		}
 
 	override fun toString(): String {
-		notifyChange()
+//		notifyChange()
 		return "$name $age $sex $desc"
 	}
 }

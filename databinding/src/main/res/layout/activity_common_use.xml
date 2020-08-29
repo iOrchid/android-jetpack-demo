@@ -74,13 +74,13 @@
 
 		<!--Observable的 user对象-->
 		<androidx.appcompat.widget.AppCompatTextView
-				android:id="@+id/tv_ob_user_info"
-				android:layout_width="match_parent"
-				android:layout_height="wrap_content"
-				android:gravity="center"
-				android:text="@{ouser.toString()}"
-				android:textColor="@android:color/holo_green_dark"
-				tools:text="Observable user的数据信息" />
+			android:id="@+id/tv_ob_user_info"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:gravity="center"
+			android:text="@{ouser.name}"
+			android:textColor="@android:color/holo_green_dark"
+			tools:text="Observable user的数据信息" />
 		<!--注意这里点击改变observable user的数据，上面以及下面include的user数据会同步响应变化-->
 		<androidx.appcompat.widget.AppCompatButton
 				android:id="@+id/btn_change_ob"
