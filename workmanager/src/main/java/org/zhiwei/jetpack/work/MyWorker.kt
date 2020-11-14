@@ -7,8 +7,6 @@ import android.util.Log
 import androidx.work.CoroutineWorker
 import androidx.work.Data
 import androidx.work.WorkerParameters
-import com.blankj.utilcode.util.FileUtils
-import com.blankj.utilcode.util.PathUtils
 import kotlinx.coroutines.delay
 
 /**
@@ -29,10 +27,9 @@ class MyWorker(private val context: Context, private val workerParams: WorkerPar
             it.data = Uri.parse("https://www.baidu.com")
             it.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
         })
-        val path = PathUtils.getExternalAppDownloadPath() + "/work.ttt"
 
-        Log.i("test", "worker doWork() name: $name age: $age  $path")
-        FileUtils.createOrExistsFile(path)
+        Log.i("test", "worker doWork() name: $name age: $age")
+
         //返回任务的结果数据，
         val out = Data.Builder()
             .putString("result", "哈哈哈，真的可以返回呀")
