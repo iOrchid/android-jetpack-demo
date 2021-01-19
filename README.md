@@ -219,6 +219,6 @@ See the License for the specific language governing permissions and
 limitations under the License.
 ```
 
-
+[![Stargazers over time](https://starchart.cc/zhiwei1990/android-jetpack-demo.svg)](https://starchart.cc/zhiwei1990/android-jetpack-demo)
 
 [^1]: 项目当前`(2020/05/07)`开发环境为AndroidStudio `3.6.3`、`gradle 6.3`、`Jdk8`、`Kotlin 1.3.72`
