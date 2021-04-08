@@ -15,19 +15,19 @@ import org.junit.runner.RunWith
  */
 @RunWith(AndroidJUnit4ClassRunner::class)
 class ExampleInstrumentedTest {
-	@Test
-	fun useAppContext() {
-		// Context of the app under test.
-		val appContext = ApplicationProvider.getApplicationContext<Application>()
-		assertEquals("org.zhiwei.jetpack.live.test", appContext.packageName)
-	}
+    @Test
+    fun useAppContext() {
+        // Context of the app under test.
+        val appContext = ApplicationProvider.getApplicationContext<Application>()
+        assertEquals("org.zhiwei.jetpack.live.test", appContext.packageName)
+    }
 
-	/**
-	 * LiveEvent的测试
-	 */
-	@Test
-	fun testLiveEvent() {
-		val lowEvent = MutableLiveData<LowLiveEvent<String>>()
+    /**
+     * LiveEvent的测试
+     */
+    @Test
+    fun testLiveEvent() {
+        val lowEvent = MutableLiveData<LowLiveEvent<String>>()
 
 //		lowEvent.observe(viewLifeCycleOwner, Observer {
 //			it.getContentIfNotHandled()?.let {
@@ -39,5 +39,5 @@ class ExampleInstrumentedTest {
 //		singleLive.observe(viewLifeCycleOwner, Observer {
 //			//同理
 //		})
-	}
+    }
 }

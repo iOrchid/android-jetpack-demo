@@ -14,17 +14,17 @@ import io.reactivex.rxjava3.schedulers.Schedulers;
  */
 public class OperateTake extends BaseOp {
 
-	private static String TAG = "OperateTake";
+    private static String TAG = "OperateTake";
 
-	/*
-	 *  take操作符，摘取指定长度的数据指令，或者按时间来摘取
-	 */
-	public static void doSome() {
-		Observable.just("A", "B", "C", "D", "E", "F")
-				.take(3)
-				.subscribeOn(Schedulers.io())
-				.observeOn(AndroidSchedulers.mainThread())
-				.subscribe(getObserver(TAG, ""));
-	}
+    /*
+     *  take操作符，摘取指定长度的数据指令，或者按时间来摘取
+     */
+    public static void doSome() {
+        Observable.just("A", "B", "C", "D", "E", "F")
+                .take(3)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(getObserver(TAG, ""));
+    }
 
 }

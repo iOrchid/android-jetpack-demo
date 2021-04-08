@@ -8,6 +8,6 @@ import dagger.Component;
  */
 @Component(modules = {OtherModule.class})
 public interface OtherComponent {
-	//对外提供必要信息
-	String getInfo();
+    //对外提供必要信息
+    String getInfo();
 }

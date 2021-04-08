@@ -21,17 +21,17 @@ import androidx.navigation.Navigation
  */
 class NavActivity : AppCompatActivity() {
 
-	override fun onCreate(savedInstanceState: Bundle?) {
-		super.onCreate(savedInstanceState)
-		setContentView(R.layout.activity_navigation)
-	}
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_navigation)
+    }
 
-	/**
-	 * navigation相关的操作
-	 *
-	 * @return 是否向上返回 栈
-	 */
-	override fun onSupportNavigateUp(): Boolean {
-		return Navigation.findNavController(this, R.id.fg_main_navi).navigateUp()
-	}
+    /**
+     * navigation相关的操作
+     *
+     * @return 是否向上返回 栈
+     */
+    override fun onSupportNavigateUp(): Boolean {
+        return Navigation.findNavController(this, R.id.fg_main_navi).navigateUp()
+    }
 }

@@ -68,6 +68,7 @@ class KtSyntax {
 
     //1、字符串模板，类似shell或python语言中，也就是占位符的赶脚，不需要的可以转义
     val stemp = "this is a string template $ePi 使用\$符号就能引用到其他变量或者函数"
+
     //2、null检查，在topLevel中就说到，对于任何kotlin的类型，都有一个可null的对应，比如Int，有Int?，String有String?,Any有Any?
     //todo 不同于java，在kotlin中，如果声明和定义的是可null的，那么在使用的时候，就需要判空，或者强制使用，而声明定义不带?的那种，就不能接收null，否则崩溃
     private var nStr: String? = null
@@ -102,9 +103,11 @@ class KtSyntax {
     //1),不同于Java，在Kotlin中 数组/列表 不限定必须是某一个类型，元素可以任何类型
     private var arrayA = arrayOf(1, 'a', false, "String", kotlin.math.PI, 0.9f)
     private var listA = listOf(1, 0.3, 'c', "SSS", kotlin.math.PI)
+
     //2)、初始化的方式有两种：
     private var arr1 = Array<Int>(5) { i -> 3 * i }
     private var arr2 = arrayOf(1, 2, 3, 4, 5)//或者emptyArray(),arrayOfNulls（）来初始化
+
     //可变的列表与不可变的，它们的操作不一样的，
     var listMut = mutableListOf<Int>()
     var listFinal = listOf<Int>()

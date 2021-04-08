@@ -3,7 +3,6 @@ package org.zhiwei.jetpack.life
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.lifecycleScope
 import kotlinx.android.synthetic.main.activity_lifecycle.*
 import org.zhiwei.jetpack.life.vm.VmActivity
 

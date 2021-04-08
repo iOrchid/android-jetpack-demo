@@ -241,19 +241,19 @@ org.zhiwei.jetpack.kt.ExampleUnitTest$Derived@156643d4
         }
     }
 
-	private data class MoreResult(val name: String, var age: Int, val sex: Int)
+    private data class MoreResult(val name: String, var age: Int, val sex: Int)
 
-	private fun testMoreResult(): MoreResult {
-		//函数可以返回多个数据值，kotlin需要将其组装成一个data class，系统提供了Pair,Triple用于组装两个/三个数据
-		val p = Triple("a", 3, 'c')
-		return MoreResult("xx", 20, 0)
-	}
+    private fun testMoreResult(): MoreResult {
+        //函数可以返回多个数据值，kotlin需要将其组装成一个data class，系统提供了Pair,Triple用于组装两个/三个数据
+        val p = Triple("a", 3, 'c')
+        return MoreResult("xx", 20, 0)
+    }
 
-	private fun testMore() {
-		//在取返回值的时候，可以成一个变量，也可以多个属性值直接出来。
-		val (name, age, sex) = testMoreResult()
-		println(name)
-	}
+    private fun testMore() {
+        //在取返回值的时候，可以成一个变量，也可以多个属性值直接出来。
+        val (name, age, sex) = testMoreResult()
+        println(name)
+    }
 
     //</editor-folder>
 
@@ -263,6 +263,7 @@ org.zhiwei.jetpack.kt.ExampleUnitTest$Derived@156643d4
     private val map1 = mapOf<Int, Any>(1.to("jjj"))
     private val map2 =
         mapOf<Int, Any>(1.to('c'))//你看这里，前面写了<Int,Any>所以可以传String，或者char，但是如果前面限定了，后面就不能乱写了。
+
     //2、List Set 实现了结合Collection的接口，而map相对独立，他们都有对应的Mutable的List、Set、Map。kotlin中List的默认实现是ArrayList，可调整长度的数组
     private val list = List<String>(5) { i -> "" }//初始化list，五个元素长度
 

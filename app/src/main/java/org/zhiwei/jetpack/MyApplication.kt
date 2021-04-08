@@ -18,8 +18,8 @@ import android.app.Application
  */
 class MyApplication : Application() {
 
-	override fun registerActivityLifecycleCallbacks(callback: ActivityLifecycleCallbacks?) {
-		super.registerActivityLifecycleCallbacks(callback)
+    override fun registerActivityLifecycleCallbacks(callback: ActivityLifecycleCallbacks?) {
+        super.registerActivityLifecycleCallbacks(callback)
 
-	}
+    }
 }

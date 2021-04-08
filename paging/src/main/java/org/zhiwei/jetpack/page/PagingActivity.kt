@@ -25,20 +25,20 @@ import org.zhiwei.jetpack.page.list.MyAdapter
  * paging的演示界面
  */
 class PagingActivity : AppCompatActivity() {
-	//滑动list的时候，可以看到滚动条的变化，感知到数据的平滑加载
-	override fun onCreate(savedInstanceState: Bundle?) {
-		super.onCreate(savedInstanceState)
-		setContentView(R.layout.activity_paging)
-		val recyclerView = findViewById<RecyclerView>(R.id.rv_paging)
-		recyclerView.layoutManager = LinearLayoutManager(this)
-		val adapter = MyAdapter()
-		recyclerView.adapter = adapter
-		val presenter = MyPresenter(this)
-		presenter.allStudents.observe(
-			this,
-			Observer { pagedList: PagedList<Student> ->
-				adapter.submitList(pagedList)
-			}
-		)
-	}
+    //滑动list的时候，可以看到滚动条的变化，感知到数据的平滑加载
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_paging)
+        val recyclerView = findViewById<RecyclerView>(R.id.rv_paging)
+        recyclerView.layoutManager = LinearLayoutManager(this)
+        val adapter = MyAdapter()
+        recyclerView.adapter = adapter
+        val presenter = MyPresenter(this)
+        presenter.allStudents.observe(
+            this,
+            Observer { pagedList: PagedList<Student> ->
+                adapter.submitList(pagedList)
+            }
+        )
+    }
 }

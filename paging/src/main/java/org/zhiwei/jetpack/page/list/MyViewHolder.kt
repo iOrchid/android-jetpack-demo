@@ -11,10 +11,10 @@ import org.zhiwei.jetpack.page.db.Student
  * Date: 2018/11/6 0006,11:29.
  */
 class MyViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-	private val tvName: TextView = itemView.findViewById(R.id.tv_name_item_rv_paging)
+    private val tvName: TextView = itemView.findViewById(R.id.tv_name_item_rv_paging)
 
-	fun setName(student: Student?) {
-		tvName.text = student?.name
-	}
+    fun setName(student: Student?) {
+        tvName.text = student?.name
+    }
 
 }

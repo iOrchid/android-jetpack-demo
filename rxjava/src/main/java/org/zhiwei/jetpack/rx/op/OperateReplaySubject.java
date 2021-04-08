@@ -11,23 +11,23 @@ import io.reactivex.rxjava3.subjects.ReplaySubject;
  */
 public class OperateReplaySubject extends BaseOp {
 
-	private static String TAG = "OperatePublishSubject";
+    private static String TAG = "OperatePublishSubject";
 
-	/*
-	 *  replay重复发送之前的指令，并保持原有顺序，给新的observer
-	 */
-	public static void doSome() {
-		ReplaySubject<String> subject = ReplaySubject.create();
-		subject.onNext("A");
-		subject.subscribe(getObserver(TAG, "First"));
-		subject.onNext("B");
-		subject.onNext("C");
-		subject.onNext("D");
-		subject.onNext("E");
-		subject.onNext("F");
-		subject.onComplete();
+    /*
+     *  replay重复发送之前的指令，并保持原有顺序，给新的observer
+     */
+    public static void doSome() {
+        ReplaySubject<String> subject = ReplaySubject.create();
+        subject.onNext("A");
+        subject.subscribe(getObserver(TAG, "First"));
+        subject.onNext("B");
+        subject.onNext("C");
+        subject.onNext("D");
+        subject.onNext("E");
+        subject.onNext("F");
+        subject.onComplete();
 
-		subject.subscribe(getObserver(TAG, "Second"));
+        subject.subscribe(getObserver(TAG, "Second"));
 
 
         /*
@@ -48,6 +48,6 @@ public class OperateReplaySubject extends BaseOp {
         Second F
         Second onComplete
          */
-	}
+    }
 
 }

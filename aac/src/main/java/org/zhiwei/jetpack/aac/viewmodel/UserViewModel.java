@@ -19,33 +19,33 @@ import java.util.List;
  */
 public class UserViewModel extends AndroidViewModel {
 
-	MutableLiveData<List<UserModel>> userList = new MutableLiveData<>();
-	MediatorLiveData<String> userInfo = new MediatorLiveData<>();
-	private DataRepository repository;
+    MutableLiveData<List<UserModel>> userList = new MutableLiveData<>();
+    MediatorLiveData<String> userInfo = new MediatorLiveData<>();
+    private DataRepository repository;
 
-	/**
-	 * 需要调用基类的super（application）
-	 *
-	 * @param application
-	 */
-	public UserViewModel(@NonNull Application application) {
-		super(application);
-		repository = DataRepository.getInstance();
-	}
+    /**
+     * 需要调用基类的super（application）
+     *
+     * @param application
+     */
+    public UserViewModel(@NonNull Application application) {
+        super(application);
+        repository = DataRepository.getInstance();
+    }
 
-	public void loadData() {
-		userList.setValue(repository.getLocalData());
-	}
+    public void loadData() {
+        userList.setValue(repository.getLocalData());
+    }
 
-	public void loadUserName(String name) {
-		userInfo.setValue(repository.getUserByName(name).toString());
-	}
+    public void loadUserName(String name) {
+        userInfo.setValue(repository.getUserByName(name).toString());
+    }
 
-	public LiveData<List<UserModel>> getUserList() {
-		return userList;
-	}
+    public LiveData<List<UserModel>> getUserList() {
+        return userList;
+    }
 
-	public LiveData<String> getUserInfo() {
-		return userInfo;
-	}
+    public LiveData<String> getUserInfo() {
+        return userInfo;
+    }
 }

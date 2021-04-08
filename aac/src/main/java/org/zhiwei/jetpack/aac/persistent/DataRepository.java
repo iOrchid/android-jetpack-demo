@@ -11,22 +11,22 @@ import java.util.List;
  */
 public class DataRepository {
 
-	private static DataRepository instance = new DataRepository();
-	private VirtualLocalData localData;
+    private static DataRepository instance = new DataRepository();
+    private VirtualLocalData localData;
 
-	private DataRepository() {
-		localData = VirtualLocalData.getInstance();
-	}
+    private DataRepository() {
+        localData = VirtualLocalData.getInstance();
+    }
 
-	public static DataRepository getInstance() {
-		return instance;
-	}
+    public static DataRepository getInstance() {
+        return instance;
+    }
 
-	public List<UserModel> getLocalData() {
-		return localData.getUserList();
-	}
+    public List<UserModel> getLocalData() {
+        return localData.getUserList();
+    }
 
-	public UserModel getUserByName(String name) {
-		return localData.getUser(name);
-	}
+    public UserModel getUserByName(String name) {
+        return localData.getUser(name);
+    }
 }

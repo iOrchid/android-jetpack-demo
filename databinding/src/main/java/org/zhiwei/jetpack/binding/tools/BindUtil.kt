@@ -27,14 +27,14 @@ import android.widget.Toast
  * 用于xml的databinding中，这是在kt文件顶级写法，不需要static标记
  */
 fun ageName(age: Int, name: String): String {
-	return "Kt函数：$age$name"
+    return "Kt函数：$age$name"
 }
 
 /**
  * [context]参数弹toast
  */
 fun toastV(context: Context) {
-	Toast.makeText(context, "context弹出toast", Toast.LENGTH_SHORT).show()
+    Toast.makeText(context, "context弹出toast", Toast.LENGTH_SHORT).show()
 }
 
 /**
@@ -42,28 +42,28 @@ fun toastV(context: Context) {
  */
 class BindUtil {
 
-	companion object {
-		@JvmStatic
-		fun ageAge(age: Int): String {
-			return "年龄$age"
-		}
-	}
+    companion object {
+        @JvmStatic
+        fun ageAge(age: Int): String {
+            return "年龄$age"
+        }
+    }
 }
 
 /**
  * 写在object中
  */
 object BindHelp {
-	@JvmStatic
-	fun nameName(name: String): String {
-		return "姓名$name"
-	}
+    @JvmStatic
+    fun nameName(name: String): String {
+        return "姓名$name"
+    }
 
-	/**
-	 * 用于view的静态点击
-	 */
-	@JvmStatic
-	fun staticClick(view: View) {
-		Toast.makeText(view.context, "静态函数引用", Toast.LENGTH_SHORT).show()
-	}
+    /**
+     * 用于view的静态点击
+     */
+    @JvmStatic
+    fun staticClick(view: View) {
+        Toast.makeText(view.context, "静态函数引用", Toast.LENGTH_SHORT).show()
+    }
 }

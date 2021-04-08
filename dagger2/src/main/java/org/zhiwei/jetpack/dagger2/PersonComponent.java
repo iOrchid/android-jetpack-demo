@@ -13,6 +13,6 @@ import dagger.Component;
 //dagger注解，连接器，用于链接module与activity、使用方,可以多个module.dependencies可以添加其他依赖的component，那么就能使用其他的compoent内对象的信息
 public interface PersonComponent {
 
-	void connectIt(DaggerActivity daggerActivity);
+    void connectIt(DaggerActivity daggerActivity);
 
 }

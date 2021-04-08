@@ -84,8 +84,10 @@ object AdvancedKt {
     private class ProClass {
         //委托string
         var strOne: String by DelegateStr()
+
         //委托int，这里属性是val的，必须有getValue，setValue可以没有，因为也用不着。
         val n99: Int by DelegateInt()
+
         //使用系统提供的标准库，有一些内置的委托类定义，lazy就是其中之一，只用于val类型属性。
         val ss: String by lazy { "" }
     }

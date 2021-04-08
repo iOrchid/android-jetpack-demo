@@ -12,25 +12,29 @@ import androidx.room.PrimaryKey
  */
 @Entity(tableName = "db_user") //room数据库的注解标记,数据表entity  (tableName="db_user",indices = {@Index(value = "uname",unique = true)})
 class DbUser {
-	@PrimaryKey(autoGenerate = true)
-	var uid = 0
-	@ColumnInfo(name = "uname")
-	var name: String? = null
-	@ColumnInfo
-	var city: String? = null
-	@ColumnInfo
-	var age = 0
-	//如此数据表中不会有@Ignore标记的属性字段
-	@Ignore
-	var isSingle = false
+    @PrimaryKey(autoGenerate = true)
+    var uid = 0
 
-	override fun toString(): String {
-		return "DbUser{" +
-				"uid=" + uid +
-				", name='" + name + '\'' +
-				", city='" + city + '\'' +
-				", age=" + age +
-				", single=" + isSingle +
-				'}'
-	}
+    @ColumnInfo(name = "uname")
+    var name: String? = null
+
+    @ColumnInfo
+    var city: String? = null
+
+    @ColumnInfo
+    var age = 0
+
+    //如此数据表中不会有@Ignore标记的属性字段
+    @Ignore
+    var isSingle = false
+
+    override fun toString(): String {
+        return "DbUser{" +
+                "uid=" + uid +
+                ", name='" + name + '\'' +
+                ", city='" + city + '\'' +
+                ", age=" + age +
+                ", single=" + isSingle +
+                '}'
+    }
 }

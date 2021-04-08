@@ -12,17 +12,17 @@ import androidx.room.Query
  */
 @Dao
 interface StudentDao {
-	/**
-	 * 这里就是使用了paging的DataSource，用于便捷加载分页数据
-	 *
-	 * @return
-	 */
-	@get:Query("SELECT * FROM Student ORDER BY name COLLATE NOCASE ASC")
-	val allStudent: DataSource.Factory<Int, Student>
+    /**
+     * 这里就是使用了paging的DataSource，用于便捷加载分页数据
+     *
+     * @return
+     */
+    @get:Query("SELECT * FROM Student ORDER BY name COLLATE NOCASE ASC")
+    val allStudent: DataSource.Factory<Int, Student>
 
-	@Insert
-	fun insert(students: List<Student>)
+    @Insert
+    fun insert(students: List<Student>)
 
-	@Insert
-	fun insert(student: Student?)
+    @Insert
+    fun insert(student: Student?)
 }

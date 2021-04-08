@@ -34,55 +34,55 @@ import org.zhiwei.jetpack.binding.databinding.ActivityAdvancedUseBinding
  */
 class AdvancedUseActivity : AppCompatActivity() {
 
-	val refreshing = MutableLiveData<Boolean>()//标记是否刷新中的liveData对象。不能private，因为要用在xml中
+    val refreshing = MutableLiveData<Boolean>()//标记是否刷新中的liveData对象。不能private，因为要用在xml中
 
-	override fun onCreate(savedInstanceState: Bundle?) {
-		super.onCreate(savedInstanceState)
-		//glide的初始化
-		Glide.init(this, GlideBuilder())
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        //glide的初始化
+        Glide.init(this, GlideBuilder())
 
-		val binding = DataBindingUtil.setContentView<ActivityAdvancedUseBinding>(
-			this,
-			R.layout.activity_advanced_use
-		)
-		//user设置
-		val user = ObUser("张三", 30, 1, "没有修改名字前的数据")
-		binding.user = user
+        val binding = DataBindingUtil.setContentView<ActivityAdvancedUseBinding>(
+            this,
+            R.layout.activity_advanced_use
+        )
+        //user设置
+        val user = ObUser("张三", 30, 1, "没有修改名字前的数据")
+        binding.user = user
 
-		//url
-		val url = "http://img.redocn.com/sheying/20140731/qinghaihuyuanjing_2820969.jpg"
-		binding.url = url
-		//设置myView的img参数
-		binding.myBg = resources.getDrawable(R.drawable.img_banner)
-		//演示自定义View实现双向绑定
-		// 1、先单向绑定 也就是将viewModel的数据变化，通知UI来刷新；(这里也就是在[BCTool]中static声明自定义属性，refreshing)
-		// 2、将UI的变化，反向绑定，来通知数据模型的状态变化。
-		// 3、完成双向绑定，避免死循环。
-		//这里是个长文本，配合演示swipeRefreshLayout的状态感知
-		binding.tvLongTextAdBinding.text = strText
-		//
-		binding.activity = this
-		binding.lifecycleOwner = this
-		//这里记录log，liveData感知，也就证明，ui的刷新，将状态反向绑定给了data
-		refreshing.observe(this, Observer<Boolean> {
-			Log.i("AdvancedUseActivity", "refreshing $it")
-		})
+        //url
+        val url = "http://img.redocn.com/sheying/20140731/qinghaihuyuanjing_2820969.jpg"
+        binding.url = url
+        //设置myView的img参数
+        binding.myBg = resources.getDrawable(R.drawable.img_banner)
+        //演示自定义View实现双向绑定
+        // 1、先单向绑定 也就是将viewModel的数据变化，通知UI来刷新；(这里也就是在[BCTool]中static声明自定义属性，refreshing)
+        // 2、将UI的变化，反向绑定，来通知数据模型的状态变化。
+        // 3、完成双向绑定，避免死循环。
+        //这里是个长文本，配合演示swipeRefreshLayout的状态感知
+        binding.tvLongTextAdBinding.text = strText
+        //
+        binding.activity = this
+        binding.lifecycleOwner = this
+        //这里记录log，liveData感知，也就证明，ui的刷新，将状态反向绑定给了data
+        refreshing.observe(this, Observer<Boolean> {
+            Log.i("AdvancedUseActivity", "refreshing $it")
+        })
 
-		binding.ivImageAdvance.setOnClickListener {
-			refreshing.value = (false)
-		}
+        binding.ivImageAdvance.setOnClickListener {
+            refreshing.value = (false)
+        }
 
-	}
-	/*
-	问题：1、@{user.name}如果user为null，是否运行崩溃
-	2、DataBinding是否支持所有View的属性
-	3、双向绑定时候，是否会数据陷入死循环。
+    }
+    /*
+    问题：1、@{user.name}如果user为null，是否运行崩溃
+    2、DataBinding是否支持所有View的属性
+    3、双向绑定时候，是否会数据陷入死循环。
 
-	解答：1，如果xml中的variable没有binding赋值，如上面的myBg那一行如果注释掉。运行时就会崩溃。而如果只是name为空，就会显示null，而不会崩溃。
-	2、上面已经知道，不是所有的View的属性都可以直接dataBinding的，需要满足标准setXXX/getXXX的函数方式，或者按照[MyImageView]中注释写的那三种方法，
-	扩展view的属性binding支持
-	3、双向绑定也不会死循环，因为实现类会做old==new的value值校验，并return，避免陷入双向刷新的死循环。
-	 */
+    解答：1，如果xml中的variable没有binding赋值，如上面的myBg那一行如果注释掉。运行时就会崩溃。而如果只是name为空，就会显示null，而不会崩溃。
+    2、上面已经知道，不是所有的View的属性都可以直接dataBinding的，需要满足标准setXXX/getXXX的函数方式，或者按照[MyImageView]中注释写的那三种方法，
+    扩展view的属性binding支持
+    3、双向绑定也不会死循环，因为实现类会做old==new的value值校验，并return，避免陷入双向刷新的死循环。
+     */
 }
 
 const val strText = """

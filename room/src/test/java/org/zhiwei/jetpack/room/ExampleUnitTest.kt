@@ -9,8 +9,8 @@ import org.junit.Test
  * @see [Testing documentation](http://d.android.com/tools/testing)
  */
 class ExampleUnitTest {
-	@Test
-	fun addition_isCorrect() {
-		assertEquals(4, (2 + 2).toLong())
-	}
+    @Test
+    fun addition_isCorrect() {
+        assertEquals(4, (2 + 2).toLong())
+    }
 }

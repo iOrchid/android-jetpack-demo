@@ -14,27 +14,27 @@ import org.zhiwei.jetpack.page.db.StudentDatabase
  */
 class MyPresenter(private val context: Context) {
 
-	val allStudents: LiveData<PagedList<Student>>
+    val allStudents: LiveData<PagedList<Student>>
 
-	private val dao: StudentDao = StudentDatabase.getInstance(context)!!.studentDao
+    private val dao: StudentDao = StudentDatabase.getInstance(context)!!.studentDao
 
-	fun insertStudent(name: String) {
-		dao.insert(Student(name))
-	}
+    fun insertStudent(name: String) {
+        dao.insert(Student(name))
+    }
 
-	companion object {
-		private const val PAGE_SIZE = 15
-		private const val ENABLE_PLACEHOLDERS = false
-	}
+    companion object {
+        private const val PAGE_SIZE = 15
+        private const val ENABLE_PLACEHOLDERS = false
+    }
 
-	init {
-		allStudents = LivePagedListBuilder<Int, Student>(
-			dao.allStudent,
-			PagedList.Config.Builder()
-				.setPageSize(PAGE_SIZE) //配置分页加载的数量
-				.setEnablePlaceholders(ENABLE_PLACEHOLDERS) //配置是否启动PlaceHolders
-				.setInitialLoadSizeHint(PAGE_SIZE) //初始化加载的数量
-				.build()
-		).build()
-	}
+    init {
+        allStudents = LivePagedListBuilder<Int, Student>(
+            dao.allStudent,
+            PagedList.Config.Builder()
+                .setPageSize(PAGE_SIZE) //配置分页加载的数量
+                .setEnablePlaceholders(ENABLE_PLACEHOLDERS) //配置是否启动PlaceHolders
+                .setInitialLoadSizeHint(PAGE_SIZE) //初始化加载的数量
+                .build()
+        ).build()
+    }
 }

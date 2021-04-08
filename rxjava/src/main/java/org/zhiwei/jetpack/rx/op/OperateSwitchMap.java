@@ -16,17 +16,17 @@ import io.reactivex.rxjava3.schedulers.Schedulers;
  */
 public class OperateSwitchMap extends BaseOp {
 
-	private static String TAG = "OperateSwitchMap";
+    private static String TAG = "OperateSwitchMap";
 
-	/*
-	 *  switchMap 转换输入流的Observable
-	 */
-	public static void doSome() {
-		Observable.just("A", "B", "C", "D", "E", "F")
-				.switchMap((Function<String, ObservableSource<String>>) s -> Observable.just(s + " @@"))
-				.subscribeOn(Schedulers.io())
-				.observeOn(AndroidSchedulers.mainThread())
-				.subscribe(getObserver(TAG, ""));
-	}
+    /*
+     *  switchMap 转换输入流的Observable
+     */
+    public static void doSome() {
+        Observable.just("A", "B", "C", "D", "E", "F")
+                .switchMap((Function<String, ObservableSource<String>>) s -> Observable.just(s + " @@"))
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(getObserver(TAG, ""));
+    }
 
 }

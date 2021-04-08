@@ -25,36 +25,36 @@ import org.zhiwei.jetpack.binding.databinding.ItemLvBinding
  */
 class LAdapter : BaseAdapter() {
 
-	private var users: MutableList<ObUser> = arrayListOf()
+    private var users: MutableList<ObUser> = arrayListOf()
 
-	init {
-		//初始化三个数据
-		for (i in 0..2) {
-			users.add(
-				ObUser("小明$i", 20 + i, i % 2, "小明小强从小学就伴随你一直到现在$i")
-			)
-		}
-	}
+    init {
+        //初始化三个数据
+        for (i in 0..2) {
+            users.add(
+                ObUser("小明$i", 20 + i, i % 2, "小明小强从小学就伴随你一直到现在$i")
+            )
+        }
+    }
 
-	//简单演示，就不用viewHolder了。实际使用，不应该这样写
-	@SuppressLint("ViewHolder")
-	override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
-		val inflater = LayoutInflater.from(parent?.context)
-		val binding = ItemLvBinding.inflate(inflater)
-		binding.user = users[position]
-		return binding.root
-	}
+    //简单演示，就不用viewHolder了。实际使用，不应该这样写
+    @SuppressLint("ViewHolder")
+    override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
+        val inflater = LayoutInflater.from(parent?.context)
+        val binding = ItemLvBinding.inflate(inflater)
+        binding.user = users[position]
+        return binding.root
+    }
 
-	override fun getItem(position: Int): ObUser {
-		return users[position]
-	}
+    override fun getItem(position: Int): ObUser {
+        return users[position]
+    }
 
-	override fun getItemId(position: Int): Long {
-		return position.toLong()
-	}
+    override fun getItemId(position: Int): Long {
+        return position.toLong()
+    }
 
-	override fun getCount(): Int {
-		//就简单演示3条数据
-		return users.size
-	}
+    override fun getCount(): Int {
+        //就简单演示3条数据
+        return users.size
+    }
 }
