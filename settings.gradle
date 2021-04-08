@@ -1,1 +1,1 @@
-include ':app', ':kotlin', ':databinding', ':rxjava', ':livedata', ':aac', ':dagger2', ':lifecycle', ':navigation', ':paging', ':room', ':workmanager'
+include ':app', ':kotlin', ':databinding', ':rxjava', ':livedata', ':dagger2', ':lifecycle', ':navigation', ':paging', ':room', ':workmanager'

@@ -1,4 +1,4 @@
-![android-jetpack-demo](./images/jetpack-hero.png)
+![android-jetpack-demo](./images/hero.svg)
 
 ## 🔥Android-Jetpack-Demo
 
@@ -20,13 +20,19 @@
 
 ####  一、项目简介
 
-> 写在前面，首先感谢各位童鞋对本项目的关注和支持，项目诞生之时，也是自己学习jetpack初期，随着这两年的企业项目实践，对于jetpack的认识也有较为深入的了解，后续将逐步重构掉该项目，使用最新的kotlin+jetpack+coroutines体系，配合详细博文，期待同学们的支持和鼓励！
+> 更新前言：不觉间项目已经三年有余了，Kotlin和Jetpack相关技术点也更新了很多，更成了为Android开发的技术首选。
+>
+> 忙碌于生活的苟且，屈服于资本家压榨之下，身心俱疲。颇有久在樊笼里的感觉，而今果断裸辞，只想做个纯粹的技术人，做自己感兴趣的事，有意义的事，也希望后续可以给各位朋友带来一些学习的分享。共勉之。
 
-**Android-Jetpack-Demo** 是一个简单的、集成当前Google主流Android技术的示例Demo，旨在帮助有需要的初级开发者，快速上手Android新技术、新架构。主要使用`livedata`、`lifecycle`、`paging`、`room`、`navigation`、`workmanager`、`rxjava`、`kotlin`、`dagger2`以及`viewmodel`的**MVVM**简单架构。
-
-> 代码中都有详细的注释，主要操作演示**关注`logcat`的日志**输出
+**Android-Jetpack-Demo** 全新设计开发中,会集合当下Android应用开发的Kotlin语言相关技术知识点、Jetpack各组建的使用及相关原理源码分析文章等。
 
 #### 二、更新日志
+
+- **2.0.0（2021年4月8日）ing……**
+  - 逐步的重新设计Demo的app
+  - 加入Kotlin进阶语法和协程Coroutines的知识分析
+  - UI改用Jetpack Compose设计
+  - 其他Jetpack的组件用例及分析
 
 - 2.0.0-alpha01(2019年11月28日)
   - 更新`jetpack`组件版本
@@ -45,7 +51,7 @@
   - `databinding`的基础用法
   - `AAC`的初级使用
 
-#### 三、Sample示例
+#### 三、Sample示例(这是以前老版本的)
 
 [下载体验apk](https://raw.githubusercontent.com/zhiwei1990/android-jetpack-demo/master/apk/app-release.apk)或者手机扫描二维码下载`Demo`的`apk`包
 
@@ -53,33 +59,9 @@
 
 #### 四、项目组成[^1]
 
-项目主要简单的演示一些`android`技术与框架库的入门使用，`RxJava`操作符、`Kotlin`基本语法，以及`JetPack`的组件的简单使用。
+项目主要简单的演示`Android`当前应用开发层面的前沿技术与框架库使用，`RxJava`操作符、`Kotlin`语法及进阶，协程Coroutines的分析及使用，以及`JetPack`的组件的进阶使用。
 
-- `Android Architecture Components`
-- `RxJava`
-- `Kotlin`
-- `Dagger2`
-- **Jetpack**
-  - `lifecycle`
-  - `livedata`
-  - `databinding`
-  - `navigation`
-  - `paging`
-  - `room`
-  - `workmanager`
-
-#### 五、规划
-
-- [x] 基础使用入门的代码演示
-- [x] `DataBinding`代码详解
-- [x] `Kotlin`代码详解
-- [ ] `jetpack`组件的使用详解
-- [ ] `rxJava`的使用详解
-- [ ] `dagger/koin`注入框架的演示详解
-- [ ] `App`架构相关的详解
-- [ ] 进阶技术&架构的演示
-
-#### 六、示例内容(部分）
+#### 五、示例内容(1.x版本部分）
 
 ![databinding](./images/databinding.png)![lifecycle](./images/lifecycle.png)![logcat](./images/logcat.png)
 
@@ -93,12 +75,6 @@ package org.zhiwei.jetpack.kt.base
  * 主页： Github: https://github.com/zhiwei1990
  * 日期： 2019年09月19日 11:13
  * 签名： 天行健，君子以自强不息；地势坤，君子以厚德载物。
- *      _              _           _     _   ____  _             _ _
- *     / \   _ __   __| |_ __ ___ (_) __| | / ___|| |_ _   _  __| (_) ___
- *    / _ \ | '_ \ / _` | '__/ _ \| |/ _` | \___ \| __| | | |/ _` | |/ _ \
- *   / ___ \| | | | (_| | | | (_) | | (_| |  ___) | |_| |_| | (_| | | (_) |
- *  /_/   \_\_| |_|\__,_|_|  \___/|_|\__,_| |____/ \__|\__,_|\__,_|_|\___/  -- 志威 zhiwei.org
- *
  * You never know what you can do until you try !
  * ----------------------------------------------------------------
  * Kotlin的类与对象的相关定义与信息
@@ -109,14 +85,6 @@ package org.zhiwei.jetpack.kt.base
  * 5、每个class类都有一个伴生静态object类companion object 在class加载的时候就初始化了，作为类的静态成员存在。（object类，自身是没有伴生类的）
  * 6、kotlin不同于java，一般的声明成员属性，不用getter/setter，当然除非你要控制只能getter不能setter，那样就需要重写
  * 7、在class定义函数和top level中差不都，也就是protected这个权限符号的区分。默认函数也是final的。
- * 8、如果class是final的，函数open修饰，是无效的。而且，open的函数或者变量不能private修饰，且与final修饰符是互斥的。
- * 9、构造函数分为主构造函数，次构造函数，而且kotlin中，如果主构造函数显式的写在class的名后，则所有次级构造函数必须调用主构造函数
- * 10、class类都有一个自身的init函数，在class加载时候就运行，早于构造函数的调用！！！
- * 11、接口实现，或者类的继承，需要用:，类似于java中的extends，implementation,可多个接口，但只有一个父类
- * 12、抽象类abstract，其抽象函数 不同于接口的函数，它是不能有默认方法体的。
- * 13、如果子类实现多个接口，且接口中拥有共同的函数命，就会冲突，在子类中就需要显式指明调用哪个
- * 14、单例类object，也就是静态的单例模式，
- * 15、数据类，一个数据bean对象的类，特殊的class 使用data class 声明
  */
 public final class KtClazz {
 
@@ -155,37 +123,13 @@ public final class KtClazz {
         println("普通默认的无参函数定义")
     }
 
-    /**
-     * 有参数的函数定义
-     */
-    private fun paramConfig(name: String, age: Int) {
-        println("name: " + name + "age: " + age)
-    }
-
-    /**
-     * 可变参数的函数定义，这里用到了vararg的关键词，如此调用方就可以传递一个或者多个参数进来。类似于java中的 (String... apple)的写法
-     */
-    internal fun varargConfig(vararg apple: String) {
-        println("该函数，是可以接收可变个数的参数")
-    }
-
-    //</editor-folder>
-
-    /**
-     * 伴生的object类，静态类，可以写这个KtClassObj的名字，也可以省略不写。
-     */
-    /*private*/ companion object /*KtClazzObj*/ {
-        private const val constName = "静态常量名"//静态常量，声明定义在class的伴生对象类中
-
-    }
-
 }
 //更多的详见代码 ......
 ```
 
 更多详情，请下载代码，内有详细注释，**鉴于本人才学有限，若有不足之处，请大神不吝赐教**。
 
-#### 七、关于作者 [![jianshu](./images/jianshu.svg)](https://www.jianshu.com/u/72294e6848c0)[![github](./images/github.svg)](https://github.com/zhiwei1990)[![csdn](./images/csdn.svg)](https://blog.csdn.net/zhiwei9001)
+#### 六、关于作者 [![jianshu](./images/jianshu.svg)](https://www.jianshu.com/u/72294e6848c0)[![github](./images/github.svg)](https://github.com/zhiwei1990)[![csdn](./images/csdn.svg)](https://blog.csdn.net/zhiwei9001)
 
 > 作者本人只是一个，就职于某`知名`(@_@ 有名字的)互联网公司的，技术小白一枚，对于编程有着某种兴趣和热爱，然技术确实渣渣，好读书、不求甚解~~
 
@@ -198,13 +142,17 @@ public final class KtClazz {
   > 测试一下`Github`爱心💗**sponsor**功能,说不定您心血来潮了呢😂
 
   ![img](./images/admireCode.png)![alipay](./images/alipay2QR.png)
+  
+- **感谢以下捐助者**，您的鼓励更是我的动力；即使没有捐赠的各位好友，还请不要吝惜`star/follow`或者`issues`的建议。
+
+  ![01](./images/admire/01.jpg)![02](./images/admire/02.jpg)![03](./images/admire/03.jpg)![04](./images/admire/04.jpg)![05](./images/admire/05.jpg)![06](./images/admire/06.jpg)![07](./images/admire/07.jpg)
 
 [![Github stars](https://img.shields.io/github/stars/zhiwei1990/android-jetpack-demo.svg?style=social&label=star)](https://github.com/zhiwei1990/android-jetpack-demo)[![Github followers](https://img.shields.io/github/followers/zhiwei1990.svg?style=social&label=follow)](https://github.com/zhiwei1990/android-jetpack-demo)[![Github issues](https://img.shields.io/github/issues/zhiwei1990/android-jetpack-demo.svg?style=social&label=issues)](https://github.com/zhiwei1990/android-jetpack-demo)
 
 - **License**
 
 ```markdown
-Copyright 2020 zhiwei1990
+Copyright 2021 zhiwei1990
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -221,4 +169,5 @@ limitations under the License.
 
 [![Stargazers over time](https://starchart.cc/zhiwei1990/android-jetpack-demo.svg)](https://starchart.cc/zhiwei1990/android-jetpack-demo)
 
-[^1]: 项目当前`(2020/05/07)`开发环境为AndroidStudio `3.6.3`、`gradle 6.3`、`Jdk8`、`Kotlin 1.3.72`
+[^1]: 项目当前`(2021/04/08)`开发环境为AndroidStudio `4.1.3`、`gradle 6.8.3`、  `Jdk8`、`Kotlin 1.4.32`
+

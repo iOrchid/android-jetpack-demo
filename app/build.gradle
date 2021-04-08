@@ -6,55 +6,54 @@ apply from: '../dependencies.gradle'
 
 //定义使用当前分支的commit次数作为int值，用于versionCode
 static def getGitVersionCode() {
-	return 'git rev-list HEAD --first-parent --count'.execute().text.trim().toInteger()
+    return 'git rev-list HEAD --first-parent --count'.execute().text.trim().toInteger()
 }
 //使用git中的tag作为versionName
 static def getGitVersionName() {
-	//因为指令获取的是 v1.1.1-13-ge084397 格式的，所以需要有效部分即可
-	def trim = 'git describe --tags'.execute().text.trim()
+    //因为指令获取的是 v1.1.1-13-ge084397 格式的，所以需要有效部分即可
+    def trim = 'git describe --tags'.execute().text.trim()
 //	if (trim.size() > 6)
 //		return trim.substring(0, 6)
-	//使用AS打tag，名字就规范些
-	return trim
+    //使用AS打tag，名字就规范些
+    return trim
 }
 
 android {
-	//一些其他参数配置，放在了dependencies.gradle中，多个模块共用
+    //一些其他参数配置，放在了dependencies.gradle中，多个模块共用
 
-	defaultConfig {
-		applicationId "org.zhiwei.jetpack"
-		minSdkVersion min_sdk_verion
-		targetSdkVersion target_sdk_version
-		versionCode getGitVersionCode()
-		versionName getGitVersionName()
-		testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    defaultConfig {
+        applicationId "org.zhiwei.jetpack"
+        minSdkVersion min_sdk_verion
+        targetSdkVersion target_sdk_version
+        versionCode getGitVersionCode()
+        versionName getGitVersionName()
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
 
-		//指定room.schemaLocation生成的文件路径,或者可以在database对象类上 声明 exportSchema = false
-		javaCompileOptions {
-			annotationProcessorOptions {
-				arguments = ["room.schemaLocation": "$projectDir/schemas".toString()]
-			}
-		}
-	}
+        //指定room.schemaLocation生成的文件路径,或者可以在database对象类上 声明 exportSchema = false
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments = ["room.schemaLocation": "$projectDir/schemas".toString()]
+            }
+        }
+    }
 
 }
 
 dependencies {
-	//在gradle.properties中配置的字段，读取出来是string的，所以toBoolean才是布尔值
-	if (!singleModule.toBoolean()) {
-		//依赖其他模块，path 字段可以省略
-		implementation project(path: ':aac')
-		implementation project(path: ':workmanager')
-		implementation project(path: ':livedata')
-		implementation project(path: ':room')
-		implementation project(path: ':paging')
-		implementation project(':rxjava')
-		implementation project(':dagger2')
-		implementation project(path: ':lifecycle')
-		implementation project(path: ':kotlin')
-		implementation project(path: ':databinding')
-		implementation project(path: ':navigation')
-	}
+    //在gradle.properties中配置的字段，读取出来是string的，所以toBoolean才是布尔值
+    if (!singleModule.toBoolean()) {
+        //依赖其他模块，path 字段可以省略
+        implementation project(path: ':workmanager')
+        implementation project(path: ':livedata')
+        implementation project(path: ':room')
+        implementation project(path: ':paging')
+        implementation project(':rxjava')
+        implementation project(':dagger2')
+        implementation project(path: ':lifecycle')
+        implementation project(path: ':kotlin')
+        implementation project(path: ':databinding')
+        implementation project(path: ':navigation')
+    }
 
 }

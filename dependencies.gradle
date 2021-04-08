@@ -1,135 +1,128 @@
 //统一配置一些共用参数
 apply plugin: 'kotlin-android'
-apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-parcelize'
 apply plugin: 'kotlin-kapt'
 
 
 android {
-	compileSdkVersion compile_sdk_version
-	buildToolsVersion build_tools_version
+    compileSdkVersion compile_sdk_version
+    buildToolsVersion build_tools_version
 
-	buildTypes {
-		release {
-			minifyEnabled false
-			proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-		}
-	}
-	//共用配置，主要针对其他module，作为独立模块运行的时候，它需要一个启动Activity的主入口配置
-	sourceSets {
-		//默认没有配置flavors的情况，只有main主体渠道 分类debug 和release 两种favorites
-		//如果该module作为独立app运行，使用的配置
-		debug {
-			if (singleModule.toBoolean()) {
-				manifest.srcFile 'src/debug/AndroidManifest.xml'
-				//同理，可配置res.srcDirs之类的
-			} else {
-				manifest.srcFile 'src/main/AndroidManifest.xml'
-			}
-		}
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+    //共用配置，主要针对其他module，作为独立模块运行的时候，它需要一个启动Activity的主入口配置
+    sourceSets {
+        //默认没有配置flavors的情况，只有main主体渠道 分类debug 和release 两种favorites
+        //如果该module作为独立app运行，使用的配置
+        debug {
+            if (singleModule.toBoolean()) {
+                manifest.srcFile 'src/debug/AndroidManifest.xml'
+                //同理，可配置res.srcDirs之类的
+            } else {
+                manifest.srcFile 'src/main/AndroidManifest.xml'
+            }
+        }
 
-		release {
-			//作为module的时候，就不需要debug包下的文件，排除掉
-			java {
-				exclude 'src/debug/**'
-			}
-		}
-	}
+        release {
+            //作为module的时候，就不需要debug包下的文件，排除掉
+            java {
+                exclude 'src/debug/**'
+            }
+        }
+    }
 
-	dataBinding {
-		enabled = true
-	}
+    buildFeatures {
+        // Enables Jetpack Compose for this module
+        compose true
+        dataBinding true
+    }
 
-	compileOptions {
-		sourceCompatibility 1.8
-		targetCompatibility 1.8
-	}
+    compileOptions {
+        sourceCompatibility 1.8
+        targetCompatibility 1.8
+    }
 
-	// work-runtime-ktx 2.1.0 and above now requires Java 8
-	kotlinOptions {
-		jvmTarget = "1.8"
-	}
+    // work-runtime-ktx 2.1.0 and above now requires Java 8
+    kotlinOptions {
+        jvmTarget = "1.8"
+    }
+
+    composeOptions {
+        kotlinCompilerExtensionVersion '1.0.0-beta01'
+    }
 
 }
 
 //创建一个dependencies管理的文件，可以在各自module的build.gradle文件里，apply form 该文件的相对路径(包含fileName)，如 apply form ../dependencies.gradle
 dependencies {
-	implementation fileTree(include: ['*.jar'], dir: 'libs')
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
 
-	implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
-	implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.4.0"
-	implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.4.0"
-	implementation 'androidx.appcompat:appcompat:1.3.0-alpha01'
-	implementation 'androidx.core:core-ktx:1.5.0-alpha01'
-	implementation 'androidx.fragment:fragment-ktx:1.3.0-alpha06'
-	implementation 'androidx.activity:activity-ktx:1.2.0-alpha06'
-	implementation 'com.google.android.material:material:1.3.0-alpha02'
-	implementation 'androidx.constraintlayout:constraintlayout:2.0.2'
-	implementation 'androidx.recyclerview:recyclerview:1.2.0-alpha04'
-	implementation 'androidx.swiperefreshlayout:swiperefreshlayout:1.1.0'
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.4.2"
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.4.2"
+    implementation 'androidx.appcompat:appcompat:1.3.0'
+    implementation 'androidx.core:core-ktx:1.5.0'
+    implementation 'androidx.fragment:fragment-ktx:1.3.0'
+    implementation 'androidx.activity:activity-ktx:1.2.0'
+    implementation 'com.google.android.material:material:1.3.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
+    implementation 'androidx.recyclerview:recyclerview:1.2.0'
+    implementation 'androidx.swiperefreshlayout:swiperefreshlayout:1.1.0'
 
-	//<editor-folder desc="jetPack libs">
-//	implementation 'androidx.lifecycle:lifecycle-extensions:2.2.0'//已经废弃
-	implementation 'androidx.lifecycle:lifecycle-livedata:2.3.0-beta01'
-	implementation 'androidx.lifecycle:lifecycle-viewmodel:2.3.0-beta01'
-	implementation 'androidx.lifecycle:lifecycle-runtime:2.3.0-beta01'
-	implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.3.0-beta01'
-	implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.3.0-beta01'
-	kapt "androidx.lifecycle:lifecycle-common-java8:2.3.0-beta01"
+    //<editor-folder desc="jetPack libs">
+    implementation 'androidx.lifecycle:lifecycle-runtime:2.4.0-alpha01'
+    implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.4.0-alpha01'
+    implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.4.0-alpha01'
+    kapt "androidx.lifecycle:lifecycle-common-java8:2.4.0-alpha01"
 
-	implementation 'androidx.room:room-runtime:2.3.0-alpha01'
-//	implementation 'androidx.room:room-rxjava2:2.3.0-alpha01'
-	implementation 'androidx.room:room-common:2.3.0-alpha01'
-	implementation 'androidx.room:room-ktx:2.3.0-alpha01'
-	kapt "androidx.room:room-compiler:2.3.0-alpha01"
+    implementation 'androidx.room:room-runtime:2.3.0-rc01'
+    implementation 'androidx.room:room-common:2.3.0-rc01'
+    implementation 'androidx.room:room-ktx:2.3.0-rc01'
+    kapt "androidx.room:room-compiler:2.3.0-rc01"
 
-	implementation 'androidx.paging:paging-runtime:3.0.0-alpha07'
-	implementation 'androidx.paging:paging-runtime-ktx:3.0.0-alpha07'
-	implementation 'androidx.paging:paging-common:3.0.0-alpha07'
-	implementation 'androidx.paging:paging-common-ktx:3.0.0-alpha07'
-//	implementation 'androidx.paging:paging-rxjava2:2.1.2'
-//	implementation 'androidx.paging:paging-rxjava2-ktx:2.1.2'
+    implementation 'androidx.paging:paging-runtime-ktx:3.0.0-beta03'
+    implementation 'androidx.paging:paging-common-ktx:3.0.0-beta03'
 
-	implementation 'androidx.work:work-runtime:2.5.0-beta01'
-	implementation 'androidx.work:work-runtime-ktx:2.5.0-beta01'
-//	implementation 'androidx.work:work-rxjava2:2.4.0-alpha02'
-	//注意配置navigation版本号的时候，project下的build.gradle的class path也需要同步navigation的版本号配置
-	implementation "androidx.navigation:navigation-ui:$navigation_version"
-	implementation "androidx.navigation:navigation-ui-ktx:$navigation_version"
-	implementation "androidx.navigation:navigation-fragment:$navigation_version"
-	implementation "androidx.navigation:navigation-fragment-ktx:$navigation_version"
-	implementation "androidx.navigation:navigation-runtime:$navigation_version"
-	//</editor-folder>
+    implementation 'androidx.work:work-runtime-ktx:2.7.0-alpha02'
+    //注意配置navigation版本号的时候，project下的build.gradle的class path也需要同步navigation的版本号配置
+    implementation "androidx.navigation:navigation-ui-ktx:$navigation_version"
+    implementation "androidx.navigation:navigation-fragment-ktx:$navigation_version"
+    implementation "androidx.navigation:navigation-runtime:$navigation_version"
+    //</editor-folder>
 
-	//dagger2 从2.28.3版本也就有了 hilt-android 就是优化的dagger
-	implementation 'com.google.dagger:dagger:2.29.1'
-	kapt 'com.google.dagger:dagger-compiler:2.29.1'
+    //dagger2 从2.28.3版本也就有了 hilt-android 就是优化的dagger
+    runtimeOnly group: 'com.google.dagger', name: 'hilt-android', version: '2.33-beta'
 
-	implementation 'io.reactivex.rxjava3:rxjava:3.0.4'
-	implementation 'io.reactivex.rxjava3:rxandroid:3.0.0'
 
-	implementation 'com.squareup.retrofit2:retrofit:2.9.0'
-	implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
-	implementation 'com.squareup.okhttp3:okhttp:4.9.0'
-	implementation 'com.google.code.gson:gson:2.8.6'
+    implementation 'io.reactivex.rxjava3:rxjava:3.0.11'
+    implementation 'io.reactivex.rxjava3:rxandroid:3.0.0'
 
-	implementation 'com.tencent:mmkv-static:1.2.1'
-	//glide
-	implementation 'com.github.bumptech.glide:glide:4.11.0'
-	kapt 'com.github.bumptech.glide:compiler:4.11.0'
+    implementation 'com.squareup.retrofit2:retrofit:2.9.0'
+    implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
+    implementation 'com.squareup.okhttp3:okhttp:4.9.0'
+    implementation 'com.google.code.gson:gson:2.8.6'
 
-	//<editor-folder desc="test libs">
-	testImplementation 'junit:junit:4.13.1'
-	androidTestImplementation 'androidx.test.ext:junit-ktx:1.1.1'
-	androidTestImplementation 'androidx.test:core:1.3.0'
-	androidTestImplementation 'androidx.test:rules:1.2.0'
-	androidTestImplementation 'androidx.test:runner:1.3.0'
-	androidTestImplementation 'androidx.test:core-ktx:1.2.0'
-	androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
+    implementation 'com.tencent:mmkv-static:1.2.6'
+    //coil
+    implementation group: 'io.coil-kt', name: 'coil', version: '1.1.1'
 
-	androidTestImplementation 'org.robolectric:robolectric:4.4'
+    //<editor-folder desc="test libs">
+    testImplementation 'junit:junit:4.13.2'
+    androidTestImplementation 'androidx.test.ext:junit-ktx:1.1.2'
+    androidTestImplementation 'androidx.test:core:1.3.0'
+    androidTestImplementation 'androidx.test:rules:1.3.0'
+    androidTestImplementation 'androidx.test:runner:1.3.0'
+    androidTestImplementation 'androidx.test:core-ktx:1.3.0'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
 
-	androidTestImplementation 'com.squareup.okhttp3:mockwebserver:4.8.0'
-	androidTestImplementation 'org.jetbrains.kotlinx:kotlinx-coroutines-test:1.3.9'
-	//</editor-folder>
+    androidTestImplementation 'org.robolectric:robolectric:4.4'
+
+    androidTestImplementation 'com.squareup.okhttp3:mockwebserver:4.9.0'
+    androidTestImplementation 'org.jetbrains.kotlinx:kotlinx-coroutines-test:1.4.2'
+    //</editor-folder>
 
 }

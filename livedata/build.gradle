@@ -1,33 +1,33 @@
 //根据是否独立运行，将模块作为apk还是module
 if (singleModule.toBoolean()) {
-	apply plugin: 'com.android.application'
+    apply plugin: 'com.android.application'
 } else {
-	apply plugin: 'com.android.library'
+    apply plugin: 'com.android.library'
 }
 
 //引用dependencies中的配置
 apply from: '../dependencies.gradle'
 
 android {
-	//模块共用的配置，都在dependencies.gradle中了
+    //模块共用的配置，都在dependencies.gradle中了
 
-	defaultConfig {
-		//只有独立运行时候才需要applicationId
-		if (singleModule.toBoolean()) {
-			applicationId "org.zhiwei.jetpack.live"
-		}
-		minSdkVersion min_sdk_verion
-		targetSdkVersion target_sdk_version
-		versionCode 1
-		versionName "1.0"
+    defaultConfig {
+        //只有独立运行时候才需要applicationId
+        if (singleModule.toBoolean()) {
+            applicationId "org.zhiwei.jetpack.live"
+        }
+        minSdkVersion min_sdk_verion
+        targetSdkVersion target_sdk_version
+        versionCode 1
+        versionName "1.0"
 
-		testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
-	}
+    }
 
 }
 
 dependencies {
-	//便于统一管理，都放在了dependencies.gradle文件内了，这里文件顶部有apply form
-	//其实可以每个模块仅仅添加各自所需要的依赖库，不过那么比较分散，不便管理
+    //便于统一管理，都放在了dependencies.gradle文件内了，这里文件顶部有apply form
+    //其实可以每个模块仅仅添加各自所需要的依赖库，不过那么比较分散，不便管理
 }
