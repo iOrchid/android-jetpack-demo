@@ -1,6 +1,0 @@
-Navigation 是 Google 新推出的库，其作用简单的说就是用于简化界面间跳转的，Activity 和 Fragment 都可以
-
-// todo 2020年1月9日 注释，目前可以使用singleTop等标签 处理下面的问题
-------使用navigation跳转的fragment，似乎不支持单例模式，都是新创建对象。google官方知晓，似乎这就是他们的一个设计规范。--------
-
-navi——graph编辑器，需要在androidStudio3。2版本以上，settings--experimental中，enable一下。
