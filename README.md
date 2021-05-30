@@ -1,4 +1,4 @@
-![android-jetpack-demo](./images/hero.svg)
+![android-jetpack-demo](./docs/images/hero.svg)
 
 ## 🔥Android-Jetpack-Demo
 
@@ -16,17 +16,19 @@
 	* [四、项目组成[^1]]()
 	* [五、规划]()
 	* [六、示例内容(部分）]()
-	* [七、关于作者]()[![jianshu](./images/jianshu.svg)](https://www.jianshu.com/u/72294e6848c0)[![github](./images/github.svg)](https://github.com/zhiwei1990)[![csdn](./images/csdn.svg)](https://blog.csdn.net/zhiwei9001)
+	* [七、关于作者]()[![jianshu](./docs/images/jianshu.svg)](https://www.jianshu.com/u/72294e6848c0)[![github](./docs/images/github.svg)](https://github.com/zhiwei1990)[![csdn](./docs/images/csdn.svg)](https://blog.csdn.net/zhiwei9001)
 
 ####  一、项目简介
 
 > 更新前言：不觉间项目已经三年有余了，Kotlin和Jetpack相关技术点也更新了很多，更成了为Android开发的技术首选。
 >
-> 忙碌于生活的苟且，屈服于资本家压榨之下，身心俱疲。颇有久在樊笼里的感觉，而今果断裸辞，只想做个纯粹的技术人，做自己感兴趣的事，有意义的事，也希望后续可以给各位朋友带来一些学习的分享。共勉之。
+> 忙碌于生活的苟且，屈服于资本家压榨之下，身心俱疲。颇有久在樊笼里的感觉，只想做个纯粹的技术人，做自己感兴趣的事，有意义的事，也希望后续可以给各位朋友带来一些学习的分享。共勉之。
+
+<font color="green">**感谢支持的各位小伙伴，有技术问题或学习问题都可以在issues中留言**</font>
 
 **Android-Jetpack-Demo** 全新设计开发中,会集合当下Android应用开发的Kotlin语言相关技术知识点、Jetpack各组建的使用及相关原理源码分析文章等。
 
-**代码清理全新设计中,历史代码可参照[source](https://github.com/zhiwei1990/android-jetpack-demo/releases/tag/v2.0.0-alpha01)这里下载。**
+**代码清理全新设计中,所以为空项目，历史代码可参照[source](https://github.com/zhiwei1990/android-jetpack-demo/releases/tag/v2.0.0-alpha01)这里下载。**
 
 #### 二、更新日志
 
@@ -55,9 +57,9 @@
 
 #### 三、Sample示例(这是以前老版本的)
 
-[下载体验apk](https://raw.githubusercontent.com/zhiwei1990/android-jetpack-demo/master/apk/app-release.apk)或者手机扫描二维码下载`Demo`的`apk`包
+[下载体验apk](https://raw.githubusercontent.com/zhiwei1990/android-jetpack-demo/master/docs/apk/app-release.apk)或者手机扫描二维码下载`Demo`的`apk`包
 
-![扫描下载](./images/QR_Jetpack.png)
+![扫描下载](./docs/images/QR_Jetpack.png)
 
 #### 四、项目组成[^1]
 
@@ -65,7 +67,7 @@
 
 #### 五、示例内容(1.x版本部分）
 
-![databinding](./images/databinding.png)![lifecycle](./images/lifecycle.png)![logcat](./images/logcat.png)
+![databinding](./docs/images/databinding.png)![lifecycle](./docs/images/lifecycle.png)![logcat](./docs/images/logcat.png)
 
 - `Kotlin`语法及部分博文[Kotlin](https://www.jianshu.com/p/bdbe2ab6e9b2)
 
@@ -131,7 +133,7 @@ public final class KtClazz {
 
 更多详情，请下载代码，内有详细注释，**鉴于本人才学有限，若有不足之处，请大神不吝赐教**。
 
-#### 六、关于作者 [![jianshu](./images/jianshu.svg)](https://www.jianshu.com/u/72294e6848c0)[![github](./images/github.svg)](https://github.com/zhiwei1990)[![csdn](./images/csdn.svg)](https://blog.csdn.net/zhiwei9001)
+#### 六、关于作者 [![jianshu](./docs/images/jianshu.svg)](https://www.jianshu.com/u/72294e6848c0)[![github](./docs/images/github.svg)](https://github.com/zhiwei1990)[![csdn](./docs/images/csdn.svg)](https://blog.csdn.net/zhiwei9001)
 
 > 作者本人只是一个，就职于某`知名`(@_@ 有名字的)互联网公司的，技术小白一枚，对于编程有着某种兴趣和热爱，然技术确实渣渣，好读书、不求甚解~~
 
@@ -139,15 +141,15 @@ public final class KtClazz {
 
 倘若本项目对你有一丝丝的帮助和价值，烦请给个`star`,或者有什么好的建议或意见，也可以发个`issues`，谢谢！:happy:
 
-- **Donations**![donation](./images/donation.svg)
+- **Donations**![donation](./docs/images/donation.svg)
 
   > 测试一下`Github`爱心💗**sponsor**功能,说不定您心血来潮了呢😂
 
-  ![img](./images/admireCode.png)![alipay](./images/alipay2QR.png)
+  ![img](./docs/images/admireCode.png)![alipay](./docs/images/alipay2QR.png)
   
 - **感谢以下捐助者**，您的鼓励更是我的动力；即使没有捐赠的各位好友，还请不要吝惜`star/follow`或者`issues`的建议。
 
-  ![01](./images/admire/01.jpg)![02](./images/admire/02.jpg)![03](./images/admire/03.jpg)![04](./images/admire/04.jpg)![05](./images/admire/05.jpg)![06](./images/admire/06.jpg)![07](./images/admire/07.jpg)
+  ![01](./docs/images/admire/01.jpg)![02](./docs/images/admire/02.jpg)![03](./docs/images/admire/03.jpg)![04](./docs/images/admire/04.jpg)![05](./docs/images/admire/05.jpg)![06](./docs/images/admire/06.jpg)![07](./docs/images/admire/07.jpg)![anjing](./docs/images/admire/anjing.jpg )<img src="./docs/images/admire/beiying.jpg" alt="beiying" style="zoom:12%;" /><img src="./docs/images/admire/chuifeng.jpg" alt="chuifeng" style="zoom:12%;" /><img src="./docs/images/admire/feizhai.jpg" alt="feizhai" style="zoom:12%;" /><img src="./docs/images/admire/haizei.jpg" alt="haizei" style="zoom:12%;" /><img src="./docs/images/admire/panda.jpg" alt="panda" style="zoom:12%;" /><img src="./docs/images/admire/pig.jpg" alt="pig" style="zoom:12%;" /><img src="./docs/images/admire/yaya.jpg" alt="yaya" style="zoom:12%;" /><img src="./docs/images/admire/yijia.jpg" alt="yijia" style="zoom:12%;" />
 
 [![Github stars](https://img.shields.io/github/stars/zhiwei1990/android-jetpack-demo.svg?style=social&label=star)](https://github.com/zhiwei1990/android-jetpack-demo)[![Github followers](https://img.shields.io/github/followers/zhiwei1990.svg?style=social&label=follow)](https://github.com/zhiwei1990/android-jetpack-demo)[![Github issues](https://img.shields.io/github/issues/zhiwei1990/android-jetpack-demo.svg?style=social&label=issues)](https://github.com/zhiwei1990/android-jetpack-demo)
 
@@ -171,5 +173,6 @@ limitations under the License.
 
 [![Stargazers over time](https://starchart.cc/zhiwei1990/android-jetpack-demo.svg)](https://starchart.cc/zhiwei1990/android-jetpack-demo)
 
-[^1]: 项目当前`(2021/04/08)`开发环境为AndroidStudio `4.1.3`、`gradle 6.8.3`、  `Jdk8`、`Kotlin 1.4.32`
+[^1]: 为研究最新`jetpack`组件的版本和特性，项目当前`(2021/05/30)`开发环境为AndroidStudio `7.0.0-alpha14`、`gradle 7.1.0-alpha01`、  `Jdk8`、`Kotlin 1.5.10`
+[^2]: **项目使用`AS`及相关环境配置可能与你本地不同，**参照 [配置gradle](https://github.com/zhiwei1990/android-jetpack-demo/issues/3#issuecomment-840276571)
 

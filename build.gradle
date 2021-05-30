@@ -3,7 +3,7 @@
 buildscript {
 
     ext {
-        kotlin_version = '1.4.32'
+        kotlin_version = '1.5.10'
         compile_sdk_version = 30
         build_tools_version = '30.0.3'
         min_sdk_verion = 21
@@ -16,7 +16,7 @@ buildscript {
         mavenCentral()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:7.0.0-alpha14'
+        classpath 'com.android.tools.build:gradle:7.1.0-alpha01'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
         classpath "androidx.navigation:navigation-safe-args-gradle-plugin:$navigation_version"
 //和navigation版本号一致
