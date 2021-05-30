@@ -149,7 +149,7 @@ public final class KtClazz {
   
 - **感谢以下捐助者**，您的鼓励更是我的动力；即使没有捐赠的各位好友，还请不要吝惜`star/follow`或者`issues`的建议。
 
-  ![01](./docs/images/admire/01.jpg)![02](./docs/images/admire/02.jpg)![03](./docs/images/admire/03.jpg)![04](./docs/images/admire/04.jpg)![05](./docs/images/admire/05.jpg)![06](./docs/images/admire/06.jpg)![07](./docs/images/admire/07.jpg)![anjing](./docs/images/admire/anjing.jpg )<img src="./docs/images/admire/beiying.jpg" alt="beiying" style="zoom:12%;" /><img src="./docs/images/admire/chuifeng.jpg" alt="chuifeng" style="zoom:12%;" /><img src="./docs/images/admire/feizhai.jpg" alt="feizhai" style="zoom:12%;" /><img src="./docs/images/admire/haizei.jpg" alt="haizei" style="zoom:12%;" /><img src="./docs/images/admire/panda.jpg" alt="panda" style="zoom:12%;" /><img src="./docs/images/admire/pig.jpg" alt="pig" style="zoom:12%;" /><img src="./docs/images/admire/yaya.jpg" alt="yaya" style="zoom:12%;" /><img src="./docs/images/admire/yijia.jpg" alt="yijia" style="zoom:12%;" />
+  ![01](./docs/images/admire/01.jpg)![02](./docs/images/admire/02.jpg)![03](./docs/images/admire/03.jpg)![04](./docs/images/admire/04.jpg)![05](./docs/images/admire/05.jpg)![06](./docs/images/admire/06.jpg)![07](./docs/images/admire/07.jpg)![anjing](./docs/images/admire/anjing.jpg )![beiying](./docs/images/admire/beiying.jpg)![chuifeng](./docs/images/admire/chuifeng.jpg)![feizhai](./docs/images/admire/feizhai.jpg)![haizei](./docs/images/admire/haizei.jpg)![panda](./docs/images/admire/panda.jpg)![pig](./docs/images/admire/pig.jpg)![yaya](./docs/images/admire/yaya.jpg)![yijia](./docs/images/admire/yijia.jpg)
 
 [![Github stars](https://img.shields.io/github/stars/zhiwei1990/android-jetpack-demo.svg?style=social&label=star)](https://github.com/zhiwei1990/android-jetpack-demo)[![Github followers](https://img.shields.io/github/followers/zhiwei1990.svg?style=social&label=follow)](https://github.com/zhiwei1990/android-jetpack-demo)[![Github issues](https://img.shields.io/github/issues/zhiwei1990/android-jetpack-demo.svg?style=social&label=issues)](https://github.com/zhiwei1990/android-jetpack-demo)
 
@@ -174,5 +174,6 @@ limitations under the License.
 [![Stargazers over time](https://starchart.cc/zhiwei1990/android-jetpack-demo.svg)](https://starchart.cc/zhiwei1990/android-jetpack-demo)
 
 [^1]: 为研究最新`jetpack`组件的版本和特性，项目当前`(2021/05/30)`开发环境为AndroidStudio `7.0.0-alpha14`、`gradle 7.1.0-alpha01`、  `Jdk8`、`Kotlin 1.5.10`
+
 [^2]: **项目使用`AS`及相关环境配置可能与你本地不同，**参照 [配置gradle](https://github.com/zhiwei1990/android-jetpack-demo/issues/3#issuecomment-840276571)
 
