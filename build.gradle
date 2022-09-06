@@ -1,40 +1,8 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
-
-buildscript {
-
-    ext {
-        kotlin_version = '1.5.10'
-        compile_sdk_version = 30
-        build_tools_version = '30.0.3'
-        min_sdk_verion = 21
-        target_sdk_version = 30
-        navigation_version = '2.3.4'
-    }
-
-    repositories {
-        google()
-        mavenCentral()
-    }
-    dependencies {
-        classpath 'com.android.tools.build:gradle:7.1.0-alpha01'
-        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
-        classpath "androidx.navigation:navigation-safe-args-gradle-plugin:$navigation_version"
-//和navigation版本号一致
-
-        // NOTE: Do not place your application dependencies here; they belong
-        // in the individual module build.gradle files
-    }
-}
-//todo 如果出现编译gradle异常，请尝试settings--compiler 去掉--offline参数，clean，rebuild 甚至file--invalidate cache and restart，基本都ok，有的gradle可能需要科学上网
-//sonar cloud 的配置，plugins似乎只能在buildScript之后配置
 plugins {
-    id "org.sonarqube" version "3.1.1"
-}
-
-allprojects {
-    repositories {
-        google()
-    }
+    id 'com.android.application' version '7.2.2' apply false
+    id 'com.android.library' version '7.2.2' apply false
+    id 'org.jetbrains.kotlin.android' version '1.7.10' apply false
 }
 
 task clean(type: Delete) {

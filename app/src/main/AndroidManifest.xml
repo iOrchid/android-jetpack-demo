@@ -1,53 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    package="org.zhiwei.jetpack">
+	xmlns:tools="http://schemas.android.com/tools"
+	package="org.zhiwei.jetpack">
 
-    <application
-        android:allowBackup="false"
-        android:icon="@mipmap/ic_launcher"
-        android:label="@string/app_name"
-        android:supportsRtl="true"
-        android:theme="@style/AppTheme"
-        android:usesCleartextTraffic="true"
-        tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".MainActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+	<application
+		android:allowBackup="true"
+		android:dataExtractionRules="@xml/data_extraction_rules"
+		android:fullBackupContent="@xml/backup_rules"
+		android:icon="@mipmap/ic_launcher"
+		android:label="@string/app_name"
+		android:supportsRtl="true"
+		android:theme="@style/Theme.AppCompat.DayNight"
+		android:usesCleartextTraffic="true"
+		tools:ignore="DataExtractionRules,GoogleAppIndexingWarning"
+		tools:targetApi="s">
+		<activity
+			android:name=".MainActivity"
+			android:exported="true">
+			<intent-filter>
+				<action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
-        <activity
-            android:name=".live.LiveActivity"
-            android:label="LiveDataActivity" />
-        <activity
-            android:name=".life.LifeActivity"
-            android:label="LifeActivity" />
-        <activity
-            android:name=".room.RoomActivity"
-            android:label="RoomActivity" />
-        <activity
-            android:name=".nav.NavActivity"
-            android:label="NaviActivity" />
-        <activity
-            android:name=".page.PagingActivity"
-            android:label="PagingActivity" />
-        <activity
-            android:name=".work.WorkActivity"
-            android:label="WorkActivity" />
-        <activity
-            android:name=".aac.view.AacActivity"
-            android:label="AacActivity" />
-        <activity
-            android:name=".dagger2.DaggerActivity"
-            android:label="DaggerActivity" />
-        <activity
-            android:name=".kt.KtActivity"
-            android:label="KotlinActivity" />
-        <activity
-            android:name=".rx.RxActivity"
-            android:label="RxActivity" />
-    </application>
+				<category android:name="android.intent.category.LAUNCHER" />
+			</intent-filter>
+		</activity>
+	</application>
 
 </manifest>
