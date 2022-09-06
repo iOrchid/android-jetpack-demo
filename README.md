@@ -33,6 +33,8 @@
 
 #### 二、更新日志
 
+- **2.0.0(2022年9月6日) ing…**
+
 - **2.0.0（2021年4月8日）ing……**
   - 逐步的重新设计Demo的app
   - 加入Kotlin进阶语法和协程Coroutines的知识分析
@@ -174,7 +176,6 @@ limitations under the License.
 
 [![Stargazers over time](https://starchart.cc/zhiwei1990/android-jetpack-demo.svg)](https://starchart.cc/zhiwei1990/android-jetpack-demo)
 
-[^1]: 为研究最新`jetpack`组件的版本和特性，项目当前`(2021/05/30)`开发环境为AndroidStudio `7.0.0-alpha14`、`gradle 7.1.0-alpha01`、  `Jdk8`、`Kotlin 1.5.10`
-
+[^1]: 为研究最新`jetpack`组件的版本和特性，项目当前`(2022/09/06)`开发环境为AndroidStudio `2021.2.1`、`gradle 7.3.3`、  `Jdk11`、`Kotlin 1.7.10`
 [^2]: **项目使用`AS`及相关环境配置可能与你本地不同，**参照 [配置gradle](https://github.com/zhiwei1990/android-jetpack-demo/issues/3#issuecomment-840276571)
 
