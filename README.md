@@ -3,13 +3,13 @@
 ## 🔥Android-Jetpack-Demo
 
 [![jetpack](https://img.shields.io/badge/志威-Jetpack-brightgreen.svg)](https://developer.android.com/jetpack/) [![apache2.0](https://img.shields.io/badge/license-apache2.0-brightgreen.svg)](./LICENSE) 
-[![API](https://img.shields.io/badge/API-21%2B-brightgreen.svg?style=flat)](https://android-arsenal.com/api?level=21) [![Build Status](https://travis-ci.org/guozhiwi/android-jetpack-demo.svg?branch=master)](https://travis-ci.org/guozhiwi/android-jetpack-demo) [![SonarCloud](https://sonarcloud.io/api/project_badges/measure?project=guozhiwi_android-jetpack-demo&metric=alert_status)](https://sonarcloud.io/dashboard?id=guozhiwi_android-jetpack-demo) [![codebeat badge](https://codebeat.co/badges/cf8fdfb4-2716-4494-9a72-b1727a8d5805)](https://codebeat.co/projects/github-com-guozhiwi-android-jetpack-demo-master) ![GitHub repo size](https://img.shields.io/github/repo-size/guozhiwi/android-jetpack-demo.svg?style=flat-square) ![GitHub Release Date](https://img.shields.io/github/release-date/guozhiwi/android-jetpack-demo.svg?color=orange&style=flat-square) [![version](https://img.shields.io/github/release/guozhiwi/android-jetpack-demo.svg)](https://github.com/guozhiwi/android-jetpack-demo/releases) ![GitHub last commit](https://img.shields.io/github/last-commit/guozhiwi/android-jetpack-demo.svg?style=flat-square) ![GitHub commit activity](https://img.shields.io/github/commit-activity/m/guozhiwi/android-jetpack-demo.svg?style=flat-square) [![Hits](https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fgithub.com%2Fguozhiwi%2Fandroid-jetpack-demo&count_bg=%2379C83D&title_bg=%23555555&icon=&icon_color=%23E7E7E7&title=hits&edge_flat=false)](https://hits.seeyoufarm.com)
+[![API](https://img.shields.io/badge/API-21%2B-brightgreen.svg?style=flat)](https://android-arsenal.com/api?level=21) [![Build Status](https://travis-ci.org/izhiwei/android-jetpack-demo.svg?branch=master)](https://travis-ci.org/izhiwei/android-jetpack-demo) [![SonarCloud](https://sonarcloud.io/api/project_badges/measure?project=izhiwei_android-jetpack-demo&metric=alert_status)](https://sonarcloud.io/dashboard?id=izhiwei_android-jetpack-demo) [![codebeat badge](https://codebeat.co/badges/cf8fdfb4-2716-4494-9a72-b1727a8d5805)](https://codebeat.co/projects/github-com-izhiwei-android-jetpack-demo-master) ![GitHub repo size](https://img.shields.io/github/repo-size/izhiwei/android-jetpack-demo.svg?style=flat-square) ![GitHub Release Date](https://img.shields.io/github/release-date/izhiwei/android-jetpack-demo.svg?color=orange&style=flat-square) [![version](https://img.shields.io/github/release/izhiwei/android-jetpack-demo.svg)](https://github.com/izhiwei/android-jetpack-demo/releases) ![GitHub last commit](https://img.shields.io/github/last-commit/izhiwei/android-jetpack-demo.svg?style=flat-square) ![GitHub commit activity](https://img.shields.io/github/commit-activity/m/izhiwei/android-jetpack-demo.svg?style=flat-square) [![Hits](https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fgithub.com%2Fizhiwei%2Fandroid-jetpack-demo&count_bg=%2379C83D&title_bg=%23555555&icon=&icon_color=%23E7E7E7&title=hits&edge_flat=false)](https://hits.seeyoufarm.com)
 
 ![Alt](https://repobeats.axiom.co/api/embed/c5eaf3c2f1e3cdb7a5545393195f6b26014cd91d.svg "Repobeats analytics image")
 
 
 
-# *==施工👷‍♀️ing，暂时不可用，历史代码可见TAG[1.1.2](https://github.com/guozhiwi/android-jetpack-demo/releases)==*
+# *==施工👷‍♀️ing，暂时不可用，历史代码可见TAG[1.1.2](https://github.com/izhiwei/android-jetpack-demo/releases)==*
 
 目录
 =================
@@ -21,7 +21,7 @@
   * [四、项目组成[^1]]()
   * [五、规划]()
   * [六、示例内容(部分）]()
-  * [七、关于作者]()[![jianshu](./docs/images/jianshu.svg)](https://www.jianshu.com/u/72294e6848c0)[![github](./docs/images/github.svg)](https://github.com/guozhiwi)[![csdn](./docs/images/csdn.svg)](https://blog.csdn.net/zhiwei9001)
+  * [七、关于作者]()[![jianshu](./docs/images/jianshu.svg)](https://www.jianshu.com/u/72294e6848c0)[![github](./docs/images/github.svg)](https://github.com/izhiwei)[![csdn](./docs/images/csdn.svg)](https://blog.csdn.net/zhiwei9001)
 
 ####  一、项目简介
 
@@ -33,7 +33,7 @@
 
 **Android-Jetpack-Demo** 全新设计开发中,会集合当下Android应用开发的Kotlin语言相关技术知识点、Jetpack各组建的使用及相关原理源码分析文章等。
 
-**代码清理全新设计中,所以为空项目，历史代码可参照[source](https://github.com/guozhiwi/android-jetpack-demo/releases/tag/v2.0.0-alpha01)这里下载。**
+**代码清理全新设计中,所以为空项目，历史代码可参照[source](https://github.com/izhiwei/android-jetpack-demo/releases/tag/v2.0.0-alpha01)这里下载。**
 
 #### 二、更新日志
 
@@ -64,7 +64,7 @@
 
 #### 三、Sample示例(这是以前老版本的)
 
-[下载体验apk](https://raw.githubusercontent.com/guozhiwi/android-jetpack-demo/master/docs/apk/app-release.apk)或者手机扫描二维码下载`Demo`的`apk`包
+[下载体验apk](https://raw.githubusercontent.com/izhiwei/android-jetpack-demo/master/docs/apk/app-release.apk)或者手机扫描二维码下载`Demo`的`apk`包
 
 ![扫描下载](./docs/images/QR_Jetpack.png)
 
@@ -83,7 +83,7 @@ package org.zhiwei.jetpack.kt.base
 
 /**
  * 作者： 志威  zhiwei.org
- * 主页： Github: https://github.com/guozhiwi
+ * 主页： Github: https://github.com/izhiwei
  * 日期： 2019年09月19日 11:13
  * 签名： 天行健，君子以自强不息；地势坤，君子以厚德载物。
  * You never know what you can do until you try !
@@ -140,7 +140,7 @@ public final class KtClazz {
 
 更多详情，请下载代码，内有详细注释，**鉴于本人才学有限，若有不足之处，请大神不吝赐教**。
 
-#### 六、关于作者 [![jianshu](./docs/images/jianshu.svg)](https://www.jianshu.com/u/72294e6848c0)[![github](./docs/images/github.svg)](https://github.com/guozhiwi)[![csdn](./docs/images/csdn.svg)](https://blog.csdn.net/zhiwei9001)
+#### 六、关于作者 [![jianshu](./docs/images/jianshu.svg)](https://www.jianshu.com/u/72294e6848c0)[![github](./docs/images/github.svg)](https://github.com/izhiwei)[![csdn](./docs/images/csdn.svg)](https://blog.csdn.net/zhiwei9001)
 
 > 作者本人只是一个，就职于某`知名`(@_@ 有名字的)互联网公司的，技术小白一枚，对于编程有着某种兴趣和热爱，然技术确实渣渣，好读书、不求甚解~~
 
@@ -158,12 +158,12 @@ public final class KtClazz {
 
   ![01](./docs/images/admire/01.jpg)![02](./docs/images/admire/02.jpg)![03](./docs/images/admire/03.jpg)![04](./docs/images/admire/04.jpg)![05](./docs/images/admire/05.jpg)![06](./docs/images/admire/06.jpg)![07](./docs/images/admire/07.jpg)![anjing](./docs/images/admire/anjing.jpg )![beiying](./docs/images/admire/beiying.jpg)![chuifeng](./docs/images/admire/chuifeng.jpg)![feizhai](./docs/images/admire/feizhai.jpg)![haizei](./docs/images/admire/haizei.jpg)![panda](./docs/images/admire/panda.jpg)![pig](./docs/images/admire/pig.jpg)![yaya](./docs/images/admire/yaya.jpg)![yijia](./docs/images/admire/yijia.jpg)
 
-[![Github stars](https://img.shields.io/github/stars/guozhiwi/android-jetpack-demo.svg?style=social&label=star)](https://github.com/guozhiwi/android-jetpack-demo)[![Github followers](https://img.shields.io/github/followers/guozhiwi.svg?style=social&label=follow)](https://github.com/guozhiwi/android-jetpack-demo)[![Github issues](https://img.shields.io/github/issues/guozhiwi/android-jetpack-demo.svg?style=social&label=issues)](https://github.com/guozhiwi/android-jetpack-demo)
+[![Github stars](https://img.shields.io/github/stars/izhiwei/android-jetpack-demo.svg?style=social&label=star)](https://github.com/izhiwei/android-jetpack-demo)[![Github followers](https://img.shields.io/github/followers/izhiwei.svg?style=social&label=follow)](https://github.com/izhiwei/android-jetpack-demo)[![Github issues](https://img.shields.io/github/issues/izhiwei/android-jetpack-demo.svg?style=social&label=issues)](https://github.com/izhiwei/android-jetpack-demo)
 
 - **License**
 
 ```markdown
-Copyright 2021 guozhiwi
+Copyright 2021 izhiwei
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -178,8 +178,8 @@ See the License for the specific language governing permissions and
 limitations under the License.
 ```
 
-[![Stargazers over time](https://starchart.cc/guozhiwi/android-jetpack-demo.svg)](https://starchart.cc/guozhiwi/android-jetpack-demo)
+[![Stargazers over time](https://starchart.cc/izhiwei/android-jetpack-demo.svg)](https://starchart.cc/izhiwei/android-jetpack-demo)
 
 [^1]: 为研究最新`jetpack`组件的版本和特性，项目当前`(2022/09/06)`开发环境为AndroidStudio `2021.2.1`、`gradle 7.3.3`、  `Jdk11`、`Kotlin 1.7.10`
-[^2]: **项目使用`AS`及相关环境配置可能与你本地不同，**参照 [配置gradle](https://github.com/guozhiwi/android-jetpack-demo/issues/3#issuecomment-840276571)
+[^2]: **项目使用`AS`及相关环境配置可能与你本地不同，**参照 [配置gradle](https://github.com/izhiwei/android-jetpack-demo/issues/3#issuecomment-840276571)
 
