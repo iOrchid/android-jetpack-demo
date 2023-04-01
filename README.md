@@ -3,13 +3,11 @@
 ## 🔥Android-Jetpack-Demo
 
 [![jetpack](https://img.shields.io/badge/志威-Jetpack-brightgreen.svg)](https://developer.android.com/jetpack/) [![apache2.0](https://img.shields.io/badge/license-apache2.0-brightgreen.svg)](./LICENSE) 
-[![API](https://img.shields.io/badge/API-21%2B-brightgreen.svg?style=flat)](https://android-arsenal.com/api?level=21) [![SonarCloud](https://sonarcloud.io/api/project_badges/measure?project=imzhiwei_android-jetpack-demo&metric=alert_status)](https://sonarcloud.io/dashboard?id=imzhiwei_android-jetpack-demo) [![codebeat badge](https://codebeat.co/badges/cf8fdfb4-2716-4494-9a72-b1727a8d5805)](https://codebeat.co/projects/github-com-imzhiwei-android-jetpack-demo-master) ![GitHub repo size](https://img.shields.io/github/repo-size/imzhiwei/android-jetpack-demo.svg?style=flat-square) ![GitHub Release Date](https://img.shields.io/github/release-date/imzhiwei/android-jetpack-demo.svg?color=orange&style=flat-square) [![version](https://img.shields.io/github/release/imzhiwei/android-jetpack-demo.svg)](https://github.com/imzhiwei/android-jetpack-demo/releases) ![GitHub last commit](https://img.shields.io/github/last-commit/imzhiwei/android-jetpack-demo.svg?style=flat-square) ![GitHub commit activity](https://img.shields.io/github/commit-activity/m/imzhiwei/android-jetpack-demo.svg?style=flat-square) [![Hits](https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fgithub.com%2Fimzhiwei%2Fandroid-jetpack-demo&count_bg=%2379C83D&title_bg=%23555555&icon=&icon_color=%23E7E7E7&title=hits&edge_flat=false)](https://hits.seeyoufarm.com)
+[![API](https://img.shields.io/badge/API-24%2B-brightgreen.svg?style=flat)](https://android-arsenal.com/api?level=24) [![SonarCloud](https://sonarcloud.io/api/project_badges/measure?project=imzhiwei_android-jetpack-demo&metric=alert_status)](https://sonarcloud.io/dashboard?id=imzhiwei_android-jetpack-demo) [![codebeat badge](https://codebeat.co/badges/cf8fdfb4-2716-4494-9a72-b1727a8d5805)](https://codebeat.co/projects/github-com-imzhiwei-android-jetpack-demo-master) ![GitHub repo size](https://img.shields.io/github/repo-size/imzhiwei/android-jetpack-demo.svg?style=flat-square) ![GitHub Release Date](https://img.shields.io/github/release-date/imzhiwei/android-jetpack-demo.svg?color=orange&style=flat-square) [![version](https://img.shields.io/github/release/imzhiwei/android-jetpack-demo.svg)](https://github.com/imzhiwei/android-jetpack-demo/releases) ![GitHub last commit](https://img.shields.io/github/last-commit/imzhiwei/android-jetpack-demo.svg?style=flat-square) ![GitHub commit activity](https://img.shields.io/github/commit-activity/m/imzhiwei/android-jetpack-demo.svg?style=flat-square) [![Hits](https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fgithub.com%2Fimzhiwei%2Fandroid-jetpack-demo&count_bg=%2379C83D&title_bg=%23555555&icon=&icon_color=%23E7E7E7&title=hits&edge_flat=false)](https://hits.seeyoufarm.com)
 
 ![Alt](https://repobeats.axiom.co/api/embed/c5eaf3c2f1e3cdb7a5545393195f6b26014cd91d.svg "Repobeats analytics image")
 
 
-
-# *==施工👷‍♀️ing，暂时不可用，历史代码可见TAG[1.1.2](https://github.com/imzhiwei/android-jetpack-demo/releases)==*
 
 目录
 =================
@@ -37,9 +35,10 @@
 
 #### 二、更新日志
 
-- **2.0.0(2022年9月6日) ing…**
+- **2.0.0(2023年4月1日) ing…**
+  - 全新架构设计模块化分组演示Jetpack重要组件的功能使用，以及MVI架构和组件化、项目构建等
 
-- **2.0.0（2021年4月8日）ing……**
+- 2.0.0-alpha02（2021年4月8日）
   - 逐步的重新设计Demo的app
   - 加入Kotlin进阶语法和协程Coroutines的知识分析
   - UI改用Jetpack Compose设计
@@ -163,7 +162,7 @@ public final class KtClazz {
 - **License**
 
 ```markdown
-Copyright 2021 imzhiwei
+Copyright 2018--2023 志威
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -180,6 +179,6 @@ limitations under the License.
 
 [![Stargazers over time](https://starchart.cc/imzhiwei/android-jetpack-demo.svg)](https://starchart.cc/imzhiwei/android-jetpack-demo)
 
-[^1]: 为研究最新`jetpack`组件的版本和特性，项目当前`(2022/09/06)`开发环境为AndroidStudio `2021.2.1`、`gradle 7.3.3`、  `Jdk11`、`Kotlin 1.7.10`
+[^1]: 为研究最新`Jetpack`组件的版本和特性，项目当前`(2023/04/01)`开发环境为**AndroidStudio Giraffe** `2022.3.1`、`gradle 7.3.3`、  `Jdk11`、`Kotlin 1.8.20`
 [^2]: **项目使用`AS`及相关环境配置可能与你本地不同，**参照 [配置gradle](https://github.com/imzhiwei/android-jetpack-demo/issues/3#issuecomment-840276571)
 
