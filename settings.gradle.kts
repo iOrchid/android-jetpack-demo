@@ -1,16 +1,20 @@
 pluginManagement {
 	repositories {
-		gradlePluginPortal()
 		google()
 		mavenCentral()
+		gradlePluginPortal()
 	}
 }
 dependencyResolutionManagement {
+	@Suppress("UnstableApiUsage")
 	repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
+	@Suppress("UnstableApiUsage")
 	repositories {
 		google()
 		mavenCentral()
 	}
 }
-rootProject.name = "android-jetpack-demo"
-include ':app'
+
+rootProject.name = "Jetpack"
+include(":app")
+ 

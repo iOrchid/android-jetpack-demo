@@ -9,17 +9,8 @@ import org.junit.Test
  * See [testing documentation](http://d.android.com/tools/testing).
  */
 class ExampleUnitTest {
-    @Test
-    fun addition_isCorrect() {
-        assertEquals(4, 2 + 2)
-    }
-
-    @Test
-    fun testKt() {
-        //数据类型
-//        KotlinSyntax02().testV()
-//        KotlinSyntax02().testK2()
-//        KotlinSyntax03().testBRC()
-//		KotlinSyntax04().testNull()
-    }
+	@Test
+	fun addition_isCorrect() {
+		assertEquals(4, 2 + 2)
+	}
 }
