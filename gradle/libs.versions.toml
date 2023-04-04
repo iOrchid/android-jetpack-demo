@@ -2,56 +2,141 @@
 
 [versions]
 # android offical libs version
-com-android-application = "8.1.0-alpha11"# Android Studio Gradle Plugin 版本号
+activity-ktx = "1.7.0"
 appcompat = "1.6.1"
+com-android-application = "8.1.0-alpha11"# Android Studio Gradle Plugin 版本号
+constraintlayout = "2.1.4"
 core-ktx = "1.9.0"
 fragment-ktx = "1.5.6"
-activity-ktx = "1.7.0"
 material = "1.8.0"
-constraintlayout = "2.1.4"
 recyclerview = "1.3.0"
-swiperefreshlayoug = "1.1.0"
+swiperefreshlayout = "1.1.0"
+
+# androidx 或 google 相关库
+accompanist = "0.30.0"
+biometric = "1.1.0"
+browser = "1.5.0"
+cameraX = "1.2.2"
+coreSplashscreen = "1.0.0"
+dataStore = "1.0.0"
+desugarJdkLibs = "2.0.2"
+drawerlayout = "1.2.0"
+emoji2 = "1.3.0"
+exifinterface = "1.3.6"
+metrics = "1.0.0-alpha03"
+preference = "1.2.0"
+profileinstaller = "1.3.0"
+startup = "1.1.1"
+tracing = "1.1.0"
+webkit = "1.6.1"
+
 # Jetpack Components libs version
 lifecycle-ktx = "2.6.1"
-navigation-fragment-ktx = "2.5.3"
-navigation-ui-ktx = "2.5.3"
+navigation = "2.5.3"
 room-ktx = "2.5.1"
 paging-ktx = "3.1.1"
 work-ktx = "2.8.1"
 
 # jetbrainds offical libs version
-org-jetbrains-kotlin-android = "1.8.20"
 coroutines = "1.6.4"
+kotlin = "1.8.20"
+kotlinxDatetime = "0.4.0"
+kotlinxSerializationJson = "1.4.1"
+ksp = "1.8.0-1.0.9"
 
 # 常用知名开源库
-hilt-android = "2.44"
-retrofit = "2.9.0"
-okhttp = "4.10.0"
-gson = "2.10"
-mmkv = "1.2.15"
+blankj-utils = "1.31.1"
 coil = "2.3.0"
-
-
+gson = "2.10"
+hilt = "2.45"
+koin = "3.4.0"
+mmkv = "1.2.15"
+okhttp = "4.10.0"
+retrofit = "2.9.0"
+retrofitKotlinxSerializationJson = "0.8.0"
 
 # test libs version
-junit = "4.13.2"
 androidx-test-ext-junit = "1.1.5"
 espresso-core = "3.5.1"
-
+junit = "4.13.2"
+turbine = "0.12.1"
 #endregion
 
 # region 定义依赖库 🚀
 
 [libraries]
+# Android & Google & Jetbrains官方库
+activity-ktx = { group = "androidx.activity", name = "activity-ktx", version.ref = "activity-ktx" }
+appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "appcompat" }
+constraintlayout = { group = "androidx.constraintlayout", name = "constraintlayout", version.ref = "constraintlayout" }
 core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "core-ktx" }
+fragment-ktx = { group = "androidx.fragment", name = "fragment-ktx", version.ref = "fragment-ktx" }
+material = { group = "com.google.android.material", name = "material", version.ref = "material" }
+recyclerview = { group = "androidx.recyclerview", name = "recyclerview", version.ref = "recyclerview" }
+swiperefreshlayout = { group = "androidx.swiperefreshlayout", name = "swiperefreshlayout", version.ref = "swiperefreshlayout" }
+
+accompanist-flowlayout = { group = "com.google.accompanist", name = "accompanist-flowlayout", version.ref = "accompanist" }
+accompanist-systemuicontroller = { group = "com.google.accompanist", name = "accompanist-systemuicontroller", version.ref = "accompanist" }
+accompanist-themeadapter-material = { module = "com.google.accompanist:accompanist-themeadapter-material", version.ref = "accompanist" }
+androidx-biometric = { group = "androidx.biometric", name = "biometric", version.ref = "biometric" }
+androidx-browser = { group = "androidx.browser", name = "browser", version.ref = "browser" }
+androidx-camera-camera2 = { group = "androidx.camera", name = "camera-camera2", version.ref = "cameraX" }
+androidx-core-splashscreen = { group = "androidx.core", name = "core-splashscreen", version.ref = "coreSplashscreen" }
+androidx-dataStore-core = { group = "androidx.datastore", name = "datastore", version.ref = "dataStore" }
+androidx-dataStore-preferences = { group = "androidx.datastore", name = "datastore-preferences", version.ref = "dataStore" }
+androidx-desugarJdkLibs = { group = "com.android.tools", name = "desugar_jdk_libs", version.ref = "desugarJdkLibs" }
+androidx-drawerlayout = { group = "androidx.drawerlayout", name = "drawerlayout", version.ref = "drawerlayout" }
+androidx-emoji2 = { group = "androidx.emoji2", name = "emoji2", version.ref = "emoji2" }
+androidx-exifinterface = { group = "androidx.exifinterface", name = "exifinterface", version.ref = "exifinterface" }
+androidx-metrics = { group = "androidx.metrics", name = "metrics-performance", version.ref = "metrics" }
+androidx-preference = { group = "androidx.preference", name = "preference-ktx", version.ref = "preference" }
+androidx-profileinstaller = { group = "androidx.profileinstaller", name = "profileinstaller", version.ref = "profileinstaller" }
+androidx-startup = { group = "androidx.startup", name = "startup-runtime", version.ref = "startup" }
+androidx-tracing = { group = "androidx.tracing", name = "tracing-ktx", version.ref = "tracing" }
+androidx-webkit = { group = "androidx.webkit", name = "webkit", version.ref = "webkit" }
+
+
+# Jetpack libs
+lifecycle-livedata-ktx = { module = "androidx.lifecycle:lifecycle-livedata-ktx", version.ref = "lifecycle-ktx" }
+lifecycle-viewmodel-ktx = { module = "androidx.lifecycle:lifecycle-viewmodel-ktx", version.ref = "lifecycle-ktx" }
+navigation-fragment-ktx = { group = "androidx.navigation", name = "navigation-fragment-ktx", version.ref = "navigation" }
+navigation-ui-ktx = { group = "androidx.navigation", name = "navigation-ui-ktx", version.ref = "navigation" }
+room-compiler = { group = "androidx.room", name = "room-compiler", version.ref = "room-ktx" }
+room-ktx = { group = "androidx.room", name = "room-ktx", version.ref = "room-ktx" }
+room-runtime = { group = "androidx.room", name = "room-runtime", version.ref = "room-ktx" }
+paging-runtime-ktx = { module = "androidx.paging:paging-runtime-ktx", version.ref = "paging-ktx" }
+work-runtime-ktx = { module = "androidx.work:work-runtime-ktx", version.ref = "work-ktx" }
+
+# jetbrainds offical libs version
+kotlin-stdlib = { group = "org.jetbrains.kotlin", name = "kotlin-stdlib-jdk8", version.ref = "kotlin" }
+kotlinx-coroutines-android = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-android", version.ref = "coroutines" }
+kotlinx-datetime = { group = "org.jetbrains.kotlinx", name = "kotlinx-datetime", version.ref = "kotlinxDatetime" }
+kotlinx-serialization-json = { group = "org.jetbrains.kotlinx", name = "kotlinx-serialization-json", version.ref = "kotlinxSerializationJson" }
+ksp-gradlePlugin = { group = "com.google.devtools.ksp", name = "com.google.devtools.ksp.gradle.plugin", version.ref = "ksp" }
+
+
+# 常用知名开源库
+blankj-utils = { group = "com.blankj", name = "utilcodex", version.ref = "blankj-utils" }
+coil-kt = { group = "io.coil-kt", name = "coil", version.ref = "coil" }
+coil-kt-svg = { group = "io.coil-kt", name = "coil-svg", version.ref = "coil" }
+hilt-android = { group = "com.google.dagger", name = "hilt-android", version.ref = "hilt" }
+hilt-compiler = { group = "com.google.dagger", name = "hilt-android-compiler", version.ref = "hilt" }
+hilt-android-gradle-plugin = { module = "com.google.dagger:hilt-android-gradle-plugin", version.ref = "hilt" }
+gson = { module = "com.google.code.gson:gson", version.ref = "gson" }
+koin = { module = "io.insert-koin:koin-android", version.ref = "koin" }
+mmkv = { module = "com.tencent:mmkv", version.ref = "mmkv" }
+okhttp-logging = { group = "com.squareup.okhttp3", name = "logging-interceptor", version.ref = "okhttp" }
+retrofit-core = { group = "com.squareup.retrofit2", name = "retrofit", version.ref = "retrofit" }
+retrofit-kotlin-serialization = { group = "com.jakewharton.retrofit", name = "retrofit2-kotlinx-serialization-converter", version.ref = "retrofitKotlinxSerializationJson" }
+retrofit2-converter-gson = { module = "com.squareup.retrofit2:converter-gson", version.ref = "retrofit" }
+
+
+# test相关库依赖
 junit = { group = "junit", name = "junit", version.ref = "junit" }
 androidx-test-ext-junit = { group = "androidx.test.ext", name = "junit", version.ref = "androidx-test-ext-junit" }
 espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espresso-core" }
-appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "appcompat" }
-material = { group = "com.google.android.material", name = "material", version.ref = "material" }
-constraintlayout = { group = "androidx.constraintlayout", name = "constraintlayout", version.ref = "constraintlayout" }
-navigation-fragment-ktx = { group = "androidx.navigation", name = "navigation-fragment-ktx", version.ref = "navigation-fragment-ktx" }
-navigation-ui-ktx = { group = "androidx.navigation", name = "navigation-ui-ktx", version.ref = "navigation-ui-ktx" }
+androidx-tracing-ktx = { module = "androidx.tracing:tracing-ktx", version.ref = "tracing" }
+turbine = { group = "app.cash.turbine", name = "turbine", version.ref = "turbine" }
 
 # endregion
 
@@ -59,7 +144,11 @@ navigation-ui-ktx = { group = "androidx.navigation", name = "navigation-ui-ktx",
 
 [plugins]
 com-android-application = { id = "com.android.application", version.ref = "com-android-application" }
-org-jetbrains-kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "org-jetbrains-kotlin-android" }
+org-jetbrains-kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
+hilt = { id = "com.google.dagger.hilt.android", version.ref = "hilt" }
+kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
+kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
+ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
 
 # endregion
 
