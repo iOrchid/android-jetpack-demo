@@ -18,3 +18,4 @@ dependencyResolutionManagement {
 rootProject.name = "Jetpack"
 include(":app")
 include(":kotlin")
+include(":databinding")

@@ -42,6 +42,7 @@ android {
 	}
 	buildFeatures {
 		viewBinding = true
+		dataBinding = true
 	}
 
 	configurations {
@@ -116,4 +117,5 @@ dependencies {
 
 	//依赖其他模块
 	implementation(project(":kotlin"))
+	implementation(project(":databinding"))
 }
