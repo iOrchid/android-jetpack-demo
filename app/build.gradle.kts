@@ -113,4 +113,7 @@ dependencies {
 	testImplementation(libs.junit)
 	androidTestImplementation(libs.androidx.test.ext.junit)
 	androidTestImplementation(libs.espresso.core)
+
+	//依赖其他模块
+	implementation(project(":kotlin"))
 }
