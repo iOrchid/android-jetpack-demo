@@ -11,7 +11,7 @@ import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import com.google.android.material.snackbar.Snackbar
 import org.zhiwei.jetpack.databinding.ActivityMainBinding
-import org.zhiwei.jetpack.databinding.DataBindingActivity
+import org.zhiwei.jetpack.work.WorkActivity
 
 class MainActivity : AppCompatActivity() {
 
@@ -33,7 +33,7 @@ class MainActivity : AppCompatActivity() {
 		binding.fab.setOnClickListener { view ->
 			Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
 				.setAction("Action", null).show()
-			startActivity(Intent(this, DataBindingActivity::class.java))
+			startActivity(Intent(this, WorkActivity::class.java))
 		}
 	}
 

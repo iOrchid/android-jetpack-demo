@@ -19,3 +19,4 @@ rootProject.name = "Jetpack"
 include(":app")
 include(":kotlin")
 include(":databinding")
+include(":work")

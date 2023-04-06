@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:tools="http://schemas.android.com/tools">
+
+	<data>
+
+		<variable
+			name="user"
+			type="org.zhiwei.jetpack.databinding.bean.ObUser" />
+	</data>
+
+	<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:layout_marginTop="1dp"
+		android:orientation="horizontal"
+		android:padding="5dp">
+
+		<androidx.appcompat.widget.AppCompatTextView
+			android:layout_width="30dp"
+			android:layout_height="wrap_content"
+			android:background="@android:color/holo_purple"
+			android:gravity="center"
+			android:text="@{user.name}"
+			tools:text="姓名" />
+		<!--注意，这里age、sex是Int类型，所以要转为string，而且这类错误，不易发现-->
+		<androidx.appcompat.widget.AppCompatTextView
+			android:layout_width="30dp"
+			android:layout_height="wrap_content"
+			android:background="@android:color/holo_orange_light"
+			android:gravity="center"
+			android:text="@{user.age+``}"
+			tools:text="年龄" />
+
+		<androidx.appcompat.widget.AppCompatTextView
+			android:layout_width="20dp"
+			android:layout_height="wrap_content"
+			android:background="@android:color/holo_blue_dark"
+			android:gravity="center"
+			android:text="@{user.sex+``}"
+			tools:text="性别" />
+
+		<androidx.appcompat.widget.AppCompatTextView
+			android:layout_width="0dp"
+			android:layout_height="wrap_content"
+			android:layout_weight="1"
+			android:background="@android:color/holo_green_light"
+			android:gravity="center"
+			android:text="@{user.desc}"
+			tools:text="简述" />
+
+	</LinearLayout>
+</layout>
