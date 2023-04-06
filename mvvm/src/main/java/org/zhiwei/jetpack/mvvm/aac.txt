@@ -1,0 +1,5 @@
+Android Architecture Components
+    是谷歌在Google I/O 2017发布一套帮助开发者解决Android架构设计的方案。里面包含了两大块内容：
+        生命周期相关的Lifecycle-aware Components
+        数据库解决方案Room
+

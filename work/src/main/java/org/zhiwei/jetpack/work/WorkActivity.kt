@@ -35,7 +35,7 @@ class WorkActivity : AppCompatActivity() {
 	var constraints: Constraints = Constraints.Builder()
 		.setRequiredNetworkType(NetworkType.CONNECTED) //联网状态
 		.setRequiresBatteryNotLow(true) //低电量不操作
-		.setRequiresCharging(true) //充电时候才开始
+//		.setRequiresCharging(true) // TODO 充电时候才开始,这个条件开启后，测试机不充电则无演示效果
 //		.setRequiresDeviceIdle(true)//待机状态下才执行，api 23 以上,此处开启的话，手机熄屏才会执行了
 		.setRequiresStorageNotLow(true) //存储空间不能太小
 		.build()
