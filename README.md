@@ -23,9 +23,8 @@
 
 ####  一、项目简介
 
-> 更新前言：不觉间项目已经三年有余了，Kotlin和Jetpack相关技术点也更新了很多，更成了为Android开发的技术首选。
+> 更新前言：不觉间项目已经三年有余了，Kotlin和Jetpack相关技术点也更新了很多，更成了为Android开发的技术首选。`GitHub`上不乏很多`star`的`Jetpack`最佳实践，此项目定位于新手入门保姆级教程，分组件逐步学习，明白其应用与原理，而后方可谈组合与架构。
 >
-> 忙碌于生活的苟且，屈服于资本家压榨之下，身心俱疲。颇有久在樊笼里的感觉，只想做个纯粹的技术人，做自己感兴趣的事，有意义的事，也希望后续可以给各位朋友带来一些学习的分享。共勉之。
 
 <font color="green">**感谢支持的各位小伙伴，有技术问题或学习问题都可以在issues中留言**</font>
 
@@ -69,7 +68,7 @@
 
 #### 四、项目组成[^1]
 
-项目主要简单的演示`Android`当前应用开发层面的前沿技术与框架库使用，`RxJava`操作符、`Kotlin`语法及进阶，协程Coroutines的分析及使用，以及`JetPack`的组件的进阶使用。
+项目主要简单的演示`Android`当前应用开发层面的前沿技术与框架库使用，`Kotlin`语法及进阶，协程`Coroutines`和 `liveData flow `的分析及使用，以及`JetPack Compose`的组件的进阶使用,后续会添加模块化与组件化的项目演示。
 
 #### 五、示例内容(1.x版本部分）
 
@@ -179,6 +178,6 @@ limitations under the License.
 
 [![Stargazers over time](https://starchart.cc/imzhiwei/android-jetpack-demo.svg)](https://starchart.cc/imzhiwei/android-jetpack-demo)
 
-[^1]: 为研究最新`Jetpack`组件的版本和特性，项目当前`(2023/04/01)`开发环境为**AndroidStudio Giraffe** `2022.3.1`、`gradle 7.3.3`、  `Jdk11`、`Kotlin 1.8.20`
+[^1]: 为研究最新`Jetpack`组件的版本和特性，项目当前`(2023/04/01)`开发环境为**AndroidStudio Giraffe** `2022.3.1`、`gradle 8.1.0-alpha11`、  `Jdk17`、`Kotlin 1.8.20`
 [^2]: **项目使用`AS`及相关环境配置可能与你本地不同，**参照 [配置gradle](https://github.com/imzhiwei/android-jetpack-demo/issues/3#issuecomment-840276571)
 
