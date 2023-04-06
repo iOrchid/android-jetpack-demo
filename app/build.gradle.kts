@@ -117,7 +117,17 @@ dependencies {
 	androidTestImplementation(libs.espresso.core)
 
 	//依赖其他模块
-	implementation(project(":kotlin"))
 	implementation(project(":databinding"))
+	implementation(project(":kotlin"))
+	implementation(project(":lifecycle"))
+	implementation(project(":livedata"))
+	implementation(project(":mvvm"))
+	implementation(project(":mvi"))
+	implementation(project(":navigation"))
+	implementation(project(":paging"))
+	implementation(project(":room"))
+	implementation(project(":viewmodel"))
 	implementation(project(":work"))
+
+
 }
