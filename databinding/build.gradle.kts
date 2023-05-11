@@ -1,7 +1,5 @@
 plugins {
-	@Suppress("DSL_SCOPE_VIOLATION")
 	alias(libs.plugins.com.android.library)
-	@Suppress("DSL_SCOPE_VIOLATION")
 	alias(libs.plugins.org.jetbrains.kotlin.android)
 	//databinding需要kapt，而ksp此时不能替代
 	id("kotlin-kapt")

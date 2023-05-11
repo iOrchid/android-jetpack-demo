@@ -2,11 +2,11 @@
 
 [versions]
 # android official libs version
-activity-ktx = "1.7.0"
+activity-ktx = "1.7.1"
 appcompat = "1.6.1"
-android-gradle-plugin = "8.1.0-alpha11"# Android Studio Gradle Plugin 版本号
+android-gradle-plugin = "8.2.0-alpha03"# Android Studio Gradle Plugin 版本号
 constraintlayout = "2.1.4"
-core-ktx = "1.9.0"
+core-ktx = "1.10.0"
 fragment-ktx = "1.5.6"
 material = "1.8.0"
 recyclerview = "1.3.0"
@@ -37,19 +37,19 @@ work-ktx = "2.8.1"
 
 # jetbrains official libs version
 coroutines = "1.6.4"
-kotlin = "1.8.20"
+kotlin = "1.8.21"
 kotlinxDatetime = "0.4.0"
 kotlinxSerializationJson = "1.5.0"
-ksp = "1.8.20-1.0.10"# ksp为替代kapt的注解处理工具库，其版本号需要与kotlin版本号有对应关系
+ksp = "1.8.21-1.0.11"# ksp为替代kapt的注解处理工具库，其版本号需要与kotlin版本号有对应关系
 
 # 常用知名开源库
 blankj-utils = "1.31.1"
 coil = "2.3.0"
 gson = "2.10.1"
 koin = "3.4.0"
-okhttp = "4.10.0"
+okhttp = "4.11.0"
 retrofit = "2.9.0"
-retrofitKotlinxSerializationJson = "0.8.0"
+retrofitKotlinxSerializationJson = "1.0.0"
 
 # test libs version
 androidx-test-ext-junit = "1.1.5"

@@ -1,11 +1,8 @@
 
 plugins {
-	@Suppress("DSL_SCOPE_VIOLATION")// 这属于gradle和IDE产生的bug，不影响运行，但是使用体验不佳
 	alias(libs.plugins.com.android.application)
-	@Suppress("DSL_SCOPE_VIOLATION")
 	alias(libs.plugins.org.jetbrains.kotlin.android)
 	//使用ksp替代kapt 第2步，在模块的build.gradle中添加plugins
-	@Suppress("DSL_SCOPE_VIOLATION")
 	alias(libs.plugins.ksp)
 	id("kotlin-parcelize")
 }
