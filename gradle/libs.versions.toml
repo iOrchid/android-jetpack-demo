@@ -30,7 +30,7 @@ webkit = "1.8.0"
 
 # compose
 
-androidxComposeBom = "2024.02.01"
+androidxComposeBom = "2024.02.02"
 androidxComposeRuntimeTracing = "1.0.0-beta01"
 androidxComposeConstraintlayout = "1.0.1"
 
@@ -68,7 +68,8 @@ retrofitKotlinxSerializationJson = "1.0.0"
 androidx-test-ext-junit = "1.1.5"
 espresso-core = "3.5.1"
 junit = "4.13.2"
-turbine = "1.0.0"# 用于测试协程flow的test库
+turbine = "1.0.0"
+annotation = "1.6.0"# 用于测试协程flow的test库
 #endregion
 
 # region 定义依赖库 🚀
@@ -176,6 +177,7 @@ androidx-test-ext-junit = { group = "androidx.test.ext", name = "junit", version
 espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espresso-core" }
 androidx-tracing-ktx = { module = "androidx.tracing:tracing-ktx", version.ref = "tracing" }
 turbine = { group = "app.cash.turbine", name = "turbine", version.ref = "turbine" }
+androidx-annotation = { group = "androidx.annotation", name = "annotation", version.ref = "annotation" }
 
 # endregion
 
@@ -188,6 +190,7 @@ org-jetbrains-kotlin-android = { id = "org.jetbrains.kotlin.android", version.re
 kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
 kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
 ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
+androidDynamicFeature = { id = "com.android.dynamic-feature", version.ref = "android-gradle-plugin" }
 
 # endregion
 

@@ -5,4 +5,5 @@ plugins {
 	alias(libs.plugins.org.jetbrains.kotlin.android) apply false
 	//用于替换kapt的，ksp插件实现注解处理；1，项目build.gradle中添加plugins
 	alias(libs.plugins.ksp) apply false
+    alias(libs.plugins.androidDynamicFeature) apply false
 }

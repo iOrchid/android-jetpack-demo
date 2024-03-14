@@ -1,7 +1,7 @@
 package org.zhiwei.kotlin
 
+import android.app.Activity
 import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
 
 /**
  * 作者： 志威  zhiwei.org
@@ -21,11 +21,11 @@ import androidx.appcompat.app.AppCompatActivity
  * 2、common内为进阶语法的演示，包括属性扩展、函数扩展、密封类、泛型、枚举，对象表达式和委托等
  * 3、advanced高级语法的代码演示，包括高阶函数、协程/纤程、常用Api的释义等
  */
-class KotlinActivity : AppCompatActivity() {
+class KotlinActivity : Activity() {
 
-	override fun onCreate(savedInstanceState: Bundle?) {
-		super.onCreate(savedInstanceState)
-		setContentView(R.layout.activity_kotlin)
-	}
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_kotlin)
+    }
 
 }

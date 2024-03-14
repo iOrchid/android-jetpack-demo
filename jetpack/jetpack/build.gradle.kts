@@ -1,19 +1,14 @@
 plugins {
-    alias(libs.plugins.com.android.application)
+    alias(libs.plugins.androidDynamicFeature)
     alias(libs.plugins.org.jetbrains.kotlin.android)
 }
 
 android {
-    namespace = "org.zhiwei.jetpack"
+    namespace = "com.zenmen.jetpack"
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "org.zhiwei.jetpack"
         minSdk = 24
-        targetSdk = 34
-        versionCode = 200
-        versionName = "2.0.0"
-
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
@@ -33,20 +28,14 @@ android {
     kotlinOptions {
         jvmTarget = "1.8"
     }
-    //使用动态模块的形式，用于隔离代码module的依赖
-    dynamicFeatures += setOf(":jetpack:jetpack",":kotlin")
-
 }
 
 dependencies {
-    //因为app使用的theme是material的
-    implementation(libs.material)
 
-    //test libs version
-    testImplementation(libs.turbine)
+    implementation(project(":app"))
+
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.test.ext.junit)
     androidTestImplementation(libs.espresso.core)
-
-
+    androidTestImplementation(libs.androidx.annotation)
 }

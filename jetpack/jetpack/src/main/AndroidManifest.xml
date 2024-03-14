@@ -4,7 +4,7 @@
 
     <dist:module
         dist:instant="false"
-        dist:title="@string/title_kotlin">
+        dist:title="@string/title_jetpack">
         <dist:delivery>
             <dist:install-time />
         </dist:delivery>
@@ -13,11 +13,12 @@
 
     <application>
         <activity
-            android:name=".KotlinActivity"
+            android:name=".JetpackActivity"
             android:exported="true">
+            <!--因为该module是dynamic feature的模块，可打包成apk的那种，与app的module不是被依赖关系，所以这里用注册action的形式，提供对外跳转-->
             <intent-filter>
-                <action android:name="org.zhiwei.jetpack.KOTLIN_ACTIVITY" />
                 <category android:name="android.intent.category.DEFAULT" />
+                <action android:name="org.zhiwei.jetpack.JETPACK_ACTIVITY" />
             </intent-filter>
         </activity>
     </application>

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="title_kotlin">Kotlin Language</string>
+    <string name="str_entry_toplevel_kotlin">1、先看topLevel的代码文件，主要是kotlin的基础语法的第一部分 包括变量/常量，函数的定义，以及基础的数据类型</string>
+    <string name="str_kt_class_kotlin">2、看KtClazz，主要是讲class内的变量/常量、函数的定义，以及kotlin中类 、接口和object，构造函数等</string>
+    <string name="str_advanced_kotlin">3、advanced高级语法的代码演示，包括高阶函数、协程/纤程、常用Api的释义等</string>
+    <string name="str_unit_test_kotlin">Kotlin语法的使用演示，代码中有不少test函数， 想要看效果，最好就在`test`包下的UnitTest内， 自己写个单元测试更能看到效果</string>
+</resources>

@@ -10,4 +10,5 @@
 	<string name="str_kotlin_language">Kotlin语法</string>
 	<string name="str_jetpack_components">Jetpack组件</string>
 	<string name="str_compose_tutorials">Compose学习</string>
+	<string name="title_jetpack">Jetpack Components</string>
 </resources>

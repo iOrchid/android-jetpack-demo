@@ -1,5 +1,5 @@
 plugins {
-	alias(libs.plugins.com.android.library)
+	alias(libs.plugins.androidDynamicFeature)
 	alias(libs.plugins.org.jetbrains.kotlin.android)
 }
 
@@ -9,9 +9,7 @@ android {
 
 	defaultConfig {
 		minSdk = 24
-
 		testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
-		consumerProguardFiles("consumer-rules.pro")
 	}
 
 	buildTypes {
@@ -34,15 +32,9 @@ android {
 
 dependencies {
 
-	// android official libs version
-	implementation(libs.activity.ktx)
-	implementation(libs.appcompat)
-	implementation(libs.constraintlayout)
-	implementation(libs.core.ktx)
-	implementation(libs.fragment.ktx)
-	implementation(libs.material)
-	implementation(libs.recyclerview)
-	implementation(libs.swiperefreshlayout)
+	implementation(libs.kotlinx.coroutines.android)
+
+	implementation(project(":app"))
 
 	testImplementation(libs.junit)
 	androidTestImplementation(libs.androidx.test.ext.junit)
