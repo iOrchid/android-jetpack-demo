@@ -23,8 +23,14 @@
 
 ####  一、项目简介
 
-> 更新前言：不觉间项目已近五年，Kotlin和Jetpack相关技术点也更新了很多，更成了为Android开发的技术首选。`GitHub`上不乏很多`star`的`Jetpack`最佳实践，此项目定位于新手入门保姆级教程，分组件逐步学习，明白其应用与原理，而后方可谈组合与架构。
+> 不觉间项目已近五年，Kotlin和Jetpack相关技术点也更新了很多，更成了为Android开发的技术首选。
+>     `GitHub`上不乏很多`star`的`Jetpack`最佳实践，此项目定位于新手入门保姆级教程，分组件逐步学习，明白其应用与原理，而后方可谈组合与架构。
+> 学习主要以项目代码为准，主要分三个部分模块：
 >
+> 1. kotlin文件夹，下面是面向kotlin语言的初学教程，基本语法；学习之后，可以看懂kotlin代码，以及上手写kotlin，相信你用上kotlin之后，绝对不会再用回java。
+> 2. jetpack文件夹下，主要演示了通用的几个jetpack的组件liveData、lifecycle、viewmodel、paging、workmanager、navigation，databinding、room等。
+> 3. compose算是颠覆性或者革命性的一个Android UI的编写方式，我说的可能有点夸张，但是这种组合式的UI写法和设计思想，真的很不一样，用起来也没有了Android旧的view体系的那种臃肿感。
+> 4. 其他MVI，MVVM和jetpack的组件，可能会简便或者功能的形式，添加的App demo的功能块中。项目断断停停的，工作精力所限，**希望可以动手给star/fork点个赞**👍，有什么问题想法和建议可以提issue，谢谢，<font color="orange">**您的支持与鼓励，是我做项目的动力**</font>。
 
 <font color="green">**感谢支持的各位小伙伴，有技术问题或学习问题都可以在issues中留言**</font>
 
@@ -41,23 +47,12 @@
   
   <img src="https://developer.android.google.cn/images/jetpack/compose/compose-roadmap.svg" alt="compose roadmap" style="zoom:50%;" />
   
-- 2.0.0-alpha02（2021年4月8日）
-  
-  - 逐步的重新设计Demo的app
-  - 加入Kotlin进阶语法和协程Coroutines的知识分析
-  - UI改用Jetpack Compose设计
-  - 其他Jetpack的组件用例及分析
-  
-- 2.0.0-alpha01(2019年11月28日)
-  - 更新`jetpack`组件版本
-  - `kotlin`进阶语法的基本学习
-  - 简单的初步分模块
-
 - v1.1.0（2019年6月27日）
   - 更新`AndroidStudio`以及`Gradle`编译版本
   - 更新`jetpack`及`kotlin`版本为当前最新
   - 压缩存档，以备模块化版本
   - `kotlin`初级语法的基础博文
+  
 - v1.0.0（2018年11月14日）
   - 实现`jetpack`组件的初级基础用法的演示
   - `dagger2`的基础用法演示
