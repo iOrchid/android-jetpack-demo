@@ -1,6 +1,7 @@
 pluginManagement {
 	repositories {
 		google()
+		maven("https://maven.aliyun.com/repository/public")
 		mavenCentral()
 		gradlePluginPortal()
 	}
@@ -11,6 +12,7 @@ dependencyResolutionManagement {
 	@Suppress("UnstableApiUsage")
 	repositories {
 		google()
+		maven("https://maven.aliyun.com/repository/public")
 		mavenCentral()
 	}
 }

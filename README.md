@@ -1,4 +1,4 @@
-![android-jetpack-demo](./docs/images/hero.svg)
+![android-jetpack-demo](https://developer.android.google.cn/images/hero-illustrations/android-jetpack-hero.svg)
 
 ## 🔥Android-Jetpack-Demo
 
@@ -34,15 +34,20 @@
 
 #### 二、更新日志
 
-- **2.0.0(2023年4月1日) ing…**
+- **2.0.0(2024年3月14日) ing…**
+  
   - 全新架构设计模块化分组演示Jetpack重要组件的功能使用，以及MVI架构和组件化、项目构建等
-
+  - 使用`compose`的`UI`框架
+  
+  <img src="https://developer.android.google.cn/images/jetpack/compose/compose-roadmap.svg" alt="compose roadmap" style="zoom:50%;" />
+  
 - 2.0.0-alpha02（2021年4月8日）
+  
   - 逐步的重新设计Demo的app
   - 加入Kotlin进阶语法和协程Coroutines的知识分析
   - UI改用Jetpack Compose设计
   - 其他Jetpack的组件用例及分析
-
+  
 - 2.0.0-alpha01(2019年11月28日)
   - 更新`jetpack`组件版本
   - `kotlin`进阶语法的基本学习
@@ -80,7 +85,7 @@
 package org.zhiwei.jetpack.kt.base
 
 /**
- * 作者： iOrchid  zhiwei.org
+ * 作者： 志威
  * 主页： Github: https://github.com/iOrchid
  * 日期： 2019年09月19日 11:13
  * 签名： 天行健，君子以自强不息；地势坤，君子以厚德载物。
@@ -178,6 +183,7 @@ limitations under the License.
 
 [![Stargazers over time](https://starchart.cc/iOrchid/android-jetpack-demo.svg)](https://starchart.cc/iOrchid/android-jetpack-demo)
 
-[^1]: 为研究最新`Jetpack`组件的版本和特性，项目当前`(2023/04/01)`开发环境为**AndroidStudio Giraffe** `2022.3.1`、`gradle 8.1.0-alpha11`、  `Jdk17`、`Kotlin 1.8.20`
+[^1]: 为研究最新`Jetpack`组件的版本和特性，项目当前`(2024/03/14)`开发环境为**AndroidStudio Iguana** `2023.2.1`、`gradle 8.3.0`、  `Jdk17`、`Kotlin 1.9.22`
 [^2]: **项目使用`AS`及相关环境配置可能与你本地不同，**参照 [配置gradle](https://github.com/iOrchid/android-jetpack-demo/issues/3#issuecomment-840276571)
+[^3]: 参照`Compose`项目有[compose cookbook](https://github.com/Gurupreet/ComposeCookBook)，[compose tutorial](https://github.com/SmartToolFactory/Jetpack-Compose-Tutorials),[compose codelab](https://github.com/android/codelab-android-compose),[compose sample](https://github.com/android/compose-samples) 致敬感谢
 
