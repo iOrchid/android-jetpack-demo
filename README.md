@@ -2,7 +2,7 @@
 
 ## 🔥Android-Jetpack-Demo
 
-[![jetpack](https://img.shields.io/badge/志威-Jetpack-brightgreen.svg)](https://developer.android.com/jetpack/) [![apache2.0](https://img.shields.io/badge/license-apache2.0-brightgreen.svg)](./LICENSE) 
+[![jetpack](https://img.shields.io/badge/iOrchid-Jetpack-brightgreen.svg)](https://developer.android.com/jetpack/) [![apache2.0](https://img.shields.io/badge/license-apache2.0-brightgreen.svg)](./LICENSE)
 [![API](https://img.shields.io/badge/API-24%2B-brightgreen.svg?style=flat)](https://android-arsenal.com/api?level=24) [![SonarCloud](https://sonarcloud.io/api/project_badges/measure?project=iOrchid_android-jetpack-demo&metric=alert_status)](https://sonarcloud.io/dashboard?id=iOrchid_android-jetpack-demo) [![codebeat badge](https://codebeat.co/badges/cf8fdfb4-2716-4494-9a72-b1727a8d5805)](https://codebeat.co/projects/github-com-iOrchid-android-jetpack-demo-master) ![GitHub repo size](https://img.shields.io/github/repo-size/iOrchid/android-jetpack-demo.svg?style=flat-square) ![GitHub Release Date](https://img.shields.io/github/release-date/iOrchid/android-jetpack-demo.svg?color=orange&style=flat-square) [![version](https://img.shields.io/github/release/iOrchid/android-jetpack-demo.svg)](https://github.com/iOrchid/android-jetpack-demo/releases) ![GitHub last commit](https://img.shields.io/github/last-commit/iOrchid/android-jetpack-demo.svg?style=flat-square) ![GitHub commit activity](https://img.shields.io/github/commit-activity/m/iOrchid/android-jetpack-demo.svg?style=flat-square) [![Hits](https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fgithub.com%2FiOrchid%2Fandroid-jetpack-demo&count_bg=%2379C83D&title_bg=%23555555&icon=&icon_color=%23E7E7E7&title=hits&edge_flat=false)](https://hits.seeyoufarm.com)
 
 ![Alt](https://repobeats.axiom.co/api/embed/c5eaf3c2f1e3cdb7a5545393195f6b26014cd91d.svg "Repobeats analytics image")
@@ -80,7 +80,7 @@
 package org.zhiwei.jetpack.kt.base
 
 /**
- * 作者： 志威  zhiwei.org
+ * 作者： iOrchid  zhiwei.org
  * 主页： Github: https://github.com/iOrchid
  * 日期： 2019年09月19日 11:13
  * 签名： 天行健，君子以自强不息；地势坤，君子以厚德载物。
@@ -161,7 +161,7 @@ public final class KtClazz {
 - **License**
 
 ```markdown
-Copyright 2018--2023 志威
+Copyright 2018--2024 iOrchid
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.

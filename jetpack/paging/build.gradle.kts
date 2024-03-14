@@ -5,7 +5,7 @@ plugins {
 
 android {
 	namespace = "org.zhiwei.jetpack.paging"
-	compileSdk = 33
+	compileSdk = 34
 
 	defaultConfig {
 		minSdk = 24

@@ -4,8 +4,8 @@ plugins {
 }
 
 android {
-	namespace = "org.zhiwei.jetpack.livedata"
-	compileSdk = 33
+	namespace = "org.zhiwei.jetpack.lifecycle"
+	compileSdk = 34
 
 	defaultConfig {
 		minSdk = 24

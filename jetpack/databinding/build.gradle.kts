@@ -1,11 +1,13 @@
 plugins {
 	alias(libs.plugins.com.android.library)
 	alias(libs.plugins.org.jetbrains.kotlin.android)
+	//databinding需要kapt，而ksp此时不能替代
+	id("kotlin-kapt")
 }
 
 android {
-	namespace = "org.zhiwei.jetpack.viewmodel"
-	compileSdk = 33
+	namespace = "org.zhiwei.jetpack.databinding"
+	compileSdk = 34
 
 	defaultConfig {
 		minSdk = 24
@@ -23,20 +25,34 @@ android {
 			)
 		}
 	}
+	buildFeatures {
+		//模块化中的databinding开启，则app主module中也要开启
+		dataBinding = true
+	}
 	compileOptions {
-		sourceCompatibility = JavaVersion.VERSION_1_8
-		targetCompatibility = JavaVersion.VERSION_1_8
+		sourceCompatibility = JavaVersion.VERSION_17
+		targetCompatibility = JavaVersion.VERSION_17
 	}
 	kotlinOptions {
-		jvmTarget = "1.8"
+		jvmTarget = "17"
 	}
 }
 
 dependencies {
 
-	implementation(libs.core.ktx)
+	// android official libs version
+	implementation(libs.activity.ktx)
 	implementation(libs.appcompat)
+	implementation(libs.constraintlayout)
+	implementation(libs.core.ktx)
+	implementation(libs.fragment.ktx)
 	implementation(libs.material)
+	implementation(libs.recyclerview)
+	implementation(libs.swiperefreshlayout)
+
+	implementation(libs.coil.kt)
+	implementation(libs.coil.kt.svg)
+
 	testImplementation(libs.junit)
 	androidTestImplementation(libs.androidx.test.ext.junit)
 	androidTestImplementation(libs.espresso.core)

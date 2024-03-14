@@ -9,12 +9,12 @@ plugins {
 
 android {
 	namespace = "org.zhiwei.jetpack"
-	compileSdk = 33
+	compileSdk = 34
 
 	defaultConfig {
 		applicationId = "org.zhiwei.jetpack"
 		minSdk = 24
-		targetSdk = 33
+		targetSdk = 34
 		versionCode = 200
 		versionName = "2.0.0"
 
@@ -31,11 +31,11 @@ android {
 		}
 	}
 	compileOptions {
-		sourceCompatibility = JavaVersion.VERSION_17
-		targetCompatibility = JavaVersion.VERSION_17
+		sourceCompatibility = JavaVersion.VERSION_1_8
+		targetCompatibility = JavaVersion.VERSION_1_8
 	}
 	kotlinOptions {
-		jvmTarget = "17"
+		jvmTarget = "1.8"
 	}
 	buildFeatures {
 		viewBinding = true
@@ -114,17 +114,17 @@ dependencies {
 	androidTestImplementation(libs.espresso.core)
 
 	//依赖其他模块
-	implementation(project(":databinding"))
+	implementation(project(":jetpack:databinding"))
+	implementation(project(":jetpack:lifecycle"))
+	implementation(project(":jetpack:livedata"))
+	implementation(project(":jetpack:navigation"))
+	implementation(project(":jetpack:paging"))
+	implementation(project(":jetpack:room"))
+	implementation(project(":jetpack:viewmodel"))
+	implementation(project(":jetpack:work"))
 	implementation(project(":kotlin"))
-	implementation(project(":lifecycle"))
-	implementation(project(":livedata"))
-	implementation(project(":mvvm"))
 	implementation(project(":mvi"))
-	implementation(project(":navigation"))
-	implementation(project(":paging"))
-	implementation(project(":room"))
-	implementation(project(":viewmodel"))
-	implementation(project(":work"))
+	implementation(project(":mvvm"))
 
 
 }

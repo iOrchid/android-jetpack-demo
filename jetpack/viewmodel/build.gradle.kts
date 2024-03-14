@@ -4,8 +4,8 @@ plugins {
 }
 
 android {
-	namespace = "org.zhiwei.jetpack.room"
-	compileSdk = 33
+	namespace = "org.zhiwei.jetpack.viewmodel"
+	compileSdk = 34
 
 	defaultConfig {
 		minSdk = 24
