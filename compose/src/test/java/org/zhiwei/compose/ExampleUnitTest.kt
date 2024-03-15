@@ -1,4 +1,4 @@
-package com.zenmen.jetpack
+package org.zhiwei.compose
 
 import org.junit.Test
 

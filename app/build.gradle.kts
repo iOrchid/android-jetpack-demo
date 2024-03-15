@@ -33,8 +33,8 @@ android {
     kotlinOptions {
         jvmTarget = "1.8"
     }
+    dynamicFeatures += setOf(":jetpack:jetpack", ":kotlin", ":compose")
     //使用动态模块的形式，用于隔离代码module的依赖
-    dynamicFeatures += setOf(":jetpack:jetpack",":kotlin")
 
 }
 

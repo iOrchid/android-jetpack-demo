@@ -17,12 +17,13 @@ class MainActivity : Activity() {
         setContentView(R.layout.activity_main)
         llKotlin.setOnClickListener { startActivity(Intent(JETPACK_INTENT_ACTION_KOTLIN)) }
         llJetpack.setOnClickListener { startActivity(Intent(JETPACK_INTENT_ACTION_JETPACK)) }
-        llCompose.setOnClickListener { }
+        llCompose.setOnClickListener { startActivity(Intent(JETPACK_INTENT_ACTION_COMPOSE)) }
     }
 
     companion object {
-        const val JETPACK_INTENT_ACTION_JETPACK = "org.zhiwei.jetpack.JETPACK_ACTIVITY"
         const val JETPACK_INTENT_ACTION_KOTLIN = "org.zhiwei.jetpack.KOTLIN_ACTIVITY"
+        const val JETPACK_INTENT_ACTION_JETPACK = "org.zhiwei.jetpack.JETPACK_ACTIVITY"
+        const val JETPACK_INTENT_ACTION_COMPOSE = "org.zhiwei.jetpack.COMPOSE_ACTIVITY"
     }
 
 }

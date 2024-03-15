@@ -1,14 +1,15 @@
 <resources>
-	<string name="app_name">Jetpack</string>
-	<string name="str_description_main">
+    <string name="app_name">Jetpack</string>
+    <string name="str_description_main">
 		学习主要以Demo项目代码为准，主要分三个部分模块：\n
 		1、kotlin文件夹，基本语法；学习之后，相信你用上kotlin之后，绝对不会再用回java。\n
 		2、jetpack文件夹下，通用的jetpack的组件liveData、lifecycle、viewmodel、paging、workmanager、navigation，databinding、room等。\n
 		3、compose算是颠覆性或者革命性的一个Android UI的编写方式,用起来也没有了Android旧的view体系的那种臃肿感。\n
 		4、其他MVI，MVVM和jetpack的组件，可能会简便或者功能的形式，添加的App demo的功能块中。
 	</string>
-	<string name="str_kotlin_language">Kotlin语法</string>
-	<string name="str_jetpack_components">Jetpack组件</string>
-	<string name="str_compose_tutorials">Compose学习</string>
-	<string name="title_jetpack">Jetpack Components</string>
+    <string name="str_kotlin_language">Kotlin语法</string>
+    <string name="str_jetpack_components">Jetpack组件</string>
+    <string name="str_compose_tutorials">Compose学习</string>
+    <string name="title_jetpack">Jetpack Components</string>
+    <string name="title_compose">Compose</string>
 </resources>
