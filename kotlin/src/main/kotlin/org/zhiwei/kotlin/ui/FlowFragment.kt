@@ -16,6 +16,6 @@ internal class FlowFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?,
     ): View? {
-        return inflater.inflate(R.layout.fragment_basic, container, false)
+        return inflater.inflate(R.layout.fragment_flow, container, false)
     }
 }

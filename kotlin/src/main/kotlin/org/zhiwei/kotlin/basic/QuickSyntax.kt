@@ -34,7 +34,7 @@ const val PI: Double = 3.14 //常量，类似于Java的static final  其存放�
 //6. 不同于Java文件，在Kotlin的kt文件中，可以直接在文件内声明函数，变量，常量，类等定义，而不是Java那种必须在某个类中定义。且一个kt文件可以定义多个public的类。
 //6.1 kotlin中定义函数，变量，类，接口等，如果在文件层级，权限修饰符默认是public，则会省略不写。类与函数默认是final的。
 //7. 类定义格式class 类名(参数):父类,接口 。类定义可继承父类，实现接口，如果最简化，则如下，class 类名 即可。
-public class Syntax //默认前面有修饰符public的，省略不写
+public class QuickSyntax //默认前面有修饰符public的，省略不写
 
 interface Shape
 

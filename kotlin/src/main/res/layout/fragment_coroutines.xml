@@ -3,15 +3,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <ScrollView
+    <TextView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-        <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:scaleType="centerCrop"
-            android:src="@drawable/kotlin_basic" />
-    </ScrollView>
-
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:text="协程学习" />
 </androidx.constraintlayout.widget.ConstraintLayout>
