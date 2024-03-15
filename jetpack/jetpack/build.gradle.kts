@@ -4,7 +4,7 @@ plugins {
 }
 
 android {
-    namespace = "org.zhiwei.jetpack"
+    namespace = "org.zhiwei.jetpack.components"
     compileSdk = 34
 
     defaultConfig {

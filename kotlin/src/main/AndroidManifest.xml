@@ -11,7 +11,7 @@
         <dist:fusing dist:include="true" />
     </dist:module>
 
-    <application>
+    <application android:icon="@drawable/img_kotlin_hero">
         <activity
             android:name=".KotlinActivity"
             android:exported="true">

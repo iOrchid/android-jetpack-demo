@@ -11,14 +11,15 @@
         <dist:fusing dist:include="true" />
     </dist:module>
 
-    <application>
+    <application android:icon="@drawable/img_jetpack_hero">
         <activity
             android:name=".JetpackActivity"
-            android:exported="true">
+            android:exported="true"
+            android:theme="@style/Theme.Jetpack">
             <!--因为该module是dynamic feature的模块，可打包成apk的那种，与app的module不是被依赖关系，所以这里用注册action的形式，提供对外跳转-->
             <intent-filter>
-                <category android:name="android.intent.category.DEFAULT" />
                 <action android:name="org.zhiwei.jetpack.JETPACK_ACTIVITY" />
+                <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
     </application>

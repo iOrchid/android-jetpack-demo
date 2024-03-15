@@ -14,6 +14,8 @@ class MainActivity : Activity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        //此界面在AndroidManifest中使用了theme 无标题栏，有颜色的导航栏和状态栏，
+        // 注意和kotlin界面，jetpack界面，compose界面的样式区分，它们分别使用不同的设置方式
         setContentView(R.layout.activity_main)
         llKotlin.setOnClickListener { startActivity(Intent(JETPACK_INTENT_ACTION_KOTLIN)) }
         llJetpack.setOnClickListener { startActivity(Intent(JETPACK_INTENT_ACTION_JETPACK)) }

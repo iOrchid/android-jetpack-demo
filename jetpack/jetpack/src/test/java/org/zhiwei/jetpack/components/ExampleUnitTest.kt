@@ -1,4 +1,4 @@
-package org.zhiwei.jetpack
+package org.zhiwei.jetpack.components
 
 import org.junit.Test
 
