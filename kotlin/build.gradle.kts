@@ -32,6 +32,8 @@ android {
 
 dependencies {
 
+	implementation(libs.material)
+	implementation(libs.constraintlayout)
 	implementation(libs.kotlinx.coroutines.android)
 
 	implementation(project(":app"))

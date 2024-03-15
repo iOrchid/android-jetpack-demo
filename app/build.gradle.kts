@@ -40,11 +40,12 @@ android {
 }
 
 dependencies {
-    //因为app使用的theme是material的
+    //因为app使用的theme是material的,因为使用了dynamicFeature依赖的module，所以如果多个dynamic的模块有共同的依赖库，则app中需要添加
     implementation(libs.material)
+    implementation(libs.constraintlayout)
 
     //compose 相关 ,因为有dynamic的组件，compose的，所以宿主模块也要有必要的依赖，否则会报错。
-    //这里android闭包内不需要compose的compiler和buildfeature，如果是普通module的依赖，则需要主module也开启。
+    //这里android闭包内不需要compose的compiler和buildFeature，如果是普通module的依赖，则需要主module也开启。
     implementation(platform(libs.androidx.compose.bom))
     implementation(libs.androidx.compose.ui)
 
