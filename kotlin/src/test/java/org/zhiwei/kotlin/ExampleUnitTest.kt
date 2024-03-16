@@ -73,4 +73,36 @@ class ExampleUnitTest {
         SyntaxClassObject.Pet("小小灰狼")
         SyntaxClassObject.Pet("大白兔", 3)
     }
+
+    //sampleStart
+    open class Base(val name: String) {
+
+        init {
+            println("基类base的init块")
+        }
+
+        open val size: Int =
+            name.length.also { println("基类的size属性 $it") }
+    }
+
+    class Derived(
+        name: String,
+        val lastName: String,
+    ) : Base(name.replaceFirstChar { it.uppercase() }
+        .also { println("子类入参传入给Base基类: $it") }) {
+
+        init {
+            println("子类的init块")
+        }
+
+        override val size: Int =
+            (super.size + lastName.length).also { println("子类的size属性: $it") }
+    }
+//sampleEnd
+
+    @Test
+    fun testInheritance() {
+        println("初始化子类是小写字母的hello world")
+        Derived("hello", "world")
+    }
 }
