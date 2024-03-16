@@ -7,6 +7,7 @@ import org.zhiwei.kotlin.basic.testCollection
 import org.zhiwei.kotlin.basic.testParseIntNull
 import org.zhiwei.kotlin.basic.testWhen
 import org.zhiwei.kotlin.concepts.SyntaxClassObject
+import org.zhiwei.kotlin.concepts.SyntaxFunction
 
 /**
  * Example local unit test, which will execute on the development machine (host).
@@ -104,5 +105,20 @@ class ExampleUnitTest {
     fun testInheritance() {
         println("初始化子类是小写字母的hello world")
         Derived("hello", "world")
+    }
+
+    private fun SyntaxFunction.Sub.school() {
+        println("扩展Sub一个函数叫school")
+    }
+
+    private fun SyntaxFunction.Super.school() {
+        println("扩展Super函数，叫school")
+    }
+
+    @Test
+    fun testExt() {
+        SyntaxFunction.Sub().school()//此时就可以使用扩展函数了。
+        val str: SyntaxFunction.Super = SyntaxFunction.Sub()
+        str.school()
     }
 }
