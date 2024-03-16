@@ -41,4 +41,25 @@ class ExampleUnitTest {
         println("计算结果 ${aa1.contentEquals(aa2)}")
 
     }
+
+    @Test
+    fun testLoop() {
+//        listOf(1, 3, 3, 44, 35, 5, 466).forEach {
+//            if (it == 44) return@forEach
+//            println("输出 $it")
+//        }
+//
+//        listOf(1,2,3,45,64,).forEach(fun(value:Int){
+//            if (value==3)return //如此，则return到函数testReturnJump()的调用处了
+//            println("--- 输出 $value")
+//        })
+
+        //如下，则 println("-----输出测试完成-----")无法执行，因为遍历到44时候，就return出整个testLoop函数了。
+
+        listOf(1, 3, 3, 44, 35, 5, 466).forEach {
+            if (it == 44) return
+            println("》》》输出 $it")
+        }
+        println("-----输出测试完成-----")
+    }
 }
