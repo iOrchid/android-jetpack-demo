@@ -6,6 +6,7 @@ import org.zhiwei.kotlin.basic.name
 import org.zhiwei.kotlin.basic.testCollection
 import org.zhiwei.kotlin.basic.testParseIntNull
 import org.zhiwei.kotlin.basic.testWhen
+import org.zhiwei.kotlin.concepts.SyntaxClassObject
 
 /**
  * Example local unit test, which will execute on the development machine (host).
@@ -61,5 +62,15 @@ class ExampleUnitTest {
             println("》》》输出 $it")
         }
         println("-----输出测试完成-----")
+    }
+
+    @Test
+    fun testClass() {
+        //演示类的初始化对象时候，构造函数，属性，init代码块执行顺序
+//        SyntaxClassObject.LabelClassFull("一个参数 张三")
+//        SyntaxClassObject.LabelClassFull("两个参数 李四", 88)
+
+        SyntaxClassObject.Pet("小小灰狼")
+        SyntaxClassObject.Pet("大白兔", 3)
     }
 }

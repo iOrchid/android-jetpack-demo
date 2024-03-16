@@ -101,5 +101,30 @@ class SyntaxControl {
 
     }
 
+    //endregion
+
+    //3. 异常 throwable；类似于java的异常体系，throw抛出异常，try..catch捕获异常；也是表达式
+    val tryResult = try {
+        "".toInt()
+    } catch (e: NumberFormatException) {
+        e.printStackTrace()
+        999
+    }
+
+    //也可以简便的runCatching
+    private fun testEx() {
+        runCatching {
+            "d3".toInt()
+        }.onFailure { it.printStackTrace() }
+            .onSuccess { println("解析成功$it") }
+            .getOrNull()
+    }
+
+    //一个注定抛异常的函数，其返回类型则为Nothing
+    private fun fail(): Nothing {
+        throw IllegalArgumentException("参数异常")
+        //如上可简化为error("参数异常")
+        error("") //它抛出的异常类型是IllegalStateException
+    }
 
 }
