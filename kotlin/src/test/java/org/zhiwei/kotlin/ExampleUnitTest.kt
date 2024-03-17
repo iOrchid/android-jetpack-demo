@@ -121,4 +121,19 @@ class ExampleUnitTest {
         val str: SyntaxFunction.Super = SyntaxFunction.Sub()
         str.school()
     }
+
+    private data class User(val name: String) {
+        var age: Int = 10
+    }
+
+    @Test
+    fun testDataClass() {
+        val user = User("张三")
+        val user2 = User("张三")
+        user.age = 20
+        user2.age = 30
+        println("用户User与User2的内容toString $user ，， $user2")
+        println("用户User与User2的年龄 ${user.age} ，， ${user2.age}")
+        println("用户User与User2是否相等 ${user == user2}")
+    }
 }
