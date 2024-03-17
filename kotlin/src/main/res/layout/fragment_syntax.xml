@@ -1,11 +1,57 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="8dp">
 
     <TextView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/hongkong"
         android:gravity="center"
-        android:text="语法品读" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+        android:text="語法品讀"
+        android:textSize="22sp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="@string/str_old_code_kotlin"
+        android:textColor="@color/md_theme_light_onSurfaceVariant"
+        android:textSize="14sp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="@string/str_concepts_kotlin"
+        android:textColor="@color/md_theme_light_inversePrimary"
+        android:textSize="14sp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="@string/str_collections_kotlin"
+        android:textColor="@color/md_theme_light_surfaceTint"
+        android:textSize="14sp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="@string/str_coroutines_kotlin"
+        android:textColor="@color/md_theme_light_secondary"
+        android:textSize="14sp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="@string/str_flow_kotlin"
+        android:textColor="@color/md_theme_light_tertiary"
+        android:textSize="14sp" />
+
+
+</LinearLayout>

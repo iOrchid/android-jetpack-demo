@@ -2,10 +2,15 @@
 <resources>
     <string name="title_kotlin">Kotlin Language</string>
 
-    <string name="str_entry_toplevel_kotlin">1、先看topLevel的代码文件，主要是kotlin的基础语法的第一部分 包括变量/常量，函数的定义，以及基础的数据类型</string>
-    <string name="str_kt_class_kotlin">2、看KtClazz，主要是讲class内的变量/常量、函数的定义，以及kotlin中类 、接口和object，构造函数等</string>
-    <string name="str_advanced_kotlin">3、advanced高级语法的代码演示，包括高阶函数、协程/纤程、常用Api的释义等</string>
-    <string name="str_unit_test_kotlin">Kotlin语法的使用演示，代码中有不少test函数， 想要看效果，最好就在`test`包下的UnitTest内， 自己写个单元测试更能看到效果</string>
+    <string name="str_old_code_kotlin">0、在kotlin的module下src有java和kotlin两个分包，java的是历史版本的代码，里面比较陈旧，可速览一遍即可。kotlin分包下，是最新根据语法特性分类分包写的。</string>
+    <string name="str_concepts_kotlin">1、在kotlin分包下有basic下快速学习kotlin语法的说明演示类；
+        concepts包下则是逐步细分学习的语法特性；
+        共10个kt文件，可依次按照SyntaxTypes、Properties、Control、ClassObject、Inheritance、Interface、Modifier、Function、Common、Generics来学习语法；
+        可在单元测试的test文件中，自己手动演示，更有利于学习掌握。
+    </string>
+    <string name="str_collections_kotlin">2、在kotlin的module下有collections分包，主要演示了集合相关的各类操作符，并有代码注释说明。</string>
+    <string name="str_coroutines_kotlin">3、在coroutines包下会详细演示协程相关的操作符，概念和使用</string>
+    <string name="str_flow_kotlin">4、flow和channel作为单独的一部分进行演示，介绍概念，操作符，使用逻辑等。</string>
 
 
 </resources>
