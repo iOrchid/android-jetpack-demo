@@ -1,10 +1,13 @@
 package org.zhiwei.kotlin.concepts
 
+import kotlin.properties.Delegates
+
 /**
  * Kotlin语法基础之 继承
  */
 open class SyntaxInheritance {
-    //0. Kotlin中所有类都默认继承自Any（可null类型则对应Any?),都有equals，hashcode，toString函数；
+
+    //region 0. Kotlin中所有类都默认继承自Any（可null类型则对应Any?),都有equals，hashcode，toString函数；
     //1. 默认类是final的，若需要可被继承，则显示标记为open,继承类，使用:冒号
 
     open class SuperClass {
@@ -63,4 +66,83 @@ open class SyntaxInheritance {
         }
 
     }
+    //endregion
+
+    //region 1. 委托,可视为替代继承的较好方式
+    private interface IShape {
+        val name: String
+        fun draw()
+        fun ppp()
+    }
+
+    private class Rectangle : IShape {
+        override val name: String
+            get() = "矩形的name啊"
+
+        override fun draw() {
+            println("万能的draw啊 ，$name")
+        }
+
+        override fun ppp() {
+            println("咋地了，Rect的PPP啊")
+        }
+
+    }
+
+    //此时如果新建的class类，不想继承来实现draw，就可以委托;
+    // todo 委托条件是，1，继承接口，又不想实现；2，接收一个已经实现了的其他对象，并委托；
+    private class LazyShape(sp: IShape) : IShape by sp {
+        override val name: String
+            get() = "懒人的name"
+
+        override fun ppp() {
+            println("LazyShape还是我自己ppp吧")
+        }
+    }
+
+    //如果LazyShape也愿意实现接口的函数，那么是可以的，且创建LazyShape的对象调用的时候，优先自身的draw
+    private fun testShape() {
+        val rec = Rectangle()
+        val ls = LazyShape(rec)
+        ls.draw() //todo draw调用的name只能是Rectangle的，而不是ls的
+        ls.ppp()//会调用LazyShape自身的
+    }
+
+
+    //1.2 属性委托，by lazy要求必须是val的
+    val sss: String by lazy {
+        println("第一lazy调用时候，初始化sss")
+        "这就是个系统库提供的标准委托属性的实现"
+    }
+
+    //属性值 观察者的委托
+    var zzz: String by Delegates.observable("还没有赋值") { property, oldValue, newValue ->
+        println("每次赋值之后，都会调用 $oldValue --> $newValue")
+    }
+
+    //委托给另一个属性，可以是topLevel的，可以是自身或者其他对象的 其他属性/扩展属性，使用::双引号
+    //使用场景：在废弃一些属性时候，可以转变给新的属性
+    private class IntClass(val num: Int)
+
+    private class DemoClass(var dNO: Int, ic: IntClass, map: Map<String, Any>) {
+        var numberOne: Int by this::dNO//委托给自身的属性,注意⚠️var或val要保持两者的一致
+        val numberTwo by ic::num //委托给其他对象的其他属性
+        val num: Int by ::topInt//委托给topLevel的属性
+
+        //todo 也可以委托给map，则要求传入的map需要有对应字段
+        val name: String by map
+        val age: Int by map
+    }
+
+    // 局部委托属性，就是在函数内作用域局部变量的委托
+    private fun testLocal(afun: () -> String) {
+        val aLazyStr by lazy(afun)//因为afun是String类型的结果，所以可以如此委托
+        //只有在使用到aLazyStr时候，才会赋值
+    }
+
+
+    //endregion
+
 }
+
+private val topInt: Int = 999//topLevel的Int，上面用
