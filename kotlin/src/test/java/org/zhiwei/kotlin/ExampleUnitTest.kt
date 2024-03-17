@@ -136,4 +136,35 @@ class ExampleUnitTest {
         println("用户User与User2的年龄 ${user.age} ，， ${user2.age}")
         println("用户User与User2是否相等 ${user == user2}")
     }
+
+    @Test
+    fun testVs() {
+        //将句子分割成单词的集合，然后过滤长度>3的单词，取出前边4个，并输出他们的长度
+        //迭代器形式
+        val words = "The quick brown fox jumps over the lazy dog".split(" ")
+
+        val lengthsList = words.filter {
+            println("过滤: $it")
+            it.length > 3
+        }.map {
+            println("长: ${it.length}")
+            it.length
+        }.take(4)
+
+        println("iterator的 -----   前四个长度大于3的单词的长度是 :$lengthsList")
+
+        //序列形式
+        val wordsSequence = words.asSequence()
+
+        val lengthsSequence = wordsSequence.filter {
+            println("过滤: $it")
+            it.length > 3
+        }.map {
+            println("长: ${it.length}")
+            it.length
+        }.take(4)
+
+        println("Sequence的 ----- 前四个长度大于3的单词的长度是 :${lengthsSequence.toList()}")
+
+    }
 }
