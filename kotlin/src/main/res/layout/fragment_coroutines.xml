@@ -1,11 +1,153 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:padding="8dp">
 
     <TextView
+        android:id="@+id/tv_title_cor_kotlin"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/hongkong"
         android:gravity="center"
-        android:text="协程学习" />
+        android:text="協程學習"
+        android:textSize="22sp"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_tips_zero_cor_kotlin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="0. 在coroutines包下，有简要概念梳理。CoroutinesQuick内有协程概念细分code，并且在CoroutinesUnitTest有对应测试"
+        android:textColor="@color/md_theme_light_onSurfaceVariant"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_title_cor_kotlin" />
+
+
+    <TextView
+        android:id="@+id/tv_scope_cor_kotlin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="1. 协程作用域GlobalScope是全局的，同步于JVM的生命周期；对于Android平台，有MainScope，viewmodelScope主线程周期，lifecycleScope是和Activity/Fragment生命周期同步的；还有自定义的coroutine的，可自行cancel结束生命周期。Job，CoroutineName，Dispatchers，NonCancelable等都是CoroutineContext"
+        android:textColor="@color/md_theme_light_inversePrimary"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_tips_zero_cor_kotlin" />
+
+    <TextView
+        android:id="@+id/tv_others_cor_kotlin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="2. 结构化并发，就是父协程会监控和管理子协程，子协程会有父协程的context，异常还会影响一大片；supervisor会起到单独隔断作用，需要配合handler"
+        android:textColor="@color/md_theme_light_surfaceTint"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_scope_cor_kotlin" />
+
+    <TextView
+        android:id="@+id/tv_channel_cor_kotlin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="3. 协程channel适用于多个协程send和receive数据操作，还有select，更多参见代码code"
+        android:textColor="@color/md_theme_light_secondary"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_others_cor_kotlin" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn_produce_cor_kotlin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="Produce"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_channel_cor_kotlin" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/tv_produce_text_cor_kotlin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:text="produce的触发接收才会继续发送"
+        app:layout_constraintBottom_toBottomOf="@id/btn_produce_cor_kotlin"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0"
+        app:layout_constraintStart_toEndOf="@id/btn_produce_cor_kotlin"
+        app:layout_constraintTop_toTopOf="@id/btn_produce_cor_kotlin" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn_actor_cor_kotlin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="Actor"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/btn_produce_cor_kotlin" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/tv_actor_text_cor_kotlin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:text="actor需要触发发送动作，才会有接收"
+        app:layout_constraintBottom_toBottomOf="@id/btn_actor_cor_kotlin"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0"
+        app:layout_constraintStart_toEndOf="@id/btn_actor_cor_kotlin"
+        app:layout_constraintTop_toTopOf="@id/btn_actor_cor_kotlin" />
+
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn_channel_send_cor_kotlin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="Channel发"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/btn_actor_cor_kotlin" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn_channel_rec_cor_kotlin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="Channel收"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/btn_channel_send_cor_kotlin" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/tv_channel_text_cor_kotlin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:text="channel实现了send和receive的功能，会挂起，可缓存"
+        app:layout_constraintBottom_toBottomOf="@id/btn_channel_rec_cor_kotlin"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0"
+        app:layout_constraintStart_toEndOf="@id/btn_channel_rec_cor_kotlin"
+        app:layout_constraintTop_toTopOf="@id/btn_channel_send_cor_kotlin" />
+
+
+    <TextView
+        android:id="@+id/tv_text_ticker_cor_kotlin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/md_theme_light_inverseSurface"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:text="当前时间" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

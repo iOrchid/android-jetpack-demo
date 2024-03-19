@@ -1,17 +1,30 @@
 package org.zhiwei.kotlin
 
 import kotlinx.coroutines.CoroutineExceptionHandler
+import kotlinx.coroutines.Deferred
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.InternalCoroutinesApi
 import kotlinx.coroutines.NonCancellable
+import kotlinx.coroutines.async
 import kotlinx.coroutines.cancel
+import kotlinx.coroutines.cancelChildren
+import kotlinx.coroutines.channels.Channel
+import kotlinx.coroutines.channels.ReceiveChannel
+import kotlinx.coroutines.channels.SendChannel
+import kotlinx.coroutines.channels.actor
+import kotlinx.coroutines.channels.consumeEach
+import kotlinx.coroutines.channels.produce
+import kotlinx.coroutines.channels.ticker
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
+import kotlinx.coroutines.selects.select
+import kotlinx.coroutines.selects.selectUnbiased
 import kotlinx.coroutines.supervisorScope
 import kotlinx.coroutines.withContext
 import org.junit.Test
 import java.io.IOException
+import kotlin.random.Random
 
 /**
  * 协程相关的单元测试
@@ -20,6 +33,7 @@ class CoroutinesUnitTest {
 
     /**
      * 测试job的函数使用，协程单元测试，所以用了runBlocking提供协程环境和阻塞的执行域
+     * 根据需要，选择需要测试的函数，
      */
     @Test
     fun testJob() {
@@ -29,8 +43,15 @@ class CoroutinesUnitTest {
 //        globalJob()
 //        handleException()
 //        handleExp()
-        supervisorTest()
-
+//        supervisorTest()
+//        testChannel()
+//        testChannel2()
+        testProduce()
+//        testActor()
+//        testTicker()
+//        testSelectRec()
+//        testSelectSend()
+//        testSelectAwait()
     }
 
     private fun jobJoin() = runBlocking {
@@ -182,5 +203,184 @@ class CoroutinesUnitTest {
 
     }
 
+    private fun testChannel() = runBlocking {
+        val channel = Channel<String>()
+        println("--------start--------")
+        launch {
+            repeat(10) {
+                delay(100)
+                channel.send("$it")
+            }
+        }
+
+        println("--------中间--------")
+        launch {
+//            channel.consumeEach {
+//               println(" .. 接收到 ${it}")
+//            }
+            for (i in channel) {
+                println(" .. 接收到 ${i}")
+            }
+        }
+
+        delay(1000)
+
+        println("--------End--------")
+    }
+
+    private fun testChannel2() {
+        //trySend和tryReceive 可以不在协程作用域内使用，但是也就没有了挂起非阻塞的功能；如果Channel的capacity没有设置（默认0），那么就trySend不出去，也就无从receive，且阻塞。
+        val channel = Channel<String>(3)
+        println("--------start--------")
+
+        val trySend = channel.trySend("try发送000")
+        val trySend2 = channel.trySend("try发送000")
+        println("try发送的是 $trySend ,$trySend2")
+
+        println("--------中间--------")
+
+        println("接收到 ${channel.tryReceive().getOrNull()} ")
+        println("接收到2 ${channel.tryReceive().getOrNull()} ")
+
+        println("--------End--------")
+    }
+
+    private fun testProduce() = runBlocking {
+        val produce = produce<String> {
+            repeat(20) {
+                send("发送$it")
+            }
+        }
+        produce.consumeEach {
+            println("收到 🫡 $it")
+        }
+    }
+
+    private fun testActor() = runBlocking {
+        val actor = actor<String> {
+            consumeEach {
+                println("收到 🫡 $it")
+            }
+        }
+        repeat(20) {
+            actor.send("发送$it")
+        }
+        actor.close()
+    }
+
+    private fun testTicker() = runBlocking {
+        ticker(1000).consumeEach {
+            println("每间隔1s打印🖨️一次...")
+        }
+
+        /*
+         //future是产生一个延迟得到结果的数据，通过返回对象的get获取值，todo get需要在协程内，否则会阻塞。
+        val future = future {
+            "😂哈哈，返回啊 "
+        }
+
+        launch {
+            println("接收future的数值 ${future.getNow("没等到")}")
+        }
+        println("----接收future的数值 ${future.getNow("没等到")}")
+
+         */
+
+    }
+
+
+    private fun testSelectRec() = runBlocking {
+        println("--------- 开始 -----------")
+        val channel = produce<Int> {
+            repeat(10) {
+                send(it)
+            }
+        }
+        val channel2 = produce<String> {
+            repeat(10) {
+                send("🌬️$it")
+            }
+        }
+
+        //监听channel的onSend，但是要注意，channel要调用receive才会让send的数据出来，不然会阻塞
+
+        //可以选择想要的监听结果，指定类型，此处指定String,select可以同时监听多个channel，
+        // 但是并不确定那个优先输出，多次执行，结果输出也不一致。
+        repeat(10) {
+            val selectAorB = selectAorB(channel, channel2)
+            println("💣select选择器 : $selectAorB")
+        }
+
+        coroutineContext.cancelChildren()
+
+        println("------- 🔚函数最后一行 ---------- ")
+
+    }
+
+    private suspend fun selectAorB(a: ReceiveChannel<Int>, b: ReceiveChannel<String>): String {
+        val select = selectUnbiased<String> {
+            //使用onReceiveCatching 可以避免onReceive因为channel关闭而异常
+            b.onReceiveCatching {
+                if (it.getOrNull() == null) "B 🚇 被关闭了" else "收到b的 ${it.getOrNull()}"
+            }
+            a.onReceiveCatching {
+                if (it.getOrNull() == null) "A 🛣️ 被关闭了" else "收到a的 ${it.getOrNull()}"
+            }
+        }
+        return select
+    }
+
+    private fun testSelectSend() = runBlocking {
+
+        println(" --------- 开始 -------")
+
+        //这里模拟快速发送数据，接收receive很慢的时候，send会阻塞，而select会分散阻塞压力，到多个channel上去
+        fun produceNum(side: SendChannel<Int>) = produce<Int> {
+            repeat(10) { num ->
+                delay(100)
+                select {
+                    //这里使用两个发送channel来发送数据，select的作用，单次 是只会生肖其中一个，而不是说一个num发两次
+                    this@produce.onSend(num) {}
+                    side.onSend(num) {}
+                }
+            }
+        }
+
+        val side = Channel<Int>()
+        launch {
+            side.consumeEach { println(">>>>>>>    🧑‍💼副Channel接收 $it") }
+        }
+        //调用生产数字的channel，并穿过去一个side，
+        produceNum(side).consumeEach { println("🧑‍🏫 模拟消费数据很慢 $it");delay(200) }
+
+        coroutineContext.cancelChildren()
+        println(" --------- 结束 -------")
+    }
+
+    private fun testSelectAwait() = runBlocking {
+        //模拟10个 延迟异步操作，不认耗时时长的协程任务
+        val list: List<Deferred<String>> = List(10) {
+            val time = Random(322).nextInt(1000)
+            async {
+                delay(time.toLong())
+                "产生delay了$time 毫秒的数"
+            }
+        }
+        val result = select {
+            list.withIndex().forEach { (index, defered) ->
+                defered.onAwait.invoke { ret ->
+                    " ...  异步任务的结果: $ret "
+                }
+            }
+        }
+        println("🐒select的结果 $result")
+
+        val activeCount = list.count { it.isActive }
+        println("还有活跃的异步任务 $activeCount 个")
+
+        println("------------分隔符---------")
+
+
+    }
 
 }

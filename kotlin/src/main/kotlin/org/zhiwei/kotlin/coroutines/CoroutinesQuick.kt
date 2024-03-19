@@ -6,6 +6,7 @@ import kotlinx.coroutines.CoroutineName
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.CoroutineStart
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.InternalCoroutinesApi
 import kotlinx.coroutines.Job
@@ -15,16 +16,29 @@ import kotlinx.coroutines.asContextElement
 import kotlinx.coroutines.async
 import kotlinx.coroutines.awaitAll
 import kotlinx.coroutines.cancelAndJoin
+import kotlinx.coroutines.channels.Channel
+import kotlinx.coroutines.channels.TickerMode
+import kotlinx.coroutines.channels.actor
+import kotlinx.coroutines.channels.awaitClose
+import kotlinx.coroutines.channels.consume
+import kotlinx.coroutines.channels.consumeEach
+import kotlinx.coroutines.channels.produce
+import kotlinx.coroutines.channels.ticker
 import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.delay
+import kotlinx.coroutines.future.future
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.supervisorScope
 import kotlinx.coroutines.sync.Mutex
+import kotlinx.coroutines.sync.Semaphore
 import kotlinx.coroutines.sync.withLock
+import kotlinx.coroutines.sync.withPermit
 import kotlinx.coroutines.withContext
 import kotlinx.coroutines.withTimeout
 import kotlinx.coroutines.yield
+import java.util.concurrent.atomic.AtomicInteger
+import kotlin.concurrent.timer
 
 /**
  * 协程概念学习之 速览
@@ -254,7 +268,107 @@ class CoroutinesQuick {
             mutex.holdsLock(Any())//判断某对象是否被锁者
             mutex.tryLock()
         }
+
+        //todo channel是线程安全的并发消息通道，线程安全问题，可使用java的线程安全处理方式，不如synchronized lock atomic,
+        //协程有mutex，semaphore，kotlin有 synchronized函数
+        val aNum = AtomicInteger()//在多线程访问处，可以使用set更改值
+        runBlocking {
+            Semaphore(1).withPermit {
+                //这里操作就是线程安全的
+            }
+        }
+        synchronized(Any()) {
+            //kotlin的函数
+        }
     }
 
+
+    //region 5. Channel 可用于多个协程作用域共用一个channel 来发送，接收数据。
+    // todo 默认无缓存区，则发送数据到channel后，会挂起，等到数据被接收后，才会继续后面的发送。
+
+    @OptIn(ExperimentalCoroutinesApi::class)
+    private fun testChannel() {
+        val channel = Channel<String>()
+        //演示代码，因为channel的读取需要在协程作用域内，或者suspend函数内;可以使用trySend，tryReceive，不需要这个限制。
+        runBlocking {
+            //channel允许遍历获取当前channel内的数据
+            for (s in channel) {
+            }//单纯for，而不是receive并不会阻塞作用域
+            channel.send("AAA")
+            //接收到
+            val ret = channel.receive()
+            channel.cancel()//协程的cancel
+            channel.close()//如果调用了关闭，则无法receive，会抛出异常ClosedReceiveChannelException
+            channel.send("")//上面close了，再send就异常了
+        }
+        //channel的发送、接收 都是阻塞作用域的,consumeEach,能够接收所有元素；todo consume却未必能接收到所有元素
+        channel.consume {
+            //如此可以持续的接收，而且如果有异常发生，会自动取消channel
+            val re = tryReceive()
+        }
+        //channel的send和receive应该在不同的协程内，否则会阻塞，而无作用。
+        //trySend和tryReceive 可以不在协程作用域内使用，但是也就没有了挂起非阻塞的功能；
+        // 如果Channel的capacity没有设置（默认0），那么就trySend不出去，也就无从receive，且阻塞。todo 见单元测试testChannel2
+        runBlocking {
+            //channel是同时实现了sendChannel和receiveChannel接口；
+            // 5.1 produce可以创建一个具有send功能的ReceiveChannel的实现，todo 执行完会自动关闭通道
+            val produce = produce<String> {
+                repeat(20) {
+                    send("发送$it")
+                }
+                //可以手动决定取消通道
+                awaitClose()
+            }
+            produce.consumeEach {
+                println("收到 🫡 $it")
+            }
+        }
+        //5.2 actor创建一个具备send功能的channel作用域，可在内部进行receive，与produce刚好相反,但它不会自动关闭
+        runBlocking {
+            val actor = actor<String> {
+                consumeEach {
+                    println("收到 🫡 $it")
+                }
+            }
+            repeat(20) {
+                actor.send("发送$it")
+            }
+        }
+        //5.3 ticker 是一个轮训器 ，比timer更方便,它是一个ReceiveChannel
+        runBlocking {
+            //两种mode，FIXED_DELAY是当开始接收数据的时候才开始计算时间，接收者纬度；FIXED_PERIOD //发送者纬度
+            val ticker = ticker(1000, mode = TickerMode.FIXED_DELAY)
+            ticker.consumeEach {
+                println("间隔指定时间的轮训")
+            }
+            //此轮训器，暂时不支持多订阅、暂停/继续/重置/完成，可以设法自己封装实现。
+        }
+        //功能可以类似如下
+        timer("", period = 1000L) {
+
+        }
+
+        runBlocking {
+            //future是产生一个延迟得到结果的数据，通过返回对象的get获取值，todo get需要在协程内，否则会阻塞。
+            val future = future {
+                "😂哈哈，返回啊 "
+            }
+            launch {
+                println("接收future的数值 ${future.get()}")
+            }
+            println("----接收future的数值 ${future.getNow("没等到")}")
+        }
+
+        //5.4 select 多路复用 ，用于选择最快结果的协程
+        runBlocking {
+            //select是一个内联的suspend函数，可用于监听多个channel的结果。
+            //同一个select内，同一次接收操作，select内多个channel，只会有一个channel的数据被选择。
+            //不能在select内同时使用同一个channel的onSend和onReceive
+            //使用可参照单元测试 testSelectRec testSelectSend
+        }
+
+    }
+
+    //endregion
 
 }
