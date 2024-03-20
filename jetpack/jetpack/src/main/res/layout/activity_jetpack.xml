@@ -2,10 +2,27 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:padding="8dp">
 
-    <TextView
+    <com.google.android.material.textview.MaterialTextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/hongkong"
+        android:gravity="center"
+        android:text="@string/title_jetpack"
+        android:textSize="22sp" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn_databinding_jetpack"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/title_jetpack" />
+        android:text="dataBinding" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn_work_jetpack"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="WorkManager" />
+
 </LinearLayout>

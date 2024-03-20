@@ -1,6 +1,7 @@
 plugins {
     alias(libs.plugins.androidDynamicFeature)
     alias(libs.plugins.org.jetbrains.kotlin.android)
+    alias(libs.plugins.ksp)
 }
 
 android {
@@ -28,11 +29,16 @@ android {
     kotlinOptions {
         jvmTarget = "1.8"
     }
+    buildFeatures { dataBinding = true }
 }
 
 dependencies {
 
     implementation(project(":app"))
+    implementation(project(":jetpack:databinding"))
+    implementation(project(":jetpack:work"))
+
+    implementation(libs.material)
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.test.ext.junit)

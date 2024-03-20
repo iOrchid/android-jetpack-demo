@@ -30,4 +30,5 @@
     </style>
 
     <style name="Theme.Jetpack" parent="AppTheme" />
+
 </resources>
