@@ -62,7 +62,8 @@ internal class CoroutinesFragment : Fragment() {
                 produce.tryReceive().getOrNull() ?: "这个时间段里面有send数据产生"
             tvProduceText?.text =
                 if (produce.isClosedForReceive) "⚠️Channel已经关闭" else charSequence
-            //自动接收
+        }
+        //自动接收，或者用上面的点击一次，收一次
 //            MainScope().launch {
 //                produce.consumeEach {
 //                    Log.d(TAG, "configSuspendMethod: 接收 $it")
@@ -70,7 +71,6 @@ internal class CoroutinesFragment : Fragment() {
 //                    tvProduceText?.text = str
 //                }
 //            }
-        }
         //actor 接收者，可在其他地方发送
         val actor = MainScope().actor<String> {
             consumeEach { str ->

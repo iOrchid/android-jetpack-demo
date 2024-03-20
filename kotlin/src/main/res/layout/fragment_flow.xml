@@ -1,11 +1,52 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
     <TextView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/hongkong"
         android:gravity="center"
-        android:text="flow专栏" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+        android:text="Flow专栏"
+        android:textSize="22sp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="0. Flow是数据流，kotlin协程库提供的；用不严谨的分类，可以分为热流和冷流；热流就是产生数据后，不论有无接收者，它会按照自己的逻辑，继续生产数据；冷流 如果无接收者，它不产生数据，有接收者的时候，会接收数据，多个接收者，会接收到全部完整的数据流。"
+        android:textColor="@color/md_theme_light_onSurfaceVariant"
+        android:textSize="14sp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="1. 一般创建的flow，只有一个观察者，属于冷数据流，且不允许在构造flow的代码中切换协程 ;而ChannelFlow是可以允许内部切换协程的;操作符号©️ 中间操作符（包括回调，变换，过滤，组合 和功能） 和 末端操作符"
+        android:textColor="@color/md_theme_light_inversePrimary"
+        android:textSize="14sp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="2. 参见flow包下 FlowQuick的文件内，在单元测试文件FlowUnitTest.kt中有一些关键操作符的代码示例。更有助于理解作用及含义。"
+        android:textColor="@color/md_theme_light_surfaceTint"
+        android:textSize="14sp" />
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="20dp" />
+
+    <TextView
+        android:id="@+id/tv_text_ticker_flow_kotlin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:text="默认Text"
+        android:textColor="@color/md_theme_light_inverseSurface"
+        android:textSize="12sp" />
+
+</LinearLayout>
