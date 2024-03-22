@@ -12,31 +12,29 @@ import org.zhiwei.jetpack.databinding.tools.BindHelp
  * 主页： Github: https://github.com/zhiwei1990
  * 日期： 2019年08月09日 15:39
  * 签名： 天行健，君子以自强不息；地势坤，君子以厚德载物。
- *      _              _           _     _   ____  _             _ _
- *     / \   _ __   __| |_ __ ___ (_) __| | / ___|| |_ _   _  __| (_) ___
- *    / _ \ | '_ \ / _` | '__/ _ \| |/ _` | \___ \| __| | | |/ _` | |/ _ \
- *   / ___ \| | | | (_| | | | (_) | | (_| |  ___) | |_| |_| | (_| | | (_) |
- *  /_/   \_\_| |_|\__,_|_|  \___/|_|\__,_| |____/ \__|\__,_|\__,_|_|\___/  -- 志威 zhiwei.org
- *
  * You never know what you can do until you try !
  * ----------------------------------------------------------------
  * dataBinding的基础用法演示界面
+ * todo⚠️⚠️⚠️dataBinding的使用必然损耗一部分编译性能，老项目改造可以这么用。如果新项目，建议直接用compose，dataBinding作为就项目知识点就好。
  */
 class BaseUseActivity : AppCompatActivity() {
 
 	/*
 	DataBinding使用步骤简要：
-	  1、使用最新版的AndroidStudio，至少AS3.0以上吧。
-	  2、在项目module下的build.gradle的android闭包下，配置 databinding{enabled=true}
+	  1、使用最新版的AndroidStudio，至少AS3.0以上,
+	  2、在项目module下的build.gradle的android闭包下，配置 databinding{enabled=true}.
+	  新版gradle之后，写作 buildFeature闭包内，databinding = true；类似的有viewbinding = true（不需要xml使用<layout>包裹）。compose = true等。
 	  3、对于布局的xml文件，将原有的正常布局，外面用<layout></layout>包裹作为跟节点。<data></data>节点下存放用于xml布局的一些变量，工具类之类的
 	  4、在代码无误的情况下，build一下module或整个project。然后就可以在代码中使用binding方式coding了。
-
 	 */
 
 
 	//<editor-folder desc="成员变量代码块">
-
+	private val yourName: String = "这是一种可以折叠代码的注释方式。"
 	//</editor-folder>
+
+	// TODO: 如果单纯的仅仅想替换findViewById 可以只开启viewBinding=true即可，无需改造xml，就可以使用binding；
+
 
 
 	override fun onCreate(savedInstanceState: Bundle?) {

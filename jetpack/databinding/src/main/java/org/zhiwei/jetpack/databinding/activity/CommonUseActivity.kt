@@ -5,7 +5,6 @@ import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.AppCompatTextView
-import androidx.databinding.DataBindingUtil
 import androidx.databinding.ObservableField
 import androidx.databinding.ObservableInt
 import org.zhiwei.jetpack.databinding.R
@@ -57,10 +56,7 @@ class CommonUseActivity : AppCompatActivity(), View.OnClickListener {
 	override fun onCreate(savedInstanceState: Bundle?) {
 		super.onCreate(savedInstanceState)
 		//关联布局，binding对象
-		val binding = DataBindingUtil.setContentView<ActivityCommonUseBinding>(
-			this,
-			R.layout.activity_common_use
-		)
+		val binding = ActivityCommonUseBinding.inflate(layoutInflater)
 		//普通的类似java的方式，关联控件和注册事件
 		binding.btnChangeCommon.setOnClickListener(this)
 		binding.btnChangeField.setOnClickListener(this)

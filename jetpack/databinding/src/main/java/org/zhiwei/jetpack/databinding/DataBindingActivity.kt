@@ -22,49 +22,16 @@ import org.zhiwei.jetpack.databinding.activity.CommonUseActivity
  *
  * You never know what you can do until you try !
  * ----------------------------------------------------------------
- * DataBinding的演示界面
+ * DataBinding的演示界面，
+ * todo 最初代码是大概2019年左右学习笔记的形式写的，当时kotlin也是初学，所以可能有些写法不是那么标准雅观
  */
 class DataBindingActivity : AppCompatActivity() {
 
-	override fun onCreate(savedInstanceState: Bundle?) {
-		super.onCreate(savedInstanceState)
-		setContentView(R.layout.activity_binding)
-		//设置注意事项
-		setNotice()
-	}
-
-	/**
-	 * 跳转到 DataBinding的基础用法演示界面
-	 * 这里是响应xml中Button的点击事件，使用onClick配置属性的方式
-	 */
-	fun baseUse(v: View) {
-		//kotlin的语法方式，没有new关键字，而且对应的java class类文件为::class.java方式表示。.class表示自身的kotlin类
-		startActivity(Intent(this, BaseUseActivity::class.java))
-	}
-
-	/**
-	 * 跳转到DataBinding的进阶用法
-	 */
-	fun commonUse(v: View) {
-		//如果this表示不明晰的时候，可以@指定类名，即可明确对象指引
-		startActivity(Intent(this@DataBindingActivity, CommonUseActivity::class.java))
-	}
-
-	/**
-	 * 跳转到DataBinding的高级用法
-	 */
-	fun advancedUse(v: View) {
-		startActivity(Intent(this, AdvancedUseActivity::class.java))
-	}
-
-	/**
-	 * 使用DataBinding的注意事项点
-	 */
-	private fun setNotice() {
-		//这里使用的是kotlin 在gradle中apply plugin: 'kotlin-android'
-		//apply plugin: 'kotlin-android-extensions'后，就可以直接使用当前activity/fragment关联后的xml布局中的控件，直接使用其id即可表示该控件
-		//kotlin中好多set/get方法都直接简化为属性赋值的方式。如此处setText/getText就变成了.text
-		findViewById<TextView>(R.id.tv_notice_binding).text = """
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_binding)
+        //设置注意事项
+        val databindingStr = """
 DataBinding使用注意事项点:
 1、变量声明variable后，需要在binding中赋值
 2、xml中用到的类，需要import，如控制View的显示隐藏，需要导入View类
@@ -77,6 +44,32 @@ DataBinding使用注意事项点:
 9、静态函数，java的写法和kotlin的写法不同，实质都是jvm虚拟机的静态函数化
 10、函数调用的多种写法，无参、有参、context，以及静态函数调用（针对对象，而非类）。
 		""".trimIndent()
-	}
+        findViewById<TextView>(R.id.tv_notice_binding).text = databindingStr
+    }
+
+    /**
+     * 跳转到 DataBinding的基础用法演示界面
+     * 这里是响应xml中Button的点击事件，使用onClick配置属性的方式
+     */
+    fun baseUse(v: View) {
+        //kotlin的语法方式，没有new关键字，而且对应的java class类文件为::class.java方式表示。.class表示自身的kotlin类
+        startActivity(Intent(this, BaseUseActivity::class.java))
+    }
+
+    /**
+     * 跳转到DataBinding的进阶用法
+     */
+    fun commonUse(v: View) {
+        //如果this表示不明晰的时候，可以@指定类名，即可明确对象指引
+        startActivity(Intent(this@DataBindingActivity, CommonUseActivity::class.java))
+    }
+
+    /**
+     * 跳转到DataBinding的高级用法
+     */
+    fun advancedUse(v: View) {
+        startActivity(Intent(this, AdvancedUseActivity::class.java))
+    }
+
 
 }
