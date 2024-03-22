@@ -69,8 +69,10 @@
 
 #### 四、项目组成[^1]
 
-项目主要简单的演示`Android`当前应用开发层面的前沿技术与框架库使用，`Kotlin`
-语法及进阶，协程`Coroutines`和 ` flow `的分析及使用，以及`JetPack Compose`
+项目主要简单的演示`Android`
+当前应用开发层面的前沿技术与框架库使用， [`kotlin`](kotlin/Kotlin语法拾遗.md)
+语法及进阶，协程`Coroutines`和 [` flow `](./kotlin/kotlin flow 简明笔记.md)
+的分析及使用，以及[`JetPack Compose`](./compose/Jetpack Compose学习随笔.md)
 的组件的进阶使用，`MVI/MVVM架构的实现`,后续会添加模块化与组件化的项目演示。
 
 - **kotlin**分包，主要演示语法基础，快速上手；
