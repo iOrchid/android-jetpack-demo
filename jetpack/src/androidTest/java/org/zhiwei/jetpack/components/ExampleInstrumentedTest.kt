@@ -19,4 +19,5 @@ class ExampleInstrumentedTest {
         val appContext = InstrumentationRegistry.getInstrumentation().targetContext
         assertEquals("org.zhiwei.jetpack.components", appContext.packageName)
     }
+
 }

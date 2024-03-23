@@ -1,9 +1,12 @@
-package org.zhiwei.jetpack.components.ui
+package org.zhiwei.jetpack.components.ui.work
 
 import android.os.Bundle
 import android.util.Log
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import android.widget.Toast
-import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
 import androidx.work.BackoffPolicy
 import androidx.work.Constraints
 import androidx.work.Data
@@ -31,9 +34,9 @@ import java.util.concurrent.TimeUnit
  * ----------------------------------------------------------------
  * workmanager的演示界面
  */
-class WorkActivity : AppCompatActivity() {
+class WorkFragment : Fragment() {
 	//todo 这里workmanager的request有个高级用法，就是添加环境约束 ，比如网络、电量等
-	var constraints: Constraints = Constraints.Builder()
+	private var constraints: Constraints = Constraints.Builder()
 		.setRequiredNetworkType(NetworkType.CONNECTED) //联网状态
 		.setRequiresBatteryNotLow(true) //低电量不操作
 //		.setRequiresCharging(true) // TODO 充电时候才开始,这个条件开启后，测试机不充电则无演示效果
@@ -41,11 +44,11 @@ class WorkActivity : AppCompatActivity() {
 		.setRequiresStorageNotLow(true) //存储空间不能太小
 		.build()
 
-	private val name = "tmc"
+	private val name = "Kotlin小娜娜"
 	private val age = 18
 
 	//类似于intent的bundle
-	var data = Data.Builder()
+	private var data = Data.Builder()
 		.putString("name", name)
 		.putInt("age", age)
 		.build()
@@ -62,22 +65,29 @@ class WorkActivity : AppCompatActivity() {
 			.setBackoffCriteria(BackoffPolicy.LINEAR, 20, TimeUnit.MINUTES)
 			.build()
 
-	override fun onCreate(savedInstanceState: Bundle?) {
-		super.onCreate(savedInstanceState)
-		setContentView(R.layout.activity_work)
+	override fun onCreateView(
+		inflater: LayoutInflater,
+		container: ViewGroup?,
+		savedInstanceState: Bundle?,
+	): View? {
+		return inflater.inflate(R.layout.fragment_work, container, false)
+	}
+
+	override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+		super.onViewCreated(view, savedInstanceState)
 		//3、加入任务管理，但不是执行，执行的代码稍后
-		WorkManager.getInstance(this).enqueue(workRequest)
+		WorkManager.getInstance(requireContext()).enqueue(workRequest)
 		//4、通过workRequest的唯一标记id，来操作request，并获取返回数据
-		//todo 这里因为在oncreate中执行，会先与work执行，toast会弹出未执行work的空结果，work变化后，还会显示出成功后的结果。这是因为observe监测worker的status变化 enqueued、RUNNING、successed、retry、failure等
-		WorkManager.getInstance(this).getWorkInfoByIdLiveData(workRequest.id)
-			.observe(this) { workStatus: WorkInfo ->
+		//todo 这里toast会弹出未执行work的空结果，work变化后，还会显示出成功后的结果。这是因为observe监测worker的status变化 enqueued、RUNNING、successed、retry、failure等
+		WorkManager.getInstance(requireContext()).getWorkInfoByIdLiveData(workRequest.id)
+			.observe(viewLifecycleOwner) { workStatus: WorkInfo ->
 				//接收从worker中返回的任务结果,最好在这里判断status为success再做具体操作
 				if (workStatus.state == WorkInfo.State.SUCCEEDED) {
 					val data = workStatus.outputData
 					val result = data.getString("result")
 					val status = data.getInt("status", 0)
 					Toast.makeText(
-						this@WorkActivity,
+						requireContext(),
 						"result: $result status: $status",
 						Toast.LENGTH_SHORT
 					).show()
@@ -114,6 +124,6 @@ class WorkActivity : AppCompatActivity() {
 	//</editor-folder>
 	override fun onDestroy() {
 		super.onDestroy()
-		WorkManager.getInstance(this).cancelWorkById(workRequest.id)
+		WorkManager.getInstance(requireContext()).cancelWorkById(workRequest.id)
 	}
 }

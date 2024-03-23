@@ -4,11 +4,16 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/graph_main"
     app:startDestination="@+id/databinding_item_menu">
-
+    <!--这里id保持和bnv_menu_jetpack中一致，才能有效处理点击切换-->
     <fragment
         android:id="@+id/databinding_item_menu"
         android:name="org.zhiwei.jetpack.databinding.DataBindingFragment"
         android:label="DataBindingFragment"
         tools:layout="@layout/fragment_databinding" />
 
+    <fragment
+        android:id="@+id/kotlin_item_menu"
+        android:name="org.zhiwei.jetpack.components.ui.JetpackFragment"
+        app:route="route_nav_jetpack"
+        tools:layout="@layout/fragment_jetpack" />
 </navigation>

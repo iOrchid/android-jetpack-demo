@@ -6,6 +6,14 @@
     android:orientation="vertical"
     android:padding="8dp">
 
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/tv_title_kotlin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="DataBinding學習"
+        android:textSize="22sp" />
+
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btn_base_db"
         android:layout_width="wrap_content"
