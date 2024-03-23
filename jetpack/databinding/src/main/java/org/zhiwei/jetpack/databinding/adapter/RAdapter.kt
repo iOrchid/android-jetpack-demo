@@ -47,6 +47,7 @@ class RAdapter : RecyclerView.Adapter<RAdapter.MyHolder>() {
 	override fun onBindViewHolder(holder: MyHolder, position: Int) {
 		//java 写法可以setVariable
 		holder.binding.user = users[position]
+        //todo 注意这个要调用，才能使得item的绑定数据生效。
 		holder.binding.executePendingBindings()
 	}
 

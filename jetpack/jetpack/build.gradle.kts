@@ -39,6 +39,8 @@ dependencies {
     implementation(project(":jetpack:work"))
 
     implementation(libs.material)
+    implementation(libs.navigation.fragment.ktx)
+    implementation(libs.navigation.ui.ktx)
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.test.ext.junit)

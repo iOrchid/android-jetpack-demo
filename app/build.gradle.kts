@@ -48,6 +48,7 @@ dependencies {
     //接入jetpack的动态module，需要通用依赖
     implementation(libs.lifecycle.livedata.ktx)
     implementation(libs.navigation.ui.ktx)
+    implementation(libs.navigation.fragment.ktx)
     implementation(libs.work.runtime.ktx)
     implementation(libs.blankj.utils)
 

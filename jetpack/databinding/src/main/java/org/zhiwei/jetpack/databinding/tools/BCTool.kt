@@ -47,7 +47,7 @@ object BCTool {
 	}
 
 	/**
-	 * 用于appCompatImageView的自定义属性，bind:imgSrc，命名空间bind:可以省略，也就是写作 imgSrc亦可。可以用于加载url的图片
+     * 用于appCompatImageView的自定义属性，bind:imgUrl，命名空间bind:可以省略，也就是写作 imgUrl 亦可。可以用于加载url的图片
 	 * 函数名也是随意，主要是value的声明，就是新加的属性名了，可以多个属性同用，并配置是否必须一起作用
 	 * 函数名随意，方法签名才重要，匹配对象控件，以及属性参数。这里还可以添加old 参数，获取修改新参数 之前对应的值。
 	 * todo 加载网络图片，需要网络权限，别忘了

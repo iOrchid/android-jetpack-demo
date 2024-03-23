@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/graph_main"
+    app:startDestination="@+id/databinding_item_menu">
+
+    <fragment
+        android:id="@+id/databinding_item_menu"
+        android:name="org.zhiwei.jetpack.databinding.DataBindingFragment"
+        android:label="DataBindingFragment"
+        tools:layout="@layout/fragment_databinding" />
+
+</navigation>

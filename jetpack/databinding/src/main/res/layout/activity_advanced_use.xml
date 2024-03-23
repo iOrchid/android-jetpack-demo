@@ -1,87 +1,96 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:app="http://schemas.android.com/apk/res-auto"
-	xmlns:tools="http://schemas.android.com/tools">
+    xmlns:tools="http://schemas.android.com/tools">
 
-	<data>
+    <data>
 
-		<!--用于演示双向绑定，刷新view的swipeRefreshLayout控件需要用到-->
-		<variable
-			name="activity"
-			type="org.zhiwei.jetpack.databinding.activity.AdvancedUseActivity" />
+        <!--用于演示双向绑定，刷新view的swipeRefreshLayout控件需要用到-->
+        <variable
+            name="activity"
+            type="org.zhiwei.jetpack.databinding.activity.AdvancedUseActivity" />
 
-		<variable
-			name="user"
-			type="org.zhiwei.jetpack.databinding.bean.ObUser" />
+        <variable
+            name="user"
+            type="org.zhiwei.jetpack.databinding.bean.ObUser" />
 
-		<!--用于加载图片的url-->
-		<variable
-			name="url"
-			type="String" />
+        <!--用于加载图片的url-->
+        <variable
+            name="url"
+            type="String" />
 
-		<variable
-			name="myBg"
-			type="android.graphics.drawable.Drawable" />
-	</data>
+        <variable
+            name="myBg"
+            type="android.graphics.drawable.Drawable" />
+    </data>
 
-	<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-		android:layout_width="match_parent"
-		android:layout_height="match_parent"
-		android:gravity="center_horizontal"
-		android:orientation="vertical">
-		<!--1、双向绑定，使用的是@={} 下面输入框的修改，就会同步修改user的那么字段-->
-		<com.google.android.material.textview.MaterialTextView
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:text="@{`Name: `+user.name}"
-			android:textSize="12sp"
-			tools:text="在输入框修改user的name，这里会变" />
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
+        <!--1、双向绑定，使用的是@={} 下面输入框的修改，就会同步修改user的那么字段-->
+        <com.google.android.material.textview.MaterialTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{`Name: `+user.name}"
+            android:textSize="12sp"
+            tools:text="在输入框修改user的name，这里会变" />
 
-		<com.google.android.material.textfield.TextInputEditText
-			android:layout_width="match_parent"
-			android:layout_height="wrap_content"
-			android:hint="这里演示的输入名字，更改为user的name"
-			android:text="@={user.name}" />
-		<!--1、转换，也就是将原有不支持的属性，转换为支持，兼容，如background的属性不能设置普通string，
-		这里可以通过@BindingConversion的静态函数，来适配-->
-		<com.google.android.material.textview.MaterialTextView
-			android:layout_width="match_parent"
-			android:layout_height="wrap_content"
-			android:background="@{`red`}"
-			android:text="这个文案的背景色属性，就是通过converters转换才行的" />
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="这里演示的输入名字，更改为user的name"
+            android:text="@={user.name}" />
+        <!--1、转换，也就是将原有不支持的属性，转换为支持，兼容，如background的属性不能设置普通string，
+        这里可以通过@BindingConversion的静态函数，来适配-->
+        <com.google.android.material.textview.MaterialTextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@{`red`}"
+            android:text="这个文案的背景色属性，就是通过converters转换才行的" />
 
-		<!--3、添加或扩展已有控件的属性，或者给它的set支持dataBinding
-		因为dataBinding只是控件属性set/get，需要标准的函数命名getXXX，setXXX才会识别该属性。
-		如果不是这样命名的函数属性set，就不会支持dataBinding。这里我们可以扩展兼容-->
+        <!--3、添加或扩展已有控件的属性，或者给它的set支持dataBinding
+        因为dataBinding只是控件属性set/get，需要标准的函数命名getXXX，setXXX才会识别该属性。
+        如果不是这样命名的函数属性set，就不会支持dataBinding。这里我们可以扩展兼容-->
 
-		<!--这里的src属性，并不支持网络加载url，或者uri，我们可以在静态函数中，适配兼容-->
-		<com.google.android.material.imageview.ShapeableImageView
-			imgUrl="@{url}"
-			android:layout_width="wrap_content"
-			android:layout_height="50dp"
-			android:src="@drawable/img_banner" />
-		<!--这里是用的自定义的view，使用img属性，在view中添加set函数，这样和上面的@bindinAdapter对比，上面更方面，扩展性强-->
-		<org.zhiwei.jetpack.databinding.view.MyImageView
-			img="@{myBg}"
-			android:layout_width="wrap_content"
-			android:layout_height="50dp" />
-		<!--这里的image属性，是原控件没有的，而是通过@bindMethod来实现 函数映射-->
-		<com.google.android.material.imageview.ShapeableImageView
-			android:layout_width="wrap_content"
-			android:layout_height="50dp"
-			app:image="@{myBg}" />
+        <!--这里的src属性，并不支持网络加载url，或者uri，我们可以在静态函数中，适配兼容-->
+        <com.google.android.material.imageview.ShapeableImageView
+            imgUrl="@{url}"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:scaleType="centerCrop"
+            tools:src="@drawable/img_banner" />
+        <!--这里是用的自定义的view，使用img属性，在view中添加set函数，这样和上面的@bindinAdapter对比，上面更方面，扩展性强-->
+        <org.zhiwei.jetpack.databinding.view.MyImageView
+            img="@{myBg}"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            tools:src="@drawable/img_banner" />
+        <!--这里的image属性，是原控件没有的，而是通过@bindMethod来实现 函数映射-->
+        <com.google.android.material.imageview.ShapeableImageView
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            app:image="@{myBg}"
+            tools:src="@drawable/img_banner" />
 
-		<!--4、自定义View 双向绑定演示 记住双向绑定使用@={}-->
-		<androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-			android:layout_width="match_parent"
-			android:layout_height="wrap_content"
-			app:sfl_refreshing="@={activity.refreshing}">
+        <!--4、自定义View 双向绑定演示 记住双向绑定使用@={}-->
+        <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:sfl_refreshing="@={activity.refreshing}">
 
-			<com.google.android.material.textview.MaterialTextView
-				android:id="@+id/tv_long_text_ad_binding"
-				android:layout_width="match_parent"
-				android:layout_height="match_parent"
-				android:text="long text 长文本" />
-		</androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
-	</LinearLayout>
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/tv_long_text_ad_binding"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="long text 长文本" />
+            </ScrollView>
+
+        </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+    </LinearLayout>
 
 </layout>

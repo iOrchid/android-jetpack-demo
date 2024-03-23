@@ -1,28 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:padding="8dp">
+    android:orientation="vertical">
+    <!--todo 使用navigation的关键，是写这个，也可以用fragment标签；其中name，defaultNavHost，navGraph三个必须同时有-->
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/fcv_jetpack"
+        android:name="androidx.navigation.fragment.NavHostFragment"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:defaultNavHost="true"
+        app:layout_constraintBottom_toTopOf="@id/bnv_jetpack"
+        app:layout_constraintTop_toTopOf="parent"
+        app:navGraph="@navigation/graph_main_jetpack" />
 
-    <com.google.android.material.textview.MaterialTextView
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bnv_jetpack"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:fontFamily="@font/hongkong"
-        android:gravity="center"
-        android:text="@string/title_jetpack"
-        android:textSize="28sp" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:menu="@menu/bnv_menu_jetpack" />
 
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/btn_databinding_jetpack"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="dataBinding" />
-
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/btn_work_jetpack"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="WorkManager" />
-
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

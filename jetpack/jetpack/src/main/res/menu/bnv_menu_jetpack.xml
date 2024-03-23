@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <!--    如果是用于navigation配合bottomNavigationView的menu，则item的id要与对应nav graph中定义的id一致-->
+    <item
+        android:id="@+id/databinding_item_menu"
+        android:icon="@drawable/icon_d"
+        android:title="DataBinding" />
+    <item
+        android:id="@+id/kotlin_item_menu"
+        android:icon="@drawable/icon_k"
+        android:title="Jetpack" />
+</menu>
