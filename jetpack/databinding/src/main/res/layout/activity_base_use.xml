@@ -1,186 +1,196 @@
 <?xml version="1.0" encoding="utf-8"?><!--在正常的布局外，用layout标签包裹-->
 <layout xmlns:tools="http://schemas.android.com/tools">
-	<!--用于xml布局中binding数据的一些变量，类的声明引用-->
-	<data>
+    <!--用于xml布局中binding数据的一些变量，类的声明引用-->
+    <data>
 
-		<!--变量声明 ，使用variable 需要在代码中初始化和赋值。 基础数据类型的使用-->
-		<variable
-			name="title"
-			type="String" />
+        <!--变量声明 ，使用variable 需要在代码中初始化和赋值。 基础数据类型的使用-->
+        <variable
+            name="title"
+            type="String" />
 
-		<variable
-			name="name"
-			type="String" />
-		<!--int类型可写作Integer-->
-		<variable
-			name="age"
-			type="int" />
+        <variable
+            name="name"
+            type="String" />
+        <!--int类型可写作Integer-->
+        <variable
+            name="age"
+            type="int" />
 
-		<variable
-			name="isStudent"
-			type="Boolean" />
-		<!--List和Map类型，在xml中，个别字符需要转义符号-->
-		<variable
-			name="ages"
-			type="List&lt;String>" />
+        <variable
+            name="isStudent"
+            type="Boolean" />
+        <!--List和Map类型，在xml中，个别字符需要转义符号-->
+        <variable
+            name="ages"
+            type="List&lt;String>" />
 
-		<variable
-			name="map"
-			type="Map&lt;Integer,String>" />
-		<!--用于演示静态引用点击-->
-		<variable
-			name="helper"
-			type="BindHelp" />
-		<!--导入xml中需要的类，不导入的话，使用就会报错-->
-		<import type="android.view.View" />
+        <variable
+            name="map"
+            type="Map&lt;Integer,String>" />
+        <!--用于演示静态引用点击-->
+        <variable
+            name="helper"
+            type="BindHelp" />
+        <!--导入xml中需要的类，不导入的话，使用就会报错-->
+        <import type="android.view.View" />
 
-		<import type="java.util.List" />
+        <import type="java.util.List" />
 
-		<import type="java.util.Map" />
+        <import type="java.util.Map" />
 
-		<import type="org.zhiwei.jetpack.databinding.tools.BindTool" />
+        <import type="org.zhiwei.jetpack.databinding.tools.BindTool" />
 
-		<import type="org.zhiwei.jetpack.databinding.tools.BindUtilKt" />
-		<!--可使使用alias 命名别名，就可以在xml内部应用时候使用别名，优化书写和区分-->
-		<import
-			alias="BU"
-			type="org.zhiwei.jetpack.databinding.tools.BindUtil" />
+        <import type="org.zhiwei.jetpack.databinding.tools.BindUtilKt" />
+        <!--可使使用alias 命名别名，就可以在xml内部应用时候使用别名，优化书写和区分-->
+        <import
+            alias="BU"
+            type="org.zhiwei.jetpack.databinding.tools.BindUtil" />
 
-		<import type="org.zhiwei.jetpack.databinding.tools.BindHelp" />
+        <import type="org.zhiwei.jetpack.databinding.tools.BindHelp" />
 
-	</data>
+    </data>
 
-	<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-		android:layout_width="match_parent"
-		android:layout_height="match_parent"
-		android:orientation="vertical"
-		android:padding="10dp">
-		<!--使用databinding，则会将每个配置id的控件在对应的Java的binding类中，生成控件引用。
-		使用@{}符号引用导入/定义的属性，但是这些引入对象，需要在本xml对应的activity/fragment中的binding设置set赋值。如下title等变量，就要在activity中设置title的值。-->
-		<LinearLayout
-			android:layout_width="match_parent"
-			android:layout_height="wrap_content"
-			android:gravity="center_vertical"
-			android:orientation="horizontal">
-			<!--1、普通的应用变量：title， 使用tools命名空间的属性，便于预览效果
-			todo 注意text不能为Int值，否则报错。int要转为string,使用拼接，或者valueOf，toString都可以。-->
-			<com.google.android.material.textview.MaterialTextView
-				android:layout_width="wrap_content"
-				android:layout_height="wrap_content"
-				android:layout_margin="5dp"
-				android:text="@{age+` years old`}"
-				tools:text="title text" />
-			<!--2、使用资源引用(不只是string，可以color，drawable等其他需要的。)：在@{}里面写@string的时候，不会自动提示和补全，所以切记别写错了，否则编译错误，排查问题都不容易-->
-			<com.google.android.material.textview.MaterialTextView
-				android:layout_width="wrap_content"
-				android:layout_height="wrap_content"
-				android:layout_margin="5dp"
-				android:text="@{@string/str_reference}"
-				tools:text="str引用" />
-			<!--3、默认值的使用：default用,分号分隔，只是用于预览作用，运行时无效。
-			可以使用``反引号；也可以@string引用资源；也可使用其他变量或者静态函数值-->
-			<com.google.android.material.textview.MaterialTextView
-				android:layout_width="wrap_content"
-				android:layout_height="wrap_content"
-				android:layout_margin="5dp"
-				android:text="@{name , default=`默认Name`}" />
-			<!--4、判空null，并设置默认值，使用?? 若空则显示默认值。
-			 todo 注意，``反引号内尽量避免中文，因为编码会显示乱码，或者运行时可能报错。
-			 todo 用``地方都可 用@string或这其他变量值，静态函数值 替换。
-			 ??后可用``，@string/str_reference,或者其他变量或静态函数值。如：
-			android:text="@{title ?? @string/str_reference}"
-			 -->
-			<com.google.android.material.textview.MaterialTextView
-				android:layout_width="wrap_content"
-				android:layout_height="wrap_content"
-				android:layout_margin="5dp"
-				android:text="@{title ?? ` null of  title`}" />
-			<!--5、使用string的format-->
-			<com.google.android.material.textview.MaterialTextView
-				android:layout_width="wrap_content"
-				android:layout_height="wrap_content"
-				android:layout_margin="5dp"
-				android:text="@{@string/str_format(`zhiwei`)}"
-				tools:text="str的格式化" />
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="10dp">
 
-			<!--6、字符拼接-->
-			<com.google.android.material.textview.MaterialTextView
-				android:layout_width="wrap_content"
-				android:layout_height="wrap_content"
-				android:layout_margin="5dp"
-				android:text="@{`Pre_`+@string/str_reference+title}"
-				tools:text="str的拼接" />
-		</LinearLayout>
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tv_title_kotlin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginVertical="20dp"
+            android:text="DataBinding基础用法"
+            android:textSize="22sp" />
 
-		<!--7、根据boolean类型，控制显示隐藏（也可用于其他判断）
-					todo 注意这里也能用default，用于预览，但是值就要写成未使用binding时候的默认string值的写法。如这里的gone-->
-		<com.google.android.material.textview.MaterialTextView
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:text="是学生就显示"
-			android:textColor="@android:color/holo_green_light"
-			android:visibility="@{isStudent?View.VISIBLE:View.GONE,default=`gone`}" />
-		<!--复数，与自然语言相关，特别是不同国家的语言对应不同的单复数。目前没有业务场景使用到，未做研究-->
-		<com.google.android.material.textview.MaterialTextView
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:layout_margin="5dp"
-			android:text="@{@plurals/str_numbers(5)}"
-			tools:text="str的格式化" />
+        <!--使用databinding，则会将每个配置id的控件在对应的Java的binding类中，生成控件引用。
+        使用@{}符号引用导入/定义的属性，但是这些引入对象，需要在本xml对应的activity/fragment中的binding设置set赋值。如下title等变量，就要在activity中设置title的值。-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+            <!--1、普通的应用变量：title， 使用tools命名空间的属性，便于预览效果
+            todo 注意text不能为Int值，否则报错。int要转为string,使用拼接，或者valueOf，toString都可以。-->
+            <com.google.android.material.textview.MaterialTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:text="@{age+` years old`}"
+                tools:text="title text" />
+            <!--2、使用资源引用(不只是string，可以color，drawable等其他需要的。)：在@{}里面写@string的时候，不会自动提示和补全，所以切记别写错了，否则编译错误，排查问题都不容易-->
+            <com.google.android.material.textview.MaterialTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:text="@{@string/str_reference}"
+                tools:text="str引用" />
+            <!--3、默认值的使用：default用,分号分隔，只是用于预览作用，运行时无效。
+            可以使用``反引号；也可以@string引用资源；也可使用其他变量或者静态函数值-->
+            <com.google.android.material.textview.MaterialTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:text="@{name , default=`默认Name`}" />
+            <!--4、判空null，并设置默认值，使用?? 若空则显示默认值。
+             todo 注意，``反引号内尽量避免中文，因为编码会显示乱码，或者运行时可能报错。
+             todo 用``地方都可 用@string或这其他变量值，静态函数值 替换。
+             ??后可用``，@string/str_reference,或者其他变量或静态函数值。如：
+            android:text="@{title ?? @string/str_reference}"
+             -->
+            <com.google.android.material.textview.MaterialTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:text="@{title ?? ` null of  title`}" />
+            <!--5、使用string的format-->
+            <com.google.android.material.textview.MaterialTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:text="@{@string/str_format(`zhiwei`)}"
+                tools:text="str的格式化" />
 
-		<!--8、使用静态函数值,分别是java方式，kotlin的两种方式-->
-		<com.google.android.material.textview.MaterialTextView
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:text="@{BindTool.nameAge(name,age)}"
-			android:textColor="@android:color/holo_blue_light"
-			tools:text="静态函数" />
+            <!--6、字符拼接-->
+            <com.google.android.material.textview.MaterialTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:text="@{`Pre_`+@string/str_reference+title}"
+                tools:text="str的拼接" />
+        </LinearLayout>
 
-		<com.google.android.material.textview.MaterialTextView
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:text="@{BindUtilKt.ageName(age,name)}"
-			android:textColor="@{isStudent?@android:color/holo_blue_light:@android:color/holo_purple}"
-			tools:text="Kt静态函数" />
-		<!--注意这里BU是上面定义的BindUtil的别名-->
-		<com.google.android.material.textview.MaterialTextView
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:text="@{BU.ageAge(age)+BindHelp.nameName(name)}"
-			android:textColor="@android:color/holo_purple"
-			tools:text="Kt object 静态函数" />
-		<!--9、List和Map-->
-		<com.google.android.material.textview.MaterialTextView
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:text="@{ages[0]+map[20]}"
-			android:textColor="@android:color/holo_purple"
-			tools:text="list和map" />
-		<!--10、函数调用。点击按钮事件的响应，在onclick函数中，有多种写法（todo 其实这也是binding在xml中函数调用的一种写法。只不过这里函数是click而已）-->
-		<com.google.android.material.button.MaterialButton
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:onClick="@{()->BindTool.log()}"
-			android:text="普通无参(看logcat)" />
+        <!--7、根据boolean类型，控制显示隐藏（也可用于其他判断）
+                    todo 注意这里也能用default，用于预览，但是值就要写成未使用binding时候的默认string值的写法。如这里的gone-->
+        <com.google.android.material.textview.MaterialTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="是学生就显示"
+            android:textColor="@android:color/holo_green_light"
+            android:visibility="@{isStudent?View.VISIBLE:View.GONE,default=`gone`}" />
+        <!--复数，与自然语言相关，特别是不同国家的语言对应不同的单复数。目前没有业务场景使用到，未做研究-->
+        <com.google.android.material.textview.MaterialTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:text="@{@plurals/str_numbers(5)}"
+            tools:text="str的格式化" />
 
-		<com.google.android.material.button.MaterialButton
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:onClick="@{(v)->BindTool.toast(v)}"
-			android:text="普通view参数" />
+        <!--8、使用静态函数值,分别是java方式，kotlin的两种方式-->
+        <com.google.android.material.textview.MaterialTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{BindTool.nameAge(name,age)}"
+            android:textColor="@android:color/holo_blue_light"
+            tools:text="静态函数" />
 
-		<com.google.android.material.button.MaterialButton
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:onClick="@{()->BindUtilKt.toastV(context)}"
-			android:text="context参数" />
+        <com.google.android.material.textview.MaterialTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{BindUtilKt.ageName(age,name)}"
+            android:textColor="@{isStudent?@android:color/holo_blue_light:@android:color/holo_purple}"
+            tools:text="Kt静态函数" />
+        <!--注意这里BU是上面定义的BindUtil的别名-->
+        <com.google.android.material.textview.MaterialTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{BU.ageAge(age)+BindHelp.nameName(name)}"
+            android:textColor="@android:color/holo_purple"
+            tools:text="Kt object 静态函数" />
+        <!--9、List和Map-->
+        <com.google.android.material.textview.MaterialTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{ages[0]+map[20]}"
+            android:textColor="@android:color/holo_purple"
+            tools:text="list和map" />
+        <!--10、函数调用。点击按钮事件的响应，在onclick函数中，有多种写法（todo 其实这也是binding在xml中函数调用的一种写法。只不过这里函数是click而已）-->
+        <com.google.android.material.button.MaterialButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="@{()->BindTool.log()}"
+            android:text="普通无参(看logcat)" />
 
-		<com.google.android.material.button.MaterialButton
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:onClick="@{BindHelp::staticClick}"
-			android:text="静态函数应用点击" />
+        <com.google.android.material.button.MaterialButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="@{(v)->BindTool.toast(v)}"
+            android:text="普通view参数" />
 
-	</LinearLayout>
+        <com.google.android.material.button.MaterialButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="@{()->BindUtilKt.toastV(context)}"
+            android:text="context参数" />
+
+        <com.google.android.material.button.MaterialButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="@{BindHelp::staticClick}"
+            android:text="静态函数应用点击" />
+
+    </LinearLayout>
 
 </layout>

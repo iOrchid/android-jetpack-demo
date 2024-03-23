@@ -35,7 +35,7 @@ android {
     }
 
     //使用动态模块的形式，用于隔离代码module的依赖
-    dynamicFeatures += setOf(":jetpack:jetpack", ":kotlin", ":compose")
+    dynamicFeatures += setOf(":jetpack", ":kotlin", ":compose")
     //jetpack模块有dataBinding，所以这里要声明
     buildFeatures { dataBinding = true }
 

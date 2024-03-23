@@ -20,7 +20,5 @@ dependencyResolutionManagement {
 rootProject.name = "Jetpack"
 include(":app")
 include(":jetpack:databinding")
-include(":jetpack:work")
 include(":kotlin")
-include(":jetpack:jetpack")
 include(":compose")

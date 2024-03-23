@@ -1,133 +1,143 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:app="http://schemas.android.com/apk/res-auto"
-	xmlns:tools="http://schemas.android.com/tools">
+    xmlns:tools="http://schemas.android.com/tools">
 
-	<data>
-		<!--普通的user对象-->
-		<variable
-			name="user"
-			type="org.zhiwei.jetpack.databinding.bean.CommonUser" />
+    <data>
+        <!--普通的user对象-->
+        <variable
+            name="user"
+            type="org.zhiwei.jetpack.databinding.bean.CommonUser" />
 
-		<!--包含部分observable的属性的user对象-->
-		<variable
-			name="fuser"
-			type="org.zhiwei.jetpack.databinding.bean.FieldUser" />
+        <!--包含部分observable的属性的user对象-->
+        <variable
+            name="fuser"
+            type="org.zhiwei.jetpack.databinding.bean.FieldUser" />
 
-		<!--Observable的user对象-->
-		<variable
-			name="ouser"
-			type="org.zhiwei.jetpack.databinding.bean.ObUser" />
+        <!--Observable的user对象-->
+        <variable
+            name="ouser"
+            type="org.zhiwei.jetpack.databinding.bean.ObUser" />
 
-		<import type="android.view.View" />
+        <import type="android.view.View" />
 
-		<!--单独的observableBoolean-->
-		<variable
-			name="show"
-			type="Boolean" />
-		<!--listView的adapter-->
-		<variable
-			name="ladapter"
-			type="org.zhiwei.jetpack.databinding.adapter.LAdapter" />
+        <!--单独的observableBoolean-->
+        <variable
+            name="show"
+            type="Boolean" />
+        <!--listView的adapter-->
+        <variable
+            name="ladapter"
+            type="org.zhiwei.jetpack.databinding.adapter.LAdapter" />
 
-		<variable
-			name="radapter"
-			type="org.zhiwei.jetpack.databinding.adapter.RAdapter" />
+        <variable
+            name="radapter"
+            type="org.zhiwei.jetpack.databinding.adapter.RAdapter" />
 
-	</data>
+    </data>
 
-	<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-		android:layout_width="match_parent"
-		android:layout_height="match_parent"
-		android:gravity="center_horizontal"
-		android:orientation="vertical"
-		android:padding="10dp">
-		<!--普通user对象，不会响应dataBinding的变化-->
-		<com.google.android.material.textview.MaterialTextView
-			android:id="@+id/tv_common_user_info"
-			android:layout_width="match_parent"
-			android:layout_height="wrap_content"
-			android:gravity="center"
-			android:text="@{user.name+user.age+user.sex+user.desc}"
-			tools:text="普通user的数据信息" />
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        android:padding="10dp">
 
-		<com.google.android.material.button.MaterialButton
-			android:id="@+id/btn_change_common"
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:text="改变普通" />
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tv_title_kotlin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginVertical="20dp"
+            android:text="DataBinding进阶用法"
+            android:textSize="22sp" />
 
-		<!--部分属性响应 的 user对象 在代码中desc属性需要get()，xml里可以不用-->
-		<com.google.android.material.textview.MaterialTextView
-			android:id="@+id/tv_field_user_info"
-			android:layout_width="match_parent"
-			android:layout_height="wrap_content"
-			android:gravity="center"
-			android:text="@{fuser.name+fuser.age+fuser.sex+fuser.desc}"
-			android:textColor="@android:color/holo_blue_bright"
-			tools:text="Field的user的数据信息" />
+        <!--普通user对象，不会响应dataBinding的变化-->
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tv_common_user_info"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@{user.name+user.age+user.sex+user.desc}"
+            tools:text="普通user的数据信息" />
 
-		<com.google.android.material.button.MaterialButton
-			android:id="@+id/btn_change_field"
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:text="改变Field" />
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_change_common"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="改变普通" />
 
-		<!--Observable的 user对象-->
-		<com.google.android.material.textview.MaterialTextView
-			android:id="@+id/tv_ob_user_info"
-			android:layout_width="match_parent"
-			android:layout_height="wrap_content"
-			android:gravity="center"
-			android:text="@{ouser.toString()}"
-			android:textColor="@android:color/holo_green_dark"
-			tools:text="Observable user的数据信息" />
-		<!--注意这里点击改变observable user的数据，上面以及下面include的user数据会同步响应变化-->
-		<com.google.android.material.button.MaterialButton
-			android:id="@+id/btn_change_ob"
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:text="改变Observable" />
-		<!--直观的数据绑定view的显示隐藏-->
-		<com.google.android.material.textview.MaterialTextView
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:text="这是一个显示/隐藏文案，根据checkbox的状态"
-			android:visibility="@{show?View.VISIBLE:View.INVISIBLE}" />
+        <!--部分属性响应 的 user对象 在代码中desc属性需要get()，xml里可以不用-->
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tv_field_user_info"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@{fuser.name+fuser.age+fuser.sex+fuser.desc}"
+            android:textColor="@android:color/holo_blue_bright"
+            tools:text="Field的user的数据信息" />
 
-		<com.google.android.material.checkbox.MaterialCheckBox
-			android:id="@+id/cb_common"
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:text="控制显示文案" />
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_change_field"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="改变Field" />
 
-		<!--include 导入layout的使用 在这里声明内部layout用到的对象，变量。-->
-		<include
-			layout="@layout/layout_user"
-			user="@{ouser}" />
+        <!--Observable的 user对象-->
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tv_ob_user_info"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@{ouser.toString()}"
+            android:textColor="@android:color/holo_green_dark"
+            tools:text="Observable user的数据信息" />
+        <!--注意这里点击改变observable user的数据，上面以及下面include的user数据会同步响应变化-->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_change_ob"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="改变Observable" />
+        <!--直观的数据绑定view的显示隐藏-->
+        <com.google.android.material.textview.MaterialTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="这是一个显示/隐藏文案，根据checkbox的状态"
+            android:visibility="@{show?View.VISIBLE:View.INVISIBLE}" />
 
-		<!--list列表、recyclerView的列表使用-->
-		<LinearLayout
-			android:layout_width="match_parent"
-			android:layout_height="wrap_content"
-			android:orientation="horizontal">
+        <com.google.android.material.checkbox.MaterialCheckBox
+            android:id="@+id/cb_common"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="控制显示文案" />
 
-			<ListView
-				android:layout_width="0dp"
-				android:layout_height="match_parent"
-				android:layout_weight="1"
-				app:adapter="@{ladapter}"
-				tools:listitem="@layout/item_lv" />
+        <!--include 导入layout的使用 在这里声明内部layout用到的对象，变量。-->
+        <include
+            layout="@layout/layout_user"
+            user="@{ouser}" />
 
-			<!--RecyclerView可以在xml中写好layoutManager以及adapter的引用，这些有时候xml不会提示和补全-->
-			<androidx.recyclerview.widget.RecyclerView
-				android:layout_width="0dp"
-				android:layout_height="match_parent"
-				android:layout_weight="1"
-				app:adapter="@{radapter}"
-				app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-				tools:listitem="@layout/item_lv" />
+        <!--list列表、recyclerView的列表使用-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
 
-		</LinearLayout>
+            <ListView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                app:adapter="@{ladapter}"
+                tools:listitem="@layout/item_lv" />
 
-	</LinearLayout>
+            <!--RecyclerView可以在xml中写好layoutManager以及adapter的引用，这些有时候xml不会提示和补全-->
+            <androidx.recyclerview.widget.RecyclerView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                app:adapter="@{radapter}"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                tools:listitem="@layout/item_lv" />
+
+        </LinearLayout>
+
+    </LinearLayout>
 </layout>

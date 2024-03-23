@@ -28,6 +28,16 @@
         android:layout_height="match_parent"
         android:gravity="center_horizontal"
         android:orientation="vertical">
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tv_title_kotlin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginVertical="20dp"
+            android:text="DataBinding高阶用法"
+            android:textSize="22sp" />
+
         <!--1、双向绑定，使用的是@={} 下面输入框的修改，就会同步修改user的那么字段-->
         <com.google.android.material.textview.MaterialTextView
             android:layout_width="wrap_content"
