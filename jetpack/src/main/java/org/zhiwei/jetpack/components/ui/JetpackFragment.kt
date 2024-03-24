@@ -49,6 +49,9 @@ class JetpackFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         Log.w(TAG, "----- ---- onCreate: 创建Fragment ,可以看得出，每次切换tab，都是新建的fragment")
+        //模拟生成数据，配合上面vm的获取方式，如果vm是fragment的，就取消注释，如果vm是activity的，就注释下面一行，用activity中的这行代码；
+        //为的是便于演示效果
+        vm.startSendScore()
     }
 
 
@@ -76,18 +79,15 @@ class JetpackFragment : Fragment() {
     //region liveData
     private val TAG = "JetpackFragment"
     private fun testLiveData() {
-        //模拟生成数据，配合上面vm的获取方式，如果vm是fragment的，就取消注释，如果vm是activity的，就注释下面一行，用activity中的这行代码；
-        //为的是便于演示效果
-        vm.startSendScore()
         //观察live的数据变化，不要关联生命周期的lifecycleOwner，observeForever不需要。
         //viewLifecycleOwner是fragment的，activity就是自身。
         vm.liveScore.observe(viewLifecycleOwner) { str ->
             //Fragment观察👀数据
-//            Log.d(TAG, "Fragment观察👀数据:$str")
+            Log.d(TAG, "Fragment观察👀数据:$str")
             tvLive.text = "文本$str"
         }
         vm.switchMapLive().observe(viewLifecycleOwner) {
-//            Log.i(TAG, "Switch Map观察👀数据:$it")
+            Log.i(TAG, "Switch Map观察👀数据:$it")
             tvSwitchLive.text = "数字$it"
         }
 
@@ -129,7 +129,7 @@ class JetpackFragment : Fragment() {
         }
 
         merge.observe(viewLifecycleOwner) {
-            Log.d(TAG, "MediatorLiveData 观察👀数据:$it")
+//            Log.d(TAG, "MediatorLiveData 观察👀数据:$it")
         }
         lifecycleScope.launch {
             repeat(10) {
