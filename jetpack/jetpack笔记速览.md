@@ -172,6 +172,17 @@ private val vm: JetpackViewModel by ViewModels()
 
 ##### 七、Room
 
+>
+room是jetpack中关于数据库操作的组件，[room](https://developer.android.google.cn/jetpack/androidx/releases/room?hl=zh-cn)
+
+1. 使用三要素：`Entity`，`Dao`，`Database`
+   - 创建数据类，添加`@Entity`注解，内可声明主键，外键，表格字段名，忽略字段等。
+   - 创建接口Dao，使用`@Dao`注解，内声明对数据表的增删改查操作，分别是`@Insert/@Delete/@update/@Query`
+     ，其中查询可使用`sqlite语句`
+   - 声明抽象类继承`RoomDatabase`，并添加注解`@Database`，内声明抽象函数获取对表操作的各个`Dao`
+     ；另可声明一个创建`database`的单例对象的函数。
+2. 注意：`room`支持普通数据类型，LiveData和flow的，可以挂起函数。
+
 ##### 八、Paging
 
 
