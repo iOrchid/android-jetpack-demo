@@ -95,18 +95,86 @@ private val vm: JetpackViewModel by ViewModels()
 2. viewModel作为UI与数据的桥梁层，可用做业务逻辑处理。旧版本使用`viewmodelprovider`
    获取vm的对象；方式已经废弃，一般使用如上的委托懒加载方式。其中可自定义viewModelFactory，根据业务架构，决定配置repostory管理层等。
 
-Worker
-    任务的执行者，是一个抽象类，需要继承它实现要执行的任务。
+##### 五、Navigation
 
-WorkRequest
-指定让哪个 Worker 执行任务，指定执行的环境，执行的顺序等。
-    要使用它的子类 OneTimeWorkRequest 或 PeriodicWorkRequest。
+> Navigation是用于UI页面导航的组件库，支持deeplink；支持Activity/Fragment的跳转，可定义route路由。
 
-WorkManager
-    管理任务请求和任务队列，发起的 WorkRequest 会进入它的任务队列。
+1. 配合BottomNavigation的常规用法
 
-WorkStatus
-    包含有任务的状态和任务的信息，以 LiveData 的形式提供给观察者。
+    - 在xml里声明`fragment`或`FragmentContainerView`，注意它需要`defaultNavHost`、`namme`、`navGraph`
+      三个关键要素
 
-WorkManager适用于那些即使应用程序退出，系统也能够保证这个任务正常运行的场景，比如将应用程序数据上传到服务器。
-它不适用于应用进程内的后台工作，如果应用进程消失，就可以安全地终止，对于这种情况，推荐你使用线程池
+      ```xml
+       <!--todo 使用navigation的关键，是写这个，也可以用fragment标签；其中name，defaultNavHost，navGraph三个必须同时有-->
+          <androidx.fragment.app.FragmentContainerView
+              android:id="@+id/fcv_jetpack"
+              android:name="androidx.navigation.fragment.NavHostFragment"
+              android:layout_width="match_parent"
+              android:layout_height="0dp"
+              app:defaultNavHost="true"
+              app:layout_constraintBottom_toTopOf="@id/bnv_jetpack"
+              app:layout_constraintTop_toTopOf="parent"
+              app:navGraph="@navigation/graph_main_jetpack" />
+      <!-- bottomNavigationView只需要设置menu即可-->
+          <com.google.android.material.bottomnavigation.BottomNavigationView
+              android:id="@+id/bnv_jetpack"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              app:layout_constraintBottom_toBottomOf="parent"
+              app:menu="@menu/bnv_menu_jetpack" />
+      ```
+
+        - 要点是menu里面的item的id要与`navigation`
+          下的graph文件的fragment节点定义id一致。如此方能切换tab保持fragment的联动切换。
+        - graph文件定义中`startDestination`和`name`，或`route`为要点，也可以有`arguments`参数配置要求。
+
+    - 如果是`fragment`标签的话，无需特别设置bottomNavigation对象设置setupWithNavController来关联即可。
+
+      ```kotlin
+       val navController = fcv.findNavController()
+      //        val navController = findNavController(R.id.fcv_jetpack)//也可以这么写
+              bnv.setupWithNavController(navController)
+      ```
+
+      需要注意的是，如果是`FragmentContainerView`标签的话，上面两行代码就要在onCreate之后最好是onStart内执行，因为Bug。
+
+2. Navigation的使用，就是在activity或者fragment中通过findNavController来`navigate/navigateUP`
+   等函数来跳转⏭️返回🔙页面，并可选择传参。
+
+3. 如果使用了safe args插件，则可以简便的获取fragment的入参；
+
+   ```kotlin
+   //项目build.gradle中添加
+   classpath("androidx.navigation:navigation-safe-args-gradle-plugin:2.7.7")
+   //模块的gradle中
+   //使用navigation的safe args，在项目根build.gradle添加了classpath
+   id("androidx.navigation.safeargs.kotlin")
+   //使用的fragment处
+   private val args by navArgs<WorkFragmentArgs>()
+   ```
+
+4. **注意⚠️：**BottomNavigationView结合Navigation的时候，切换tab是**重新创建**
+   fragment的对象。而fragment通过navigation跳转到其他fragment页面再返回的话，fragment不会onCreate，但是
+   **View会重建**。
+
+##### 六、WorkManager
+
+> WorkManager适用于那些即使应用程序退出，系统（原生Android可以，国内rom未必）也能够保证这个任务正常运行的场景，比如将应用程序数据上传到服务器。
+> 它不适用于应用进程内的后台工作，如果应用进程消失，就可以安全地终止，对于这种情况，推荐你使用线程池。
+
+1. 使用要点：三要素`worker`、`request`、`manager`；
+    - 继承worker或CoroutineWorker，在doWork中做一些后台任务。可接收入参，可返回结果参数；
+    - 构建WorkRequest，有两种：一次性的OneTime，周期性的PeriodicWorkRequest（最小间隔15分钟），可添加Constraints约束条件。
+    - Workmanager来添加request调用enqueue。可用于管理reqeust和监听结果。使用liveData或flow都行。
+2. WorkStatus包含请求的队列处理状态。
+3. 可设置串行、并行、合流等多任务执行方式。具体可参照demo中的代码和注释。
+4. WorkManager.initialize默认自动初始化，也可合适的时机自定义初始化配置。
+
+##### 七、Room
+
+##### 八、Paging
+
+
+
+
+

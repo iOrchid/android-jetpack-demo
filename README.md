@@ -70,18 +70,18 @@
 #### 四、项目组成[^1]
 
 项目主要简单的演示`Android`
-当前应用开发层面的前沿技术与框架库使用， [`kotlin`](kotlin/Kotlin语法拾遗.md)
-语法及进阶，协程`Coroutines`和 [` flow `](./kotlin/kotlin flow 简明笔记.md)
-的分析及使用，以及[`JetPack Compose`](./compose/Jetpack Compose学习随笔.md)
+当前应用开发层面的前沿技术与框架库使用， [kotlin](./kotlin/Kotlin语法拾遗.md)
+语法及进阶，协程`Coroutines`和 [kotlin flow 简明笔记](./kotlin/kotlin flow 简明笔记.md)
+的分析及使用，以及[Compose学习随笔](./compose/Jetpack Compose学习随笔.md)
 的组件的进阶使用，`MVI/MVVM架构的实现`,后续会添加模块化与组件化的项目演示。
 
-- **kotlin**分包，主要演示语法基础，快速上手；
+- **kotlin**分包，主要演示语法基础，快速上手； [Kotlin语法拾遗](./kotlin/Kotlin语法拾遗.md)
   - basic基础语法速览
   - concepts语法概念基础详解
   - collections集合相关的操作符解释
   - coroutines协程相关的概念和操作符演示
   - flow&channel
-- **jetpack**
+- **jetpack** [Jetpack笔记速览](./jetpack/jetpack笔记速览.md)
   分包下面会演示`livedata`、`lifecycle`、`viewmodel`、`databinding`、`paging`、`workmanager`、`navigation`、`room`
   等核心库的使用与解析；
 - **compose**分包下会详细演示`compose`的学习笔记，从基础到整个UI实现；

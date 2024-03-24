@@ -7,7 +7,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
-import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.MediatorLiveData
@@ -15,7 +14,9 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.distinctUntilChanged
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.liveData
+import androidx.navigation.fragment.FragmentNavigatorExtras
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.navOptions
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import org.zhiwei.jetpack.components.R
@@ -35,9 +36,15 @@ class JetpackFragment : Fragment() {
     // 该方式获取的vm，如果是同一个activity下不同的fragment获取vm，对象是同一个。
 //    private val vm: JetpackViewModel by activityViewModels()
 
-    private val tvLive: TextView by lazy { requireView().findViewById(R.id.tv_live_ret_jetpack) }
-    private val tvSwitchLive: TextView by lazy { requireView().findViewById(R.id.tv_live_switch_ret_jetpack) }
-    private val btnWork: Button by lazy { requireView().findViewById(R.id.btn_work_jetpack) }
+    //todo ⚠️：这么些使用navigation的时候，会有个场景bug；从当前页面navigate到其他fragment页面在返回的时候，这里会调用onCreateView/onViewCreated，但是不会重新onCreate。于切换bottomNavigation不同。
+    //如此，则这些view的定义，就失效了。事件什么的都无用了。,所以使用navigation时候，view不要用这种lazy方式，而是在onCreateView/onViewCreated来设置。
+//    private val tvLive: TextView by lazy { requireView().findViewById(R.id.tv_live_ret_jetpack) }
+//    private val tvSwitchLive: TextView by lazy { requireView().findViewById(R.id.tv_live_switch_ret_jetpack) }
+//    private val btnWork: Button by lazy { requireView().findViewById(R.id.btn_work_jetpack) }
+    private lateinit var tvLive: TextView
+    private lateinit var tvSwitchLive: TextView
+    private lateinit var btnWork: Button
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -58,6 +65,10 @@ class JetpackFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         Log.i(TAG, "onViewCreated: 渲染View层")
+        //如此写法，就可以保证view对象都是每次UI新建的。
+        tvLive = view.findViewById(R.id.tv_live_ret_jetpack)
+        tvSwitchLive = view.findViewById(R.id.tv_live_switch_ret_jetpack)
+        btnWork = view.findViewById(R.id.btn_work_jetpack)
         testLiveData()
         testWork()
     }
@@ -118,7 +129,7 @@ class JetpackFragment : Fragment() {
         }
 
         merge.observe(viewLifecycleOwner) {
-            Log.e(TAG, "MediatorLiveData 观察👀数据:$it")
+            Log.d(TAG, "MediatorLiveData 观察👀数据:$it")
         }
         lifecycleScope.launch {
             repeat(10) {
@@ -137,10 +148,17 @@ class JetpackFragment : Fragment() {
 
     private fun testWork() {
         btnWork.setOnClickListener {
-            //navigation跳转指定页面的fragment
+            //navigation跳转指定页面的fragment,这种方式参数需要arguments节点定义
+//            findNavController().navigate(
+//                R.id.work_fragment,
+//                bundleOf("taskName" to "JtKt任务", "taskTime" to 200)
+//            )
+            //另一种方式，使用route的方式跳转到航，不过此时传参数，就要求graph中fragment节点定义route，且包含参数名
+            //格式是 route_path_name/{paramOne}/{paramTwo}
             findNavController().navigate(
-                R.id.work_fragment,
-                bundleOf("taskName" to "JtKt任务", "taskTime" to 200)
+                "route_nav_work_jetpack/你好/300",
+                navOptions = navOptions { launchSingleTop = true },
+                navigatorExtras = FragmentNavigatorExtras()
             )
         }
     }
