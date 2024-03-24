@@ -15,10 +15,17 @@
         android:text="WorkManager學習"
         android:textSize="22sp" />
 
-    <com.google.android.material.textview.MaterialTextView
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn_back_work"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="WorkerManager" />
+        android:text="返回" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:layout_width="wrap_content"
+        android:id="@+id/tv_ret_work"
+        android:layout_height="wrap_content"
+        android:text="WorkerManager执行结果" />
 
 
 </LinearLayout>

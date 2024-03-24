@@ -6,9 +6,12 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
+import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.work.BackoffPolicy
 import androidx.work.Constraints
@@ -99,6 +102,10 @@ class WorkFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        //使用navigation返回上个fragment
+        view.findViewById<Button>(R.id.btn_back_work)
+            .setOnClickListener { findNavController().navigateUp() }
+        val tvRet = view.findViewById<TextView>(R.id.tv_ret_work)
         //3、加入任务管理，但不是执行，执行的代码稍后
 //        WorkManager.getInstance(requireContext()).enqueue(workRequest)
         WorkManager.getInstance(requireContext())
@@ -121,6 +128,12 @@ class WorkFragment : Fragment() {
                                 val data = workStatus.outputData
                                 val result = data.getString("result")
                                 val status = data.getInt("status", 0)
+
+                                //由于forEach太快，两次结果执行出来，设置text可能变化太快，而在UI上看不出来有两次，
+                                delay(2000)//故意延迟以下，让UI上看出效果
+                                val str = "work的执行结果： $result 状态status字段： $status"
+                                Log.d("Jetpack WorkActivity", "onViewCreated: 执行结果 $str")
+                                tvRet.text = str
                                 Toast.makeText(
                                     requireContext(),
                                     "result: $result status: $status",
