@@ -145,6 +145,7 @@ desugarJdkLibs = { group = "com.android.tools", name = "desugar_jdk_libs", versi
 lifecycle-livedata-ktx = { module = "androidx.lifecycle:lifecycle-livedata-ktx", version.ref = "lifecycle-ktx" }
 lifecycle-viewmodel-ktx = { module = "androidx.lifecycle:lifecycle-viewmodel-ktx", version.ref = "lifecycle-ktx" }
 navigation-fragment-ktx = { group = "androidx.navigation", name = "navigation-fragment-ktx", version.ref = "navigation" }
+navigation-dynamic-feature = { group = "androidx.navigation", name = "navigation-dynamic-features-fragment", version.ref = "navigation" }
 navigation-ui-ktx = { group = "androidx.navigation", name = "navigation-ui-ktx", version.ref = "navigation" }
 room-compiler = { group = "androidx.room", name = "room-compiler", version.ref = "room-ktx" }
 room-ktx = { group = "androidx.room", name = "room-ktx", version.ref = "room-ktx" }
@@ -191,7 +192,6 @@ kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
 kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
 ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
 androidDynamicFeature = { id = "com.android.dynamic-feature", version.ref = "android-gradle-plugin" }
-
 # endregion
 
 #region 多个依赖库组成依赖包 🎒

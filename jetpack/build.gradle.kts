@@ -2,6 +2,8 @@ plugins {
     alias(libs.plugins.androidDynamicFeature)
     alias(libs.plugins.org.jetbrains.kotlin.android)
     alias(libs.plugins.ksp)
+    //使用navigation的safe args，在项目根build.gradle添加了classpath
+    id("androidx.navigation.safeargs.kotlin")
 }
 
 android {

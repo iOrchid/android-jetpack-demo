@@ -1,13 +1,11 @@
 package org.zhiwei.jetpack.components
 
 import android.os.Bundle
-import androidx.activity.viewModels
 import androidx.fragment.app.FragmentActivity
 import androidx.fragment.app.FragmentContainerView
 import androidx.navigation.findNavController
 import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.bottomnavigation.BottomNavigationView
-import org.zhiwei.jetpack.components.ui.JetpackViewModel
 
 /**
  * jetpack相关演示代码的功能模块的主入口页面,
@@ -22,13 +20,24 @@ class JetpackActivity : FragmentActivity() {
     private val bnv: BottomNavigationView by lazy { findViewById(R.id.bnv_jetpack) }
 
     //activity-ktx库提供的扩展函数，
-    private val vm by viewModels<JetpackViewModel>()
+//    private val vm by viewModels<JetpackViewModel>()
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         //此界面在AndroidManifest中使用了theme，状态栏和导航栏的透明
         setContentView(R.layout.activity_jetpack)
+        //todo 这里演示在JetpackFragment中，使用不同vm获取方式下，观察livedata的结果；如果fragment获取activity的vm，则这里可以观察到；
+        //todo 如果fragment获取自身vm的方式，那么这里观察不到，因为不是同一个vm对象。
+        //todo ⚠️另：Navigation的方式使用Fragment每次切换，都会重新创建fragment实例。这是Google的设计理念，他们认为数据都vm保存，view分开。
+        // 所以fragment中的liveData每次都会重新观察数据；如果vm是activity的，则意味着fragment观察之前就有数据产生，即使数据已经发送完毕，fragment的liveData也会得到最新的一个数据。
+//        vm.liveScore.observe(this){
+//            //Activity观察👀数据
+//            Log.v("JetpackActivity", "Activity中观察👀数据:$it")
+//        }
+//
+//        //模拟生成数据，这个用于activity的vm的liveData数据，如果fragment中也引用activity的vm，就会观察到。
+//        vm.startSendScore()
     }
 
     /**

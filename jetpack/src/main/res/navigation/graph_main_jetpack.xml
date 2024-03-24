@@ -16,4 +16,22 @@
         android:name="org.zhiwei.jetpack.components.ui.JetpackFragment"
         app:route="route_nav_jetpack"
         tools:layout="@layout/fragment_jetpack" />
+
+    <fragment
+        android:id="@+id/work_fragment"
+        android:name="org.zhiwei.jetpack.components.ui.work.WorkFragment"
+        app:route="route_nav_work_jetpack"
+        tools:layout="@layout/fragment_work">
+        <!--navigation形式的传参要求，注意这里argType默认都是string，小写；
+        如果使用navigation的safeArg插件，可以安全的类型获取.基本类型不用写argType，写了反而报错-->
+        <argument
+            android:name="taskName"
+            android:defaultValue="默认Task"
+            app:argType="string"
+            app:nullable="false" />
+        <argument
+            android:name="taskTime"
+            android:defaultValue="100" />
+    </fragment>
+
 </navigation>

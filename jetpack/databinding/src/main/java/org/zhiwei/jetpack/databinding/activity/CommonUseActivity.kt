@@ -64,6 +64,7 @@ class CommonUseActivity : AppCompatActivity(), View.OnClickListener {
 		binding.btnChangeCommon.setOnClickListener(this)
 		binding.btnChangeField.setOnClickListener(this)
 		binding.btnChangeOb.setOnClickListener(this)
+        //todo 一般来说，MVVM模式下，这些数据都是在viewModel中配置，然后binding.vm = viewmodel即可。
 		//初始化user、fuser、obuser的对象，并赋值到binding中去
 		user = CommonUser("张三", 33, 1, "张家第三代庶支嫡传葵花宝典继承人")
 		binding.user = user

@@ -49,6 +49,7 @@ dependencies {
     implementation(libs.lifecycle.livedata.ktx)
     implementation(libs.navigation.ui.ktx)
     implementation(libs.navigation.fragment.ktx)
+    implementation(libs.navigation.dynamic.feature)
     implementation(libs.work.runtime.ktx)
     implementation(libs.blankj.utils)
 

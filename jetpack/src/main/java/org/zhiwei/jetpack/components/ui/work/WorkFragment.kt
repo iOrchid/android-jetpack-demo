@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.navArgs
 import androidx.work.BackoffPolicy
 import androidx.work.Constraints
 import androidx.work.Data
@@ -35,6 +36,9 @@ import java.util.concurrent.TimeUnit
  * workmanager的演示界面
  */
 class WorkFragment : Fragment() {
+
+	val args by navArgs<WorkFragmentArgs>()
+
 	//todo 这里workmanager的request有个高级用法，就是添加环境约束 ，比如网络、电量等
 	private var constraints: Constraints = Constraints.Builder()
 		.setRequiredNetworkType(NetworkType.CONNECTED) //联网状态
@@ -94,6 +98,8 @@ class WorkFragment : Fragment() {
 					Log.i("WorkActivity", "workStatus: " + workStatus.state.name)
 				}
 			}
+
+		Log.d("Jetpack Work", "接收navigation的参数: ${args.taskName} ,, ${args.taskTime} ")
 	}
 
 	//<editor-folder desc="工作流 演示">

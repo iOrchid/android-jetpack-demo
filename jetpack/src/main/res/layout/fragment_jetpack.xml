@@ -16,13 +16,33 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
+    <com.google.android.material.textview.MaterialTextView
         android:id="@+id/tv_live_ret_jetpack"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="此处显式liveData的变化值"
+        android:text="此处显示liveData的变化值"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tv_title_kotlin" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/tv_live_switch_ret_jetpack"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="此处显示SwitchMap liveData的变化值"
+        android:textColor="@color/md_theme_light_secondary"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_live_ret_jetpack" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn_work_jetpack"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:text="Work"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_live_switch_ret_jetpack" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
