@@ -44,7 +44,10 @@ dependencies {
     implementation(libs.lifecycle.viewmodel.ktx)
     implementation(libs.navigation.fragment.ktx)
     implementation(libs.navigation.ui.ktx)
+    //使用room数据库，就需要配置compiler
     implementation(libs.room.ktx)
+    ksp(libs.room.compiler)
+
     implementation(libs.paging.runtime.ktx)
     implementation(libs.work.runtime.ktx)
 

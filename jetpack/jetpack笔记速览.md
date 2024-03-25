@@ -175,13 +175,24 @@ private val vm: JetpackViewModel by ViewModels()
 >
 room是jetpack中关于数据库操作的组件，[room](https://developer.android.google.cn/jetpack/androidx/releases/room?hl=zh-cn)
 
+依赖库添加`ksp("androidx.room:room-compiler:2.7.7")`
+和`implementation("android.room:room-ktx:2.7.7")`
+
 1. 使用三要素：`Entity`，`Dao`，`Database`
    - 创建数据类，添加`@Entity`注解，内可声明主键，外键，表格字段名，忽略字段等。
+
+     ⚠️使用普通class最佳。若是`data class`就需要设置默认值，因为创建对象要求有默认无参构造函数。
+
+     主键自增，注意默认值从0开始，否则会自增冲突而报错。
+
    - 创建接口Dao，使用`@Dao`注解，内声明对数据表的增删改查操作，分别是`@Insert/@Delete/@update/@Query`
-     ，其中查询可使用`sqlite语句`
+     ，其中查询可使用`sqlite语句`；注意返回值，如果是suspend修饰，返回结果就是普通类型的。不带suspend的话，可以返回liveData或flow类型。
+
    - 声明抽象类继承`RoomDatabase`，并添加注解`@Database`，内声明抽象函数获取对表操作的各个`Dao`
      ；另可声明一个创建`database`的单例对象的函数。
-2. 注意：`room`支持普通数据类型，LiveData和flow的，可以挂起函数。
+
+2. 注意：`room`
+   支持普通数据类型，LiveData和flow的，可以挂起函数。数据库的操作，避开UI线程，使用协程时候，协操作也要指定避开main协程，最好是分配到IO协程。读取的话，可使用flow形式。
 
 ##### 八、Paging
 

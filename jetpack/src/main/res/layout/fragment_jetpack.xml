@@ -44,5 +44,25 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tv_live_switch_ret_jetpack" />
 
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn_room_jetpack"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:text="Room读取"
+        app:layout_constraintBaseline_toBaselineOf="@id/btn_work_jetpack"
+        app:layout_constraintStart_toEndOf="@id/btn_work_jetpack" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/btn_room_jetpack">
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tv_ret_room_jetpack"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </ScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

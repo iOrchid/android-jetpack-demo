@@ -17,9 +17,13 @@ import androidx.lifecycle.liveData
 import androidx.navigation.fragment.FragmentNavigatorExtras
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.navOptions
+import kotlinx.coroutines.CoroutineExceptionHandler
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import org.zhiwei.jetpack.components.R
+import org.zhiwei.jetpack.components.room.StudentDatabase
+import org.zhiwei.jetpack.components.room.StudentRepo
 
 /**
  * 这部分主要演示除dataBinding外的，主要的几个jetpack组件的用法；
@@ -44,6 +48,8 @@ class JetpackFragment : Fragment() {
     private lateinit var tvLive: TextView
     private lateinit var tvSwitchLive: TextView
     private lateinit var btnWork: Button
+    private lateinit var btnRoom: Button
+    private lateinit var tvRoomResult: TextView
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -72,8 +78,11 @@ class JetpackFragment : Fragment() {
         tvLive = view.findViewById(R.id.tv_live_ret_jetpack)
         tvSwitchLive = view.findViewById(R.id.tv_live_switch_ret_jetpack)
         btnWork = view.findViewById(R.id.btn_work_jetpack)
+        btnRoom = view.findViewById(R.id.btn_room_jetpack)
+        tvRoomResult = view.findViewById(R.id.tv_ret_room_jetpack)
         testLiveData()
         testWork()
+        testRoom()
     }
 
     //region liveData
@@ -160,6 +169,27 @@ class JetpackFragment : Fragment() {
                 navOptions = navOptions { launchSingleTop = true },
                 navigatorExtras = FragmentNavigatorExtras()
             )
+        }
+    }
+
+    private fun testRoom() {
+        val database = StudentDatabase.createDatabase(requireContext())
+        val repo = StudentRepo(database.studentDao())
+        //
+        val handler = CoroutineExceptionHandler { _, throwable ->
+            Log.w(TAG, "协程数据抛出异常 ${throwable.message}")
+        }
+        lifecycleScope.launch(Dispatchers.IO + handler) {
+            //创建模拟数据
+            repo.mockStudents(database.studentDao())
+        }
+        btnRoom.setOnClickListener {
+            //加载所有学生数据
+            lifecycleScope.launch {
+                repo.loadAllStudents().collect { students ->
+                    tvRoomResult.text = students.joinToString("\n")
+                }
+            }
         }
     }
 
