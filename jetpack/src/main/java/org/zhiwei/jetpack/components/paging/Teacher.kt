@@ -43,6 +43,12 @@ class TeacherPagingSource : PagingSource<Int, Teacher>() {
         val range = startKey.until(startKey + params.loadSize)
         //模拟延迟加载数据效果
         if (startKey != START_INDEX) delay(3000L)
+        //构建Page的参数释义：
+//        LoadResult.Page(
+//            data = , //页面数据的list，
+//            prevKey = ,//用于向前加载数据的分页标记 if（page>1)page-1 else null
+//            nextKey = ,//用于判断加载下页数据时候，分页标记的区分，if(list.isNOtEmpty) page +1 else null
+//        )
         return LoadResult.Page(
             data = range.map { number ->
                 Teacher(

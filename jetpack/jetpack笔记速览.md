@@ -199,10 +199,50 @@ room是jetpack中关于数据库操作的组件，[room](https://developer.andro
 
 > Paging3 库有几个核心类，主要用于分页加载多条数据，能够配置预加载，分页策略等。
 
-1. 核心要素：PagingSource、PagingConfig、Pager、PagingData、PagingDataAdapter；
-2.
-数据流向![Paging3](https://developer.android.google.cn/static/codelabs/android-paging-basics/img/566d0f6506f39480_1920.jpeg?hl=zh-cn)
-3. 
+1. 核心要素：**PagingSource**、PagingConfig、**Pager**、**PagingData**、**PagingDataAdapter**；
+   数据流向![Paging3](https://developer.android.google.cn/static/codelabs/android-paging-basics/img/566d0f6506f39480_1920.jpeg?hl=zh-cn)
+2. 使用步骤：
+
+   - 添加必要依赖,`paging`相关的，如果数据源结合`room`则也需要`room-paging`的库依赖；
+   - 创建数据model的类；而后创建`PagingSource`的实现类，，决定数据加载，刷新的方式。
+
+   ```kotlin
+   class TeacherPagingSource : PagingSource<Int, Teacher>() {
+   
+       override fun getRefreshKey(state: PagingState<Int, Teacher>): Int? {
+   ...
+           return ensureValidKey(teacher.id - (state.config.pageSize / 2))
+       }
+   
+       @RequiresApi(Build.VERSION_CODES.O)
+       override suspend fun load(params: LoadParams<Int>): LoadResult<Int, Teacher> {
+           ...
+           )
+       }
+   ....
+   }
+   ```
+
+   -
+   得到的数据PagingSource需要配合PagingAdapter来适配给RecyclerView；PagingAdapter的实现，注意参数DiffUtil.itemCallback的设置，里面有`areItemsTheSame`
+   和`areContentsTheSame`判断方式。
+   - 数据加载可以放在viewModel中，使用flow形式或者LiveData都可以。创建Pager的时候，可以设置PagingConfig，配置页面大小，预加载触发数等。
+   - 在UI中可以在协程中，监测数据加载，`adapter.submitData`
+     来配置pagingSource的数据给PagingAdapter。同时能够监听Paging的加载、预加载、，刷新的状态。
+
+   ```kotlin
+           lifecycleScope.launch {
+               repeatOnLifecycle(Lifecycle.State.STARTED) {
+                   //加载状态的loading配置
+                   teacherAdapter.loadStateFlow.collect {
+   //                        it.source.prepend is LoadState.Loading //有三种状态，refresh，append，prepend
+                       pbPaging.isVisible = it.source.append is LoadState.Loading
+                   }
+               }
+           }
+   ```
+
+   
 
 
 
