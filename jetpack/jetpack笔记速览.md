@@ -3,6 +3,7 @@
 ##### 一、前言
 
 > [Jetpack](https://developer.android.google.cn/jetpack?hl=zh-cn)
+> ,结合官方的github学习示例最好[github](https://github.com/orgs/android/repositories?type=all)
 > 是Android官方推出的一些列组件库，最早`databinding`
 > 也属于官方推荐的工具写法，但是由于其影响编译性能，且`xml`
 > 中编写出错的时候IDE不易准确检测和报错，逐步不再使用。且`compose`
@@ -196,7 +197,12 @@ room是jetpack中关于数据库操作的组件，[room](https://developer.andro
 
 ##### 八、Paging
 
+> Paging3 库有几个核心类，主要用于分页加载多条数据，能够配置预加载，分页策略等。
 
+1. 核心要素：PagingSource、PagingConfig、Pager、PagingData、PagingDataAdapter；
+2.
+数据流向![Paging3](https://developer.android.google.cn/static/codelabs/android-paging-basics/img/566d0f6506f39480_1920.jpeg?hl=zh-cn)
+3. 
 
 
 

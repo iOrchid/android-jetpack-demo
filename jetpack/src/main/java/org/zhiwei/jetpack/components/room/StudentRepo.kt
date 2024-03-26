@@ -1,6 +1,7 @@
 package org.zhiwei.jetpack.components.room
 
 import kotlinx.coroutines.flow.Flow
+import org.zhiwei.jetpack.components.paging.TeacherPagingSource
 
 /**
  * 定义数据层的管理类，上接viewModel，下承数据库或网络
@@ -31,5 +32,9 @@ class StudentRepo(
             dao.insertStudent(student = student)
         }
     }
+}
 
+class TeacherRepo {
+
+    fun loadPagingTeachers() = TeacherPagingSource()
 }

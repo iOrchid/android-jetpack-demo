@@ -50,6 +50,7 @@ dependencies {
     implementation(libs.navigation.ui.ktx)
     implementation(libs.navigation.fragment.ktx)
     implementation(libs.navigation.dynamic.feature)
+    implementation(libs.paging.runtime.ktx)
     implementation(libs.work.runtime.ktx)
     implementation(libs.blankj.utils)
 

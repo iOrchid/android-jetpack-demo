@@ -12,9 +12,16 @@ import androidx.lifecycle.liveData
 import androidx.lifecycle.map
 import androidx.lifecycle.switchMap
 import androidx.lifecycle.viewModelScope
+import androidx.paging.Pager
+import androidx.paging.PagingConfig
+import androidx.paging.PagingData
+import androidx.paging.cachedIn
 import kotlinx.coroutines.delay
+import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.launch
+import org.zhiwei.jetpack.components.paging.Teacher
+import org.zhiwei.jetpack.components.room.TeacherRepo
 import kotlin.random.Random
 
 /**
@@ -96,5 +103,10 @@ class JetpackViewModel : ViewModel() {
         }
     }
 
+    private val repo = TeacherRepo()
+    val teachers: Flow<PagingData<Teacher>> = Pager(
+        config = PagingConfig(100, enablePlaceholders = false),
+        pagingSourceFactory = { repo.loadPagingTeachers() }
+    ).flow.cachedIn(viewModelScope)
 
 }

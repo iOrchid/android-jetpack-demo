@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="5dp">
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/tv_name_item_teacher"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:drawableStart="@drawable/ic_einstein"
+        android:drawablePadding="8dp"
+        android:gravity="center_vertical"
+        android:textColor="@color/md_theme_light_onPrimaryContainer"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="老师姓名" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/tv_title_item_teacher"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:textColor="@color/md_theme_light_error"
+        app:layout_constraintBaseline_toBaselineOf="@id/tv_name_item_teacher"
+        app:layout_constraintStart_toEndOf="@id/tv_name_item_teacher"
+        tools:text="副教授" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/tv_time_item_teacher"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="10dp"
+        app:layout_constraintBaseline_toBaselineOf="@id/tv_name_item_teacher"
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:text="2024年3月26日 14:06" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

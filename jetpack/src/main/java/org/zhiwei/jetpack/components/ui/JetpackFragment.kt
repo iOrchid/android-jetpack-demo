@@ -6,22 +6,31 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.ScrollView
 import android.widget.TextView
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.MediatorLiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.distinctUntilChanged
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.liveData
+import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.FragmentNavigatorExtras
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.navOptions
+import androidx.paging.LoadState
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.progressindicator.LinearProgressIndicator
 import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import org.zhiwei.jetpack.components.R
+import org.zhiwei.jetpack.components.paging.TeacherPagingAdapter
 import org.zhiwei.jetpack.components.room.StudentDatabase
 import org.zhiwei.jetpack.components.room.StudentRepo
 
@@ -49,7 +58,13 @@ class JetpackFragment : Fragment() {
     private lateinit var tvSwitchLive: TextView
     private lateinit var btnWork: Button
     private lateinit var btnRoom: Button
+    private lateinit var btnPaging: Button
+
+    private lateinit var svRoom: ScrollView
     private lateinit var tvRoomResult: TextView
+
+    private lateinit var rvPaging: RecyclerView
+    private lateinit var pbPaging: LinearProgressIndicator
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -79,10 +94,16 @@ class JetpackFragment : Fragment() {
         tvSwitchLive = view.findViewById(R.id.tv_live_switch_ret_jetpack)
         btnWork = view.findViewById(R.id.btn_work_jetpack)
         btnRoom = view.findViewById(R.id.btn_room_jetpack)
+        btnPaging = view.findViewById(R.id.btn_paging_jetpack)
+        svRoom = view.findViewById(R.id.sv_room_jetpack)
         tvRoomResult = view.findViewById(R.id.tv_ret_room_jetpack)
+        rvPaging = view.findViewById(R.id.rv_paging_jetpack)
+        pbPaging = view.findViewById(R.id.pb_paging_jetpack)
+
         testLiveData()
         testWork()
         testRoom()
+        testPaging()
     }
 
     //region liveData
@@ -184,6 +205,10 @@ class JetpackFragment : Fragment() {
             repo.mockStudents(database.studentDao())
         }
         btnRoom.setOnClickListener {
+            svRoom.isVisible = true
+            //隐藏paging的UI元素
+            rvPaging.isVisible = false
+            pbPaging.isVisible = false
             //加载所有学生数据
             lifecycleScope.launch {
                 repo.loadAllStudents().collect { students ->
@@ -191,6 +216,33 @@ class JetpackFragment : Fragment() {
                 }
             }
         }
+    }
+
+    private val teacherAdapter = TeacherPagingAdapter()
+    private fun testPaging() {
+        rvPaging.adapter = teacherAdapter
+        rvPaging.layoutManager = LinearLayoutManager(requireContext())
+        lifecycleScope.launch {
+            repeatOnLifecycle(Lifecycle.State.STARTED) {
+                //加载状态的loading配置
+                teacherAdapter.loadStateFlow.collect {
+//                        it.source.prepend is LoadState.Loading //有三种状态，refresh，append，prepend
+                    pbPaging.isVisible = it.source.append is LoadState.Loading
+                }
+            }
+        }
+        btnPaging.setOnClickListener {
+            svRoom.isVisible = false
+            rvPaging.isVisible = true
+            lifecycleScope.launch {
+                repeatOnLifecycle(Lifecycle.State.STARTED) {
+                    vm.teachers.collect {
+                        teacherAdapter.submitData(it)
+                    }
+                }
+            }
+        }
+
     }
 
 }
