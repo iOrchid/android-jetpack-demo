@@ -30,7 +30,7 @@ webkit = "1.8.0"
 
 # compose
 
-androidxComposeBom = "2024.02.02"
+androidxComposeBom = "2024.03.00"
 androidxComposeRuntimeTracing = "1.0.0-beta01"
 androidxComposeConstraintlayout = "1.0.1"
 
