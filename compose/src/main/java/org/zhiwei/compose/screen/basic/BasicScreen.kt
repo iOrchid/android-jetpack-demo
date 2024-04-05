@@ -23,7 +23,7 @@ import org.zhiwei.compose.model.BasicScreenUIs
  * 基础学习笔记
  */
 @Composable
-internal fun BasicScreen(modifier: Modifier = Modifier, navController: NavController) {
+internal fun Basic_Screen(modifier: Modifier = Modifier, navController: NavController) {
 
     //外部使用列容器LazyColumn，里面就是代码形式便捷创建多个列;LazyColumn就是类似与传统RecyclerView的列容器 ，
     // 如果多个item超出了屏幕，可实现滑动，而且不用代码手动些什么ViewHolder之类的性能管理缓存。
@@ -52,7 +52,7 @@ internal fun BasicScreen(modifier: Modifier = Modifier, navController: NavContro
 @Preview
 @Composable
 private fun BasicScreenPreview() {
-    BasicScreen(
+    Basic_Screen(
         Modifier
             .fillMaxSize()
             .background(Color.White),

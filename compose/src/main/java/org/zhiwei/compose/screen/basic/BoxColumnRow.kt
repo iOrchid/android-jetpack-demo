@@ -33,7 +33,7 @@ import androidx.compose.ui.unit.sp
 //想看预览效果也可以直接在composable的函数上加上preview注解
 @Preview(showBackground = true, backgroundColor = 0xFFFFFF)
 @Composable
-fun BoxColumnRowScreen(modifier: Modifier = Modifier) {
+internal fun Box_Column_Row_Screen(modifier: Modifier = Modifier) {
     //最外层还是使用一个竖直排列元素的列 容器，可超屏滑动
     LazyColumn(modifier) {
         //LazyColumn内部可以代码形式的items，也可以单个item一个个的加,item内部也就保持和外部LazyXXX的排列属性；

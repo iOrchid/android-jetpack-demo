@@ -30,7 +30,7 @@ import androidx.navigation.compose.rememberNavController
 import kotlinx.coroutines.launch
 import org.zhiwei.compose.model.BasicScreenUIs
 import org.zhiwei.compose.model.TabPagerModel
-import org.zhiwei.compose.screen.basic.BasicScreen
+import org.zhiwei.compose.screen.basic.Basic_Screen
 import org.zhiwei.compose.screen.gesture.GestureScreen
 import org.zhiwei.compose.screen.graphics.GraphicsScreen
 import org.zhiwei.compose.screen.layout.LayoutScreen
@@ -40,9 +40,14 @@ import org.zhiwei.compose.screen.theme.ThemeScreen
 /**
  * Compose的主页面UI的screen,
  * Compose的一个重要设计理念就是modifier修饰符的可复用，可传递
+ * Compose的命名约定无返回值的函数，大写字母开头；有返回值的，小写字母开头；
+ * 函数名可以是驼峰规则，也可以是_下划线风格；建议一般将自定义的compose界面UI使用_下划线风格命名，
+ * 如此便于和系统的compose组件区分，方便使用.
+ * ⚠️注，本项目演示代码，一般都会限定权限符，比如internal，private等。
+ * 如果是自身业务项目需要public，那时候可能会出现多个重名的compose组件，所以才有如上建议。
  */
 @Composable
-fun HomeScreen(modifier: Modifier = Modifier) {
+internal fun Home_Screen(modifier: Modifier = Modifier) {
     val navController = rememberNavController()
     //需要使用NavHost来创建管理导航页面的管理其配置
     NavHost(navController = navController, startDestination = "HomeScreen") {
@@ -60,7 +65,9 @@ fun HomeScreen(modifier: Modifier = Modifier) {
     }
 }
 
-
+/**
+ * 像此类private权限限制的compose的UI，命名可以不用_下划线风格，因为不太会在其他地方出现干扰
+ */
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
 private fun HomeScreenContent(modifier: Modifier, navController: NavController) {
@@ -84,7 +91,7 @@ private fun HomeScreenContent(modifier: Modifier, navController: NavController) 
         )
         val tabPagerModels =
             listOf(
-                TabPagerModel("基础组件") { BasicScreen(modifier, navController = navController) },
+                TabPagerModel("基础组件") { Basic_Screen(modifier, navController = navController) },
                 TabPagerModel("布局Layout") { LayoutScreen() },
                 TabPagerModel("状态State") { StateScreen() },
                 TabPagerModel("手势Gesture") { GestureScreen() },
@@ -133,5 +140,5 @@ private fun HomeScreenContent(modifier: Modifier, navController: NavController) 
 @Preview
 @Composable
 fun PreviewHomeScreen() {
-    HomeScreen(modifier = Modifier.background(Color(0XFFE6D2D5)))
+    Home_Screen(modifier = Modifier.background(Color(0XFFE6D2D5)))
 }
