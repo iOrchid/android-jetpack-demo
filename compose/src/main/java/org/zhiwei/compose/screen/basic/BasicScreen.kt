@@ -53,7 +53,7 @@ private val basicCourses = listOf(
     CourseItemModel(
         "Surface，Shape，Clickable",
         "面板，图形，绘制背景，点击交互，偏移，权重等。"
-    ) { BoxColumnRowScreen() },
+    ) { SurfaceShapeClickableScreen() },
     //下面主要是Material3提供的控件功能，material的也有类似，不做更多比较。
     CourseItemModel(
         "Text",
@@ -112,7 +112,7 @@ private fun BasicScreenContent(navController: NavController) {
                     .clickable { navController.navigate(model.title) },
                 headlineContent = { Text(text = model.title, fontSize = 14.sp) },
                 supportingContent = { Text(text = model.description, fontSize = 12.sp) },
-                colors = ListItemDefaults.colors(containerColor = Color(0XA0C27C88))
+                colors = ListItemDefaults.colors(containerColor = Color(0XFFF9E8D0))
             )
             HorizontalDivider()
         }
