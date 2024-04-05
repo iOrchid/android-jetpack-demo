@@ -1,5 +1,7 @@
 ## Jetpack Compose学习随笔
 
+<font color="red">建议必要时候可以参照git的commit来熟悉学习的代码步骤</font>
+
 ### 一、基础组件
 
 > 基础View和控件widget的使用

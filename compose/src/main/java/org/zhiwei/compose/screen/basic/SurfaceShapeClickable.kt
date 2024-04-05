@@ -43,9 +43,9 @@ import androidx.compose.ui.unit.sp
  * 用于演示surface面板使用，shape图形，以及常规的click点击事件
  */
 @Composable
-fun SurfaceShapeClickableScreen() {
+fun SurfaceShapeClickableScreen(modifier: Modifier = Modifier) {
     //还是为了更多的UI内容可以滑动，所以使用lazyColumn
-    LazyColumn(Modifier.fillMaxSize()) {
+    LazyColumn(modifier.fillMaxSize()) {
         item {
             ClickableCase()
             SurfaceCase()

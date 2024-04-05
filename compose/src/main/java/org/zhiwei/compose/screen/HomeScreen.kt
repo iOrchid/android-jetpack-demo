@@ -23,7 +23,12 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
 import kotlinx.coroutines.launch
+import org.zhiwei.compose.model.BasicScreenUIs
 import org.zhiwei.compose.model.TabPagerModel
 import org.zhiwei.compose.screen.basic.BasicScreen
 import org.zhiwei.compose.screen.gesture.GestureScreen
@@ -33,11 +38,32 @@ import org.zhiwei.compose.screen.state.StateScreen
 import org.zhiwei.compose.screen.theme.ThemeScreen
 
 /**
- * Compose的主页面UI的screen
+ * Compose的主页面UI的screen,
+ * Compose的一个重要设计理念就是modifier修饰符的可复用，可传递
  */
-@OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun HomeScreen(modifier: Modifier = Modifier) {
+    val navController = rememberNavController()
+    //需要使用NavHost来创建管理导航页面的管理其配置
+    NavHost(navController = navController, startDestination = "HomeScreen") {
+        composable(route = "HomeScreen") {
+            HomeScreenContent(modifier, navController = navController)
+        }
+
+        //基础组件下的 每个可导航的页面，需要使用composable来设置
+        BasicScreenUIs.basicCourses(modifier).forEach { model ->
+            composable(route = model.title) {
+                //model中ui的属性字段是个函数，需要invoke来调用
+                model.ui()
+            }
+        }
+    }
+}
+
+
+@OptIn(ExperimentalFoundationApi::class)
+@Composable
+private fun HomeScreenContent(modifier: Modifier, navController: NavController) {
     //使用Column列容器，存放本页内容
     Column(
         modifier = modifier.fillMaxSize()
@@ -58,7 +84,7 @@ fun HomeScreen(modifier: Modifier = Modifier) {
         )
         val tabPagerModels =
             listOf(
-                TabPagerModel("基础组件") { BasicScreen() },
+                TabPagerModel("基础组件") { BasicScreen(modifier, navController = navController) },
                 TabPagerModel("布局Layout") { LayoutScreen() },
                 TabPagerModel("状态State") { StateScreen() },
                 TabPagerModel("手势Gesture") { GestureScreen() },

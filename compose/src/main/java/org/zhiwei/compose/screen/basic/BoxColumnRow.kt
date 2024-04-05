@@ -35,9 +35,8 @@ import androidx.compose.ui.unit.sp
 @Composable
 fun BoxColumnRowScreen(modifier: Modifier = Modifier) {
     //最外层还是使用一个竖直排列元素的列 容器，可超屏滑动
-    LazyColumn {
+    LazyColumn(modifier) {
         //LazyColumn内部可以代码形式的items，也可以单个item一个个的加,item内部也就保持和外部LazyXXX的排列属性；
-
         //行 即对于LazyColumn，Item内就是列的方式，在LazyRow就是行的排列方式
         item {
             //Text文本元素，字体内容，字号大小，字重，
