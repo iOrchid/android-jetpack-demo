@@ -12,6 +12,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.CutCornerShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Text
@@ -108,11 +109,31 @@ fun BoxColumnRowScreen(modifier: Modifier = Modifier) {
                 fontWeight = FontWeight.Light
             )
             //Box同样是三个属性值modifier修饰符，contentAlignment对齐方式，propagateMinConstraints
+            Text(
+                text = "这里演示的是Alignment.TopStart对齐方式",
+                fontSize = 12.sp,
+                fontWeight = FontWeight.Light
+            )
             BoxWithAlignment(Alignment.TopStart, false)//默认就是topStart
+            Text(
+                text = "这里演示的是Alignment.Center对齐方式",
+                fontSize = 12.sp,
+                fontWeight = FontWeight.Light
+            )
             BoxWithAlignment(Alignment.Center, false)
+            Text(
+                text = "这里演示的是Alignment.BottomEnd对齐方式",
+                fontSize = 12.sp,
+                fontWeight = FontWeight.Light
+            )
             BoxWithAlignment(Alignment.BottomEnd, false)
             //还有其他好几种Alignment，同理可知。Top有三种，center有三种，bottom有三种；
             //可以给每个子元素，单独设置对齐方式，通过Modifier的align属性
+            Text(
+                text = "Box也可以通过modifier的align对齐方式作用于单个的子元素，不同方式。",
+                fontSize = 12.sp,
+                fontWeight = FontWeight.Light
+            )
             Box(
                 Modifier
                     .fillMaxWidth()
@@ -157,11 +178,23 @@ fun BoxColumnRowScreen(modifier: Modifier = Modifier) {
         //边距 padding 和margin，其实在compose里是没有margin的概念，而是通过外层容器的padding来实现
         item {
             //写一个行容器，里面分三部分来演示
+            Text(text = "Padding和Margin", fontSize = 20.sp, fontWeight = FontWeight.Bold)
+            Text(
+                text = "在Compose中可通过modifier设置padding来控制内部容器的布局可用空间，没有margin属性，设计理念如此，可通过padding实现效果。",
+                fontSize = 12.sp,
+                fontWeight = FontWeight.Light
+            )
             PaddingAndMargin()
         }
         // 阴影效果和简单远郊切角,shadow是modifier的一个属性，里面可设置elevation和shape，
         //shape有常用的圆角，矩形，切角，还可以自定义shape,默认的是RectangleShape矩形
         item {
+            Text(text = "Shadow和Shape", fontSize = 20.sp, fontWeight = FontWeight.Bold)
+            Text(
+                text = "Modifier是很重要且强大的修饰符，可配置Compose组件的shadow阴影，内可设置图形shape，阴影elevation。",
+                fontSize = 12.sp,
+                fontWeight = FontWeight.Light
+            )
             ShadowSpacerAndWeight()
         }
     }
@@ -384,6 +417,11 @@ private fun PaddingAndMargin() {
  */
 @Composable
 private fun ShadowSpacerAndWeight() {
+    Text(
+        text = "这是圆角矩形的shape RoundedCornerShape(8.dp)",
+        fontSize = 12.sp,
+        fontWeight = FontWeight.Light
+    )
     Row(
         modifier = Modifier
             .padding(8.dp)
@@ -417,6 +455,11 @@ private fun ShadowSpacerAndWeight() {
         )
     }
     //shape可使用系统提供的RoundedCornerShape，CutCornerShape,CircleShape,RectangleShape
+    Text(
+        text = "这是切角矩形的shape CutCornerShape(8.dp)",
+        fontSize = 12.sp,
+        fontWeight = FontWeight.Light
+    )
     Column(
         modifier = Modifier
             .padding(8.dp)
@@ -453,6 +496,11 @@ private fun ShadowSpacerAndWeight() {
     //不只是行、列、堆栈容器可以设置阴影和切角，所有compose的控件，都可以使用modifier来实现这个效果
 
     //演示空白控件space和weight的使用,注意⚠️weight仅作用于Row和column，对box没有这个作用属性
+    Text(
+        text = "演示圆角shape和shadow，同时主要看spacer空白控件和其他子控件weight的使用效果。",
+        fontSize = 12.sp,
+        fontWeight = FontWeight.Light
+    )
     Row(
         modifier = Modifier
             .fillMaxWidth()
@@ -462,6 +510,8 @@ private fun ShadowSpacerAndWeight() {
         Text(
             text = "Kotlin",
             modifier = Modifier
+                //⚠️注意，这个Text虽然使用了CircleShape，但是受限于外部容器设置了height，所以显示出来不是圆形
+                .shadow(elevation = 4.dp, shape = CircleShape)
                 .background(Color(0xFFFF9800))
                 .padding(4.dp)
         )
@@ -497,9 +547,12 @@ private fun ShadowSpacerAndWeight() {
             .background(Color.LightGray),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
+        //2024年4月5日记：设计理念的原因，单个Text目前是没有让文本自居中的属性，只能通过外部容器配合来实现该效果。
         Text(
             text = "Kotlin",
             modifier = Modifier
+                //注意⚠️，这里可以显示出圆形，还要记得modifier的属性是有顺序的，设置背景色和shadow如果顺序反了，效果就很不一样了。
+                .shadow(elevation = 4.dp, shape = CircleShape)
                 .background(Color(0xFF8BC34A))
                 .weight(1f)
                 .padding(4.dp)
