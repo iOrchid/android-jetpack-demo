@@ -5,16 +5,21 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.shape.CutCornerShape
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.BiasAlignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
@@ -31,7 +36,8 @@ fun BoxColumnRowScreen(modifier: Modifier = Modifier) {
     //最外层还是使用一个竖直排列元素的列 容器，可超屏滑动
     LazyColumn {
         //LazyColumn内部可以代码形式的items，也可以单个item一个个的加,item内部也就保持和外部LazyXXX的排列属性；
-        //即对于LazyColumn，Item内就是列的方式，在LazyRow就是行的排列方式
+
+        //行 即对于LazyColumn，Item内就是列的方式，在LazyRow就是行的排列方式
         item {
             //Text文本元素，字体内容，字号大小，字重，
             Text(text = "Row", fontSize = 20.sp, fontWeight = FontWeight.Bold)
@@ -63,7 +69,7 @@ fun BoxColumnRowScreen(modifier: Modifier = Modifier) {
                 BiasAlignment.Vertical(0.8f)
             )
         }
-        //其实都可以写在一个item{}内，这里为了代码形式上的区分，所以写了多个item块
+        //列 其实都可以写在一个item{}内，这里为了代码形式上的区分，所以写了多个item块
         item {
             Text(text = "Column", fontSize = 20.sp, fontWeight = FontWeight.Bold)
             Text(
@@ -93,7 +99,7 @@ fun BoxColumnRowScreen(modifier: Modifier = Modifier) {
                 BiasAlignment.Horizontal(0.3f)
             )
         }
-
+        //箱 堆栈，层叠的方式
         item {
             Text(text = "Box", fontSize = 20.sp, fontWeight = FontWeight.Bold)
             Text(
@@ -110,7 +116,8 @@ fun BoxColumnRowScreen(modifier: Modifier = Modifier) {
             Box(
                 Modifier
                     .fillMaxWidth()
-                    .background(Color.DarkGray)) {
+                    .background(Color.DarkGray)
+            ) {
                 Text(
                     text = "Kotlin",
                     modifier = Modifier
@@ -145,6 +152,17 @@ fun BoxColumnRowScreen(modifier: Modifier = Modifier) {
                     color = Color.White
                 )
             }
+        }
+
+        //边距 padding 和margin，其实在compose里是没有margin的概念，而是通过外层容器的padding来实现
+        item {
+            //写一个行容器，里面分三部分来演示
+            PaddingAndMargin()
+        }
+        // 阴影效果和简单远郊切角,shadow是modifier的一个属性，里面可设置elevation和shape，
+        //shape有常用的圆角，矩形，切角，还可以自定义shape,默认的是RectangleShape矩形
+        item {
+            ShadowSpacerAndWeight()
         }
     }
 }
@@ -195,7 +213,7 @@ private fun RowTextWithArrangementAndAlignment(
         Text(
             text = "Android",
             modifier = Modifier
-                .background(Color(0xFFFFB7E6))
+                .background(Color(0xFFFFB74F))
                 .padding(4.dp)
         )
     }
@@ -302,3 +320,210 @@ private fun BoxWithAlignment(alignment: Alignment, propagate: Boolean) {
         )
     }
 }
+
+
+/**
+ * 演示compose的形式如何实现padding和margin的布局效果
+ */
+@Composable
+private fun PaddingAndMargin() {
+    Row(
+        modifier = Modifier
+            .background(Color(0xFFF06292))//配置背景色，便于查看
+            .fillMaxWidth()
+            .wrapContentHeight(),
+        horizontalArrangement = Arrangement.SpaceEvenly,//空间均分
+    ) {
+        //第一列，来演示padding边距效果，可以看得出Modifier的属性设置，是按照顺序依次生效的。
+        //可多次使用某属性，padding的设置，变相可实现内部content的margin效果
+        Column(
+            modifier = Modifier
+                .background(Color(0xFFFFEB3B))
+                .padding(15.dp)
+                .background(Color(0xFFFFFFFF))
+                .padding(8.dp)
+        ) {
+            Text(text = "天干 甲")
+            Text(text = "天干 乙")
+            Text(text = "天干 丙")
+            Text(text = "天干 丁")
+        }
+        //第二列，先padding和先background效果作用区域是不同的，
+        // 而后在此padding和background，都会影响到内部content的布局空间和形态
+        Column(
+            modifier = Modifier
+                .padding(10.dp)
+                .background(Color(0xFF80DEEA))
+                .padding(end = 15.dp)
+                .background(Color(0xFF9575CD))
+                .padding(top = 12.dp, bottom = 22.dp)
+        ) {
+            Text(text = "地支 子")
+            Text(text = "地支 丑")
+            Text(text = "地支 寅")
+            Text(text = "地支 卯")
+        }
+        //第三列，更为形象的看得出，text的文本内容，就会在modifier作用后修饰的content布局空间内
+        Column(
+            modifier = Modifier
+                .background(Color(0xFF607D8B))
+                .padding(15.dp)
+                .background(Color(0xFFB2FF59))
+        ) {
+            Text(text = "音律 宫")
+            Text(text = "音律 商")
+            Text(text = "音律 角")
+            Text(text = "音律 徵")
+            Text(text = "音律 羽")
+        }
+    }
+}
+
+/**
+ * 演示compose的阴影实现，切角，简单的空白空间占位和布局weight权重使用
+ */
+@Composable
+private fun ShadowSpacerAndWeight() {
+    Row(
+        modifier = Modifier
+            .padding(8.dp)
+            .shadow(
+                elevation = 4.dp,
+                shape = RoundedCornerShape(8.dp)
+            )
+    ) {
+        Text(
+            text = "甲", modifier = Modifier
+                .background(Color(0xFFFF9800))
+                .padding(4.dp)
+        )
+        Text(
+            text = "乙",
+            modifier = Modifier
+                .background(Color(0xFFFFA726))
+                .padding(4.dp)
+        )
+        Text(
+            text = "丙",
+            modifier = Modifier
+                .background(Color(0xFFFFB74D))
+                .padding(4.dp)
+        )
+        Text(
+            text = "丁",
+            modifier = Modifier
+                .background(Color(0xFFFFB74F))
+                .padding(4.dp)
+        )
+    }
+    //shape可使用系统提供的RoundedCornerShape，CutCornerShape,CircleShape,RectangleShape
+    Column(
+        modifier = Modifier
+            .padding(8.dp)
+            .shadow(
+                elevation = 4.dp,
+                shape = CutCornerShape(8.dp),
+            )
+    ) {
+        Text(
+            text = "子",
+            modifier = Modifier
+                .background(Color(0xFF8BC34A))
+                .padding(4.dp)
+        )
+        Text(
+            text = "丑",
+            modifier = Modifier
+                .background(Color(0xFF9CCC65))
+                .padding(4.dp)
+        )
+        Text(
+            text = "寅",
+            modifier = Modifier
+                .background(Color(0xFFAED581))
+                .padding(4.dp)
+        )
+        Text(
+            text = "卯",
+            modifier = Modifier
+                .background(Color(0xFFAED599))
+                .padding(4.dp)
+        )
+    }
+    //不只是行、列、堆栈容器可以设置阴影和切角，所有compose的控件，都可以使用modifier来实现这个效果
+
+    //演示空白控件space和weight的使用,注意⚠️weight仅作用于Row和column，对box没有这个作用属性
+    Row(
+        modifier = Modifier
+            .fillMaxWidth()
+            .height(50.dp)
+            .background(Color.LightGray),
+    ) {
+        Text(
+            text = "Kotlin",
+            modifier = Modifier
+                .background(Color(0xFFFF9800))
+                .padding(4.dp)
+        )
+        //Spacer是空白控件，modifier的weight属性，表示权重，类似于传统view体系内线性布局linearLayout的weight差不多
+        //weight会把剩余的空白控件，按权重比例分配个配置weight的控件上
+        Spacer(modifier = Modifier.weight(1f))
+        //这里可以看出，给该text加了weight，其也要多占一些空白空间
+        Text(
+            text = "Jetpack",
+            modifier = Modifier
+                .weight(1.5f)
+                .background(Color(0xFFFFA726))
+                .padding(4.dp)
+        )
+        Text(
+            text = "Compose",
+            modifier = Modifier
+                .background(Color(0xFFFFB74D))
+                .padding(4.dp)
+        )
+        Text(
+            text = "Android",
+            modifier = Modifier
+                .background(Color(0xFFFFB74F))
+                .padding(4.dp)
+        )
+    }
+    //列 也有weight属性作用。weight是根据容器内所有weight总和来分配空间，然后按比例给子空间大小分配布局
+    Column(
+        modifier = Modifier
+            .fillMaxWidth()
+            .height(200.dp)
+            .background(Color.LightGray),
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
+        Text(
+            text = "Kotlin",
+            modifier = Modifier
+                .background(Color(0xFF8BC34A))
+                .weight(1f)
+                .padding(4.dp)
+        )
+        Spacer(modifier = Modifier.weight(0.5f))
+        Text(
+            text = "Jetpack",
+            modifier = Modifier
+                .background(Color(0xFF9CCC65))
+                .padding(4.dp)
+        )
+        Text(
+            text = "Compose",
+            modifier = Modifier
+                .background(Color(0xFFAED581))
+                .padding(4.dp)
+                .weight(1.5f)
+        )
+        Text(
+            text = "Android",
+            modifier = Modifier
+                .background(Color(0xFFAED599))
+                .padding(4.dp)
+        )
+    }
+}
+
