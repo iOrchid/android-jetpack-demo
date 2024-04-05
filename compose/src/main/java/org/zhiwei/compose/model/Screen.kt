@@ -3,6 +3,7 @@ package org.zhiwei.compose.model
 import androidx.compose.ui.Modifier
 import org.zhiwei.compose.screen.basic.Box_Column_Row_Screen
 import org.zhiwei.compose.screen.basic.Surface_Shape_Clickable_Screen
+import org.zhiwei.compose.screen.basic.material3.Text_Screen
 
 /**
  * 用于配置整个Compose模块内所有可跳转的页面UI，用于Navigation导航
@@ -24,7 +25,7 @@ internal object BasicScreenUIs {
         CourseItemModel(
             "Text",
             "Material3的text文本控件，以及字号、颜色、字体、字重、样式等文本相关属性的设置。"
-        ) { Box_Column_Row_Screen(modifier) },
+        ) { Text_Screen(modifier) },
         CourseItemModel(
             "Button",
             "主要演示文本按钮，图标按钮，悬浮按钮或标签🏷️按钮的使用，及其属性设置。"
