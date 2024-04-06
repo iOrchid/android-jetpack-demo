@@ -3,6 +3,7 @@ package org.zhiwei.compose.model
 import androidx.compose.ui.Modifier
 import org.zhiwei.compose.screen.basic.Box_Column_Row_Screen
 import org.zhiwei.compose.screen.basic.Surface_Shape_Clickable_Screen
+import org.zhiwei.compose.screen.basic.material3.Button_Screen
 import org.zhiwei.compose.screen.basic.material3.Text_Screen
 
 /**
@@ -29,7 +30,7 @@ internal object BasicScreenUIs {
         CourseItemModel(
             "Button",
             "主要演示文本按钮，图标按钮，悬浮按钮或标签🏷️按钮的使用，及其属性设置。"
-        ) { Box_Column_Row_Screen(modifier) },
+        ) { Button_Screen(modifier) },
         CourseItemModel(
             "TextField",
             "演示文本输入框的样式配置，颜色，状态，错误提示和输入显示和输入法联动等设置。"
