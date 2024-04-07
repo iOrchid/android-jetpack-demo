@@ -31,6 +31,7 @@ webkit = "1.8.0"
 # compose
 
 androidxComposeBom = "2024.03.00"
+androidxComposeUI = "1.6.4"
 androidxComposeRuntimeTracing = "1.0.0-beta01"
 androidxComposeConstraintlayout = "1.0.1"
 
@@ -107,6 +108,7 @@ androidx-compose-constraintlayout = { group = "androidx.constraintlayout", name 
 androidx-compose-bom = { group = "androidx.compose", name = "compose-bom", version.ref = "androidxComposeBom" }
 androidx-compose-foundation = { group = "androidx.compose.foundation", name = "foundation" }
 androidx-compose-foundation-layout = { group = "androidx.compose.foundation", name = "foundation-layout" }
+androidx-compose-material = { group = "androidx.compose.material", name = "material", version.ref = "androidxComposeUI" }
 androidx-compose-material-iconsExtended = { group = "androidx.compose.material", name = "material-icons-extended" }
 androidx-compose-material3 = { group = "androidx.compose.material3", name = "material3" }
 androidx-compose-material3-windowSizeClass = { group = "androidx.compose.material3", name = "material3-window-size-class" }

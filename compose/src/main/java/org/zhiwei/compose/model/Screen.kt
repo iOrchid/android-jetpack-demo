@@ -4,6 +4,7 @@ import androidx.compose.ui.Modifier
 import org.zhiwei.compose.screen.basic.Box_Column_Row_Screen
 import org.zhiwei.compose.screen.basic.Surface_Shape_Clickable_Screen
 import org.zhiwei.compose.screen.basic.material3.Button_Screen
+import org.zhiwei.compose.screen.basic.material3.TextField_Screen
 import org.zhiwei.compose.screen.basic.material3.Text_Screen
 
 /**
@@ -34,7 +35,7 @@ internal object BasicScreenUIs {
         CourseItemModel(
             "TextField",
             "演示文本输入框的样式配置，颜色，状态，错误提示和输入显示和输入法联动等设置。"
-        ) { Box_Column_Row_Screen(modifier) },
+        ) { TextField_Screen(modifier) },
         CourseItemModel(
             "Image",
             "创建图片展示控件，演示显示方式，裁剪图形和颜色过滤等属性用法。"
