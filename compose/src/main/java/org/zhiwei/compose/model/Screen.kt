@@ -4,6 +4,7 @@ import androidx.compose.ui.Modifier
 import org.zhiwei.compose.screen.basic.Box_Column_Row_Screen
 import org.zhiwei.compose.screen.basic.Surface_Shape_Clickable_Screen
 import org.zhiwei.compose.screen.basic.material3.Button_Screen
+import org.zhiwei.compose.screen.basic.material3.Image_Screen
 import org.zhiwei.compose.screen.basic.material3.TextField_Screen
 import org.zhiwei.compose.screen.basic.material3.Text_Screen
 
@@ -39,7 +40,7 @@ internal object BasicScreenUIs {
         CourseItemModel(
             "Image",
             "创建图片展示控件，演示显示方式，裁剪图形和颜色过滤等属性用法。"
-        ) { Box_Column_Row_Screen(modifier) },
+        ) { Image_Screen(modifier) },
         CourseItemModel(
             "LazyColumn",
             "可以理解为简版的类似于传统RecyclerView的compose的，可加载多个列表的滑动式组件，演示滑动控制，数据变更，悬浮标题等。"

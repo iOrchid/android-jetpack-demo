@@ -18,6 +18,12 @@ internal fun Title_Text(title: String) {
 }
 
 @Composable
+internal fun Title_Sub_Text(title: String) {
+//Text文本元素，字体内容，字号大小，字重，
+    Text(text = title, fontSize = 14.sp, fontWeight = FontWeight.Normal)
+}
+
+@Composable
 internal fun Title_Desc_Text(desc: String) {
     Text(
         text = desc,
