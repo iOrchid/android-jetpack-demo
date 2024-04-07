@@ -23,20 +23,19 @@
 
 ####  一、项目简介
 
-> 不觉间项目已六年有余，Kotlin和Jetpack相关技术点也更新了很多，更成了为Android开发的技术首选。
-> `GitHub`上不乏很多`star`的`Jetpack`最佳实践，此项目定位于新手入门级教程，分组件逐步学习，明白其应用与原理，而后方可谈组合与架构。
 > 学习主要以项目代码为准，主要分三个部分模块：
 >
-> 1. kotlin文件夹，下面是面向kotlin语言的初学教程，基本语法；学习之后，可以看懂kotlin代码，以及上手写kotlin，相信你用上kotlin之后，绝对不会再用回java。
-> 2. jetpack文件夹下，主要演示了通用的几个jetpack的组件liveData、lifecycle、viewmodel、paging、workmanager、navigation，databinding、room等。
+> 1. kotlin文件夹，下面是面向kotlin语言的初学教程，基本语法；学习之后，可以看懂kotlin代码，以及上手写kotlin，相信你用上kotlin之后不会再用回java。
+>2.
+jetpack文件夹下，主要演示了通用的几个jetpack的组件liveData、lifecycle、viewmodel、paging、workmanager、navigation，databinding、room等。
 > 3. compose算是颠覆性或者革命性的一个Android UI的编写方式，我说的可能有点夸张，但是这种组合式的UI写法和设计思想，真的很不一样，用起来也没有了Android旧的view体系的那种臃肿感。
 > 4. 其他MVI，MVVM和jetpack的组件，可能会简便或者功能的形式，添加的App demo的功能块中。项目断断停停的，工作精力所限，**希望可以动手给star/fork点个赞**👍，有什么问题想法和建议可以提issue，谢谢，<font color="orange">**您的支持与鼓励，是我做项目的动力**</font>。
 
 <font color="green">**感谢支持的各位小伙伴，有技术问题或学习问题都可以在issues中留言**</font>
 
-**Android-Jetpack-Demo** 全新设计开发中,会集合当下Android应用开发的Kotlin语言相关技术知识点、Jetpack各组建的使用及相关原理源码分析文章等。
-
-**代码清理全新设计中,所以为空项目，历史代码可参照[source](https://github.com/iOrchid/android-jetpack-demo/releases/tag/v2.0.0-alpha01)这里下载。**
+*
+*历史代码可参照[source](https://github.com/iOrchid/android-jetpack-demo/releases/tag/v2.0.0-alpha01)
+这里下载。**
 
 #### 二、更新日志
 
@@ -60,12 +59,11 @@
   - `databinding`的基础用法
   - `AAC`的初级使用
 
-#### 三、Sample示例(1.x版本的)
+#### 三、Sample示例
 
-[下载体验apk](https://raw.githubusercontent.com/iOrchid/android-jetpack-demo/master/docs/apk/app-release.apk)
-或者手机扫描二维码下载`Demo`的`apk`包；最新`apk`可下载代码自行构建。
+<img src="./docs/show/main.webp" alt="main" style="zoom:15%;" /><img src="./docs/show/jetpack.webp" alt="jetpack" style="zoom:15%;" /><img src="./docs/show/kotlin.webp" alt="kotlin" style="zoom:15%;" /><img src="./docs/show/compose.webp" alt="compose" style="zoom:15%;" />
 
-![扫描下载](./docs/images/QR_Jetpack.png)
+![gif](./docs/show/gif01.gif)![gif](./docs/show/gif02.gif)![gif](./docs/show/gif03.gif)
 
 #### 四、项目组成[^1]
 
