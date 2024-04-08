@@ -61,7 +61,7 @@ jetpack文件夹下，主要演示了通用的几个jetpack的组件liveData、l
 
 #### 三、Sample示例
 
-<img src="./docs/show/main.webp" alt="main" style="zoom:15%;" /><img src="./docs/show/jetpack.webp" alt="jetpack" style="zoom:15%;" /><img src="./docs/show/kotlin.webp" alt="kotlin" style="zoom:15%;" /><img src="./docs/show/compose.webp" alt="compose" style="zoom:15%;" />
+<img src="./docs/show/main.webp" alt="main" style="zoom:10%;" /><img src="./docs/show/jetpack.webp" alt="jetpack" style="zoom:10%;" /><img src="./docs/show/kotlin.webp" alt="kotlin" style="zoom:10%;" /><img src="./docs/show/compose.webp" alt="compose" style="zoom:10%;" />
 
 ![gif](./docs/show/gif01.gif)![gif](./docs/show/gif02.gif)![gif](./docs/show/gif03.gif)
 
