@@ -166,6 +166,7 @@ kotlinx-serialization-json = { group = "org.jetbrains.kotlinx", name = "kotlinx-
 blankj-utils = { group = "com.blankj", name = "utilcodex", version.ref = "blankj-utils" }
 coil-kt = { group = "io.coil-kt", name = "coil", version.ref = "coil" }
 coil-kt-svg = { group = "io.coil-kt", name = "coil-svg", version.ref = "coil" }
+coil-kt-compose = { group = "io.coil-kt", name = "coil-compose", version.ref = "coil" }
 gson = { module = "com.google.code.gson:gson", version.ref = "gson" }
 koin = { module = "io.insert-koin:koin-android", version.ref = "koin" }
 okhttp-logging = { group = "com.squareup.okhttp3", name = "logging-interceptor", version.ref = "okhttp" }

@@ -62,6 +62,9 @@ dependencies {
     implementation(libs.androidx.compose.foundation.layout)
 //    implementation(libs.accompanist.systemuicontroller)
 
+    //图片加载库 compose版本的
+    implementation(libs.coil.kt.compose)
+
 
     //测试相关的库
     testImplementation(libs.junit)
