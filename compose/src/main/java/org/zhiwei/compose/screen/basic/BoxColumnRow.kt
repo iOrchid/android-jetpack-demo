@@ -68,6 +68,11 @@ internal fun Box_Column_Row_Screen(modifier: Modifier = Modifier) {
                 Arrangement.SpaceBetween,
                 BiasAlignment.Vertical(0.8f)
             )
+            //Row布局容器的使用，演示排版spacedBy的布局方式，即元素间指定尺寸的间距。
+            RowTextWithArrangementAndAlignment(
+                Arrangement.spacedBy(10.dp),
+                Alignment.CenterVertically
+            )
         }
         //列 其实都可以写在一个item{}内，这里为了代码形式上的区分，所以写了多个item块
         item {
