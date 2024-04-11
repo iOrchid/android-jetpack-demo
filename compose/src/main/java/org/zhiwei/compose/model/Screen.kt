@@ -5,7 +5,7 @@ import org.zhiwei.compose.screen.basic.Box_Column_Row_Screen
 import org.zhiwei.compose.screen.basic.Surface_Shape_Clickable_Screen
 import org.zhiwei.compose.screen.basic.material3.Button_Screen
 import org.zhiwei.compose.screen.basic.material3.Image_Screen
-import org.zhiwei.compose.screen.basic.material3.LazyColumn_Screen
+import org.zhiwei.compose.screen.basic.material3.LazyList_Screen
 import org.zhiwei.compose.screen.basic.material3.TextField_Screen
 import org.zhiwei.compose.screen.basic.material3.Text_Screen
 
@@ -43,13 +43,9 @@ internal object BasicScreenUIs {
             "创建图片展示控件，演示显示方式，裁剪图形和颜色过滤等属性用法。"
         ) { Image_Screen(modifier) },
         CourseItemModel(
-            "LazyColumn",
+            "LazyColumn/LazyRow",
             "可以理解为简版的类似于传统RecyclerView的compose的，可加载多个列表的滑动式组件，演示滑动控制，数据变更，悬浮标题等。"
-        ) { LazyColumn_Screen(modifier) },
-        CourseItemModel(
-            "LazyRow",
-            "类似于上面的LazyColumn，这个是水平的行排列的容器控件。"
-        ) { Box_Column_Row_Screen(modifier) },
+        ) { LazyList_Screen(modifier) },
         CourseItemModel(
             "LazyVirtualGrid",
             "竖直方向的网格布局容器，水平的也是类似，主要看属性和用法的演示。"

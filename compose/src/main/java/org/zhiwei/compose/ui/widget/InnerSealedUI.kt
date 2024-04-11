@@ -66,16 +66,13 @@ internal fun MotorcycleCard(
 ) {
     Card(
         //只有配置clickable才会有点击效果
-        modifier = modifier
-            .fillMaxWidth()
-            .background(Color.White)
-            .clickable { },
+        modifier = modifier.clickable { },
         elevation = CardDefaults.cardElevation(defaultElevation = 4.dp),
         shape = RoundedCornerShape(8.dp)
     ) {
         //因为右上角有个喜欢 💗按钮，所以用box容器
         Box(contentAlignment = Alignment.TopEnd) {
-            Column {
+            Column(Modifier.background(Color.White)) {
                 Image(
                     painter = painterResource(id = motor.imgResId),
                     contentDescription = motor.desc,
