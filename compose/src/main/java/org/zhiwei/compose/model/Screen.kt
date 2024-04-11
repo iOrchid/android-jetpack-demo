@@ -5,6 +5,7 @@ import org.zhiwei.compose.screen.basic.Box_Column_Row_Screen
 import org.zhiwei.compose.screen.basic.Surface_Shape_Clickable_Screen
 import org.zhiwei.compose.screen.basic.material3.Button_Screen
 import org.zhiwei.compose.screen.basic.material3.Image_Screen
+import org.zhiwei.compose.screen.basic.material3.LazyGrid_Screen
 import org.zhiwei.compose.screen.basic.material3.LazyList_Screen
 import org.zhiwei.compose.screen.basic.material3.TextField_Screen
 import org.zhiwei.compose.screen.basic.material3.Text_Screen
@@ -47,9 +48,9 @@ internal object BasicScreenUIs {
             "可以理解为简版的类似于传统RecyclerView的compose的，可加载多个列表的滑动式组件，演示滑动控制，数据变更，悬浮标题等。"
         ) { LazyList_Screen(modifier) },
         CourseItemModel(
-            "LazyVirtualGrid",
-            "竖直方向的网格布局容器，水平的也是类似，主要看属性和用法的演示。"
-        ) { Box_Column_Row_Screen(modifier) },
+            "LazyGrid",
+            "网格布局容器，水平/竖直，还有瀑布流方式的，主要看属性和用法的演示。"
+        ) { LazyGrid_Screen(modifier) },
         CourseItemModel(
             "ListItem",
             "Compose直接提供的，可用于简便设置条目的实现，有图标，单行，多行，副标题，按钮等。"

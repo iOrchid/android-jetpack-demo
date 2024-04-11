@@ -59,6 +59,8 @@ jetpack文件夹下，主要演示了通用的几个jetpack的组件liveData、l
 
 #### 三、Sample示例
 
+<img src="./docs/show/demo.mp4" alt="demo" style="zoom:25%;" />
+
 ![gif](./docs/show/gif01.gif)![gif](./docs/show/gif02.gif)![gif](./docs/show/gif03.gif)
 
 #### 四、项目组成[^1]
@@ -82,6 +84,8 @@ jetpack文件夹下，主要演示了通用的几个jetpack的组件liveData、l
   等核心库的使用与解析
 
 - **Compose**分包下会详细演示`compose`的学习笔记，从基础到整个**UI**实现
+
+  按照页面顺序可逐步学习`compose`的使用，代码基本都有注释；**尤其注意⚠️带警示标记的注释，属于知识点。**
 
   <img src="https://developer.android.google.cn/courses/jetpack-compose/images/course-logo.svg" alt="Compose Course" style="zoom:25%;" />
 
