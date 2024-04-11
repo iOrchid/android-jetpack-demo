@@ -56,7 +56,7 @@ internal fun Home_Screen(modifier: Modifier = Modifier) {
         }
 
         //基础组件下的 每个可导航的页面，需要使用composable来设置
-        BasicScreenUIs.basicCourses(modifier.background(Color.White)).forEach { model ->
+        BasicScreenUIs.basicCourses(modifier).forEach { model ->
             composable(route = model.title) {
                 //model中ui的属性字段是个函数，需要invoke来调用
                 model.ui()
@@ -140,5 +140,5 @@ private fun HomeScreenContent(modifier: Modifier, navController: NavController) 
 @Preview
 @Composable
 fun PreviewHomeScreen() {
-    Home_Screen(modifier = Modifier.background(Color(0XFFE6D2D5)))
+    Home_Screen(modifier = Modifier.background(Color(0XFFF2FDFF)))
 }

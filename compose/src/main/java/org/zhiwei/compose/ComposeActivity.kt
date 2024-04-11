@@ -30,7 +30,7 @@ class ComposeActivity : ComponentActivity() {
                     Home_Screen(
                         Modifier
                             .fillMaxSize()
-                            .background(color = Color(0XFFE6D2D5))
+                            .background(color = Color(0XFFF2FDFF))
                             .padding(padding)
                     )
                 }
@@ -50,7 +50,7 @@ fun PreviewComposeActivity() {
             Home_Screen(
                 Modifier
                     .fillMaxSize()
-                    .background(color = Color(0XFFE6D2D5))
+                    .background(color = Color(0XFFF2FDFF))
                     .padding(padding)
             )
         }
