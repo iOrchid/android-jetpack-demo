@@ -7,6 +7,7 @@ import org.zhiwei.compose.screen.basic.material3.Button_Screen
 import org.zhiwei.compose.screen.basic.material3.Image_Screen
 import org.zhiwei.compose.screen.basic.material3.LazyGrid_Screen
 import org.zhiwei.compose.screen.basic.material3.LazyList_Screen
+import org.zhiwei.compose.screen.basic.material3.ListItem_Screen
 import org.zhiwei.compose.screen.basic.material3.TextField_Screen
 import org.zhiwei.compose.screen.basic.material3.Text_Screen
 
@@ -54,7 +55,7 @@ internal object BasicScreenUIs {
         CourseItemModel(
             "ListItem",
             "Compose直接提供的，可用于简便设置条目的实现，有图标，单行，多行，副标题，按钮等。"
-        ) { Box_Column_Row_Screen(modifier) },
+        ) { ListItem_Screen(modifier) },
         CourseItemModel(
             "LazyListLayoutInfo",
             "使用LazyLayoutInfo来获取LazyColumn/LazyRow的一些元数据。"

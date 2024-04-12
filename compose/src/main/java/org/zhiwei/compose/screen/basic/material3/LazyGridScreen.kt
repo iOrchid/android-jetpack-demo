@@ -44,6 +44,7 @@ private fun CommonShow(modifier: Modifier) {
         horizontalArrangement = Arrangement.spacedBy(5.dp),//如果上面是FixedSize，那么spaceBy可能无效
         verticalArrangement = Arrangement.spacedBy(5.dp),
     ) {
+        //可以逐个展开不同的注释，来学习不同的实现样式
 //        commonGrid()
 //        spanGrid()
         headerGrid()
