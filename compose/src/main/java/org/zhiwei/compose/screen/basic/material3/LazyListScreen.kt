@@ -21,9 +21,13 @@ import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.foundation.shape.CutCornerShape
 import androidx.compose.material3.Button
+import androidx.compose.material3.Slider
 import androidx.compose.material3.Text
 import androidx.compose.material3.VerticalDivider
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.derivedStateOf
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableFloatStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
@@ -48,6 +52,8 @@ internal fun LazyList_Screen(modifier: Modifier = Modifier) {
 //    LazyColumnContent(modifier)
     //需要看row效果的时候，打开下面注释，关闭上面即可
 //    LazyRowContent()
+    //显示布局layoutInfo的信息
+//    LazyRowLayoutInfo()
     //分组列表
     StickerHeaderList()
     //测试Modifier
@@ -114,16 +120,19 @@ private fun LazyRowContent() {
         Modifier
             .safeContentPadding()
             .fillMaxWidth()
-            .background(Color(0XFFC8ADC4))
-            .padding(8.dp)
+            .padding(vertical = 8.dp)
     ) {
         Title_Text("LazyRow")
         Title_Sub_Text("机车品牌图片模拟")
         LazyRow(
             modifier = Modifier
                 .fillMaxWidth()
+                .background(Color(0XFFC8ADC4))
                 .wrapContentHeight(),
-            contentPadding = PaddingValues(horizontal = 12.dp, vertical = 8.dp),
+            contentPadding = PaddingValues(
+                horizontal = 10.dp,
+                vertical = 8.dp
+            ),
             horizontalArrangement = Arrangement.spacedBy(8.dp),//item之间的间距 指定。
         ) {
             //lazyColumn可以逐个的添加item，也可以items加一个列表
@@ -135,6 +144,73 @@ private fun LazyRowContent() {
     }
 }
 
+@Composable
+private fun LazyRowLayoutInfo() {
+    Column(
+        Modifier
+            .safeContentPadding()
+            .fillMaxWidth()
+            .padding(vertical = 8.dp)
+    ) {
+        Title_Text("LazyRow")
+        Title_Sub_Text("机车品牌图片模拟")
+        val horizontalPadding = remember {
+            mutableFloatStateOf(0f)
+        }
+        val rowState = rememberLazyListState()
+        LazyRow(
+            modifier = Modifier
+                .fillMaxWidth()
+                .background(Color(0XFFC8ADC4))
+                .wrapContentHeight(),
+            state = rowState,
+            contentPadding = PaddingValues(
+                horizontal = horizontalPadding.floatValue.toInt().dp,
+                vertical = 8.dp
+            ),
+            horizontalArrangement = Arrangement.spacedBy(8.dp),//item之间的间距 指定。
+        ) {
+            //lazyColumn可以逐个的添加item，也可以items加一个列表
+            items(motorCardList()) { motoEntity ->
+                //给每个数据元素，配置item的compose的控件效果
+                MotorcycleCard(motor = motoEntity, Modifier.wrapContentHeight())
+            }
+        }
+        //seekbar,动态变更lazyRow的contentPadding设置，lazyColumn是类似的
+        Slider(
+            value = horizontalPadding.floatValue,
+            onValueChange = { horizontalPadding.floatValue = it },
+            valueRange = 0f..50f
+        )
+        val observableText by remember {
+            derivedStateOf {
+                buildString {
+                    //这里可感知lazyRow的一些状态变化
+                    append("第一个可见的item下标:")
+                    appendLine(rowState.firstVisibleItemIndex)//第一个可见的item下标
+                    append("第一个可见的item的滑动偏移量:")
+                    appendLine(rowState.firstVisibleItemScrollOffset)//第一个可见的item的滑动偏移量
+                    val info = rowState.layoutInfo//布局信息
+                    append("afterContentPadding:")
+                    appendLine(info.afterContentPadding)
+                    append("beforeContentPadding:")
+                    appendLine(info.beforeContentPadding)
+                    append("orientation:")
+                    appendLine(info.orientation)//方向
+                    append("totalItemsCount:")
+                    appendLine(info.totalItemsCount)//所有item的个数
+                    append("viewportStartOffset:")
+                    appendLine(info.viewportStartOffset)//控件窗口的偏移量
+                    appendLine("visibleItemsInfo:")
+                    info.visibleItemsInfo.forEach { itemInfo ->
+                        appendLine(itemInfo.toString())
+                    }
+                }
+            }
+        }
+        Text(text = observableText)
+    }
+}
 
 //演示对lazyColumn的简单操作
 @Composable

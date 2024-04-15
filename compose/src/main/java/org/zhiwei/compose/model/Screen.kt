@@ -10,6 +10,7 @@ import org.zhiwei.compose.screen.basic.material3.LazyList_Screen
 import org.zhiwei.compose.screen.basic.material3.ListItem_Screen
 import org.zhiwei.compose.screen.basic.material3.TextField_Screen
 import org.zhiwei.compose.screen.basic.material3.Text_Screen
+import org.zhiwei.compose.screen.basic.material3.TopAppbarTabs_Screen
 
 /**
  * 用于配置整个Compose模块内所有可跳转的页面UI，用于Navigation导航
@@ -57,9 +58,9 @@ internal object BasicScreenUIs {
             "Compose直接提供的，可用于简便设置条目的实现，有图标，单行，多行，副标题，按钮等。"
         ) { ListItem_Screen(modifier) },
         CourseItemModel(
-            "LazyListLayoutInfo",
-            "使用LazyLayoutInfo来获取LazyColumn/LazyRow的一些元数据。"
-        ) { Box_Column_Row_Screen(modifier) },
+            "TopAppbar&Tabs",
+            "material3库中的top AppBar和Tabs相关控件的演示。"
+        ) { TopAppbarTabs_Screen(modifier) },
     )
 }
 
