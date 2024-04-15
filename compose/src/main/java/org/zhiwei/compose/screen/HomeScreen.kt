@@ -56,7 +56,7 @@ internal fun Home_Screen(modifier: Modifier = Modifier) {
         }
 
         //基础组件下的 每个可导航的页面，需要使用composable来设置
-        BasicScreenUIs.basicCourses(modifier).forEach { model ->
+        BasicScreenUIs.basicCourses(modifier) { navController.navigateUp() }.forEach { model ->
             composable(route = model.title) {
                 //model中ui的属性字段是个函数，需要invoke来调用
                 model.ui()
@@ -91,7 +91,7 @@ private fun HomeScreenContent(modifier: Modifier, navController: NavController) 
         )
         val tabPagerModels =
             listOf(
-                TabPagerModel("基础组件") { Basic_Screen(modifier, navController = navController) },
+                TabPagerModel("基础组件") { Basic_Screen(navController = navController) },
                 TabPagerModel("布局Layout") { LayoutScreen() },
                 TabPagerModel("状态State") { StateScreen() },
                 TabPagerModel("手势Gesture") { GestureScreen() },

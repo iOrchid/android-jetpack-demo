@@ -19,7 +19,7 @@ import org.zhiwei.compose.screen.basic.material3.TopAppbarTabs_Screen
 //region basicScreen内
 internal object BasicScreenUIs {
     //所有基础内容的list
-    internal fun basicCourses(modifier: Modifier = Modifier) = listOf(
+    internal fun basicCourses(modifier: Modifier = Modifier, onBack: (() -> Unit) = {}) = listOf(
         CourseItemModel(
             "Column,Rom,Box,Modifiers",
             "列，行，箱，都是容器，顾名思义就是成列，成行和层叠摆放内部子控件；及修饰符Modifier内外边距等基本使用。"
@@ -60,7 +60,7 @@ internal object BasicScreenUIs {
         CourseItemModel(
             "TopAppbar&Tabs",
             "material3库中的top AppBar和Tabs相关控件的演示。"
-        ) { TopAppbarTabs_Screen(modifier) },
+        ) { TopAppbarTabs_Screen(modifier, onBack) },
     )
 }
 

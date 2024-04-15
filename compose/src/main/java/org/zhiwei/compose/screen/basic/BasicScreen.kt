@@ -1,8 +1,6 @@
 package org.zhiwei.compose.screen.basic
 
-import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
@@ -23,7 +21,7 @@ import org.zhiwei.compose.model.BasicScreenUIs
  * 基础学习笔记
  */
 @Composable
-internal fun Basic_Screen(modifier: Modifier = Modifier, navController: NavController) {
+internal fun Basic_Screen(navController: NavController) {
 
     //外部使用列容器LazyColumn，里面就是代码形式便捷创建多个列;LazyColumn就是类似与传统RecyclerView的列容器 ，
     // 如果多个item超出了屏幕，可实现滑动，而且不用代码手动些什么ViewHolder之类的性能管理缓存。
@@ -52,10 +50,5 @@ internal fun Basic_Screen(modifier: Modifier = Modifier, navController: NavContr
 @Preview
 @Composable
 private fun BasicScreenPreview() {
-    Basic_Screen(
-        Modifier
-            .fillMaxSize()
-            .background(Color.White),
-        navController = rememberNavController()
-    )
+    Basic_Screen(navController = rememberNavController())
 }
