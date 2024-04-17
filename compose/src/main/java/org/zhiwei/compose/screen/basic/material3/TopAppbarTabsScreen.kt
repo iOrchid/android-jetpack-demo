@@ -376,6 +376,6 @@ private fun ScrollTabsShow() {
 
 @Preview(showBackground = true, backgroundColor = 0xFFFFFF)
 @Composable
-private fun LazyColumnPreview() {
+private fun TopAppBarPreview() {
     TopAppbarTabs_Screen()
 }

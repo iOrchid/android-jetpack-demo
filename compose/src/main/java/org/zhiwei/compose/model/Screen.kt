@@ -9,9 +9,12 @@ import org.zhiwei.compose.screen.basic.material3.Image_Screen
 import org.zhiwei.compose.screen.basic.material3.LazyGrid_Screen
 import org.zhiwei.compose.screen.basic.material3.LazyList_Screen
 import org.zhiwei.compose.screen.basic.material3.ListItem_Screen
+import org.zhiwei.compose.screen.basic.material3.SideDrawer_Screen
+import org.zhiwei.compose.screen.basic.material3.SwipeDialog_Screen
 import org.zhiwei.compose.screen.basic.material3.TextField_Screen
 import org.zhiwei.compose.screen.basic.material3.Text_Screen
 import org.zhiwei.compose.screen.basic.material3.TopAppbarTabs_Screen
+import org.zhiwei.compose.screen.basic.material3.Widget_Screen
 
 /**
  * 用于配置整个Compose模块内所有可跳转的页面UI，用于Navigation导航
@@ -66,6 +69,22 @@ internal object BasicScreenUIs {
             "BottomBar",
             "BottomNavigationView和BottomAppBar的compose控件的演示。"
         ) { BottomBar_Screen(modifier) },
+        CourseItemModel(
+            "Side Navigation Vs ModalDrawer",
+            "侧边栏控件。"
+        ) { SideDrawer_Screen(modifier) },
+        CourseItemModel(
+            "BottomSheet",
+            "BottomSheet，底部sheet控件,还有BottomDrawer的演示。"
+        ) { SideDrawer_Screen(modifier) },
+        CourseItemModel(
+            "OtherWidget",
+            "提示浮窗SnackBar，进度条Progress，勾选框CheckBox，开关Switch，Slider的使用演示。"
+        ) { Widget_Screen(modifier) },
+        CourseItemModel(
+            "SwipeDialog",
+            "列表中的swipe滑动操作，还有结合checkBox记录状态，以及Dialog的弹窗的使用。"
+        ) { SwipeDialog_Screen(modifier) },
     )
 }
 

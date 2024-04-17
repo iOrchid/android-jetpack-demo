@@ -278,6 +278,6 @@ private fun HoleBottomAppBar() {
 
 @Preview(showBackground = true, backgroundColor = 0xFFFFFF)
 @Composable
-private fun LazyColumnPreview() {
+private fun BottomBarPreview() {
     BottomBar_Screen()
 }

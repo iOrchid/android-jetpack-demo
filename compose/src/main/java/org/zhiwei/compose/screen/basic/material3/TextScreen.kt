@@ -538,6 +538,6 @@ private fun TextColumn(modifier: Modifier = Modifier, content: @Composable () ->
 
 @Preview(showBackground = true, backgroundColor = 0xFFFFFF)
 @Composable
-private fun Text_Screen_Preview() {
+private fun TextScreen_Preview() {
     Text_Screen()
 }

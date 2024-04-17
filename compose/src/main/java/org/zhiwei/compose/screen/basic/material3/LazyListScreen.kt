@@ -310,6 +310,6 @@ private fun StickerHeaderList() {
 
 @Preview(showBackground = true, backgroundColor = 0xFFFFFF)
 @Composable
-private fun LazyColumnPreview() {
+private fun LazyListPreview() {
     LazyList_Screen()
 }

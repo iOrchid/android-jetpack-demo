@@ -153,6 +153,6 @@ private fun CustomColumnShow() {
 
 @Preview(showBackground = true, backgroundColor = 0xFFFFFF)
 @Composable
-private fun LazyColumnPreview() {
+private fun LazyGridPreview() {
     LazyGrid_Screen()
 }
