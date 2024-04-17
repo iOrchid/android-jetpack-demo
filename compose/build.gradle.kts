@@ -57,6 +57,8 @@ dependencies {
 
     implementation(libs.androidx.compose.ui.util)
     implementation(libs.androidx.compose.constraintlayout)
+    //material的compose的库，与material3的库不同，选择用一种风格即可。
+    implementation(libs.androidx.compose.material)
     implementation(libs.androidx.compose.material.iconsExtended)
     implementation(libs.androidx.compose.foundation)
     implementation(libs.androidx.compose.foundation.layout)

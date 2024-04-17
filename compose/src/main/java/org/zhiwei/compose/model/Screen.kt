@@ -3,6 +3,7 @@ package org.zhiwei.compose.model
 import androidx.compose.ui.Modifier
 import org.zhiwei.compose.screen.basic.Box_Column_Row_Screen
 import org.zhiwei.compose.screen.basic.Surface_Shape_Clickable_Screen
+import org.zhiwei.compose.screen.basic.material3.BottomBar_Screen
 import org.zhiwei.compose.screen.basic.material3.Button_Screen
 import org.zhiwei.compose.screen.basic.material3.Image_Screen
 import org.zhiwei.compose.screen.basic.material3.LazyGrid_Screen
@@ -61,6 +62,10 @@ internal object BasicScreenUIs {
             "TopAppbar&Tabs",
             "material3库中的top AppBar和Tabs相关控件的演示。"
         ) { TopAppbarTabs_Screen(modifier, onBack) },
+        CourseItemModel(
+            "BottomBar",
+            "BottomNavigationView和BottomAppBar的compose控件的演示。"
+        ) { BottomBar_Screen(modifier) },
     )
 }
 
