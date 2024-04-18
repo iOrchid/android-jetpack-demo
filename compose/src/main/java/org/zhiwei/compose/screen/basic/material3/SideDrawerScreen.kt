@@ -13,27 +13,42 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.BottomAppBar
 import androidx.compose.material.Button
 import androidx.compose.material.DrawerState
+import androidx.compose.material.DrawerValue
 import androidx.compose.material.FabPosition
 import androidx.compose.material.FloatingActionButton
 import androidx.compose.material.Icon
 import androidx.compose.material.IconButton
+import androidx.compose.material.ModalDrawer
 import androidx.compose.material.Scaffold
 import androidx.compose.material.ScaffoldState
 import androidx.compose.material.SnackbarHost
 import androidx.compose.material.Text
 import androidx.compose.material.TopAppBar
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.AccessTime
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.ArrowBackIosNew
+import androidx.compose.material.icons.filled.CloudUpload
+import androidx.compose.material.icons.filled.Folder
 import androidx.compose.material.icons.filled.Menu
 import androidx.compose.material.icons.filled.MoreVert
+import androidx.compose.material.icons.filled.OfflineShare
+import androidx.compose.material.icons.filled.People
 import androidx.compose.material.icons.filled.Search
+import androidx.compose.material.icons.filled.Star
+import androidx.compose.material.icons.filled.Upload
+import androidx.compose.material.icons.sharp.Menu
+import androidx.compose.material.rememberDrawerState
 import androidx.compose.material.rememberScaffoldState
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableIntStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.tooling.preview.PreviewParameter
+import androidx.compose.ui.tooling.preview.PreviewParameterProvider
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import androidx.navigation.compose.NavHost
@@ -41,11 +56,15 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
+import org.zhiwei.compose.ui.widget.DrawerButton
+import org.zhiwei.compose.ui.widget.ModalDrawerContentHeader
 
 @Composable
 internal fun SideDrawer_Screen(modifier: Modifier = Modifier) {
+    //以下演示，根据需要，选择注释即可，单次开启一个注释，运行看效果
+//    SideDrawerDemo(modifier)
 
-    SideDrawerDemo(modifier)
+    ModalDrawerDemo(modifier)
 }
 
 
@@ -191,9 +210,94 @@ private fun DrawerContent(drawerState: DrawerState, navController: NavController
 
 //endregion
 
+//region ModalDrawer
+@Composable
+private fun ModalDrawerDemo(modifier: Modifier, drawerValue: DrawerValue = DrawerValue.Closed) {
+    val selected = remember { mutableIntStateOf(0) }
+    val drawerState = rememberDrawerState(initialValue = drawerValue)
+    val coroutineScope = rememberCoroutineScope()
+    val openDrawer = { coroutineScope.launch { drawerState.open() } }
+    val closeDrawer = { coroutineScope.launch { drawerState.close() } }
+    ModalDrawer(
+        drawerContent = {
+            ModalDrawerContent(
+                selectedIndex = selected.value,
+                onSelected = { selected.value = it },
+                closeDrawer = { closeDrawer() })
+        },
+        drawerState = drawerState
+    ) {
+        Column(modifier) {
+            TopAppBar(title = { Text(text = "ModalDrawer") }, navigationIcon = {
+                IconButton(onClick = { openDrawer.invoke() }) {
+                    Icon(imageVector = Icons.Sharp.Menu, contentDescription = null)
+                }
+            })
+            Image_Screen()
+        }
+    }
+}
+
+
+@Composable
+private fun ModalDrawerContent(
+    selectedIndex: Int,
+    onSelected: (Int) -> Unit,
+    closeDrawer: () -> Unit,
+) {
+    Column(modifier = Modifier.fillMaxWidth()) {
+        ModalDrawerContentHeader()
+        modalDrawerList.forEachIndexed { index, pair ->
+            val label = pair.first
+            val imageVector = pair.second
+            DrawerButton(
+                icon = imageVector,
+                label = label,
+                isSelected = selectedIndex == index,
+                action = {
+                    onSelected(index)
+                    closeDrawer()
+                }
+            )
+        }
+    }
+}
+
+
+private val modalDrawerList = listOf(
+    Pair("My Files", Icons.Filled.Folder),
+    Pair("Shared with Me", Icons.Filled.People),
+    Pair("Starred", Icons.Filled.Star),
+    Pair("Recent", Icons.Filled.AccessTime),
+    Pair("Offline", Icons.Filled.OfflineShare),
+    Pair("Uploads", Icons.Filled.Upload),
+    Pair("Backups", Icons.Filled.CloudUpload),
+)
+
+
+//endregion
 
 @Preview(showBackground = true, backgroundColor = 0xFFFFFF)
 @Composable
 private fun SideDrawerPreview() {
-    SideDrawer_Screen()
+    SideDrawerDemo(Modifier)
+}
+
+//用于预览，提供预览效果的参数
+private class DrawerStateProvider : PreviewParameterProvider<DrawerValue> {
+    override val values: Sequence<DrawerValue>
+        get() = sequenceOf(
+            DrawerValue.Closed,
+            DrawerValue.Open
+        )
+}
+
+//预览中使用了状态参数，所以就会有不同状态下的预览
+@Preview(showBackground = true, backgroundColor = 0xFFFFFF)
+@Composable
+private fun ModalDrawerPreview(
+    @PreviewParameter(DrawerStateProvider::class)
+    drawerValue: DrawerValue,
+) {
+    ModalDrawerDemo(Modifier, drawerValue)
 }

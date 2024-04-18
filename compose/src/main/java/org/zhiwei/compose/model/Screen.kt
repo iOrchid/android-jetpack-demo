@@ -71,7 +71,7 @@ internal object BasicScreenUIs {
         ) { BottomBar_Screen(modifier) },
         CourseItemModel(
             "Side Navigation Vs ModalDrawer",
-            "侧边栏控件。"
+            "侧边栏SideDrawer，还有ModelDrawer的控件演示。"
         ) { SideDrawer_Screen(modifier) },
         CourseItemModel(
             "BottomSheet",
