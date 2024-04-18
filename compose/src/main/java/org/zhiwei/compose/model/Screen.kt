@@ -4,6 +4,7 @@ import androidx.compose.ui.Modifier
 import org.zhiwei.compose.screen.basic.Box_Column_Row_Screen
 import org.zhiwei.compose.screen.basic.Surface_Shape_Clickable_Screen
 import org.zhiwei.compose.screen.basic.material3.BottomBar_Screen
+import org.zhiwei.compose.screen.basic.material3.BottomSheet_Screen
 import org.zhiwei.compose.screen.basic.material3.Button_Screen
 import org.zhiwei.compose.screen.basic.material3.Image_Screen
 import org.zhiwei.compose.screen.basic.material3.LazyGrid_Screen
@@ -76,7 +77,7 @@ internal object BasicScreenUIs {
         CourseItemModel(
             "BottomSheet",
             "BottomSheet，底部sheet控件,还有BottomDrawer的演示。"
-        ) { SideDrawer_Screen(modifier) },
+        ) { BottomSheet_Screen(modifier) },
         CourseItemModel(
             "OtherWidget",
             "提示浮窗SnackBar，进度条Progress，勾选框CheckBox，开关Switch，Slider的使用演示。"
