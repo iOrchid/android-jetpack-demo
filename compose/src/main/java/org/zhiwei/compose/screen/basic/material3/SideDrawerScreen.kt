@@ -1,17 +1,14 @@
 package org.zhiwei.compose.screen.basic.material3
 
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.BottomAppBar
-import androidx.compose.material.Button
+import androidx.compose.material.Divider
 import androidx.compose.material.DrawerState
 import androidx.compose.material.DrawerValue
 import androidx.compose.material.FabPosition
@@ -30,11 +27,13 @@ import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.ArrowBackIosNew
 import androidx.compose.material.icons.filled.CloudUpload
 import androidx.compose.material.icons.filled.Folder
+import androidx.compose.material.icons.filled.Home
 import androidx.compose.material.icons.filled.Menu
 import androidx.compose.material.icons.filled.MoreVert
 import androidx.compose.material.icons.filled.OfflineShare
 import androidx.compose.material.icons.filled.People
 import androidx.compose.material.icons.filled.Search
+import androidx.compose.material.icons.filled.Settings
 import androidx.compose.material.icons.filled.Star
 import androidx.compose.material.icons.filled.Upload
 import androidx.compose.material.icons.sharp.Menu
@@ -58,13 +57,24 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 import org.zhiwei.compose.ui.widget.DrawerButton
 import org.zhiwei.compose.ui.widget.ModalDrawerContentHeader
+import org.zhiwei.compose.ui.widget.isInPreview
 
 @Composable
 internal fun SideDrawer_Screen(modifier: Modifier = Modifier) {
     //以下演示，根据需要，选择注释即可，单次开启一个注释，运行看效果
 //    SideDrawerDemo(modifier)
-
+    //ModalDrawer
     ModalDrawerDemo(modifier)
+
+
+    //material 的compose版本，还有material3的库中，都有一些新控件，类似的侧边栏，不再一一演示，触类旁通。
+//    ModalNavigationDrawer(drawerContent = {
+//        Column(modifier.fillMaxSize().background(Color.White)) {
+//            ModalDrawerContentHeader()
+//        }
+//    }) {
+//        Box_Column_Row_Screen()
+//    }
 }
 
 
@@ -130,7 +140,15 @@ private fun TopBarUI(
                 }
             }
         }) {
-            Icon(imageVector = Icons.Default.Menu, contentDescription = "点击显示drawer")
+            //todo ⚠️如此，这个icon就在IDE预览环境里看不到，但是运行可看到
+            if (!isInPreview) {
+                Icon(imageVector = Icons.Default.Menu, contentDescription = "点击显示drawer")
+            } else {
+                Icon(
+                    imageVector = Icons.Default.ArrowBackIosNew,
+                    contentDescription = "点击显示drawer"
+                )
+            }
         }
         Spacer(modifier = Modifier.weight(1f))
         IconButton(onClick = { /*TODO*/ }) {
@@ -170,47 +188,48 @@ private fun DrawerContent(drawerState: DrawerState, navController: NavController
         modifier = Modifier.padding(vertical = 10.dp),
         verticalArrangement = Arrangement.spacedBy(8.dp)
     ) {
-        Button(
-            onClick = {
-                //不是当前页面，点击后才切换页面
-                if (navController.currentDestination?.route != motorPage) {
-                    //navigation默认每次navigate都是创建新的fragment的栈，所以这里popBack，避免过多页面；demo而已
-                    navController.popBackStack()
-                    navController.navigate(motorPage)
-                }
-                coroutineScope.launch { drawerState.close() }
-            },
-            modifier = Modifier
-                .fillMaxWidth()
-                .height(36.dp)
-                .background(Color(0xFFFF9900)),
-            contentPadding = PaddingValues(8.dp),
-        ) {
-            Text(text = "摩托Grid网格列表")
-        }
-        Button(
-            onClick = {
-                if (navController.currentDestination?.route != listPage) {
-                    navController.popBackStack()
-                    navController.navigate(listPage)
-                }
-                coroutineScope.launch { drawerState.close() }
-            },
-            modifier = Modifier
-                .fillMaxWidth()
-                .height(36.dp)
-                .background(Color(0xFF1BA784)),
-            contentPadding = PaddingValues(8.dp),
-        ) {
-            Text(text = "ListItem的页面")
-        }
-
+        ModalDrawerContentHeader()
+        Divider()
+        DrawerButton(icon = Icons.Default.Home, label = "摩托🏍️", isSelected = false, action = {
+            //不是当前页面，点击后才切换页面
+            if (navController.currentDestination?.route != motorPage) {
+                //navigation默认每次navigate都是创建新的fragment的栈，所以这里popBack，避免过多页面；demo而已
+                navController.popBackStack()
+                navController.navigate(motorPage)
+            }
+            coroutineScope.launch { drawerState.close() }
+        })
+        DrawerButton(icon = Icons.Default.Settings, label = "列表⌚️", isSelected = false, action = {
+            if (navController.currentDestination?.route != listPage) {
+                navController.popBackStack()
+                navController.navigate(listPage)
+            }
+            coroutineScope.launch { drawerState.close() }
+        })
     }
+
 }
 
 //endregion
 
-//region ModalDrawer
+//region ModalDrawer 是Material compose的库控件，非Material3的
+
+@Composable
+private fun 测试数据(modifier: Modifier) {
+    //可以将modalDrawer放在scaffold的content中，
+    Scaffold(topBar = { TopAppBar(title = { Text(text = "在Scaffold中的ModalDrawer") }) }) {
+        it.javaClass::class.java
+        ModalDrawerDemo(modifier)
+    }
+    //也可以将scaffold放在ModalDrawer的content中。
+    ModalDrawer(drawerContent = {}) {
+        Scaffold {
+            it.javaClass
+        }
+    }
+}
+
+
 @Composable
 private fun ModalDrawerDemo(modifier: Modifier, drawerValue: DrawerValue = DrawerValue.Closed) {
     val selected = remember { mutableIntStateOf(0) }
@@ -247,6 +266,7 @@ private fun ModalDrawerContent(
 ) {
     Column(modifier = Modifier.fillMaxWidth()) {
         ModalDrawerContentHeader()
+        Divider()
         modalDrawerList.forEachIndexed { index, pair ->
             val label = pair.first
             val imageVector = pair.second
@@ -277,9 +297,18 @@ private val modalDrawerList = listOf(
 
 //endregion
 
+
+//region 预览效果
+
 @Preview(showBackground = true, backgroundColor = 0xFFFFFF)
 @Composable
 private fun SideDrawerPreview() {
+    SideDrawer_Screen(Modifier)
+}
+
+@Preview(showBackground = true, backgroundColor = 0xFFFFFF)
+@Composable
+private fun SidePreview() {
     SideDrawerDemo(Modifier)
 }
 
@@ -301,3 +330,5 @@ private fun ModalDrawerPreview(
 ) {
     ModalDrawerDemo(Modifier, drawerValue)
 }
+
+//endregion

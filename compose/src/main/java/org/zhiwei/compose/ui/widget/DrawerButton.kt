@@ -111,10 +111,10 @@ internal fun ModalDrawerContentHeader() {
             contentDescription = null
         )
         Spacer(modifier = Modifier.weight(1f))
-        Text(text = "Smart Tool Factory", fontWeight = FontWeight.Bold, fontSize = 22.sp)
+        Text(text = "Android JetPack Demo", fontWeight = FontWeight.Bold, fontSize = 22.sp)
         Row(modifier = Modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically) {
             CompositionLocalProvider(LocalContentAlpha provides ContentAlpha.medium) {
-                Text(text = "smarttoolfactory@icloud.com")
+                Text(text = "https://github.com/iOrchid")
                 Spacer(modifier = Modifier.weight(1f))
                 Icon(imageVector = Icons.Filled.ArrowDropDown, contentDescription = null)
             }
