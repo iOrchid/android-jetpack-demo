@@ -30,8 +30,8 @@ webkit = "1.8.0"
 
 # compose
 
-androidxComposeBom = "2024.03.00"
-androidxComposeUI = "1.6.4"
+androidxComposeBom = "2024.04.00"
+androidxComposeUI = "1.6.5"
 androidxComposeRuntimeTracing = "1.0.0-beta01"
 androidxComposeConstraintlayout = "1.0.1"
 
@@ -48,14 +48,14 @@ work-ktx = "2.9.0"
 
 # jetbrains official libs version
 coroutines = "1.8.0"
-kotlin = "1.9.22"
+kotlin = "1.9.23"
 kotlinxDatetime = "0.5.0"
 kotlinxSerializationJson = "1.6.3"
 # 此处版本号，ksp与kotlin版本号有对应关系 https://github.com/google/ksp/releases
-ksp = "1.9.22-1.0.18"
+ksp = "1.9.23-1.0.20"
 # 此处是compose compiler版本号，和compose ui等版本不是一个概念，此版本号和kotlin版本号有适配对应关系
 # https://androidx.dev/storage/compose-compiler/repository
-composeCompiler = "1.5.10"
+composeCompiler = "1.5.11"
 # 常用知名开源库
 blankj-utils = "1.31.1"
 coil = "2.6.0"
@@ -69,8 +69,9 @@ retrofitKotlinxSerializationJson = "1.0.0"
 androidx-test-ext-junit = "1.1.5"
 espresso-core = "3.5.1"
 junit = "4.13.2"
+# 用于测试协程flow的test库
 turbine = "1.0.0"
-annotation = "1.6.0"# 用于测试协程flow的test库
+annotation = "1.7.1"
 #endregion
 
 # region 定义依赖库 🚀
