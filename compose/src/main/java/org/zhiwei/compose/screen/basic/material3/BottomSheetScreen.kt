@@ -24,12 +24,14 @@ import kotlinx.coroutines.launch
 import org.zhiwei.compose.ui.widget.Title_Sub_Text
 import org.zhiwei.compose.ui.widget.Title_Text
 
-@OptIn(ExperimentalMaterial3Api::class)
+@OptIn(ExperimentalMaterial3Api::class, ExperimentalMaterialApi::class)
 @Composable
 internal fun BottomSheet_Screen(modifier: Modifier = Modifier) {
-    Material3Sheet(modifier)
+//    Material3Sheet(modifier)
     //material的控件，这里还有floatActionButton的插槽
 //    MaterialSheetUI(modifier)
+//    Material3ModalBottomSheet()
+    MaterialModalBottomSheet()
 }
 
 @Composable
@@ -49,7 +51,7 @@ private fun Material3Sheet(
     BottomSheetScaffold(
         sheetContent = {
             //todo ⚠️这里设置sheet内容的高度，使用heightIn，min最小值是对sheet无效，但是max值，会决定sheet展开后的高度值
-            //但是作用域lazyList是无效的，
+            //但是作用于lazyList（lazyColumn/LazyRow）是无效的，
             Column(Modifier.heightIn(50.dp, 500.dp)) {
                 ListItem_Screen()
             }
