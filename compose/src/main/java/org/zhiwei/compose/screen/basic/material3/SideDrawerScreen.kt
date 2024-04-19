@@ -39,6 +39,8 @@ import androidx.compose.material.icons.filled.Upload
 import androidx.compose.material.icons.sharp.Menu
 import androidx.compose.material.rememberDrawerState
 import androidx.compose.material.rememberScaffoldState
+import androidx.compose.material3.DismissibleDrawerSheet
+import androidx.compose.material3.DismissibleNavigationDrawer
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.remember
@@ -75,6 +77,20 @@ internal fun SideDrawer_Screen(modifier: Modifier = Modifier) {
 //    }) {
 //        Box_Column_Row_Screen()
 //    }
+
+    //滑动测侧边栏
+//    SwipeSideDrawer()
+}
+
+@Composable
+private fun SwipeSideDrawer() {
+    DismissibleNavigationDrawer(drawerContent = {
+        DismissibleDrawerSheet {
+            TopAppbarTabs_Screen()
+        }
+    }) {
+        ListItem_Screen()
+    }
 }
 
 

@@ -27,16 +27,17 @@ import org.zhiwei.compose.ui.widget.Title_Text
 @OptIn(ExperimentalMaterial3Api::class, ExperimentalMaterialApi::class)
 @Composable
 internal fun BottomSheet_Screen(modifier: Modifier = Modifier) {
-//    Material3Sheet(modifier)
+//    Material3SheetUI(modifier)
     //material的控件，这里还有floatActionButton的插槽
 //    MaterialSheetUI(modifier)
-//    Material3ModalBottomSheet()
-    MaterialModalBottomSheet()
+//    Material3ModalBottomSheetUI()
+//    MaterialModalBottomSheetUI()
+    MaterialBottomDrawerUI()
 }
 
 @Composable
 @OptIn(ExperimentalMaterial3Api::class)
-private fun Material3Sheet(
+private fun Material3SheetUI(
     modifier: Modifier,
     sheetValue: SheetValue = SheetValue.PartiallyExpanded,
 ) {
@@ -123,7 +124,7 @@ private fun Material3SheetPreview(
     @PreviewParameter(SheetStateProvider::class)
     sheetValue: SheetValue,
 ) {
-    Material3Sheet(Modifier, sheetValue)
+    Material3SheetUI(Modifier, sheetValue)
 }
 
 @Preview(showBackground = true, backgroundColor = 0xFFFFFF)

@@ -21,7 +21,7 @@ import org.zhiwei.compose.screen.basic.Surface_Shape_Clickable_Screen
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-internal fun Material3ModalBottomSheet(sheetValue: SheetValue = SheetValue.PartiallyExpanded) {
+internal fun Material3ModalBottomSheetUI(sheetValue: SheetValue = SheetValue.PartiallyExpanded) {
     val sheetState =
         rememberStandardBottomSheetState(initialValue = sheetValue, skipHiddenState = false)
     val context = LocalContext.current
@@ -46,7 +46,7 @@ internal fun Material3ModalBottomSheet(sheetValue: SheetValue = SheetValue.Parti
 //material库的ModalBottomSheet，与Material3的不同，
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
-internal fun MaterialModalBottomSheet(sheetValue: ModalBottomSheetValue = ModalBottomSheetValue.HalfExpanded) {
+internal fun MaterialModalBottomSheetUI(sheetValue: ModalBottomSheetValue = ModalBottomSheetValue.HalfExpanded) {
     val sheetState = rememberModalBottomSheetState(sheetValue)
     //todo ⚠️ 这里也只是演示了单独使用BottomSheet的用法，实际业务使用，可结合Scaffold，实现topAppBar，侧边栏，等其他效果
     ModalBottomSheetLayout(
@@ -74,7 +74,7 @@ private class MaterialModalSheetValue : PreviewParameterProvider<ModalBottomShee
 @Preview
 @Composable
 private fun MaterialPreview(@PreviewParameter(MaterialModalSheetValue::class) value: ModalBottomSheetValue) {
-    MaterialModalBottomSheet(value)
+    MaterialModalBottomSheetUI(value)
 }
 
 
@@ -92,6 +92,6 @@ private class ModalSheetValue : PreviewParameterProvider<SheetValue> {
 @Preview
 @Composable
 private fun Material3ModalBottomSheetPreview(@PreviewParameter(ModalSheetValue::class) value: SheetValue) {
-    Material3ModalBottomSheet(value)
+    Material3ModalBottomSheetUI(value)
 }
 //endregion
