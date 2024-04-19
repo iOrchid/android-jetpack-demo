@@ -27,12 +27,14 @@ import org.zhiwei.compose.ui.widget.Title_Text
 @OptIn(ExperimentalMaterial3Api::class, ExperimentalMaterialApi::class)
 @Composable
 internal fun BottomSheet_Screen(modifier: Modifier = Modifier) {
+    //逐一注释，单个运行看效果
 //    Material3SheetUI(modifier)
     //material的控件，这里还有floatActionButton的插槽
 //    MaterialSheetUI(modifier)
 //    Material3ModalBottomSheetUI()
 //    MaterialModalBottomSheetUI()
-    MaterialBottomDrawerUI()
+//    MaterialBottomDrawerUI()
+    MaterialBackdropUI()
 }
 
 @Composable
