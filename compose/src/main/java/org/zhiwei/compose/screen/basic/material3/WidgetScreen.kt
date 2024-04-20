@@ -206,7 +206,7 @@ private fun UI_CheckBox() {
     Title_Sub_Text(title = "1、勾选框")
     var checkBoxState by remember { mutableStateOf(false) }
     Title_Desc_Text(desc = "常规使用")
-    Row {
+    Row(verticalAlignment = Alignment.CenterVertically) {
         Checkbox(
             checked = checkBoxState,
             onCheckedChange = { checkBoxState = it },
@@ -305,7 +305,7 @@ private fun UI_Switch() {
         val checked = remember { mutableStateOf(false) }
         Switch(checked = checked.value, onCheckedChange = { checked.value = it })
         Switch(
-            checked = checked.value,
+            checked = !checked.value,
             onCheckedChange = { checked.value = it },
             //这个就是改变开关的按钮的🔘的内容
             thumbContent = { Icon(imageVector = Icons.Filled.Share, contentDescription = null) },
@@ -342,7 +342,7 @@ private fun UI_Radio() {
         // 可用状态
         RadioButton(selected = isRadioSelected, onClick = { isRadioSelected = !isRadioSelected })
         RadioButton(
-            selected = isRadioSelected,
+            selected = !isRadioSelected,
             onClick = { isRadioSelected = !isRadioSelected },
             colors = RadioButtonDefaults.colors(
                 selectedColor = Color(0xffE91E63),
@@ -369,7 +369,8 @@ private fun UI_Radio() {
             )
         )
     }
-    Title_Desc_Text(desc = "配置RadioGroup组合")
+    Title_Sub_Text(title = "二选一效果RadioGroup")
+    Title_Desc_Text(desc = "点击切换选择")
     Spacer(Modifier.height(8.dp))
     //演示 二选一
     var state by remember { mutableStateOf(true) }
@@ -388,7 +389,8 @@ private fun UI_Radio() {
             onClick = { state = false }
         )
     }
-    Title_Desc_Text(desc = "演示复合式多选一的效果")
+    Title_Sub_Text(title = "2. 多选一的效果")
+    Title_Desc_Text(desc = "选择你最喜欢的AV女优")
     Spacer(Modifier.height(8.dp))
     val radioOptions = listOf("吉根柚莉爱", "月乃露娜", "北野未奈", "水原美园")
     val (selectedOption: String, onOptionSelected: (String) -> Unit) = remember {
@@ -447,12 +449,14 @@ private fun UI_Slider() {
     )
     Spacer(Modifier.height(8.dp))
     var sliderPosition2 by remember { mutableFloatStateOf(.3f) }
+    Title_Desc_Text(desc = "自定义配色")
     Slider(
         value = sliderPosition2,
         onValueChange = { sliderPosition2 = it },
         colors = colors
     )
     Spacer(Modifier.height(8.dp))
+    Title_Desc_Text(desc = "禁用状态enable=false")
     var sliderPosition3 by remember { mutableFloatStateOf(.4f) }
     Slider(
         value = sliderPosition3,
@@ -461,8 +465,9 @@ private fun UI_Slider() {
         colors = colors
     )
     Spacer(Modifier.height(8.dp))
-    var sliderPosition4 by remember { mutableFloatStateOf(26f) }
-    Title_Desc_Text(desc = sliderPosition4.toString())
+    var sliderPosition4 by remember { mutableFloatStateOf(36f) }
+    Title_Desc_Text(desc = "当前progress值：${sliderPosition4}")
+    //变动值是float的
     Slider(
         value = sliderPosition4,
         onValueChange = { sliderPosition4 = it },

@@ -57,7 +57,7 @@ dependencies {
     implementation(libs.blankj.utils)
 
     //⚠️ todo compose 相关 ,因为有dynamic的组件，compose的，所以宿主模块也要有必要的依赖，否则会报错。
-    //这里android闭包内不需要compose的compiler和buildFeature，如果是普通module的依赖，则需要主module也开启。
+    //上面的android闭包内不需要compose的compiler和buildFeature，如果是普通module的依赖，则需要主module也开启。
     implementation(platform(libs.androidx.compose.bom))
     implementation(libs.androidx.compose.ui)
     implementation(libs.androidx.compose.material)
