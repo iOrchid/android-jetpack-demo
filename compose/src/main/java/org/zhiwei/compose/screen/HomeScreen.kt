@@ -28,8 +28,8 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import kotlinx.coroutines.launch
-import org.zhiwei.compose.model.BasicScreenUIs
 import org.zhiwei.compose.model.TabPagerModel
+import org.zhiwei.compose.model.configPageRoute
 import org.zhiwei.compose.screen.basic.Basic_Screen
 import org.zhiwei.compose.screen.gesture.GestureScreen
 import org.zhiwei.compose.screen.graphics.GraphicsScreen
@@ -54,9 +54,8 @@ internal fun Home_Screen(modifier: Modifier = Modifier) {
         composable(route = "HomeScreen") {
             HomeScreenContent(modifier, navController = navController)
         }
-
-        //基础组件下的 每个可导航的页面，需要使用composable来设置
-        BasicScreenUIs.basicCourses(modifier) { navController.navigateUp() }.forEach { model ->
+        //配置所有pager下的页面，每个item对应页面 可导航的页面，需要使用composable来设置
+        configPageRoute(modifier) { navController.navigateUp() }.forEach { model ->
             composable(route = model.title) {
                 //model中ui的属性字段是个函数，需要invoke来调用
                 model.ui()
