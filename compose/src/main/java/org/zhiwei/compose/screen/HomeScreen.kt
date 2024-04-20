@@ -92,7 +92,7 @@ private fun HomeScreenContent(modifier: Modifier, navController: NavController) 
         val tabPagerModels =
             listOf(
                 TabPagerModel("基础组件") { Basic_Screen(navController = navController) },
-                TabPagerModel("布局Layout") { LayoutScreen() },
+                TabPagerModel("布局Layout") { LayoutScreen(navController) },
                 TabPagerModel("状态State") { StateScreen() },
                 TabPagerModel("手势Gesture") { GestureScreen() },
                 TabPagerModel("图像Graphics") { GraphicsScreen() },

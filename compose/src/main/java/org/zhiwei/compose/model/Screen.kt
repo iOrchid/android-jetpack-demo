@@ -21,7 +21,8 @@ import org.zhiwei.compose.screen.basic.material3.Widget_Screen
  * 用于配置整个Compose模块内所有可跳转的页面UI，用于Navigation导航
  */
 
-//region basicScreen内
+//region basicScreen基础控件
+
 internal object BasicScreenUIs {
     //所有基础内容的list
     internal fun basicCourses(modifier: Modifier = Modifier, onBack: (() -> Unit) = {}) = listOf(
@@ -89,4 +90,16 @@ internal object BasicScreenUIs {
     )
 }
 
+//endregion
+
+//region LayoutScreen布局相关
+internal object LayoutScreenUIs {
+    //所有基础内容的list
+    internal fun layoutCourses(modifier: Modifier = Modifier, onBack: (() -> Unit) = {}) = listOf(
+        CourseItemModel(
+            "Column,Rom,Box,Modifiers",
+            "列，行，箱，都是容器，顾名思义就是成列，成行和层叠摆放内部子控件；及修饰符Modifier内外边距等基本使用。"
+        ) { Box_Column_Row_Screen(modifier) },
+    )
+}
 //endregion

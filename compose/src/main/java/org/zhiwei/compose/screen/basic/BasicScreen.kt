@@ -36,7 +36,7 @@ internal fun Basic_Screen(navController: NavController) {
                     .clickable { navController.navigate(model.title) },
                 headlineContent = { Text(text = model.title, fontSize = 14.sp) },
                 supportingContent = { Text(text = model.description, fontSize = 12.sp) },
-                colors = ListItemDefaults.colors(containerColor = Color(0XFFF3F9F1))
+                colors = ListItemDefaults.colors(containerColor = Color(0XFFF0FCFF))
             )
             HorizontalDivider()
         }
