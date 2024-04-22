@@ -1,23 +1,35 @@
 package org.zhiwei.compose.screen.layout
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.material3.Button
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableIntStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.composed
+import androidx.compose.ui.draw.drawBehind
+import androidx.compose.ui.geometry.Offset
+import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.AlignmentLine
 import androidx.compose.ui.layout.FirstBaseline
 import androidx.compose.ui.layout.Measurable
 import androidx.compose.ui.layout.layout
+import androidx.compose.ui.platform.LocalDensity
+import androidx.compose.ui.platform.debugInspectorInfo
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Constraints
 import androidx.compose.ui.unit.Dp
@@ -25,6 +37,7 @@ import androidx.compose.ui.unit.dp
 import org.zhiwei.compose.ui.widget.Title_Desc_Text
 import org.zhiwei.compose.ui.widget.Title_Sub_Text
 import org.zhiwei.compose.ui.widget.Title_Text
+import kotlin.random.Random
 
 @Composable
 internal fun UI_CustomModifier(modifier: Modifier = Modifier) {
@@ -85,8 +98,60 @@ internal fun UI_CustomModifier(modifier: Modifier = Modifier) {
                 text = "Custom Padding",
                 modifier = Modifier
                     .background(Color(0xFF8BC34A))
-                    .paddingNoOffsetNoConstrain(all = 4.dp)
+                    .paddingNoOffsetNoConstrain(all = 10.dp)
             )
+            //组合compose的modifier，可以有状态保存
+            Title_Sub_Text(title = "3、Modifier.composed 允许Modifier拥有remember或sideEffects来对自身操作符缓存状态。")
+            Column(
+                modifier = Modifier
+                    .padding(horizontal = 4.dp)
+                    .fillMaxWidth()
+            ) {
+                //用于演示的计数
+                val counter = remember { mutableIntStateOf(0) }
+                Button(onClick = { counter.intValue++ }) {
+                    Text(text = "累加: ${counter.intValue}")
+                }
+                Title_Desc_Text(desc = "modifier composed的自定义操作符")
+                //使用composed操作符，则会记录Modifier的状态
+                Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceEvenly) {
+                    Box(
+                        modifier = Modifier
+                            //自定义的扩展函数，内部使用composed，并绘制随机颜色的背景，来演示效果
+                            .composedBackground(160.dp, 30.dp, 0)
+                            .width(150.dp)
+                    ) {
+                        Text(text = "重组Recomposed:${counter.intValue}", color = Color.White)
+                    }
+                    Box(
+                        modifier = Modifier
+                            .composedBackground(160.dp, 30.dp, 1)
+                            .width(150.dp)
+                    ) {
+                        Text(text = "重组Recomposed:${counter.intValue}", color = Color.White)
+                    }
+                }
+                Spacer(modifier = Modifier.height(10.dp))
+                Title_Desc_Text(desc = "modifier没有使用组合操作符")
+                //没有使用composed，则其颜色会每次都变动
+                Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceEvenly) {
+                    Box(
+                        modifier = Modifier
+                            //没有使用composed，同样是绘制背景色，
+                            .nonComposedBackground(160.dp, 30.dp)
+                            .width(150.dp)
+                    ) {
+                        Text(text = "重组Recomposed:${counter.intValue}", color = Color.White)
+                    }
+                    Box(
+                        modifier = Modifier
+                            .nonComposedBackground(160.dp, 30.dp)
+                            .width(150.dp)
+                    ) {
+                        Text(text = "重组Recomposed:${counter.intValue}", color = Color.White)
+                    }
+                }
+            }
         }
     }
 }
@@ -151,6 +216,55 @@ private fun Modifier.firstBaselineToTop(firstBaselineToTop: Dp) = this.then(
             // 布局摆放
             placeable.placeRelative(0, placeableY)
         }
+    }
+)
+
+//endregion
+
+//region 扩展函数
+
+private fun Modifier.composedBackground(width: Dp, height: Dp, index: Int) = this.composed(
+    // 用于在debug模式下，IDE预览等配置的数据信息，release时候则会去掉
+    inspectorInfo = debugInspectorInfo {
+        //用于匹配modifier的名字
+        name = "myModifier"
+        //解析参数
+        properties["width"] = width
+        properties["height"] = height
+        properties["index"] = index
+    },
+
+    factory = {
+        val density = LocalDensity.current
+        val color: Color = remember(index) {
+            Color(
+                red = Random.nextInt(256),
+                green = Random.nextInt(256),
+                blue = Random.nextInt(256),
+                alpha = 255
+            )
+        }
+        //绘制指定颜色的背景
+        Modifier.drawBehind {
+            val widthInPx = with(density) { width.toPx() }
+            val heightInPx = with(density) { height.toPx() }
+            drawRect(color = color, topLeft = Offset.Zero, size = Size(widthInPx, heightInPx))
+        }
+    }
+)
+
+private fun Modifier.nonComposedBackground(width: Dp, height: Dp) = this.then(
+    //绘制背景区域块和颜色
+    Modifier.drawBehind {
+        val color: Color = Color(
+            red = Random.nextInt(256),
+            green = Random.nextInt(256),
+            blue = Random.nextInt(256),
+            alpha = 255
+        )
+        val widthInPx = width.toPx()
+        val heightInPx = height.toPx()
+        drawRect(color = color, topLeft = Offset.Zero, size = Size(widthInPx, heightInPx))
     }
 )
 
