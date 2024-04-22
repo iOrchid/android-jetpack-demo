@@ -16,7 +16,7 @@ import org.zhiwei.compose.screen.basic.material3.TextField_Screen
 import org.zhiwei.compose.screen.basic.material3.Text_Screen
 import org.zhiwei.compose.screen.basic.material3.TopAppbarTabs_Screen
 import org.zhiwei.compose.screen.basic.material3.Widget_Screen
-import org.zhiwei.compose.screen.layout.UI_CustomModifier
+import org.zhiwei.compose.screen.layout.CustomModifier_Screen
 
 /**
  * 用于配置整个Compose模块内所有可跳转的页面UI，用于Navigation导航
@@ -107,7 +107,7 @@ internal object LayoutScreenUIs {
         CourseItemModel(
             "Custom Modifier",
             "创建自定义的modifier，来处理布局layout，测量measurable，约束constraint，占位等。"
-        ) { UI_CustomModifier(modifier) },
+        ) { CustomModifier_Screen(modifier) },
     )
 }
 //endregion
