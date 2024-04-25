@@ -17,6 +17,7 @@ import org.zhiwei.compose.screen.basic.material3.Text_Screen
 import org.zhiwei.compose.screen.basic.material3.TopAppbarTabs_Screen
 import org.zhiwei.compose.screen.basic.material3.Widget_Screen
 import org.zhiwei.compose.screen.layout.CustomModifier_Screen
+import org.zhiwei.compose.screen.layout.GraphicsLayerModifier_Screen
 
 /**
  * 用于配置整个Compose模块内所有可跳转的页面UI，用于Navigation导航
@@ -108,6 +109,10 @@ internal object LayoutScreenUIs {
             "Custom Modifier",
             "创建自定义的modifier，来处理布局layout，测量measurable，约束constraint，占位等。"
         ) { CustomModifier_Screen(modifier) },
+        CourseItemModel(
+            "graphicsLayer Modifier",
+            "Modifier的graphicsLayer操作符，可对内部的compose控件做图层操作处理，如平移/缩放/阴影/剪切等。"
+        ) { GraphicsLayerModifier_Screen(modifier) },
     )
 }
 //endregion
