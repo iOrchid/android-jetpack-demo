@@ -16,6 +16,7 @@ import org.zhiwei.compose.screen.basic.material3.TextField_Screen
 import org.zhiwei.compose.screen.basic.material3.Text_Screen
 import org.zhiwei.compose.screen.basic.material3.TopAppbarTabs_Screen
 import org.zhiwei.compose.screen.basic.material3.Widget_Screen
+import org.zhiwei.compose.screen.layout.Constraints_Screen
 import org.zhiwei.compose.screen.layout.CustomModifier_Screen
 import org.zhiwei.compose.screen.layout.GraphicsLayerModifier_Screen
 
@@ -113,6 +114,10 @@ internal object LayoutScreenUIs {
             "graphicsLayer Modifier",
             "Modifier的graphicsLayer操作符，可对内部的compose控件做图层操作处理，如平移/缩放/阴影/剪切等。"
         ) { GraphicsLayerModifier_Screen(modifier) },
+        CourseItemModel(
+            "Constraints&Size Modifier",
+            "BoxWithConstraints，演示一些compose组件内的约束相关的使用。"
+        ) { Constraints_Screen(modifier) },
     )
 }
 //endregion
