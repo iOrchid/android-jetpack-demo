@@ -194,6 +194,7 @@ private fun UI_GlobalPositionMark() {
         .fillMaxSize()
         //参与到content的画布绘制
         .drawWithContent {
+            //必修调用drawContent，否则内部的控件，都不会显示
             drawContent()
             drawHeightMarks(textMeasurer)
         }) {

@@ -1,12 +1,17 @@
 package org.zhiwei.compose.screen.layout
 
+import android.util.Log
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.BoxWithConstraints
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.defaultMinSize
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.heightIn
@@ -18,10 +23,14 @@ import androidx.compose.foundation.layout.requiredWidthIn
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.widthIn
+import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.layout.wrapContentSize
+import androidx.compose.foundation.layout.wrapContentWidth
 import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.RadioButton
+import androidx.compose.material3.Surface
 import androidx.compose.material3.Switch
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -29,13 +38,27 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.drawWithContent
+import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.drawscope.DrawScope
+import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.layout.Layout
+import androidx.compose.ui.layout.MeasurePolicy
 import androidx.compose.ui.platform.LocalDensity
+import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.TextMeasurer
+import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.drawText
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.rememberTextMeasurer
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import org.zhiwei.compose.R
 import org.zhiwei.compose.ui.widget.Title_Desc_Text
 import org.zhiwei.compose.ui.widget.Title_Sub_Text
 import org.zhiwei.compose.ui.widget.Title_Text
@@ -51,6 +74,7 @@ internal fun Constraints_Screen(modifier: Modifier = Modifier) {
         UI_BoxConstraints()
         UI_SizeModifier()
         UI_ChainsSizeModifier()
+        UI_WrapContentSize()
     }
 }
 
@@ -352,9 +376,370 @@ private fun UI_ChainsSizeModifier() {
 }
 //endregion
 
+//region wrapContent
+
+@Composable
+private fun UI_WrapContentSize() {
+    Title_Text(title = "wrapContentSize Modifier")
+    Title_Sub_Text(title = "1、使用wrapContentSize操作符可用于覆盖父容器的最小约束设定。下面示例自定义控件最小宽度的容器布局")
+    val textMeasurer = rememberTextMeasurer()
+    Column(
+        Modifier
+            .fillMaxWidth()
+            .drawWithContent {
+                drawContent()
+                drawWidthMarks(textMeasurer)
+            },
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
+        Title_Desc_Text(desc = "不使用外部Modifier约束的时候")
+        MinimumWidthLayout(
+            modifier = Modifier.border(2.dp, Color.Green),
+            minSizeDp = 100.dp,//这里限定了最小尺寸的dp值，会直接作用于内部子控件（一级子控件）
+        ) {
+            val density = LocalDensity.current
+            with(density) {
+                Log.d(
+                    "ConstraintsScreen",
+                    "density:${density.density} , 300px相当于 ${300.toDp()}"
+                )
+            }
+            //此box容器，外容器是MinimumWidthLayout自定义的限定最小宽度的layout布局，指定的100.dp的最小宽度，所以该box的size，如果小于100，那么就会取100的。
+            //如果大于100，就会取 不大于外部约束的宽度的 size值。
+            Box(
+                modifier = Modifier
+                    .size(50.dp)//可尝试修改为200，和500的效果。直接在IDE即可看到效果
+                    .background(Color.Red)
+            ) {
+                //此情形，该compose会收到外部box容器的边界限制，自身的size大于外容器是背限定边界的。
+                Box(
+                    modifier = Modifier
+                        .size(50.dp)
+                        .background(Color.Yellow)
+                )
+            }
+        }
+    }
+    Spacer(modifier = Modifier.height(20.dp))
+    Title_Desc_Text(desc = "Modifier.wrapContentSize()")
+    Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceEvenly) {
+        MinimumWidthLayout(
+            modifier = Modifier.border(2.dp, Color.Green),
+            minSizeDp = 100.dp,
+        ) {
+            //MinimumWidthLayout的直接子容器使用的size是wrapContentSize，而此时demo演示的是竖向滑动，所以maxWidth就是屏幕宽。
+            //上面的minSizeDp就不起作用（因为内部走到else逻辑了）
+            Box(
+                modifier = Modifier
+                    .wrapContentSize(Alignment.Center)
+                    .background(Color.Red)
+                    //加padding以及内部box设置yellow是为了看效果
+                    .padding(5.dp)
+            ) {
+                //外层是wrapContent，所以这里的size就是外层的size（直到再外层的边界约束）
+                Box(
+                    modifier = Modifier
+                        .size(50.dp)
+                        .background(Color.Yellow)
+                )
+            }
+        }
+        MinimumWidthLayout(
+            modifier = Modifier.border(2.dp, Color.Green),
+            minSizeDp = 100.dp,
+        ) {
+            Box(
+                modifier = Modifier
+                    .wrapContentSize(Alignment.BottomStart)
+                    .background(Color.Red)
+            ) {
+                Box(
+                    modifier = Modifier
+                        .size(50.dp)
+                )
+            }
+        }
+        MinimumWidthLayout(
+            modifier = Modifier.border(2.dp, Color.Green),
+            minSizeDp = 100.dp,
+        ) {
+            Box(
+                modifier = Modifier
+                    .wrapContentSize(Alignment.BottomEnd)
+                    .background(Color.Red)
+            ) {
+                Box(
+                    modifier = Modifier
+                        .size(50.dp)
+                )
+            }
+        }
+    }
+    Title_Sub_Text(title = "2、Surface控件会强制直接子控件的最小约束尺寸。可使用wrapContentSize实现最小约束。")
+    Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceEvenly) {
+        Surface(
+            modifier = Modifier
+                .size(100.dp)//这个size就是确定值，如果是widthIn之类的，就会分开min和max的约束
+                .border(2.dp, Color.Yellow)
+        ) {
+            //surface指定了size就会对直接子控件有了minSize的约束。这里column设定size小于surface的约束，所以生效的是surface的设定值。
+            Column(
+                Modifier
+                    .size(50.dp)//所以这里的50，并不能让自身只有50的大小，因为小于surface的100约束。
+                    .background(Color.Red, RoundedCornerShape(6.dp))
+            ) {
+                Box(
+                    modifier = Modifier
+                        .size(50.dp)
+                        .background(Color.Green, RoundedCornerShape(6.dp))
+                )
+            }
+        }
+        Surface(
+            modifier = Modifier
+                .size(100.dp)
+                .border(2.dp, Color.Yellow)
+        ) {
+            Column(
+                Modifier
+                    //⚠️，但是使用wrapContent就是没有确切值的约束，此时surface的size约定，就对内部min约束无效了。
+                    .wrapContentWidth(Alignment.End)
+                    .background(Color.Red, RoundedCornerShape(6.dp))
+            ) {
+                Box(
+                    modifier = Modifier
+                        .size(50.dp)
+                        .background(Color.Green, RoundedCornerShape(6.dp))
+                )
+            }
+        }
+        Surface(
+            modifier = Modifier
+                .size(100.dp)
+                .border(2.dp, Color.Yellow)
+        ) {
+            Column(
+                Modifier
+                    //对齐方式，是指该组件在surface中的位置
+                    .wrapContentHeight(Alignment.Top)
+                    .background(Color.Red, RoundedCornerShape(6.dp))
+            ) {
+                Box(
+                    modifier = Modifier
+                        .size(50.dp)
+                        .background(Color.Green, RoundedCornerShape(6.dp))
+                )
+            }
+        }
+    }
+
+    //unBounded
+    CP_unBounded()
+    CP_unBoundedImage()
+}
+
+@Composable
+private fun CP_unBounded() {
+    Column(
+        Modifier.fillMaxWidth(),
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
+        Title_Sub_Text(title = "2、wrapContentSize中有个参数unBounded默认false，就是时候约束内部空间的最大尺寸。")
+        Title_Desc_Text(desc = "unBounded默认false的时候")
+        Box(
+            modifier = Modifier
+                .size(100.dp)
+                .border(2.dp, Color.Green)
+        ) {
+            Column(
+                Modifier
+                    .border(3.dp, Color.Red, RoundedCornerShape(8.dp))
+                    .wrapContentSize(unbounded = false)
+                    .background(Color.Cyan)
+                    //上边有了wrapContentSize，此处有第一次的确切值设定，则会生效。
+                    .size(90.dp)//可以看出此size值，大于和小于上面Box的100的size时候，不同的效果
+            ) {
+                Text(
+                    text = "青青河边草，五一放假了",
+                    Modifier.background(Color(0xFFC8ADC4)),
+                    color = Color.White
+                )
+            }
+        }
+        Title_Desc_Text(desc = "unBounded=true，并且里边size更大")
+        Spacer(modifier = Modifier.height(30.dp))
+        Box(
+            modifier = Modifier
+                .size(100.dp)
+                .border(2.dp, Color.Green)
+        ) {
+            Column(
+                Modifier
+                    .border(3.dp, Color.Red, RoundedCornerShape(8.dp))
+                    .wrapContentSize(unbounded = true)
+                    .background(Color.Cyan)
+                    .size(150.dp)//可以看出此size值，大于Box的100的size时候,因为unbounded=true，所以可以超出约束边界
+            ) {
+                Text(
+                    text = "野火烧不尽，春风春来了，悠悠睡不着...",
+                    Modifier.background(Color(0xFFC8ADC4)),
+                    color = Color.White
+                )
+            }
+        }
+        Spacer(modifier = Modifier.height(30.dp))
+        Title_Desc_Text(desc = "unBounded=true，先有确定size再wrapContent")
+        Spacer(modifier = Modifier.height(30.dp))
+        Box(
+            modifier = Modifier
+                .size(100.dp)
+                .border(2.dp, Color.Green)
+        ) {
+            Column(
+                Modifier
+                    .border(3.dp, Color.Red, RoundedCornerShape(8.dp))
+                    .size(150.dp)//现有确定的size框高，再出现wrapContent的时候，
+                    //⚠️wrapContentSize就包含了wrap宽高，前面有讲解到，超出约束的时候，会居中的方式来双向延伸突破约束边界
+                    .wrapContentSize(unbounded = true)
+                    .background(Color.Cyan)
+            ) {
+                Text(
+                    text = "西湖的雨，你的泪，啦啦啦，啊啊啊，来来来，许仙爱吃蛇🐍肉羹。。。。",
+                    Modifier.background(Color(0xFFC8ADC4)),
+                    color = Color.White
+                )
+            }
+        }
+        Spacer(modifier = Modifier.height(50.dp))
+    }
+}
+
+@Composable
+private fun CP_unBoundedImage() {
+    Column(
+        Modifier.fillMaxWidth(),
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
+        Title_Sub_Text(title = "2、使用unBounded来实现对图片Image的按需显示区域，而不用scaling缩放图片来适配。")
+        Title_Desc_Text(desc = "unBounded默认false的时候")
+        //请注意，绿色是box边框，cyan是图片边框，red也是，只是顺序不同。作用区域也就不同
+        Box(
+            modifier = Modifier
+                .size(100.dp)
+                .border(2.dp, Color.Green)
+        ) {
+            Image(
+                painter = painterResource(id = R.drawable.sexy_girl),
+                contentDescription = null,
+                Modifier
+                    .wrapContentSize(unbounded = false)
+                    .size(150.dp),
+                contentScale = ContentScale.FillBounds
+            )
+        }
+        Title_Desc_Text(desc = "unBounded=true，并且里边size更大")
+        Spacer(modifier = Modifier.height(80.dp))
+        Box(
+            modifier = Modifier
+                .size(100.dp)
+                .border(2.dp, Color.Green)
+        ) {
+            Image(
+                painter = painterResource(id = R.drawable.sexy_girl),
+                contentDescription = null,
+                Modifier
+                    .border(3.dp, Color.Red, RoundedCornerShape(8.dp))
+                    .wrapContentSize(unbounded = true)
+                    .border(2.dp, Color.Cyan)
+                    .size(250.dp),
+            )
+        }
+        Spacer(modifier = Modifier.height(80.dp))
+        Title_Desc_Text(desc = "unBounded=true，先有确定size再wrapContent")
+        Spacer(modifier = Modifier.height(100.dp))
+        Box(
+            modifier = Modifier
+                .size(100.dp)
+                .border(2.dp, Color.Green)
+        ) {
+            Image(
+                painter = painterResource(id = R.drawable.sexy_girl),
+                contentDescription = null,
+                Modifier
+                    .size(250.dp)
+                    .border(3.dp, Color.Red, RoundedCornerShape(8.dp))
+                    .wrapContentSize(unbounded = true)
+                    .border(2.dp, Color.Cyan),
+            )
+        }
+        Spacer(modifier = Modifier.height(100.dp))
+    }
+}
+
+//此处自定义的布局控件，演示对width最小宽度约束的方式；因为本页面Screen是竖直滑动的，屏幕宽度是有边界的。如果是横向滑动，对应height的方式，是类似的。
+@Composable
+private fun MinimumWidthLayout(modifier: Modifier, minSizeDp: Dp, content: @Composable () -> Unit) {
+
+    val measurePolicy = MeasurePolicy { measurables, constraints ->
+        //注意⚠️这里是该composable组件的核心原理，就是设定了最小尺寸值，下面再去宽度的时候，会判断
+        val placeables = measurables.map { measurable ->
+            measurable.measure(
+                constraints.copy(
+                    minWidth = minSizeDp.roundToPx(),
+                    minHeight = minSizeDp.roundToPx()
+                )
+            )
+        }
+        val hasBoundedWidth = constraints.hasBoundedWidth
+        val hasFixedWidth = constraints.hasFixedWidth
+        //⚠️，核心原理。根据约束条件，如果有外部边界约束及确切的宽度值，那么就取值确切值（此时约束的maxWidth就是确切值）；如果没有确切约束，那么就将内部所有可测量的控件的宽度最大值，并且在整个容器的约束值范围内，取值。
+        val width =
+            if (hasBoundedWidth && hasFixedWidth) constraints.maxWidth
+            //此处，如果是wrapContent的时候，constraints.maxWidth屏幕宽度（因为此时demo容器是竖向滑动，如果是横向的，就是无限大）
+            else placeables.maxOf { it.width }.coerceIn(constraints.minWidth, constraints.maxWidth)
+        val height = placeables.maxOf { it.height }
+        var yPos = 0//布局所有子控件的UI元素，初始高度是0，而后各元素高度递增向下排
+        layout(width, height) {
+            placeables.forEach {
+                //布局每个元素，竖向，起始x坐标都是0，y坐标就依次向下，增加元素的高度。
+                it.placeRelative(0, yPos)
+                yPos += it.height
+            }
+        }
+    }
+    Layout(measurePolicy = measurePolicy, modifier = modifier, content = content)
+}
+
+
+//扩展函数，用来绘制图层宽度刻度，单位px像素
+private fun DrawScope.drawWidthMarks(textMeasurer: TextMeasurer) {
+    //DrawScope对应的compose控件的size尺寸的高度值
+    val width = size.width.toInt()
+    //100px为单位，绘制刻度
+    for (i in 0..width step 50) {
+        drawLine(
+            color = Color(0xFFAAC2C4),//刻度颜色
+            start = Offset(i.toFloat(), size.height),//刻度起始位置
+            end = Offset(i.toFloat(), size.height + 20f),//刻度线20长度，
+            strokeWidth = 3.dp.toPx()//刻度宽
+        )
+        //绘制刻度数
+        drawText(
+            textMeasurer = textMeasurer,//
+            text = "$i",//刻度值
+            topLeft = Offset(i - 30f, size.height - 30f),//绘制刻度值的位置，左侧有刻度线，左右与刻度线位置偏30
+            style = TextStyle(
+                color = Color(0xFF685E48),
+                fontSize = 10.sp,
+                fontWeight = FontWeight.Light
+            ),//刻度值的字体样式
+        )
+    }
+}
+//endregion
 
 @Preview(showBackground = true, backgroundColor = 0xFFFFFFFF)
 @Composable
 private fun ConstraintsScreenPreview() {
-    Constraints_Screen()
+    Constraints_Screen(Modifier.fillMaxSize())
 }
