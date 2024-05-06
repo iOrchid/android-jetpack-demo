@@ -41,12 +41,14 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.drawWithContent
+import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.drawscope.DrawScope
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.layout.Layout
 import androidx.compose.ui.layout.MeasurePolicy
+import androidx.compose.ui.layout.layout
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextMeasurer
@@ -75,6 +77,7 @@ internal fun Constraints_Screen(modifier: Modifier = Modifier) {
         UI_SizeModifier()
         UI_ChainsSizeModifier()
         UI_WrapContentSize()
+        UI_LayoutModifier()
     }
 }
 
@@ -614,6 +617,7 @@ private fun CP_unBounded() {
     }
 }
 
+@Preview
 @Composable
 private fun CP_unBoundedImage() {
     Column(
@@ -737,6 +741,223 @@ private fun DrawScope.drawWidthMarks(textMeasurer: TextMeasurer) {
     }
 }
 //endregion
+
+@Preview
+@Composable
+private fun UI_LayoutModifier() {
+    Title_Text(title = "layout Modifier")
+    Title_Sub_Text(title = "通过Modifier.layout{}可创建一个layoutModifier实现对子元素的布局与测量相关的要素影响。")
+    //演示
+    Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceEvenly) {
+        //使用wrapContentSize的效果
+        Column {
+            Title_Desc_Text(desc = "使用Modifier.wrapContentSize")
+            Box(
+                Modifier
+                    .shadow(4.dp, shape = RoundedCornerShape(8.dp))
+                    .background(Color(0xFFEB507E))
+                    .size(140.dp)
+                    .wrapContentSize()
+                    .size(100.dp)
+            ) {
+                BoxWithConstraints(
+                    Modifier
+                        .shadow(4.dp, RoundedCornerShape(8.dp))
+                        .background(Color(0xFF5CB3CC))
+                ) {
+                    Text(text = "最小宽度:$minWidth,最大宽度:$maxWidth", Modifier.fillMaxWidth())
+                }
+            }
+        }
+        //使用Modifier.layout的效果
+        Column {
+            Title_Desc_Text(desc = "使用Modifier.layout")
+            Box(
+                Modifier
+                    .shadow(4.dp, shape = RoundedCornerShape(8.dp))
+                    .background(Color(0xFFEB507E))
+                    .size(140.dp)
+                    .layout { measurable, constraints ->
+                        val placeable =
+                            measurable.measure(constraints.copy(minWidth = 0, minHeight = 0))
+                        layout(constraints.maxWidth, constraints.maxHeight) {
+                            val xPos = (constraints.maxWidth - placeable.width) / 2
+                            val yPos = (constraints.maxHeight - placeable.height) / 2
+                            placeable.placeRelative(xPos, yPos)
+                        }
+                    }
+                    .size(100.dp)
+            ) {
+                BoxWithConstraints(
+                    Modifier
+                        .shadow(4.dp, RoundedCornerShape(8.dp))
+                        .background(Color(0xFF5CB3CC))
+                ) {
+                    Text(text = "最小宽度:$minWidth,最大宽度:$maxWidth", Modifier.fillMaxWidth())
+                }
+            }
+        }
+    }
+
+    Title_Sub_Text(title = "通过Modifier.layout{}可以让子布局元素的尺寸突破父容器的尺寸限定；下面演示子元素增加额外的40.dp的宽度，来突破父容器边界。")
+    Column(
+        Modifier
+            .fillMaxWidth()
+            .padding(20.dp)
+            .shadow(4.dp, RoundedCornerShape(8.dp), clip = false)//clip=false才能不裁剪子元素的越界
+            .background(Color(0xFFF1441D))
+    ) {
+        Spacer(modifier = Modifier.height(20.dp))
+        Box(
+            modifier = Modifier
+                .fillMaxWidth()
+                .height(20.dp)
+                .shadow(4.dp, RoundedCornerShape(8.dp))
+                .background(Color(0xFF4A4035))
+        )
+        Spacer(modifier = Modifier.height(20.dp))
+        //使用layout来突破父容器的约束,增加40.dp的额外宽度，
+        Box(
+            modifier = Modifier
+                .fillMaxWidth()
+                .height(20.dp)
+                .border(2.dp, Color.Yellow)
+                .layout { measurable, constraints ->
+                    val placeable = measurable.measure(
+                        constraints.copy(
+                            minWidth = constraints.maxWidth + 40.dp.roundToPx(),
+                            maxWidth = constraints.maxWidth + 40.dp.roundToPx()
+                        )
+                    )
+
+                    val layoutWidth =
+                        placeable.width.coerceIn(constraints.maxWidth, constraints.maxWidth)
+                    val layoutHeight =
+                        placeable.height.coerceIn(constraints.minHeight, constraints.maxHeight)
+
+                    layout(layoutWidth, layoutHeight) {
+                        val xPos = (layoutWidth - placeable.width) / 2
+                        placeable.placeRelative(xPos, 0)
+                    }
+                }
+                .shadow(4.dp, RoundedCornerShape(8.dp))
+                .background(Color(0xFF83CBAC))
+        )
+
+        Spacer(modifier = Modifier.height(20.dp))
+
+        Box(
+            modifier = Modifier
+                .fillMaxWidth()
+                .height(20.dp)
+                .shadow(4.dp, RoundedCornerShape(8.dp))
+                .background(Color(0xFF4A4035))
+        )
+        Spacer(modifier = Modifier.height(20.dp))
+    }
+
+    Title_Sub_Text(title = "layout布局顺序是从下到上，但是约束是从上而下的，且约束会在超出范围时，自动调整为范围内的接近值。")
+
+    /*
+        logcat的输出可以看到:
+        I  🍎 Bottom Measurement phase  minWidth: 180.0.dp, maxWidth: 180.0.dp, placeable width: 180.0.dp
+        I  🍏 Middle Measurement phase minWidth: 100.0.dp, maxWidth: 300.0.dp, placeable width: 180.0.dp
+        I  🌻Top Measurement phase minWidth: 0.0.dp, maxWidth: 392.72726.dp, placeable width: 300.0.dp
+        I  🌻🌻 Top Placement Phase
+        I  🍏🍏 Middle Placement Phase
+        I  🍎🍎 Bottom Placement Phase
+
+     */
+    BoxWithConstraints(
+        Modifier
+            .height(300.dp)
+            .shadow(4.dp, RoundedCornerShape(8.dp), clip = false)
+            .background(Color(0xFFEF6F48))
+            // 这layout的约束效果是，宽高都是0到父容器给定Content的边界尺寸
+            .layout { measurable, constraints ->
+                val placeable = measurable.measure(constraints)
+                println(
+                    "🌻Top Measurement phase " +
+                            "minWidth: ${constraints.minWidth.toDp()}, " +
+                            "maxWidth: ${constraints.maxWidth.toDp()}, " +
+                            "placeable width: ${placeable.width.toDp()}"
+                )
+
+                layout(constraints.maxWidth, constraints.maxHeight) {
+                    println("🌻🌻 Top Placement Phase")
+                    placeable.placeRelative(50, 0)
+                }
+            }
+            // 🔥 SizeIn（包括widthIn/heightIn）会影响到layout内的约束计算
+            .widthIn(min = 100.dp, max = 300.dp)
+            .shadow(4.dp, shape = RoundedCornerShape(8.dp), clip = false)
+            .background(Color(0xFF20894D))
+            .layout { measurable, constraints ->
+                // 🔥此处计算的约束布局数据，会影响到后续操作符的layout计算
+                val placeable = measurable.measure(
+                    constraints
+                        .copy(
+                            minWidth = 180.dp.roundToPx(),
+                            maxWidth = 250.dp.roundToPx(),
+                            minHeight = 180.dp.roundToPx(),
+                            maxHeight = 250.dp.roundToPx()
+                        )
+                )
+                println(
+                    "🍏 Middle Measurement phase " +
+                            "minWidth: ${constraints.minWidth.toDp()}, " +
+                            "maxWidth: ${constraints.maxWidth.toDp()}, " +
+                            "placeable width: ${placeable.width.toDp()}"
+                )
+
+                layout(constraints.maxWidth, constraints.maxHeight) {
+                    println("🍏🍏 Middle Placement Phase")
+                    placeable.placeRelative(0, 50)
+                }
+            }
+            // Uncomment size modifiers to see how Constraints change
+            // 🔥🔥 This Constraints minWidth = 100.dp, maxWidth = 100.dp is not
+            // in bounds of Constraints that placeable measured above
+            // Because it's smaller than minWidth, minWidth and maxWidth
+            // is changed to 180.dp from layout above
+//            .width(100.dp)
+            // This Constraints minWidth = 240.dp, maxWidth = 240.dp is valid
+            // for 180.dp-250.dp range
+//                .size(240.dp)
+            .shadow(4.dp, shape = RoundedCornerShape(8.dp), clip = false)
+            .background(Color(0xFFF97D1C))
+            .layout { measurable, constraints ->
+
+                val placeable = measurable.measure(constraints)
+                println(
+                    "🍎 Bottom Measurement phase  " +
+                            "minWidth: ${constraints.minWidth.toDp()}, " +
+                            "maxWidth: ${constraints.maxWidth.toDp()}, " +
+                            "placeable width: ${placeable.width.toDp()}"
+                )
+                layout(placeable.width, placeable.height) {
+                    println("🍎🍎 Bottom Placement Phase")
+                    placeable.placeRelative(150, 150)
+                }
+            }
+            .shadow(4.dp, shape = RoundedCornerShape(8.dp), clip = false)
+            .background(Color(0XFFD294D3))
+        // 🔥 This width modifier also narrows range for the last
+        // Constraints passed from BoxWithConstraints to Text
+//            .width(50.dp)
+        ,
+        contentAlignment = Alignment.Center
+    ) {
+        Text(
+            text = "最小宽度 $minWidth\n最大宽度: $maxWidth",
+            modifier = Modifier
+                .border(2.dp, Color.Red)
+                .padding(5.dp),
+            color = Color.White
+        )
+
+    }
+}
 
 @Preview(showBackground = true, backgroundColor = 0xFFFFFFFF)
 @Composable
