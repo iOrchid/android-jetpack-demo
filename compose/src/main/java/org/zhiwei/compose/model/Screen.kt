@@ -19,6 +19,7 @@ import org.zhiwei.compose.screen.basic.material3.Widget_Screen
 import org.zhiwei.compose.screen.layout.Constraints_Screen
 import org.zhiwei.compose.screen.layout.CustomModifier_Screen
 import org.zhiwei.compose.screen.layout.GraphicsLayerModifier_Screen
+import org.zhiwei.compose.screen.layout.OnPlaceLayoutId_Screen
 
 /**
  * 用于配置整个Compose模块内所有可跳转的页面UI，用于Navigation导航
@@ -118,6 +119,10 @@ internal object LayoutScreenUIs {
             "Constraints&Size Modifier",
             "BoxWithConstraints，演示一些compose组件内的约束相关的使用。"
         ) { Constraints_Screen(modifier) },
+        CourseItemModel(
+            "onPlace和layoutId",
+            "Modifier的onPlace和layoutId操作符的使用。"
+        ) { OnPlaceLayoutId_Screen(modifier) },
     )
 }
 //endregion
