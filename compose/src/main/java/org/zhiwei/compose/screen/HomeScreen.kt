@@ -15,6 +15,7 @@ import androidx.compose.material3.Tab
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontFamily
@@ -92,7 +93,7 @@ private fun HomeScreenContent(modifier: Modifier, navController: NavController) 
             listOf(
                 TabPagerModel("基础组件") { Basic_Screen(navController = navController) },
                 TabPagerModel("布局Layout") { LayoutScreen(navController) },
-                TabPagerModel("状态State") { StateScreen() },
+                TabPagerModel("状态State") { StateScreen(navController) },
                 TabPagerModel("手势Gesture") { GestureScreen() },
                 TabPagerModel("图像Graphics") { GraphicsScreen() },
                 TabPagerModel("Theme主题") { ThemeScreen() },
@@ -125,7 +126,7 @@ private fun HomeScreenContent(modifier: Modifier, navController: NavController) 
             }
         }
         //viewPager，用于关联上面的tabLayout
-        HorizontalPager(state = pagerState) { page ->
+        HorizontalPager(state = pagerState, verticalAlignment = Alignment.Top) { page ->
             //注意此处model的page是个compose的函数，需要调用invoke或者函数体才能生效
             tabPagerModels[page].page()
         }
