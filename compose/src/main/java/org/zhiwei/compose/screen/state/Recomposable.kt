@@ -1,10 +1,12 @@
 package org.zhiwei.compose.screen.state
 
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
-import androidx.compose.material.Text
 import androidx.compose.material3.Button
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableIntStateOf
@@ -17,6 +19,7 @@ import androidx.compose.runtime.structuralEqualityPolicy
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
 import org.zhiwei.compose.ui.widget.Title_Desc_Text
 import org.zhiwei.compose.ui.widget.Title_Sub_Text
 import org.zhiwei.compose.ui.widget.Title_Text
@@ -37,6 +40,7 @@ internal fun StateReComposable_Screen(modifier: Modifier = Modifier) {
     ) {
         UI_State()
         UI_Remember()
+        UI_ReComposable()
     }
 }
 
@@ -156,6 +160,58 @@ private data class EStr(val str: String)
 
 //endregion
 
+//region recompose重组的状态演示
+/**
+ * 参见官方文档[Compose](https://developer.android.google.cn/develop/ui/compose/lifecycle?hl=zh-cn)
+ * 1、compose的生命周期：进入组合---一次或多次组合---离开组合；Composable的作用域scope就是指 非内联composable函数的Unit返回值的函数；
+ *      ⚠️这里特别说明，非内联，因为常用的Column，Row，Box 容器 是内联的inline composable函数。
+ * 2、在composable作用域内，只要有状态数据发生变化，就会触发reComposable重组。
+ * 3、重组会尽量 最小化 触发范围。封装出去的composable函数，即使在一个感受变化的作用域内，如果它不接收变化数据，则 其自身也不会重组。
+ */
+@Composable
+private fun UI_ReComposable() {
+    Title_Text(title = "Recompose重组")
+    Title_Sub_Text(title = "composable元素生命周期相比Android的activity/fragment简单许多，创建--组合（单/多次）--销毁。而重组的多次绘制也不会影响过多的性能。reCompose会最小化组合元素区域，感知数据变化来触发。")
+    RC_Simple()
+}
+
+//简单演示 重组 作用域
+@Composable
+private fun RC_Simple() {
+    Title_Desc_Text(desc = "简单演示recompose的作用域，注意观察log的输出。可以看出初次调用composable函数会绘制一次，而后的点击，则会触发数据接收方的感知变化。")
+    val counter = remember { mutableIntStateOf(0) }
+    val number = remember { mutableIntStateOf(0) }
+    println("--->>> 👀 开始进入 composable 函数")
+    Column {
+        //可以查看Column源码，可发现，其是inline fun 内联函数。Box，Row也是。所以它们实际会内联懂到调用处，而不是独立函数。
+        println("📖 进入Column区域")
+        //可以看点击的时候，重组 的区域，就在与数据感知方。
+        Button(
+            onClick = { counter.intValue++ },
+            Modifier
+                .fillMaxWidth()
+                .padding(horizontal = 8.dp)
+        ) {
+            println("⚡️第一个Button按钮区域")
+            Text(text = "计数：${counter.intValue}")
+        }
+        Button(
+            onClick = { number.intValue++ },
+            Modifier
+                .fillMaxWidth()
+                .padding(horizontal = 8.dp)
+        ) {
+            println("🔘️第2个Button按钮区域")
+            Text(text = "数字：${number.intValue}")
+        }
+        //这个控件也感知counter的变化，所以其所在scope作用域内，会被重组。
+        // 而且，⚠️可以注意，log输出不只是Column的进入，而是会有👀开始的那个log，就因为Column是内联，而非独立composable函数
+        Text(text = "外部的统计数：${counter.intValue}")
+    }
+}
+
+
+//endregion
 
 @Preview(showBackground = true, backgroundColor = 0xFFFFFF)
 @Composable

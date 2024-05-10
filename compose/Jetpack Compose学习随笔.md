@@ -306,25 +306,24 @@
 #### 1. 自定义modifier
 
 - Modifier的compose会在内存中记录使用的modifier当前作用；then则是生成新的继续作用；
--
 
-### 注意：
+  **注意**：
 
-- 模块一定要配置
+  模块一定要配置
 
-  ```kotlin
-  //kotlin项目需要
-      id("org.jetbrains.kotlin.android")
-  //compose需要下面两个
-      buildFeatures {
-          compose = true
-      }
-      composeOptions {
-          kotlinCompilerExtensionVersion = "1.5.3"
-      }
-  ```
+```kotlin
+//kotlin项目需要
+    id("org.jetbrains.kotlin.android")
+//compose需要下面两个
+    buildFeatures {
+        compose = true
+    }
+    composeOptions {
+        kotlinCompilerExtensionVersion = "1.5.3"
+    }
+```
 
-  **`Composable`的函数，带返回值的命名小写字母开头，无返回值的，尤其是用于`UI`的，都是大写字母开头。**
+**`Composable`的函数，带返回值的命名小写字母开头，无返回值的，尤其是用于`UI`的，都是大写字母开头。**
 
 ## 官方文档随笔[^1]
 
@@ -337,11 +336,11 @@
     1. `Compose`中的`UI`层`widget`是无状态的；
     2. `UI`提供状态`state`通知逻辑层处理，逻辑层通过`event`向上刷新`UI`
 
-    ![数据与状态下传](https://developer.android.google.cn/static/images/jetpack/compose/mmodel-flow-data.png?hl=zh-cn)
+    ![数据与状态下传](https://developer.android.google.cn/static/develop/ui/compose/images/mmodel-flow-data.png?hl=zh-cn)
 
-    ![逻辑事件向上](https://developer.android.google.cn/static/images/jetpack/compose/mmodel-flow-events.png?hl=zh-cn)
+    ![逻辑事件向上](https://developer.android.google.cn/static/develop/ui/compose/images/mmodel-flow-events.png?hl=zh-cn)
 
-    ![compose single data flow](https://developer.android.google.cn/static/images/jetpack/compose/state-unidirectional-flow.png?hl=zh-cn)
+    ![compose single data flow](https://developer.android.google.cn/static/develop/ui/compose/images/state-unidirectional-flow.png?hl=zh-cn)
 
   - 需要注意的特性点
 
@@ -357,7 +356,7 @@
 
   - `Composable`的生命周期指：进入组合–执行0次或多次重组–退出组合
 
-    ![composable lifecycle](https://developer.android.google.cn/static/images/jetpack/compose/lifecycle-composition.png?hl=zh-cn)
+    ![composable lifecycle](https://developer.android.google.cn/static/develop/ui/compose/images/lifecycle-composition.png?hl=zh-cn)
 
     重组通常由 对 `State<T>`状态对象的修改 而触发；进而对所有读取该`State<T>`的`Composable`
     无法忽略变化的对象执行重组。
@@ -373,7 +372,7 @@
     }
     ```
 
-    ![Composable会实例化多个对象](https://developer.android.google.cn/static/images/jetpack/compose/lifecycle-hierarchy.png?hl=zh-cn)
+    ![Composable会实例化多个对象](https://developer.android.google.cn/static/develop/ui/compose/images/lifecycle-hierarchy.png?hl=zh-cn)
   
     如上图，一个`Composable`的`Text`多次调用，会是多个对象；
 
@@ -465,7 +464,7 @@
   - 布局：分为测量和放置
   - 绘制：渲染元素
 
-  ![compose show UI](https://developer.android.google.cn/static/images/jetpack/compose/phases-3-phases.svg?hl=zh-cn)
+  ![compose show UI](https://developer.android.google.cn/static/develop/ui/compose/images/compose-phases.png?hl=zh-cn)
 
   一般遵循如上步骤，单项数据流，但在`BoxWithConstraints/LazyColumn/LazyRow`这类容器内，子控件的状态取决于父容器的阶段。
 
@@ -478,7 +477,7 @@
     - `MeasureScope.measure`属于测量阶段，`Modifier.offset`属于放置阶段的数值
     - `Canvas/Modifier.drawBehind/Modifier.drawWithContent`的状态变化感知在绘制阶段
 
-    ![compose state phases](https://developer.android.google.cn/static/images/jetpack/compose/phases-state-read-draw.svg?hl=zh-cn)
+    ![compose state phases](https://developer.android.google.cn/static/develop/ui/compose/images/phases-state-read-draw.svg?hl=zh-cn)
 
 
 - 架构
