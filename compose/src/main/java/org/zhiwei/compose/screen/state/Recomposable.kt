@@ -8,6 +8,9 @@ import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Button
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.DisposableEffect
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.SideEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
@@ -167,12 +170,15 @@ private data class EStr(val str: String)
  *      ⚠️这里特别说明，非内联，因为常用的Column，Row，Box 容器 是内联的inline composable函数。
  * 2、在composable作用域内，只要有状态数据发生变化，就会触发reComposable重组。
  * 3、重组会尽量 最小化 触发范围。封装出去的composable函数，即使在一个感受变化的作用域内，如果它不接收变化数据，则 其自身也不会重组。
+ * 4、初步可以简单理解LaunchEffect、SideEffect、DisposableEffect的感知compose的生命周期的效果
  */
 @Composable
 private fun UI_ReComposable() {
     Title_Text(title = "Recompose重组")
     Title_Sub_Text(title = "composable元素生命周期相比Android的activity/fragment简单许多，创建--组合（单/多次）--销毁。而重组的多次绘制也不会影响过多的性能。reCompose会最小化组合元素区域，感知数据变化来触发。")
     RC_Simple()
+    //重组 的作用域
+    UI_CommonStable()
 }
 
 //简单演示 重组 作用域
@@ -207,6 +213,23 @@ private fun RC_Simple() {
         //这个控件也感知counter的变化，所以其所在scope作用域内，会被重组。
         // 而且，⚠️可以注意，log输出不只是Column的进入，而是会有👀开始的那个log，就因为Column是内联，而非独立composable函数
         Text(text = "外部的统计数：${counter.intValue}")
+    }
+    //composable的控件 三个生命周期：创建--绘制（单/多次)--销毁。不像Activity/Fragment有生命周期回调函数。这里可以用后续会学到的Effect效应函数来监控生命周期
+    LaunchedEffect(key1 = null) {
+        //启动效应函数，会在所属composable作用域进行创建的时候，调用且仅调用一次。内部有协程作用域，会伴随所属compose。
+        println("🚀LaunchEffect创建compose的协程")
+    }
+    SideEffect {
+        //SideEffect 会在compose每次重组都调用
+        println("♻️每次都会调用。。。")
+    }
+    DisposableEffect(key1 = null) {
+        //销毁compose会调用的效应effect，其内部必须调用onDispose来释放必要的资源
+        println("🗑️这里如同LaunchEffect一样，初始化调用一次。")
+        onDispose {
+            //这里是compose销毁的时候，调用的作用域。
+            println("💨释放.....资源")
+        }
     }
 }
 
