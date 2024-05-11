@@ -2,12 +2,18 @@ package org.zhiwei.compose.screen.layout_state
 
 import android.widget.Toast
 import androidx.compose.foundation.border
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Button
+import androidx.compose.material3.Checkbox
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.Text
@@ -18,7 +24,9 @@ import androidx.compose.runtime.SideEffect
 import androidx.compose.runtime.State
 import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.movableContentOf
 import androidx.compose.runtime.mutableIntStateOf
+import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.produceState
 import androidx.compose.runtime.remember
@@ -31,6 +39,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.IntOffset
 import androidx.compose.ui.unit.dp
 import kotlinx.coroutines.launch
 import org.zhiwei.compose.ui.widget.Title_Desc_Text
@@ -43,9 +52,10 @@ import kotlin.random.Random
  */
 @Composable
 internal fun Effect_Screen(modifier: Modifier = Modifier) {
-    Column(modifier) {
+    Column(modifier.verticalScroll(rememberScrollState())) {
         UI_RememberEffect()
         UI_rememberScopeUpdate()
+        UI_Movable()
     }
 }
 
@@ -191,6 +201,31 @@ private fun UI_Other() {
         .height(height.dp)
     Box(modifier = modifier)
     //如上，如果某地方，修改了height的数值，那么modifier也会变化，使用modifier的compose组件，就会触发重组。
+    //⚠️如果是lambda函数作为入参，层层递传，那么入参变化，可能仅影响到最里层使用lambda参数的地方。如果不是lambada作为入参，而是直接参数，那么会触发层层重组。
+
+    @Composable
+    fun Inner(off: () -> Int) {
+        Text(text = "Inner内部", Modifier.offset { IntOffset(off.invoke(), 0) })
+    }
+
+    //如果out和inner都不是lambda的入参，如下方式的话，那么都会层层触发重组。
+    @Composable
+    fun common(offset: Int) {
+    }
+
+    @Composable
+    fun OutDeffer(offset: () -> Int) {
+        Column {
+            Text(text = "out内嵌")
+            Inner(offset)
+        }
+    }
+    //简单演示,mock模拟,OutDeffer内也有其他compose组件，都没有使用offset的数值，但是使用的lambda的传参，所以只会在inner的text发生重组。
+    OutDeffer {
+        10
+    }
+    val asRow by remember { mutableStateOf(false) }
+    val notRow = asRow.not()//boolean值取反
 }
 
 private fun genTNumState(): State<TNum> {
@@ -198,6 +233,82 @@ private fun genTNumState(): State<TNum> {
     //它不能放在@composable的函数中。
     return derivedStateOf {
         TNum(2)
+    }
+}
+
+//endregion
+
+//region Movable
+
+//演示movable
+@Composable
+private fun UI_Movable() {
+    Title_Text(title = "Movable")
+    Title_Sub_Text(title = "1. 演示使用movableContentOf来处理数据集变化状态不同步的场景。")
+    val list = remember {
+        mutableStateListOf(
+            MockItem("Item1", checked = false),
+            MockItem("Item2", checked = true),
+            MockItem("Item3", checked = true),
+        )
+    }
+    val list2 = remember {
+        mutableStateListOf(
+            MockItem("Item1", checked = false),
+            MockItem("Item2", checked = true),
+            MockItem("Item3", checked = true),
+        )
+    }
+    Row(
+        Modifier
+            .fillMaxWidth()
+            .padding(8.dp), horizontalArrangement = Arrangement.SpaceEvenly
+    ) {
+        //普通的增删操作方式，可以看得出，增删的item对原有item是状态不对的
+        Column {
+            Title_Desc_Text(desc = "未用movableContentOf")
+            OutlinedButton(onClick = { list.add(0, MockItem("新增Item", false)) }) {
+                Text(text = "增加item")
+            }
+            OutlinedButton(onClick = { list.removeFirstOrNull() }) {
+                Text(text = "删除item")
+            }
+            list.forEach {
+                ItemUI(item = it)
+            }
+        }
+        //使用movableContentOf
+        val mapedList = list2.map { item ->
+            movableContentOf { ItemUI(item = item) }
+        }
+        Column {
+            Title_Desc_Text(desc = "用movableContentOf")
+            OutlinedButton(onClick = { list2.add(0, MockItem("新增Item", true)) }) {
+                Text(text = "增加item")
+            }
+            OutlinedButton(onClick = { list2.removeFirstOrNull() }) {
+                Text(text = "删除item")
+            }
+            mapedList.forEach { it.invoke() }
+        }
+    }
+
+
+}
+
+
+private data class MockItem(val text: String, var checked: Boolean = false)
+
+@Composable
+private fun ItemUI(item: MockItem) {
+    Row(verticalAlignment = Alignment.CenterVertically) {
+        //必须是remember的值，才能让checkbox自身有UI交互的点击切换。
+        var checked by remember {
+            mutableStateOf(item.checked)
+        }
+        Title_Sub_Text(title = item.text)
+        Checkbox(checked = checked, onCheckedChange = { checked = it;item.checked = it })
+        Title_Desc_Text(desc = "item：${item.checked}")
     }
 }
 
