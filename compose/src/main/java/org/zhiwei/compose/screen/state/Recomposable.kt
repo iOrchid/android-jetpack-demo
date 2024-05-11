@@ -1,5 +1,6 @@
 package org.zhiwei.compose.screen.state
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -44,6 +45,7 @@ internal fun StateReComposable_Screen(modifier: Modifier = Modifier) {
         UI_State()
         UI_Remember()
         UI_ReComposable()
+        UI_NonRestart()
     }
 }
 
@@ -188,7 +190,12 @@ private fun RC_Simple() {
     val counter = remember { mutableIntStateOf(0) }
     val number = remember { mutableIntStateOf(0) }
     println("--->>> 👀 开始进入 composable 函数")
-    Column {
+    Column(
+        Modifier
+            .fillMaxWidth()
+            .background(Color.LightGray)
+            .padding(8.dp)
+    ) {
         //可以查看Column源码，可发现，其是inline fun 内联函数。Box，Row也是。所以它们实际会内联懂到调用处，而不是独立函数。
         println("📖 进入Column区域")
         //可以看点击的时候，重组 的区域，就在与数据感知方。
@@ -212,7 +219,7 @@ private fun RC_Simple() {
         }
         //这个控件也感知counter的变化，所以其所在scope作用域内，会被重组。
         // 而且，⚠️可以注意，log输出不只是Column的进入，而是会有👀开始的那个log，就因为Column是内联，而非独立composable函数
-        Text(text = "外部的统计数：${counter.intValue}")
+        Title_Sub_Text(title = "外部的统计数：${counter.intValue}")
     }
     //composable的控件 三个生命周期：创建--绘制（单/多次)--销毁。不像Activity/Fragment有生命周期回调函数。这里可以用后续会学到的Effect效应函数来监控生命周期
     LaunchedEffect(key1 = null) {
