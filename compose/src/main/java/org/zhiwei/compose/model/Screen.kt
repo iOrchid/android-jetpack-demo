@@ -20,6 +20,8 @@ import org.zhiwei.compose.screen.layout_state.Constraints_Screen
 import org.zhiwei.compose.screen.layout_state.CustomModifier_Screen
 import org.zhiwei.compose.screen.layout_state.Effect_Screen
 import org.zhiwei.compose.screen.layout_state.GraphicsLayerModifier_Screen
+import org.zhiwei.compose.screen.layout_state.LazyListRc_Screen
+import org.zhiwei.compose.screen.layout_state.ListDirection_Screen
 import org.zhiwei.compose.screen.layout_state.OnPlaceLayoutId_Screen
 import org.zhiwei.compose.screen.layout_state.StateReComposable_Screen
 
@@ -133,6 +135,14 @@ internal object LayoutStateScreenUIs {
             "Effect效应",
             "compose生命周期不同阶段的感知，effect使用方式。"
         ) { Effect_Screen(modifier) },
+        CourseItemModel(
+            "LazyList重组",
+            "类似recyclerView的LazyList组件，在compose中，多层绘制重组。"
+        ) { LazyListRc_Screen(modifier) },
+        CourseItemModel(
+            "List滑动方向",
+            "根据LazyList的firstItem可见行和偏移量的计算，来获取整个列表的滑动方向的分析。"
+        ) { ListDirection_Screen(modifier) },
     )
 }
 //endregion
