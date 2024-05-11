@@ -18,6 +18,7 @@ import org.zhiwei.compose.screen.basic.material3.TopAppbarTabs_Screen
 import org.zhiwei.compose.screen.basic.material3.Widget_Screen
 import org.zhiwei.compose.screen.layout_state.Constraints_Screen
 import org.zhiwei.compose.screen.layout_state.CustomModifier_Screen
+import org.zhiwei.compose.screen.layout_state.Effect_Screen
 import org.zhiwei.compose.screen.layout_state.GraphicsLayerModifier_Screen
 import org.zhiwei.compose.screen.layout_state.OnPlaceLayoutId_Screen
 import org.zhiwei.compose.screen.layout_state.StateReComposable_Screen
@@ -128,6 +129,10 @@ internal object LayoutStateScreenUIs {
             "State ReComposable",
             "compose的重组和状态变化作用域感知的相关使用与演示。"
         ) { StateReComposable_Screen(modifier) },
+        CourseItemModel(
+            "Effect效应",
+            "compose生命周期不同阶段的感知，effect使用方式。"
+        ) { Effect_Screen(modifier) },
     )
 }
 //endregion

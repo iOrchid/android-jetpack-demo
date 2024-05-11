@@ -186,9 +186,29 @@ private fun UI_ReComposable() {
 //简单演示 重组 作用域
 @Composable
 private fun RC_Simple() {
+
     Title_Desc_Text(desc = "简单演示recompose的作用域，注意观察log的输出。可以看出初次调用composable函数会绘制一次，而后的点击，则会触发数据接收方的感知变化。")
     val counter = remember { mutableIntStateOf(0) }
     val number = remember { mutableIntStateOf(0) }
+    //这里就是演示 生命周期回调的Effect时机，根自身代码顺序无关。
+    SideEffect {
+        //SideEffect 会在compose每次重组都调用
+        println("♻️每次都会调用。。。")
+    }
+    DisposableEffect(key1 = null) {
+        //销毁compose会调用的效应effect，其内部必须调用onDispose来释放必要的资源
+        println("🗑️这里如同LaunchEffect一样，初始化调用一次。")
+        onDispose {
+            //这里是compose销毁的时候，调用的作用域。
+            println("💨释放.....资源")
+        }
+    }
+    //composable的控件 三个生命周期：创建--绘制（单/多次)--销毁。不像Activity/Fragment有生命周期回调函数。这里可以用后续会学到的Effect效应函数来监控生命周期
+    LaunchedEffect(key1 = null) {
+        //启动效应函数，会在所属composable作用域进行创建的时候，调用且仅调用一次。内部有协程作用域，会伴随所属compose。
+        println("🚀LaunchEffect创建compose的协程")
+    }
+
     println("--->>> 👀 开始进入 composable 函数")
     Column(
         Modifier
@@ -221,23 +241,7 @@ private fun RC_Simple() {
         // 而且，⚠️可以注意，log输出不只是Column的进入，而是会有👀开始的那个log，就因为Column是内联，而非独立composable函数
         Title_Sub_Text(title = "外部的统计数：${counter.intValue}")
     }
-    //composable的控件 三个生命周期：创建--绘制（单/多次)--销毁。不像Activity/Fragment有生命周期回调函数。这里可以用后续会学到的Effect效应函数来监控生命周期
-    LaunchedEffect(key1 = null) {
-        //启动效应函数，会在所属composable作用域进行创建的时候，调用且仅调用一次。内部有协程作用域，会伴随所属compose。
-        println("🚀LaunchEffect创建compose的协程")
-    }
-    SideEffect {
-        //SideEffect 会在compose每次重组都调用
-        println("♻️每次都会调用。。。")
-    }
-    DisposableEffect(key1 = null) {
-        //销毁compose会调用的效应effect，其内部必须调用onDispose来释放必要的资源
-        println("🗑️这里如同LaunchEffect一样，初始化调用一次。")
-        onDispose {
-            //这里是compose销毁的时候，调用的作用域。
-            println("💨释放.....资源")
-        }
-    }
+
 }
 
 

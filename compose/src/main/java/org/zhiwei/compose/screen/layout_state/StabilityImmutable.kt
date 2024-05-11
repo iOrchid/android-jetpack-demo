@@ -48,6 +48,7 @@ internal fun UI_CommonStable() {
     val stableData by remember { mutableStateOf(StableDataClas(0)) }
 
     Spacer(modifier = Modifier.height(10.dp))
+    Title_Text(title = "Stable和Immutable")
     Column(
         Modifier
             .fillMaxWidth()
