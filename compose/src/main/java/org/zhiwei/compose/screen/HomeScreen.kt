@@ -34,9 +34,7 @@ import org.zhiwei.compose.model.configPageRoute
 import org.zhiwei.compose.screen.basic.Basic_Screen
 import org.zhiwei.compose.screen.gesture.GestureScreen
 import org.zhiwei.compose.screen.graphics.GraphicsScreen
-import org.zhiwei.compose.screen.layout.LayoutScreen
-import org.zhiwei.compose.screen.state.StateScreen
-import org.zhiwei.compose.screen.theme.ThemeScreen
+import org.zhiwei.compose.screen.layout_state.LayoutState_Screen
 
 /**
  * Compose的主页面UI的screen,
@@ -92,11 +90,9 @@ private fun HomeScreenContent(modifier: Modifier, navController: NavController) 
         val tabPagerModels =
             listOf(
                 TabPagerModel("基础组件") { Basic_Screen(navController = navController) },
-                TabPagerModel("布局Layout") { LayoutScreen(navController) },
-                TabPagerModel("状态State") { StateScreen(navController) },
-                TabPagerModel("手势Gesture") { GestureScreen() },
-                TabPagerModel("图像Graphics") { GraphicsScreen() },
-                TabPagerModel("Theme主题") { ThemeScreen() },
+                TabPagerModel("布局与状态") { LayoutState_Screen(navController) },
+                TabPagerModel("手势") { GestureScreen() },
+                TabPagerModel("图像") { GraphicsScreen() },
             )
         //这个是用于记录tabRow和Pager的状态，用于tab和pager的联动，后续会学到。
         val pagerState: PagerState = rememberPagerState(

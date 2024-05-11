@@ -19,6 +19,7 @@ import org.zhiwei.compose.model.BasicScreenUIs
 
 /**
  * 基础学习笔记
+ * ⚠️注：@composable可以是Ui控件，也可以是状态数据，或其他相关函数；一般UI的使用大写命名函数名，无返回值。其他有返回值的，普通函数命名风格
  */
 @Composable
 internal fun Basic_Screen(navController: NavController) {

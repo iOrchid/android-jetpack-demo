@@ -1,4 +1,4 @@
-package org.zhiwei.compose.screen.layout
+package org.zhiwei.compose.screen.layout_state
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border

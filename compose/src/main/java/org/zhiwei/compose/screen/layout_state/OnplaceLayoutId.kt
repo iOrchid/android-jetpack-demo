@@ -1,4 +1,4 @@
-package org.zhiwei.compose.screen.layout
+package org.zhiwei.compose.screen.layout_state
 
 import androidx.compose.animation.core.Animatable
 import androidx.compose.animation.core.AnimationVector2D

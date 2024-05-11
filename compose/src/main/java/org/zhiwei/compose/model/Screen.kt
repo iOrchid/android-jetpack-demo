@@ -16,11 +16,11 @@ import org.zhiwei.compose.screen.basic.material3.TextField_Screen
 import org.zhiwei.compose.screen.basic.material3.Text_Screen
 import org.zhiwei.compose.screen.basic.material3.TopAppbarTabs_Screen
 import org.zhiwei.compose.screen.basic.material3.Widget_Screen
-import org.zhiwei.compose.screen.layout.Constraints_Screen
-import org.zhiwei.compose.screen.layout.CustomModifier_Screen
-import org.zhiwei.compose.screen.layout.GraphicsLayerModifier_Screen
-import org.zhiwei.compose.screen.layout.OnPlaceLayoutId_Screen
-import org.zhiwei.compose.screen.state.StateReComposable_Screen
+import org.zhiwei.compose.screen.layout_state.Constraints_Screen
+import org.zhiwei.compose.screen.layout_state.CustomModifier_Screen
+import org.zhiwei.compose.screen.layout_state.GraphicsLayerModifier_Screen
+import org.zhiwei.compose.screen.layout_state.OnPlaceLayoutId_Screen
+import org.zhiwei.compose.screen.layout_state.StateReComposable_Screen
 
 /**
  * 用于配置整个Compose模块内所有可跳转的页面UI，用于Navigation导航
@@ -28,8 +28,7 @@ import org.zhiwei.compose.screen.state.StateReComposable_Screen
 internal fun configPageRoute(modifier: Modifier, onBack: (() -> Unit) = {}): List<CourseItemModel> {
     val list = mutableListOf<CourseItemModel>()
     list.addAll(BasicScreenUIs.basicCourses(modifier, onBack))
-    list.addAll(LayoutScreenUIs.layoutCourses(modifier))
-    list.addAll(StateScreenUIs.stateCourses(modifier))
+    list.addAll(LayoutStateScreenUIs.layoutCourses(modifier))
     return list
 }
 
@@ -105,8 +104,8 @@ internal object BasicScreenUIs {
 
 //endregion
 
-//region LayoutScreen布局相关
-internal object LayoutScreenUIs {
+//region LayoutStateScreen布局相关
+internal object LayoutStateScreenUIs {
     //所有基础内容的list ⚠️todo 除了要用于填充页面，还要在上面添加到list中，注册页面导航route
     internal fun layoutCourses(modifier: Modifier = Modifier) = listOf(
         CourseItemModel(
@@ -125,14 +124,6 @@ internal object LayoutScreenUIs {
             "onPlace和layoutId",
             "Modifier的onPlace和layoutId操作符的使用。"
         ) { OnPlaceLayoutId_Screen(modifier) },
-    )
-}
-//endregion
-
-//region StateScreen布局相关
-internal object StateScreenUIs {
-
-    internal fun stateCourses(modifier: Modifier = Modifier) = listOf(
         CourseItemModel(
             "State ReComposable",
             "compose的重组和状态变化作用域感知的相关使用与演示。"
