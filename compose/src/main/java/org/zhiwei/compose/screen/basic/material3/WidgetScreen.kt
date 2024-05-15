@@ -256,7 +256,7 @@ private fun UI_CheckBox() {
     Title_Sub_Text(title = "2、复合勾选框TriStateCheckbox")
     Title_Desc_Text(desc = "外层勾选状态会根据内部子框的选择状态而确定")
     Column(modifier = Modifier.padding(8.dp)) {
-        //定义子checkbox的选择状态
+        //定义子checkbox的选择状态;⚠️注意：remember的另一种生命方式，可以声明变量及其变化
         val (state, onStateChange) = remember { mutableStateOf(false) }
         val (state2, onStateChange2) = remember { mutableStateOf(false) }
         //记录外层checkbox的选择状态，根据子控件的逻辑

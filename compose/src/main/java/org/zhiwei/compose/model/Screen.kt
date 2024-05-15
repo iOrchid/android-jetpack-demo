@@ -16,6 +16,7 @@ import org.zhiwei.compose.screen.basic.material3.TextField_Screen
 import org.zhiwei.compose.screen.basic.material3.Text_Screen
 import org.zhiwei.compose.screen.basic.material3.TopAppbarTabs_Screen
 import org.zhiwei.compose.screen.basic.material3.Widget_Screen
+import org.zhiwei.compose.screen.gesture.Clickable_Screen
 import org.zhiwei.compose.screen.layout_state.Constraints_Screen
 import org.zhiwei.compose.screen.layout_state.CustomModifier_Screen
 import org.zhiwei.compose.screen.layout_state.Effect_Screen
@@ -32,6 +33,7 @@ internal fun configPageRoute(modifier: Modifier, onBack: (() -> Unit) = {}): Lis
     val list = mutableListOf<CourseItemModel>()
     list.addAll(BasicScreenUIs.basicCourses(modifier, onBack))
     list.addAll(LayoutStateScreenUIs.layoutCourses(modifier))
+    list.addAll(GestureScreenUIs.layoutCourses(modifier))
     return list
 }
 
@@ -145,4 +147,18 @@ internal object LayoutStateScreenUIs {
         ) { ListDirection_Screen(modifier) },
     )
 }
+//endregion
+
+//region 手势事件相关的布局
+
+internal object GestureScreenUIs {
+
+    internal fun layoutCourses(modifier: Modifier = Modifier) = listOf(
+        CourseItemModel(
+            "Clickable",
+            "点击相关，水波纹ripple和交互效果的简单演示。"
+        ) { Clickable_Screen(modifier) },
+    )
+}
+
 //endregion

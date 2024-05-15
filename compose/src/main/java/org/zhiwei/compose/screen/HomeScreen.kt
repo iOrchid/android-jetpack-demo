@@ -32,7 +32,7 @@ import kotlinx.coroutines.launch
 import org.zhiwei.compose.model.TabPagerModel
 import org.zhiwei.compose.model.configPageRoute
 import org.zhiwei.compose.screen.basic.Basic_Screen
-import org.zhiwei.compose.screen.gesture.GestureScreen
+import org.zhiwei.compose.screen.gesture.Gesture_Screen
 import org.zhiwei.compose.screen.graphics.GraphicsScreen
 import org.zhiwei.compose.screen.layout_state.LayoutState_Screen
 
@@ -91,7 +91,7 @@ private fun HomeScreenContent(modifier: Modifier, navController: NavController) 
             listOf(
                 TabPagerModel("基础组件") { Basic_Screen(navController = navController) },
                 TabPagerModel("布局与状态") { LayoutState_Screen(navController) },
-                TabPagerModel("手势") { GestureScreen() },
+                TabPagerModel("手势") { Gesture_Screen(navController) },
                 TabPagerModel("图像") { GraphicsScreen() },
             )
         //这个是用于记录tabRow和Pager的状态，用于tab和pager的联动，后续会学到。

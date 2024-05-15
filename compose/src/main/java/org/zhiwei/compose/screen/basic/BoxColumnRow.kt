@@ -4,6 +4,9 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.ExperimentalLayoutApi
+import androidx.compose.foundation.layout.FlowColumn
+import androidx.compose.foundation.layout.FlowRow
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -26,6 +29,9 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import org.zhiwei.compose.ui.widget.Title_Desc_Text
+import org.zhiwei.compose.ui.widget.Title_Sub_Text
+import org.zhiwei.compose.ui.widget.Title_Text
 
 /**
  * 演示行、列、箱 容器控件的UI页面
@@ -200,6 +206,12 @@ internal fun Box_Column_Row_Screen(modifier: Modifier = Modifier) {
                 fontWeight = FontWeight.Light
             )
             ShadowSpacerAndWeight()
+        }
+        //⚠️注：还有flowRow和flowColumn分别会流形式的布局内部的元素排列。
+        item {
+            Title_Text(title = "FlowRow/FlowColumn")
+            Title_Sub_Text(title = "会以流形式布局内部元素的row和column")
+            UI_FlowRowColumn()
         }
     }
 }
@@ -581,6 +593,58 @@ private fun ShadowSpacerAndWeight() {
                 .background(Color(0xFFAED599))
                 .padding(4.dp)
         )
+    }
+}
+
+@OptIn(ExperimentalLayoutApi::class)
+@Composable
+private fun UI_FlowRowColumn() {
+    val list = listOf(
+        "compute",
+        "network",
+        "c",
+        "c++",
+        "python",
+        "java",
+        "Kotlin",
+        "ANDROID",
+        "system",
+        "jetpack",
+        "compose",
+        "计算机",
+        "网络",
+        "安卓",
+        "C语言",
+        "软件工程师",
+        "技术专家",
+        "👩女孩",
+        "👨男人",
+        "🍎Apple"
+    )
+    Column(Modifier.fillMaxWidth()) {
+        //flow的布局，会根据设置左到右，上到下，或者右到左， 可通过CompositionLocalProvider来设置 LayoutDirection.Ltr或Rtl
+        FlowRow(Modifier.fillMaxWidth()) {
+            list.forEach {
+                Text(
+                    text = it, modifier = Modifier
+                        .padding(4.dp)
+                        .background(Color(0xFFFFB74F), shape = RoundedCornerShape(8.dp))
+                        .padding(4.dp)
+                )
+            }
+        }
+        Title_Desc_Text(desc = "限定高度为了看flowColumn分列的效果")
+        //限定高度，为了看流式分列效果
+        FlowColumn(Modifier.height(300.dp)) {
+            list.forEach {
+                Text(
+                    text = it, modifier = Modifier
+                        .padding(4.dp)
+                        .background(Color(0xFFFFB74F), shape = RoundedCornerShape(8.dp))
+                        .padding(4.dp)
+                )
+            }
+        }
     }
 }
 
