@@ -63,7 +63,7 @@ import org.zhiwei.compose.ui.widget.Title_Sub_Text
 import org.zhiwei.compose.ui.widget.Title_Text
 
 @Composable
-fun Clickable_Screen(modifier: Modifier = Modifier) {
+internal fun Clickable_Screen(modifier: Modifier = Modifier) {
 
     Column(
         modifier

@@ -17,6 +17,7 @@ import org.zhiwei.compose.screen.basic.material3.Text_Screen
 import org.zhiwei.compose.screen.basic.material3.TopAppbarTabs_Screen
 import org.zhiwei.compose.screen.basic.material3.Widget_Screen
 import org.zhiwei.compose.screen.gesture.Clickable_Screen
+import org.zhiwei.compose.screen.layout_state.ConstraintLayout_Screen
 import org.zhiwei.compose.screen.layout_state.Constraints_Screen
 import org.zhiwei.compose.screen.layout_state.CustomModifier_Screen
 import org.zhiwei.compose.screen.layout_state.Effect_Screen
@@ -125,6 +126,10 @@ internal object LayoutStateScreenUIs {
             "Constraints&Size Modifier",
             "BoxWithConstraints，演示一些compose组件内的约束相关的使用。"
         ) { Constraints_Screen(modifier) },
+        CourseItemModel(
+            "Constraints Layout",
+            "补充一个ConstraintLayout的约束布局的使用。"
+        ) { ConstraintLayout_Screen(modifier) },
         CourseItemModel(
             "onPlace和layoutId",
             "Modifier的onPlace和layoutId操作符的使用。"

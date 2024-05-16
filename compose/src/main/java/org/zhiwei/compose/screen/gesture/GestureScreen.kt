@@ -17,7 +17,7 @@ import androidx.navigation.NavController
 import org.zhiwei.compose.model.GestureScreenUIs
 
 @Composable
-fun Gesture_Screen(navController: NavController) {
+internal fun Gesture_Screen(navController: NavController) {
     LazyColumn {
         items(GestureScreenUIs.layoutCourses()) { model ->
             ListItem(
