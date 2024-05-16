@@ -253,7 +253,9 @@ private fun HoleBottomAppBar() {
         elevation = 4.dp,
         cutoutShape = CircleShape//该属性，只有在BottomAppBar和FloatingActionButton同时在Scaffold中时候的时候，才生效。就是挖孔效果
     ) {
-        // 这个就是提高一下图标的亮度
+        // 这个就是提高一下图标的亮度;注意⚠️：CompositionLocalProvider提供一个CompositionLocal数据值
+        // ，简单理解其作用特点就是，提供的数据用于将数据变化控制在特定的compose作用域内
+        // ，从而在多层嵌套的场景下，避免触发其他不必要的compose函数的重组绘制，提升性能。
         CompositionLocalProvider(LocalContentAlpha provides ContentAlpha.high) {
             androidx.compose.material.IconButton(
                 onClick = { }) {
