@@ -28,7 +28,8 @@
 1. `kotlin`文件夹，下面是面向kotlin语言的初学教程，基本语法；学习之后，可以上手写kotlin，相信你会爱上简约高效的语法糖。
 2. `jetpack`文件夹下，主要演示了通用的几个`jetpack`
    的组件`liveData、lifecycle、viewmodel、paging、workmanager、navigation，databinding、room`等。
-3. `compose`算是颠覆性或者革命性的Android UI的编写方式，说的可能有点夸张h😝，但是这种组合式的UI写法和设计思想，真的很不一样，没有了臃肿感、倍儿清爽～。
+3. `compose`算是颠覆性或者**革命性**的Android
+   UI的编写方式，说的可能有点夸张😝，但是这种组合式的UI写法和设计思想，真的很不一样，没有了臃肿感、倍儿清爽～。
 4. 其他`MVI/MVVM`和`jetpack`的组件，逐步会以简便功能形式添加。
 5. 项目断断停停的，工作精力所限，**希望可以动手给star/fork点个赞**👍，有什么问题想法和建议可以提**issue
    **，谢谢，<font color="Green">**您的支持与鼓励，是我做项目的动力**</font>。
@@ -185,5 +186,7 @@ limitations under the License.
 [^1]: 为研究最新`Jetpack`组件的版本和特性，项目当前`(2024/05/06)`开发环境为**AndroidStudio Iguana
 ** `2023.3.1`
 [^2]: **项目使用`AS`及相关环境配置可能与你本地不同，**参照 [配置gradle](https://github.com/iOrchid/android-jetpack-demo/issues/3#issuecomment-840276571)
-[^3]: 参照`Compose`项目有[compose cookbook](https://github.com/Gurupreet/ComposeCookBook)，[compose tutorial](https://github.com/SmartToolFactory/Jetpack-Compose-Tutorials),[compose codelab](https://github.com/android/codelab-android-compose),[compose sample](https://github.com/android/compose-samples) 致敬感谢
+[^3]: 参照`Compose`
+项目有[compose cookbook](https://github.com/Gurupreet/ComposeCookBook)，[compose tutorial](https://github.com/SmartToolFactory/Jetpack-Compose-Tutorials),[compose codelab](https://github.com/android/codelab-android-compose),[compose sample](https://github.com/android/compose-samples)
+致敬感谢.
 

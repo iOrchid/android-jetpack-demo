@@ -1,5 +1,6 @@
 package org.zhiwei.compose.screen.layout_state
 
+import android.util.Log
 import android.widget.Toast
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
@@ -41,6 +42,10 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.IntOffset
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.compose.LifecycleEventEffect
+import androidx.lifecycle.compose.LifecycleResumeEffect
+import androidx.lifecycle.compose.LifecycleStartEffect
 import kotlinx.coroutines.launch
 import org.zhiwei.compose.ui.widget.Title_Desc_Text
 import org.zhiwei.compose.ui.widget.Title_Sub_Text
@@ -54,6 +59,7 @@ import kotlin.random.Random
 internal fun Effect_Screen(modifier: Modifier = Modifier) {
     Column(modifier.verticalScroll(rememberScrollState())) {
         UI_RememberEffect()
+//        LifecycleEffect()
         UI_rememberScopeUpdate()
         UI_Movable()
     }
@@ -173,6 +179,58 @@ private fun NumZone(input: Int) {
     Text(text = "使用remember：$rememberedInput")
     Text(text = "使用remember加mutableStateOf：${rememberedStateInput.intValue}")
     Text(text = "原始数据：$input")
+}
+
+/**
+ * lifecycle的compose组件，提供的几个函数，用于compose组件声明周期的感知
+ * 感知的是compose组件的生命周期，如果通过state切换来销毁compose，那么它不需要感知到销毁资源的回调。
+ * 如果是界面UI的整体销毁,就可能因为有了onDestroy而导致onStopOrDispose和onPauseOrDispose各走两次。
+ * var show by remember { mutableStateOf(false) }
+ *
+ *     Column {
+ *         Button(onClick = { show = show.not() }) {
+ *             Text(text = "切换")
+ *         }
+ *         if (show) {
+ *             LifecycleEffect()
+ *         }
+ *     }
+ *
+ * 如上，点击按钮而隐藏LifecycleEffect，则onStopOrDispose和onPauseOrDispose只回调一次。
+ * 而如果，显示了LifecycleEffect，将当前页面onBackPress销毁，
+ * 那么会在onDestroy之后，再触发一次onStopOrDispose和onPauseOrDispose的销毁资源回调。
+ */
+@Composable
+private fun LifecycleEffect(modifier: Modifier = Modifier) {
+    val TAG = "LifecycleEffect"
+    Log.v(TAG, "🚀： ------------")
+    //不可用于监听onDestroy，否则报错,
+    //This function should not be used to listen for Lifecycle.Event.ON_DESTROY
+    // because Compose stops recomposing after receiving a Lifecycle.Event.ON_STOP
+    // and will never be aware of an ON_DESTROY to launch onEvent.
+    LifecycleEventEffect(event = Lifecycle.Event.ON_CREATE) {
+        Log.d(TAG, "🚄： ------创建------")
+    }
+
+    LifecycleEventEffect(event = Lifecycle.Event.ON_STOP) {
+        Log.d(TAG, "♻️： ------停止------")
+    }
+
+    LifecycleStartEffect(key1 = Lifecycle.Event.ON_START) {
+        Log.i(TAG, "🍊： ------启动------")
+        //这里会在onStop和onDestroy都触发
+        onStopOrDispose {
+            Log.i(TAG, "🍊： ------启动内>> 停止/销毁------")
+        }
+    }
+
+    LifecycleResumeEffect(key1 = Lifecycle.Event.ON_RESUME) {
+        Log.w(TAG, "🍎： ------显示------")
+        //这里会在onPause和onDestroy都触发
+        onPauseOrDispose {
+            Log.w(TAG, "🍎： ------显示内>> 暂停/销毁------")
+        }
+    }
 }
 
 //endregion
