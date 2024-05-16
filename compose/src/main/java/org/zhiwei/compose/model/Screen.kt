@@ -17,6 +17,7 @@ import org.zhiwei.compose.screen.basic.material3.Text_Screen
 import org.zhiwei.compose.screen.basic.material3.TopAppbarTabs_Screen
 import org.zhiwei.compose.screen.basic.material3.Widget_Screen
 import org.zhiwei.compose.screen.gesture.Clickable_Screen
+import org.zhiwei.compose.screen.gesture.TapDragGestures_Screen
 import org.zhiwei.compose.screen.layout_state.ConstraintLayout_Screen
 import org.zhiwei.compose.screen.layout_state.Constraints_Screen
 import org.zhiwei.compose.screen.layout_state.CustomModifier_Screen
@@ -163,6 +164,10 @@ internal object GestureScreenUIs {
             "Clickable",
             "点击相关，水波纹ripple和交互效果的简单演示。"
         ) { Clickable_Screen(modifier) },
+        CourseItemModel(
+            "Tap&Drag Gestures",
+            "点击与拖拽事件的监测与状态感知。"
+        ) { TapDragGestures_Screen(modifier) },
     )
 }
 
