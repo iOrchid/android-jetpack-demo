@@ -3,15 +3,21 @@ package org.zhiwei.compose.screen.gesture
 import android.icu.text.DecimalFormat
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.gestures.Orientation
 import androidx.compose.foundation.gestures.detectTransformGestures
+import androidx.compose.foundation.gestures.draggable
+import androidx.compose.foundation.gestures.rememberDraggableState
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.material.Switch
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -31,12 +37,14 @@ import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.IntOffset
 import androidx.compose.ui.unit.dp
 import org.zhiwei.compose.R
 import org.zhiwei.compose.ui.widget.Title_Desc_Text
 import org.zhiwei.compose.ui.widget.Title_Sub_Text
 import org.zhiwei.compose.ui.widget.Title_Text
 import kotlin.math.cos
+import kotlin.math.roundToInt
 import kotlin.math.sin
 
 /**
@@ -53,8 +61,47 @@ internal fun TransformGestures_Screen(modifier: Modifier = Modifier) {
         Title_Sub_Text(title = "1. 通过pointInput的detectTransformGestures操作符，Transform操作可执行平移、缩放、旋转，边界约束的等。")
         UI_TransformGestures()
         Title_Desc_Text(desc = "也可以通过onGesture的内部参数，根据需要，来限定平移边界，缩放边界等各类业务操作。")
+        Title_Desc_Text(
+            desc = "pointInput内还有一些其他感知交互手势的操作函数，以及不同交互方式还有内部的子函数。也可以多个pointInput不同key组合，多重手势交互。" +
+                    "可根据业务自行定义，比如detectTapGestures，awaitEachGesture，awaitFirstDown等。可查看源码学习实现方式。"
+        )
+
+        Title_Sub_Text(title = "2.通过draggable操作符实现拖动操作。")
+
+        var orientation by remember { mutableStateOf(Orientation.Horizontal) }
+        var offsetX by remember(orientation) { mutableFloatStateOf(0f) }
+        var offsetY by remember(orientation) { mutableFloatStateOf(0f) }
+        val state = if (orientation == Orientation.Horizontal) {
+            rememberDraggableState { delta ->
+                offsetX += delta
+            }
+        } else {
+            rememberDraggableState { delta ->
+                offsetY += delta
+            }
+        }
+        Title_Desc_Text(desc = "切换拖拽方向")
+        Switch(checked = orientation == Orientation.Horizontal, onCheckedChange = { selected ->
+            orientation = if (selected) Orientation.Horizontal else Orientation.Vertical
+        })
+        //因为在column中可滚动的，所以有事件冲突。
+        Box(
+            modifier = Modifier
+                .fillMaxWidth()
+                .height(200.dp)
+        ) {
+            Text(text = "拽我", Modifier
+                //offset实际触发变动
+                .offset { IntOffset(offsetX.roundToInt(), offsetY.roundToInt()) }
+                //draggable感知拖拽
+                .size(50.dp)
+                .background(Color.Blue)
+                .draggable(state, orientation))
+        }
     }
+
 }
+
 
 @Composable
 private fun UI_TransformGestures() {
