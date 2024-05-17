@@ -18,6 +18,7 @@ import org.zhiwei.compose.screen.basic.material3.TopAppbarTabs_Screen
 import org.zhiwei.compose.screen.basic.material3.Widget_Screen
 import org.zhiwei.compose.screen.gesture.Clickable_Screen
 import org.zhiwei.compose.screen.gesture.TapDragGestures_Screen
+import org.zhiwei.compose.screen.gesture.TransformGestures_Screen
 import org.zhiwei.compose.screen.layout_state.ConstraintLayout_Screen
 import org.zhiwei.compose.screen.layout_state.Constraints_Screen
 import org.zhiwei.compose.screen.layout_state.CustomModifier_Screen
@@ -168,6 +169,10 @@ internal object GestureScreenUIs {
             "Tap&Drag Gestures",
             "点击与拖拽事件的监测与状态感知。"
         ) { TapDragGestures_Screen(modifier) },
+        CourseItemModel(
+            "Transforms",
+            "对控件元素的转换操作，包括平移、缩放、旋转等。"
+        ) { TransformGestures_Screen(modifier) },
     )
 }
 
