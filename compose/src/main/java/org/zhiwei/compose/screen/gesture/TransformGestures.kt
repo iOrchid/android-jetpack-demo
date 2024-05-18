@@ -17,7 +17,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
-import androidx.compose.material.Switch
+import androidx.compose.material3.Switch
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -68,38 +68,44 @@ internal fun TransformGestures_Screen(modifier: Modifier = Modifier) {
 
         Title_Sub_Text(title = "2.通过draggable操作符实现拖动操作。")
 
-        var orientation by remember { mutableStateOf(Orientation.Horizontal) }
-        var offsetX by remember(orientation) { mutableFloatStateOf(0f) }
-        var offsetY by remember(orientation) { mutableFloatStateOf(0f) }
-        val state = if (orientation == Orientation.Horizontal) {
-            rememberDraggableState { delta ->
-                offsetX += delta
-            }
-        } else {
-            rememberDraggableState { delta ->
-                offsetY += delta
-            }
-        }
-        Title_Desc_Text(desc = "切换拖拽方向")
-        Switch(checked = orientation == Orientation.Horizontal, onCheckedChange = { selected ->
-            orientation = if (selected) Orientation.Horizontal else Orientation.Vertical
-        })
-        //因为在column中可滚动的，所以有事件冲突。
-        Box(
-            modifier = Modifier
-                .fillMaxWidth()
-                .height(200.dp)
-        ) {
-            Text(text = "拽我", Modifier
-                //offset实际触发变动
-                .offset { IntOffset(offsetX.roundToInt(), offsetY.roundToInt()) }
-                //draggable感知拖拽
-                .size(50.dp)
-                .background(Color.Blue)
-                .draggable(state, orientation))
-        }
+        UI_Draggable()
     }
 
+}
+
+@Composable
+private fun UI_Draggable() {
+    var orientation by remember { mutableStateOf(Orientation.Horizontal) }
+    var offsetX by remember(orientation) { mutableFloatStateOf(0f) }
+    var offsetY by remember(orientation) { mutableFloatStateOf(0f) }
+    val state = if (orientation == Orientation.Horizontal) {
+        rememberDraggableState { delta ->
+            offsetX += delta
+        }
+    } else {
+        rememberDraggableState { delta ->
+            offsetY += delta
+        }
+    }
+    Title_Desc_Text(desc = "切换拖拽方向")
+    Switch(checked = orientation == Orientation.Horizontal, onCheckedChange = { selected ->
+        orientation = if (selected) Orientation.Horizontal else Orientation.Vertical
+    })
+    //因为在column中可滚动的，所以有事件冲突。
+    Box(
+        modifier = Modifier
+            .fillMaxWidth()
+            .height(200.dp)
+    ) {
+        //由于 Modifer 是链式执行，此时 offset 必需在 draggable 与 background 前面。
+        Text(text = "拽我", Modifier
+            //offset实际触发变动
+            .offset { IntOffset(offsetX.roundToInt(), offsetY.roundToInt()) }
+            //draggable感知拖拽
+            .size(50.dp)
+            .background(Color.Blue)
+            .draggable(state, orientation))
+    }
 }
 
 
