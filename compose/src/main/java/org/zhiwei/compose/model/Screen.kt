@@ -19,6 +19,7 @@ import org.zhiwei.compose.screen.basic.material3.Widget_Screen
 import org.zhiwei.compose.screen.gesture.Clickable_Screen
 import org.zhiwei.compose.screen.gesture.SwipeScroll_Screen
 import org.zhiwei.compose.screen.gesture.TapDragGestures_Screen
+import org.zhiwei.compose.screen.gesture.TouchImage_Screen
 import org.zhiwei.compose.screen.gesture.TransformGestures_Screen
 import org.zhiwei.compose.screen.layout_state.ConstraintLayout_Screen
 import org.zhiwei.compose.screen.layout_state.Constraints_Screen
@@ -178,6 +179,10 @@ internal object GestureScreenUIs {
             "SwipeScrollable",
             "Modifier的一些其他操作手势，侧滑，滚动等。"
         ) { SwipeScroll_Screen(modifier) },
+        CourseItemModel(
+            "TouchOnImage",
+            "从图片的点击位置，获取触控点的颜色。"
+        ) { TouchImage_Screen(modifier) },
     )
 }
 

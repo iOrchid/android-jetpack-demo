@@ -7,6 +7,8 @@ import androidx.compose.foundation.gestures.AnchoredDraggableState
 import androidx.compose.foundation.gestures.DraggableAnchors
 import androidx.compose.foundation.gestures.Orientation
 import androidx.compose.foundation.gestures.anchoredDraggable
+import androidx.compose.foundation.gestures.rememberScrollableState
+import androidx.compose.foundation.gestures.scrollable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.BoxWithConstraints
 import androidx.compose.foundation.layout.Column
@@ -16,9 +18,12 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.offset
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.FractionalThreshold
 import androidx.compose.material.Slider
@@ -26,11 +31,13 @@ import androidx.compose.material.SwipeProgress
 import androidx.compose.material.Text
 import androidx.compose.material.rememberSwipeableState
 import androidx.compose.material.swipeable
+import androidx.compose.material3.Button
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.SideEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableFloatStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -39,6 +46,8 @@ import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.IntOffset
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
+import kotlinx.coroutines.launch
 import org.zhiwei.compose.ui.widget.Title_Desc_Text
 import org.zhiwei.compose.ui.widget.Title_Sub_Text
 import org.zhiwei.compose.ui.widget.Title_Text
@@ -54,13 +63,24 @@ import kotlin.math.roundToInt
  */
 @Composable
 internal fun SwipeScroll_Screen(modifier: Modifier = Modifier) {
-    Column(modifier.fillMaxSize()) {
+    Column(
+        modifier
+            .fillMaxSize()
+            .verticalScroll(rememberScrollState())
+    ) {
         Title_Text(title = "Swipeable")
         Title_Sub_Text(title = "1. 侧滑事件的简单实现，swipeable操作符，以及替代方式的演示。")
         Title_Desc_Text(desc = "swipeable的使用,设置fraction的位置不同，滑动切换的临界点就不一样。")
         UI_Swipeable()
         Title_Desc_Text(desc = "替代swipeable，使用推荐的新的api，AnchoredDraggable实现相同效果。")
         UI_AnchoredDraggable()
+        Title_Sub_Text(title = "2. 使用Modifier的滑动相关的操作符。")
+        Title_Desc_Text(desc = "scrollable滑动操作符的使用,简单看一下滚动状态和偏移量变化。")
+        ScrollableModifierSample()
+        Title_Desc_Text(desc = "scrollable操作符的scrollable的state可以控制滑动的位置。")
+        ScrollExample()
+        //滚动可以嵌套，还有水平，竖直滑动的单独操作符函数。
+
     }
 }
 
@@ -143,7 +163,7 @@ private fun UI_Swipeable() {
 }
 
 //使用AnchoredDraggable代替swipeable实现侧滑效果
-@OptIn(ExperimentalMaterialApi::class, ExperimentalFoundationApi::class)
+@OptIn(ExperimentalFoundationApi::class)
 @Composable
 private fun UI_AnchoredDraggable() {
     var fraction by remember { mutableFloatStateOf(0.3f) }
@@ -204,7 +224,75 @@ private fun UI_AnchoredDraggable() {
     }
 }
 
-private enum class DragValue { Start, Center, End }
+@Composable
+private fun ScrollableModifierSample() {
+    var offset by remember { mutableFloatStateOf(0f) }
+    Box(
+        Modifier
+            .fillMaxWidth()
+            .height(200.dp)
+            .scrollable(
+                orientation = Orientation.Vertical,
+                state = rememberScrollableState { delta ->
+                    offset += delta
+                    delta
+                }
+            )
+            .background(Color.LightGray),
+        contentAlignment = Alignment.Center
+    ) {
+        Text(offset.toString())
+    }
+}
+
+@Composable
+private fun ScrollExample() {
+
+    Column(modifier = Modifier
+        .fillMaxWidth()
+        .height(400.dp)) {
+        val coroutineScope = rememberCoroutineScope()
+
+        // Smoothly scroll 100px on first composition
+        val state = rememberScrollState()
+
+        Column(
+            modifier = Modifier
+                .background(Color.LightGray)
+                .fillMaxWidth()
+                .weight(1f)
+                .padding(horizontal = 8.dp)
+                .verticalScroll(state)
+        ) {
+            repeat(30) {
+                Text("Item $it", modifier = Modifier.padding(2.dp), fontSize = 20.sp)
+            }
+        }
+
+        Button(
+            modifier = Modifier.fillMaxWidth(),
+            onClick = {
+                coroutineScope.launch {
+                    state.animateScrollTo(100)
+                }
+            }
+        ) {
+            Text(text = "Smooth Scroll to top")
+        }
+
+
+        Button(
+            modifier = Modifier.fillMaxWidth(),
+            onClick = {
+                coroutineScope.launch {
+                    state.scrollTo(100)
+                }
+            }) {
+            Text(text = "Scroll to top")
+        }
+    }
+}
+
 
 
 @Preview
