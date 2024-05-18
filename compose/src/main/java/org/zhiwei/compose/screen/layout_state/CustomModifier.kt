@@ -172,6 +172,7 @@ private fun UI_CustomModifier() {
                     .nonComposedBackground(160.dp, 30.dp)
                     .width(150.dp)
             ) {
+                //注意⚠️：compose的好多组件可能会有自己作用域内的扩展函数，比如Box内就有Modifier的matchParentSize
                 Text(text = "重组Recomposed:${counter.intValue}", color = Color.White)
             }
             Box(
