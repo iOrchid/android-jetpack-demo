@@ -15,6 +15,8 @@ import androidx.compose.material3.Slider
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableFloatStateOf
+import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
@@ -559,8 +561,8 @@ private fun UI_Points() {
 private fun UI_Arc() {
     Title_Sub_Text("2. Draw Arc 绘制扇形，弦切弧，圆环，以及扇形扫览。")
     Title_Desc_Text(desc = "绘制扇形，圆弧，切面")
-    var startAngle by remember { mutableStateOf(0f) }
-    var sweepAngle by remember { mutableStateOf(60f) }
+    var startAngle by remember { mutableFloatStateOf(0f) }
+    var sweepAngle by remember { mutableFloatStateOf(60f) }
     var useCenter by remember { mutableStateOf(true) }
     //canvas绘制区域
     Canvas(modifier = canvasModifier2) {
@@ -650,15 +652,15 @@ private fun UI_Image() {
         drawImage(bitmap)
     }
 
-    var srcOffsetX by remember { mutableStateOf(0) }
-    var srcOffsetY by remember { mutableStateOf(0) }
-    var srcWidth by remember { mutableStateOf(1080) }
-    var srcHeight by remember { mutableStateOf(1080) }
+    var srcOffsetX by remember { mutableIntStateOf(0) }
+    var srcOffsetY by remember { mutableIntStateOf(0) }
+    var srcWidth by remember { mutableIntStateOf(1080) }
+    var srcHeight by remember { mutableIntStateOf(1080) }
 
-    var dstOffsetX by remember { mutableStateOf(0) }
-    var dstOffsetY by remember { mutableStateOf(0) }
-    var dstWidth by remember { mutableStateOf(1080) }
-    var dstHeight by remember { mutableStateOf(1080) }
+    var dstOffsetX by remember { mutableIntStateOf(0) }
+    var dstOffsetY by remember { mutableIntStateOf(0) }
+    var dstWidth by remember { mutableIntStateOf(1080) }
+    var dstHeight by remember { mutableIntStateOf(1080) }
 
     Canvas(modifier = canvasModifier) {
         drawImage(
