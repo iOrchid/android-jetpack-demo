@@ -21,6 +21,7 @@ import org.zhiwei.compose.screen.gesture.SwipeScroll_Screen
 import org.zhiwei.compose.screen.gesture.TapDragGestures_Screen
 import org.zhiwei.compose.screen.gesture.TouchImage_Screen
 import org.zhiwei.compose.screen.gesture.TransformGestures_Screen
+import org.zhiwei.compose.screen.graphics.CanvasBasic_Screen
 import org.zhiwei.compose.screen.layout_state.ConstraintLayout_Screen
 import org.zhiwei.compose.screen.layout_state.Constraints_Screen
 import org.zhiwei.compose.screen.layout_state.CustomModifier_Screen
@@ -39,6 +40,7 @@ internal fun configPageRoute(modifier: Modifier, onBack: (() -> Unit) = {}): Lis
     list.addAll(BasicScreenUIs.basicCourses(modifier, onBack))
     list.addAll(LayoutStateScreenUIs.layoutCourses(modifier))
     list.addAll(GestureScreenUIs.layoutCourses(modifier))
+    list.addAll(GraphicsScreenUIs.layoutCourses(modifier))
     return list
 }
 
@@ -183,6 +185,21 @@ internal object GestureScreenUIs {
             "TouchOnImage",
             "从图片的点击位置，获取触控点的颜色。"
         ) { TouchImage_Screen(modifier) },
+    )
+}
+
+//endregion
+
+
+//region canvas 图像图形相关
+
+internal object GraphicsScreenUIs {
+
+    internal fun layoutCourses(modifier: Modifier = Modifier) = listOf(
+        CourseItemModel(
+            "CanvasBasic",
+            "图像图形中最重要的概念，canvas画布，此处演示最基本的使用，绘制点线面和图片。"
+        ) { CanvasBasic_Screen(modifier) },
     )
 }
 
