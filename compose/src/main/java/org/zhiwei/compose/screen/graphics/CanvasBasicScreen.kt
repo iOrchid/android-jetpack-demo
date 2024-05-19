@@ -3,13 +3,22 @@ package org.zhiwei.compose.screen.graphics
 import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.material3.Checkbox
+import androidx.compose.material3.Slider
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.geometry.CornerRadius
@@ -18,6 +27,8 @@ import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.graphics.BlendMode
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.FilterQuality
+import androidx.compose.ui.graphics.ImageBitmap
 import androidx.compose.ui.graphics.Path
 import androidx.compose.ui.graphics.PathEffect
 import androidx.compose.ui.graphics.PointMode
@@ -28,11 +39,16 @@ import androidx.compose.ui.graphics.TileMode
 import androidx.compose.ui.graphics.drawscope.Fill
 import androidx.compose.ui.graphics.drawscope.Stroke
 import androidx.compose.ui.graphics.nativeCanvas
+import androidx.compose.ui.res.imageResource
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.IntOffset
+import androidx.compose.ui.unit.IntSize
 import androidx.compose.ui.unit.dp
+import org.zhiwei.compose.R
 import org.zhiwei.compose.ui.widget.Title_Desc_Text
 import org.zhiwei.compose.ui.widget.Title_Sub_Text
 import org.zhiwei.compose.ui.widget.Title_Text
+import kotlin.math.roundToInt
 import kotlin.math.sin
 
 /**
@@ -58,6 +74,8 @@ internal fun CanvasBasic_Screen(modifier: Modifier = Modifier) {
         UI_Rectangle()
         Title_Desc_Text(desc = "点的绘制，主要的是点数据。也会有渐变色的设置。PointMode.Points是关键。")
         UI_Points()
+        UI_Arc()
+        UI_Image()
     }
 }
 
@@ -536,6 +554,180 @@ private fun UI_Points() {
         )
     }
 }
+
+@Composable
+private fun UI_Arc() {
+    Title_Sub_Text("2. Draw Arc 绘制扇形，弦切弧，圆环，以及扇形扫览。")
+    Title_Desc_Text(desc = "绘制扇形，圆弧，切面")
+    var startAngle by remember { mutableStateOf(0f) }
+    var sweepAngle by remember { mutableStateOf(60f) }
+    var useCenter by remember { mutableStateOf(true) }
+    //canvas绘制区域
+    Canvas(modifier = canvasModifier2) {
+        val canvasWidth = size.width
+        val canvasHeight = size.height
+
+        drawArc(
+            //同样，渐变色或颜色是作用于整个图形
+            brush = Brush.sweepGradient(
+                colors = listOf(
+                    Color.Green,
+                    Color.Red,
+                    Color.Blue,
+                    Color.Yellow,
+                    Color.Magenta
+                ),
+                center = Offset(canvasWidth / 2, canvasHeight / 2)
+            ),
+            startAngle,//开始绘制的点所在的圆角的角度值
+            sweepAngle,//绘制终点的所在的圆角角度值
+            useCenter,//标记是否从圆心出发的扇形，true包含圆心点，false的话，就是弦切弧的图形。
+            topLeft = Offset((canvasWidth - canvasHeight) / 2, 0f),
+            size = Size(canvasHeight, canvasHeight)
+        )
+    }
+    Canvas(modifier = canvasModifier2) {
+        val canvasWidth = size.width
+        val canvasHeight = size.height
+
+        drawArc(
+            //同样，渐变色或颜色是作用于整个图形
+            brush = Brush.sweepGradient(
+                colors = listOf(
+                    Color.Green,
+                    Color.Red,
+                    Color.Blue,
+                    Color.Yellow,
+                    Color.Magenta
+                ),
+                center = Offset(canvasWidth / 2, canvasHeight / 2)
+            ),
+            startAngle,//开始绘制的点所在的圆角的角度值
+            sweepAngle,//绘制终点的所在的圆角角度值
+            useCenter,//标记是否从圆心出发的扇形，true包含圆心点，false的话，就是弦切弧的图形。
+            topLeft = Offset((canvasWidth - canvasHeight) / 2, 0f),
+            size = Size(canvasHeight, canvasHeight),
+            style = Stroke(10f),//这里就类似上面了，可以配置不同的虚实点线样式
+        )
+    }
+    //动态控制起始角，和扇形的覆盖范围。
+    Column(modifier = Modifier.padding(horizontal = 20.dp)) {
+        Text(text = "扇形开始位置角度 ${startAngle.roundToInt()}")
+        Slider(
+            value = startAngle,
+            onValueChange = { startAngle = it },
+            valueRange = 0f..360f,
+        )
+
+        Text(text = "扇面覆盖角度 ${sweepAngle.roundToInt()}")
+        Slider(
+            value = sweepAngle,
+            onValueChange = { sweepAngle = it },
+            valueRange = 0f..360f,
+        )
+        //是否包含圆心点
+        Row(verticalAlignment = Alignment.CenterVertically) {
+            Checkbox(checked = useCenter, onCheckedChange = { useCenter = it })
+            Text(text = "是否包含圆心")
+        }
+    }
+}
+
+@Composable
+private fun UI_Image() {
+    Title_Sub_Text(title = "3. DrawImage")
+    Title_Desc_Text(desc = "canvas的绘制image操作函数。")
+
+    val canvasModifier = Modifier
+        .padding(8.dp)
+        .shadow(1.dp)
+        .background(Color.White)
+        .fillMaxWidth()
+        .height(200.dp)
+
+    val bitmap = ImageBitmap.imageResource(R.drawable.sexy_girl)
+    Canvas(modifier = canvasModifier) {
+        drawImage(bitmap)
+    }
+
+    var srcOffsetX by remember { mutableStateOf(0) }
+    var srcOffsetY by remember { mutableStateOf(0) }
+    var srcWidth by remember { mutableStateOf(1080) }
+    var srcHeight by remember { mutableStateOf(1080) }
+
+    var dstOffsetX by remember { mutableStateOf(0) }
+    var dstOffsetY by remember { mutableStateOf(0) }
+    var dstWidth by remember { mutableStateOf(1080) }
+    var dstHeight by remember { mutableStateOf(1080) }
+
+    Canvas(modifier = canvasModifier) {
+        drawImage(
+            image = bitmap,
+            srcOffset = IntOffset(srcOffsetX, srcOffsetY),
+            srcSize = IntSize(srcWidth, srcHeight),
+            dstOffset = IntOffset(dstOffsetX, dstOffsetY),
+            dstSize = IntSize(dstWidth, dstHeight),
+            filterQuality = FilterQuality.High
+        )
+    }
+    Column(modifier = Modifier.padding(horizontal = 20.dp)) {
+        Text(text = "srcOffsetX $srcOffsetX")
+        Slider(
+            value = srcOffsetX.toFloat(),
+            onValueChange = { srcOffsetX = it.toInt() },
+            valueRange = -540f..540f,
+        )
+
+        Text(text = "srcOffsetY $srcOffsetY")
+        Slider(
+            value = srcOffsetY.toFloat(),
+            onValueChange = { srcOffsetY = it.toInt() },
+            valueRange = -540f..540f,
+        )
+        Text(text = "srcWidth $srcWidth")
+        Slider(
+            value = srcWidth.toFloat(),
+            onValueChange = { srcWidth = it.toInt() },
+            valueRange = 0f..1080f,
+        )
+
+        Text(text = "srcHeight $srcHeight")
+        Slider(
+            value = srcHeight.toFloat(),
+            onValueChange = { srcHeight = it.toInt() },
+            valueRange = 0f..1080f,
+        )
+
+
+        Text(text = "dstOffsetX $dstOffsetX")
+        Slider(
+            value = dstOffsetX.toFloat(),
+            onValueChange = { dstOffsetX = it.toInt() },
+            valueRange = -540f..540f,
+        )
+
+        Text(text = "dstOffsetY $dstOffsetY")
+        Slider(
+            value = dstOffsetY.toFloat(),
+            onValueChange = { dstOffsetY = it.toInt() },
+            valueRange = -540f..540f,
+        )
+        Text(text = "dstWidth $dstWidth")
+        Slider(
+            value = dstWidth.toFloat(),
+            onValueChange = { dstWidth = it.toInt() },
+            valueRange = 0f..1080f,
+        )
+
+        Text(text = "dstHeight $dstHeight")
+        Slider(
+            value = dstHeight.toFloat(),
+            onValueChange = { dstHeight = it.toInt() },
+            valueRange = 0f..1080f,
+        )
+    }
+}
+
 
 //定义一个函数，用于创建一堆点数据，这里是按照sin曲线的路径生成的点数据
 private fun getSinusoidalPoints(size: Size, horizontalOffset: Float = 0f): MutableList<Offset> {
