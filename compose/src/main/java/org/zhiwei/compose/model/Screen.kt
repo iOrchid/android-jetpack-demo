@@ -22,6 +22,7 @@ import org.zhiwei.compose.screen.gesture.TapDragGestures_Screen
 import org.zhiwei.compose.screen.gesture.TouchImage_Screen
 import org.zhiwei.compose.screen.gesture.TransformGestures_Screen
 import org.zhiwei.compose.screen.graphics.CanvasBasic_Screen
+import org.zhiwei.compose.screen.graphics.CanvasPathOperations_Screen
 import org.zhiwei.compose.screen.graphics.CanvasPath_Screen
 import org.zhiwei.compose.screen.layout_state.ConstraintLayout_Screen
 import org.zhiwei.compose.screen.layout_state.Constraints_Screen
@@ -202,8 +203,12 @@ internal object GraphicsScreenUIs {
         ) { CanvasBasic_Screen(modifier) },
         CourseItemModel(
             "CanvasPath",
-            "canvas也可以用于绘制不规则图形，根据path路径的设置，还可以应用不同的线条风格，以及Blend层叠交集方式。"
+            "canvas也可以用于绘制不规则图形，根据path路径的设置，还可以应用不同的线条风格。"
         ) { CanvasPath_Screen(modifier) },
+        CourseItemModel(
+            "CanvasPathOps",
+            "canvas绘制path，不同的图形使用交互方式不同，表现层叠交集效果。"
+        ) { CanvasPathOperations_Screen(modifier) },
     )
 }
 
