@@ -15,11 +15,8 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.DropdownMenuItem
 import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.ExposedDropdownMenuBox
-import androidx.compose.material.ExposedDropdownMenuDefaults
-import androidx.compose.material.TextField
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.BorderColor
 import androidx.compose.material.icons.filled.Brush
@@ -27,12 +24,15 @@ import androidx.compose.material.icons.filled.ColorLens
 import androidx.compose.material.icons.filled.TouchApp
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.ExposedDropdownMenuDefaults
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.Slider
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
+import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableFloatStateOf
@@ -77,7 +77,7 @@ fun ExposedSelectionMenu(
 
     var expanded by remember { mutableStateOf(false) }
     var selectedOptionText by remember { mutableStateOf(options[index]) }
-
+    //目前material3的ExposedDropdownMenuBox使用有Bug无法弹窗，所以暂时用material 1.6.7的
     ExposedDropdownMenuBox(
         expanded = expanded,
         onExpandedChange = { expanded = expanded.not() },
@@ -86,23 +86,17 @@ fun ExposedSelectionMenu(
             .padding(vertical = 4.dp),
     ) {
         TextField(
+            value = selectedOptionText,
+            onValueChange = {},
             modifier = Modifier.fillMaxWidth(),
             readOnly = true,
-            value = selectedOptionText,
-            onValueChange = { },
-            label = { Text(title) },
             trailingIcon = {
                 ExposedDropdownMenuDefaults.TrailingIcon(
                     expanded = expanded
                 )
             },
-            colors = ExposedDropdownMenuDefaults.textFieldColors(
-                backgroundColor = Color.White,
-                focusedIndicatorColor = Color.Transparent,
-                unfocusedIndicatorColor = Color.Transparent,
-                disabledIndicatorColor = Color.Transparent,
-            )
         )
+
         ExposedDropdownMenu(
             expanded = expanded,
             onDismissRequest = { expanded = false },
@@ -110,15 +104,14 @@ fun ExposedSelectionMenu(
         ) {
             options.forEachIndexed { index: Int, selectionOption: String ->
                 DropdownMenuItem(
+                    text = { Text(text = selectionOption) },
                     onClick = {
                         selectedOptionText = selectionOption
                         expanded = false
                         onSelected(index)
                     },
                     modifier = Modifier.fillMaxWidth(),
-                ) {
-                    Text(text = selectionOption)
-                }
+                )
             }
         }
     }
