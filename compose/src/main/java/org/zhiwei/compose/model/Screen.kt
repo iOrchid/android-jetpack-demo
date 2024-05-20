@@ -22,6 +22,7 @@ import org.zhiwei.compose.screen.gesture.TapDragGestures_Screen
 import org.zhiwei.compose.screen.gesture.TouchImage_Screen
 import org.zhiwei.compose.screen.gesture.TransformGestures_Screen
 import org.zhiwei.compose.screen.graphics.CanvasBasic_Screen
+import org.zhiwei.compose.screen.graphics.CanvasPath_Screen
 import org.zhiwei.compose.screen.layout_state.ConstraintLayout_Screen
 import org.zhiwei.compose.screen.layout_state.Constraints_Screen
 import org.zhiwei.compose.screen.layout_state.CustomModifier_Screen
@@ -190,7 +191,6 @@ internal object GestureScreenUIs {
 
 //endregion
 
-
 //region canvas 图像图形相关
 
 internal object GraphicsScreenUIs {
@@ -200,6 +200,10 @@ internal object GraphicsScreenUIs {
             "CanvasBasic",
             "图像图形中最重要的概念，canvas画布，此处演示最基本的使用，绘制点线面和图片。"
         ) { CanvasBasic_Screen(modifier) },
+        CourseItemModel(
+            "CanvasPath",
+            "canvas也可以用于绘制不规则图形，根据path路径的设置，还可以应用不同的线条风格，以及Blend层叠交集方式。"
+        ) { CanvasPath_Screen(modifier) },
     )
 }
 
