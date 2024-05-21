@@ -21,10 +21,12 @@ import org.zhiwei.compose.screen.gesture.SwipeScroll_Screen
 import org.zhiwei.compose.screen.gesture.TapDragGestures_Screen
 import org.zhiwei.compose.screen.gesture.TouchImage_Screen
 import org.zhiwei.compose.screen.gesture.TransformGestures_Screen
+import org.zhiwei.compose.screen.graphics.BlendMode_Screen
 import org.zhiwei.compose.screen.graphics.CanvasBasic_Screen
 import org.zhiwei.compose.screen.graphics.CanvasPathEffect_Screen
 import org.zhiwei.compose.screen.graphics.CanvasPathOperations_Screen
 import org.zhiwei.compose.screen.graphics.CanvasPath_Screen
+import org.zhiwei.compose.screen.graphics.MultiColorDrawable_Screen
 import org.zhiwei.compose.screen.layout_state.ConstraintLayout_Screen
 import org.zhiwei.compose.screen.layout_state.Constraints_Screen
 import org.zhiwei.compose.screen.layout_state.CustomModifier_Screen
@@ -214,6 +216,14 @@ internal object GraphicsScreenUIs {
             "CanvasPathEffect",
             "canvas绘制path的时候，可以设置不同的pathEffect效果。"
         ) { CanvasPathEffect_Screen(modifier) },
+        CourseItemModel(
+            "BlendMode",
+            "blendMode是用于图形/图像层叠交互的时候，确定融合与剪切后的显示效果。"
+        ) { BlendMode_Screen(modifier) },
+        CourseItemModel(
+            "MultiColorDrawable",
+            "演示图形blendMode多色混合的模式效果。"
+        ) { MultiColorDrawable_Screen(modifier) },
     )
 }
 
