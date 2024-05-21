@@ -22,6 +22,7 @@ import org.zhiwei.compose.screen.gesture.TapDragGestures_Screen
 import org.zhiwei.compose.screen.gesture.TouchImage_Screen
 import org.zhiwei.compose.screen.gesture.TransformGestures_Screen
 import org.zhiwei.compose.screen.graphics.CanvasBasic_Screen
+import org.zhiwei.compose.screen.graphics.CanvasPathEffect_Screen
 import org.zhiwei.compose.screen.graphics.CanvasPathOperations_Screen
 import org.zhiwei.compose.screen.graphics.CanvasPath_Screen
 import org.zhiwei.compose.screen.layout_state.ConstraintLayout_Screen
@@ -209,6 +210,10 @@ internal object GraphicsScreenUIs {
             "CanvasPathOps",
             "canvas绘制path，不同的图形使用交互方式不同，表现层叠交集效果。"
         ) { CanvasPathOperations_Screen(modifier) },
+        CourseItemModel(
+            "CanvasPathEffect",
+            "canvas绘制path的时候，可以设置不同的pathEffect效果。"
+        ) { CanvasPathEffect_Screen(modifier) },
     )
 }
 
