@@ -21,12 +21,18 @@ import org.zhiwei.compose.screen.gesture.SwipeScroll_Screen
 import org.zhiwei.compose.screen.gesture.TapDragGestures_Screen
 import org.zhiwei.compose.screen.gesture.TouchImage_Screen
 import org.zhiwei.compose.screen.gesture.TransformGestures_Screen
+import org.zhiwei.compose.screen.graphics.BeforeAfterScreen
 import org.zhiwei.compose.screen.graphics.BlendMode_Screen
 import org.zhiwei.compose.screen.graphics.CanvasBasic_Screen
 import org.zhiwei.compose.screen.graphics.CanvasPathEffect_Screen
 import org.zhiwei.compose.screen.graphics.CanvasPathOperations_Screen
 import org.zhiwei.compose.screen.graphics.CanvasPath_Screen
+import org.zhiwei.compose.screen.graphics.Chart_Screen
 import org.zhiwei.compose.screen.graphics.MultiColorDrawable_Screen
+import org.zhiwei.compose.screen.graphics.NeonGlowEffect_Screen
+import org.zhiwei.compose.screen.graphics.Others_Screen
+import org.zhiwei.compose.screen.graphics.RainbowBorder_Screen
+import org.zhiwei.compose.screen.graphics.ShimmerEffect_Screen
 import org.zhiwei.compose.screen.layout_state.ConstraintLayout_Screen
 import org.zhiwei.compose.screen.layout_state.Constraints_Screen
 import org.zhiwei.compose.screen.layout_state.CustomModifier_Screen
@@ -224,6 +230,30 @@ internal object GraphicsScreenUIs {
             "MultiColorDrawable",
             "演示图形blendMode多色混合的模式效果。"
         ) { MultiColorDrawable_Screen(modifier) },
+        CourseItemModel(
+            "ChartDemos",
+            "演示图表相关的绘制。"
+        ) { Chart_Screen(modifier) },
+        CourseItemModel(
+            "BeforeAfter",
+            "一个自动切换上下层变化的控件演示demo，变化前后是不同的控件。"
+        ) { BeforeAfterScreen(modifier) },
+        CourseItemModel(
+            "ShimmerEffect",
+            "演示shimmer加载效果的使用，区分同步加载和变化加载。"
+        ) { ShimmerEffect_Screen(modifier) },
+        CourseItemModel(
+            "RainbowBorder",
+            "演示七彩虹的渐变色的描边效果，并且可以动态滚动。"
+        ) { RainbowBorder_Screen(modifier) },
+        CourseItemModel(
+            "NeonGlowEffect",
+            "一种高斯模糊效果blur的实线方式。"
+        ) { NeonGlowEffect_Screen(modifier) },
+        CourseItemModel(
+            "OthersScreen",
+            "零散的其他一些效果演示，比如挖空、图片缩放、水滴融合效果等。"
+        ) { Others_Screen(modifier) },
     )
 }
 

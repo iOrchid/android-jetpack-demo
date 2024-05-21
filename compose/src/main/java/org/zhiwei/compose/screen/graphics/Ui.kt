@@ -766,3 +766,5 @@ fun CustomDialogWithResultExample(
         }
     }
 }
+
+val gradientColors = listOf(Color.Red, Color.Green, Color.Magenta, Color.Cyan, Color.Yellow)
