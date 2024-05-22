@@ -109,6 +109,4 @@ internal class CoroutinesFragment : Fragment() {
         }
     }
 
-    private val TAG = "测试"
-
 }

@@ -4,7 +4,7 @@
 # android official libs version
 activity-ktx = "1.9.0"
 appcompat = "1.6.1"
-android-gradle-plugin = "8.4.0"# Android Studio Gradle Plugin 版本号
+android-gradle-plugin = "8.4.1"# Android Studio Gradle Plugin 版本号
 constraintlayout = "2.1.4"
 core-ktx = "1.13.1"
 fragment-ktx = "1.7.0"

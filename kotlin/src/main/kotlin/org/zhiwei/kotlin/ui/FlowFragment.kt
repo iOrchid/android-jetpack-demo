@@ -36,8 +36,9 @@ internal class FlowFragment : Fragment() {
         }
         val launchIn = flow.launchIn(lifecycleScope)
         lifecycleScope.launch {
+            val textView = view.findViewById<TextView>(R.id.tv_text_ticker_flow_kotlin)
             flow.collect {
-                view.findViewById<TextView>(R.id.tv_text_ticker_flow_kotlin).text = it
+                textView.text = it
             }
         }
     }
