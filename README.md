@@ -31,12 +31,11 @@
 3. `compose`算是颠覆性或者**革命性**的Android
    UI的编写方式，说的可能有点夸张😝，但是这种组合式的UI写法和设计思想，真的很不一样，没有了臃肿感、倍儿清爽～。
 4. 其他`MVI/MVVM`和`jetpack`的组件，逐步会以简便功能形式添加。
-5. 项目断断停停的，工作精力所限，**希望可以动手给star/fork点个赞**👍，有什么问题想法和建议可以提**issue
-   **，谢谢，<font color="Green">**您的支持与鼓励，是我做项目的动力**</font>。
+5. 项目断断停停的，工作精力所限，**希望可以动手给star/fork点个赞**👍，有什么问题和建议可以提**issue**，谢谢，<font color="Green">**您的支持与鼓励，是我做项目的动力**</font>。
 
 #### 二、更新日志
 
-- **2.0.0(2024年3月14日) ing…**
+- **2.0.0(2024年5月22日) **
   
   - 全新架构设计模块化分组演示Jetpack重要组件的功能使用，以及MVI架构和组件化、项目构建等
   - 使用`compose`的`UI`框架
@@ -183,10 +182,8 @@ limitations under the License.
 
 [![Stargazers over time](https://starchart.cc/iOrchid/android-jetpack-demo.svg)](https://starchart.cc/iOrchid/android-jetpack-demo)
 
-[^1]: 为研究最新`Jetpack`组件的版本和特性，项目当前`(2024/05/06)`开发环境为**AndroidStudio Iguana
-** `2023.3.1`
+[^1]: 使用最新`Jetpack`组件的版本，项目`(2024/05/06)`开发环境为**AndroidStudio Iguana** `2023.3.1`
 [^2]: **项目使用`AS`及相关环境配置可能与你本地不同，**参照 [配置gradle](https://github.com/iOrchid/android-jetpack-demo/issues/3#issuecomment-840276571)
-[^3]: 参照`Compose`
-项目有[compose cookbook](https://github.com/Gurupreet/ComposeCookBook)，[compose tutorial](https://github.com/SmartToolFactory/Jetpack-Compose-Tutorials),[compose codelab](https://github.com/android/codelab-android-compose),[compose sample](https://github.com/android/compose-samples)
+[^3]: 参照`Compose`项目有[compose cookbook](https://github.com/Gurupreet/ComposeCookBook)，[compose tutorial](https://github.com/SmartToolFactory/Jetpack-Compose-Tutorials),[compose codelab](https://github.com/android/codelab-android-compose),[compose sample](https://github.com/android/compose-samples)
 致敬感谢.
 
