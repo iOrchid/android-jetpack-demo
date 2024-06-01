@@ -53,7 +53,7 @@ internal fun LazyListRc_Screen(modifier: Modifier) {
     ) {
 
         Title_Text(title = "LazyList Recomposition")
-        Title_Sub_Text(title = "列表的元素自身数据变化，会触发自己compose重组，滑动scroll或者数据变化也会触发重组。但是如果不特殊处理，即使列表内容数据为变化，整个外部UI变化数据，也可能引起list的整体重组，会造成资源消耗浪费。")
+        Title_Sub_Text(title = "列表的元素自身数据变化，会触发自己compose重组，滑动scroll或者数据变化也会触发重组。但是如果不特殊处理，即使列表内容数据未变化，整个外部UI变化数据，也可能引起list的整体重组，会造成资源消耗浪费。")
         val viewModel = MyViewModel()
         MainScreen(viewModel = viewModel)
     }
