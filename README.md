@@ -58,6 +58,7 @@
 #### 三、Sample示例
 
 ![gif](./docs/show/gif01.png)![gif](./docs/show/gif02.png)![gif](./docs/show/gif03.png)
+![pic flow](./docs/show/gif04.png)![pic flow](./docs/show/gif05.png)![pic flow](./docs/show/gif06.png)
 
 #### 四、项目组成[^1]
 
