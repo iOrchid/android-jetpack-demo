@@ -6,6 +6,8 @@ plugins {
     //用于替换kapt的，ksp插件实现注解处理；1，项目build.gradle中添加plugins
     alias(libs.plugins.ksp) apply false
     alias(libs.plugins.androidDynamicFeature) apply false
+    //compose kotlin 2.0开始插件plugin方式
+    alias(libs.plugins.compose.compiler) apply false
 }
 //为了navigation的safe args，添加如下方式
 buildscript {

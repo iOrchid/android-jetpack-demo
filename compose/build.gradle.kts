@@ -1,6 +1,7 @@
 plugins {
     alias(libs.plugins.androidDynamicFeature)
     alias(libs.plugins.org.jetbrains.kotlin.android)
+    id("org.jetbrains.kotlin.plugin.compose")
 }
 android {
     namespace = "org.zhiwei.compose"
@@ -31,8 +32,9 @@ android {
 
     buildFeatures { compose = true }
 
-    composeOptions {
-        kotlinCompilerExtensionVersion = libs.versions.composeCompiler.get()
+    //compose compiler 2.0使用plugin形式后，配置方式
+    composeCompiler {
+        enableStrongSkippingMode = true
     }
 
 }
@@ -67,6 +69,7 @@ dependencies {
 
     //图片加载库 compose版本的
     implementation(libs.coil.kt.compose)
+    implementation(libs.coil.kt.gif)
 
 
     //测试相关的库

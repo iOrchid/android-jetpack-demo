@@ -4,7 +4,7 @@
 # android official libs version
 activity-ktx = "1.9.0"
 appcompat = "1.6.1"
-android-gradle-plugin = "8.4.1"# Android Studio Gradle Plugin 版本号
+android-gradle-plugin = "8.4.2"# Android Studio Gradle Plugin 版本号
 constraintlayout = "2.1.4"
 core-ktx = "1.13.1"
 fragment-ktx = "1.7.0"
@@ -40,7 +40,7 @@ accompanist = "0.34.0"
 androidDesugarJdkLibs = "2.0.4"
 
 # Jetpack Components libs version
-lifecycle-ktx = "2.7.0"
+lifecycle-ktx = "2.8.0"
 navigation = "2.7.7"
 room-ktx = "2.6.1"
 paging-ktx = "3.2.1"
@@ -48,14 +48,12 @@ work-ktx = "2.9.0"
 
 # jetbrains official libs version
 coroutines = "1.8.0"
-kotlin = "1.9.23"
+kotlin = "2.0.0"
 kotlinxDatetime = "0.5.0"
 kotlinxSerializationJson = "1.6.3"
 # 此处版本号，ksp与kotlin版本号有对应关系 https://github.com/google/ksp/releases
-ksp = "1.9.23-1.0.20"
-# 此处是compose compiler版本号，和compose ui等版本不是一个概念，此版本号和kotlin版本号有适配对应关系
-# https://androidx.dev/storage/compose-compiler/repository
-composeCompiler = "1.5.13"
+ksp = "2.0.0-1.0.21"
+
 # 常用知名开源库
 blankj-utils = "1.31.1"
 coil = "2.6.0"
@@ -70,8 +68,8 @@ androidx-test-ext-junit = "1.1.5"
 espresso-core = "3.5.1"
 junit = "4.13.2"
 # 用于测试协程flow的test库
-turbine = "1.0.0"
-annotation = "1.7.1"
+turbine = "1.1.0"
+annotation = "1.8.0"
 #endregion
 
 # region 定义依赖库 🚀
@@ -168,6 +166,8 @@ kotlinx-serialization-json = { group = "org.jetbrains.kotlinx", name = "kotlinx-
 # 常用知名开源库
 blankj-utils = { group = "com.blankj", name = "utilcodex", version.ref = "blankj-utils" }
 coil-kt = { group = "io.coil-kt", name = "coil", version.ref = "coil" }
+coil-kt-gif = { group = "io.coil-kt", name = "coil-gif", version.ref = "coil" }
+coil-kt-video = { group = "io.coil-kt", name = "coil-video", version.ref = "coil" }
 coil-kt-svg = { group = "io.coil-kt", name = "coil-svg", version.ref = "coil" }
 coil-kt-compose = { group = "io.coil-kt", name = "coil-compose", version.ref = "coil" }
 gson = { module = "com.google.code.gson:gson", version.ref = "gson" }
@@ -194,10 +194,14 @@ androidx-annotation = { group = "androidx.annotation", name = "annotation", vers
 com-android-application = { id = "com.android.application", version.ref = "android-gradle-plugin" }
 com-android-library = { id = "com.android.library", version.ref = "android-gradle-plugin" }
 org-jetbrains-kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
+compose-compiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
+
 kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
 kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
 ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
 androidDynamicFeature = { id = "com.android.dynamic-feature", version.ref = "android-gradle-plugin" }
+
+
 # endregion
 
 #region 多个依赖库组成依赖包 🎒
