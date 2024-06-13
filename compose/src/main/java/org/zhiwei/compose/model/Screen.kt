@@ -17,6 +17,9 @@ import org.zhiwei.compose.screen.basic.material3.Text_Screen
 import org.zhiwei.compose.screen.basic.material3.TopAppbarTabs_Screen
 import org.zhiwei.compose.screen.basic.material3.Widget_Screen
 import org.zhiwei.compose.screen.gesture.Clickable_Screen
+import org.zhiwei.compose.screen.gesture.PhotoBanner_Screen
+import org.zhiwei.compose.screen.gesture.PhotoCarrousel_Screen
+import org.zhiwei.compose.screen.gesture.PhotoFlow_Screen
 import org.zhiwei.compose.screen.gesture.SwipeScroll_Screen
 import org.zhiwei.compose.screen.gesture.TapDragGestures_Screen
 import org.zhiwei.compose.screen.gesture.TouchImage_Screen
@@ -196,6 +199,18 @@ internal object GestureScreenUIs {
             "TouchOnImage",
             "从图片的点击位置，获取触控点的颜色。"
         ) { TouchImage_Screen(modifier) },
+        CourseItemModel(
+            "PhotosFlow",
+            "照片瀑布流动画效果，自定义compose组件的学习演示。"
+        ) { PhotoFlow_Screen(modifier) },
+        CourseItemModel(
+            "PhotosBanner",
+            "照片轮播，水平切换卡片。"
+        ) { PhotoBanner_Screen(modifier) },
+        CourseItemModel(
+            "PhotosCarrousel",
+            "自定义compose组件的学习演示,旋转木马🎠风格的卡片轮播。"
+        ) { PhotoCarrousel_Screen(modifier) },
     )
 }
 

@@ -1,5 +1,6 @@
 package org.zhiwei.compose
 
+import android.os.Build
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -12,6 +13,10 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
+import coil.Coil
+import coil.ImageLoader
+import coil.decode.GifDecoder
+import coil.decode.ImageDecoderDecoder
 import org.zhiwei.compose.screen.Home_Screen
 import org.zhiwei.compose.ui.theme.ComposeFeatureTheme
 
@@ -35,6 +40,16 @@ class ComposeActivity : ComponentActivity() {
                     )
                 }
             }
+            //配置coil可以加载动画gif，webp等
+            val imageLoader = ImageLoader.Builder(this)
+                .components {
+                    if (Build.VERSION.SDK_INT >= 28) {
+                        add(ImageDecoderDecoder.Factory())
+                    } else {
+                        add(GifDecoder.Factory())
+                    }
+                }.build()
+            Coil.setImageLoader(imageLoader)
         }
     }
 }
