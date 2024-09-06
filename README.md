@@ -21,6 +21,10 @@
   * [六、示例内容(部分）]()
   * [七、关于作者]()[![jianshu](./docs/images/jianshu.svg)](https://www.jianshu.com/u/72294e6848c0)[![github](./docs/images/github.svg)](https://github.com/iOrchid)[![csdn](./docs/images/csdn.svg)](https://blog.csdn.net/zhiwei9001)
 
+> 前言：业务时间用**Kotlin+Compose**写了一个项目，欢迎下载体验
+>
+> ![摩托mate](./docs/images/motomate.png)
+
 ####  一、项目简介
 
 学习主要以项目代码为准，主要分三个部分模块：
@@ -84,7 +88,6 @@
 
   按照页面顺序可逐步学习`compose`的使用，代码基本都有注释；**尤其注意⚠️带警示标记的注释，属于知识点。**
 
-  <img src="https://developer.android.google.cn/courses/jetpack-compose/images/course-logo.svg" alt="Compose Course" style="zoom:25%;" />
 
 在示例代码中会插入`MVI`和`MVVM`的架构实现。
 
