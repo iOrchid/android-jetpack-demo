@@ -9,7 +9,7 @@ import androidx.databinding.BindingConversion
 import androidx.databinding.InverseBindingAdapter
 import androidx.databinding.InverseBindingListener
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-import coil.load
+import coil3.load
 
 /**
  * 作者： 志威  zhiwei.org

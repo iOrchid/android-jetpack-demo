@@ -2,74 +2,73 @@
 
 [versions]
 # android official libs version
-activity-ktx = "1.9.0"
-appcompat = "1.6.1"
-android-gradle-plugin = "8.4.2"# Android Studio Gradle Plugin 版本号
-constraintlayout = "2.1.4"
-core-ktx = "1.13.1"
-fragment-ktx = "1.7.0"
+activity-ktx = "1.10.1"
+appcompat = "1.7.1"
+android-gradle-plugin = "8.11.1"# Android Studio Gradle Plugin 版本号
+constraintlayout = "2.2.0"
+core-ktx = "1.16.0"
+fragment-ktx = "1.8.5"
 material = "1.12.0"
-recyclerview = "1.3.2"
+recyclerview = "1.4.0"
 swiperefreshlayout = "1.1.0"
 
 # androidx 或 google 相关库
 biometric = "1.1.0"
 browser = "1.8.0"
-cameraX = "1.3.3"
-coreSplashscreen = "1.0.1"
-dataStore = "1.1.1"
+cameraX = "1.4.2"
+coreSplashscreen = "1.2.0-rc01"
+dataStore = "1.1.7"
 drawerlayout = "1.2.0"
-emoji2 = "1.4.0"
-exifinterface = "1.3.7"
+emoji2 = "1.5.0"
+exifinterface = "1.4.1"
 metrics = "1.0.0-beta01"
 preference = "1.2.1"
-profileinstaller = "1.3.1"
-startup = "1.1.1"
-tracing = "1.2.0"
-webkit = "1.11.0"
+profileinstaller = "1.4.1"
+startup = "1.2.0"
+tracing = "1.3.0"
+webkit = "1.14.0"
 
 # compose
-
-androidxComposeBom = "2024.05.00"
-androidxComposeUI = "1.6.7"
-androidxComposeRuntimeTracing = "1.0.0-beta01"
-androidxComposeConstraintlayout = "1.0.1"
+androidxComposeBom = "2025.06.01"
+androidxComposeUI = "1.8.3"
+androidxComposeRuntimeTracing = "1.7.6"
+androidxComposeConstraintlayout = "1.1.1"
 
 # google android助理库
-accompanist = "0.34.0"
-androidDesugarJdkLibs = "2.0.4"
+accompanist = "0.37.3"
+androidDesugarJdkLibs = "2.1.5"
 
 # Jetpack Components libs version
-lifecycle-ktx = "2.8.0"
-navigation = "2.7.7"
-room-ktx = "2.6.1"
-paging-ktx = "3.2.1"
-work-ktx = "2.9.0"
+lifecycle-ktx = "2.9.1"
+navigation = "2.9.1"
+room-ktx = "2.7.2"
+paging-ktx = "3.3.6"
+work-ktx = "2.10.2"
 
 # jetbrains official libs version
-coroutines = "1.8.0"
-kotlin = "2.0.0"
-kotlinxDatetime = "0.5.0"
-kotlinxSerializationJson = "1.6.3"
+coroutines = "1.10.2"
+kotlin = "2.2.0"
+kotlinxDatetime = "0.7.1"
+kotlinxSerializationJson = "1.9.0"
 # 此处版本号，ksp与kotlin版本号有对应关系 https://github.com/google/ksp/releases
-ksp = "2.0.0-1.0.21"
+ksp = "2.2.0-2.0.2"
 
 # 常用知名开源库
 blankj-utils = "1.31.1"
-coil = "2.6.0"
-gson = "2.10.1"
-koin = "3.5.3"
-okhttp = "4.12.0"
-retrofit = "2.9.0"
+coil = "3.2.0"
+gson = "2.13.1"
+koin = "4.1.0"
+okhttp = "5.1.0"
+retrofit = "3.0.0"
 retrofitKotlinxSerializationJson = "1.0.0"
 
 # test libs version
-androidx-test-ext-junit = "1.1.5"
-espresso-core = "3.5.1"
-junit = "4.13.2"
+androidx-test-ext-junit = "1.2.1"
+espresso-core = "3.6.1"
+junit = "5.13.3"
 # 用于测试协程flow的test库
-turbine = "1.1.0"
-annotation = "1.8.0"
+turbine = "1.2.1"
+annotation = "1.9.1"
 #endregion
 
 # region 定义依赖库 🚀
@@ -105,7 +104,7 @@ androidx-webkit = { group = "androidx.webkit", name = "webkit", version.ref = "w
 androidx-activity-compose = { group = "androidx.activity", name = "activity-compose", version.ref = "activity-ktx" }
 androidx-compose-constraintlayout = { group = "androidx.constraintlayout", name = "constraintlayout-compose", version.ref = "androidxComposeConstraintlayout" }
 androidx-compose-bom = { group = "androidx.compose", name = "compose-bom", version.ref = "androidxComposeBom" }
-androidx-compose-foundation = { group = "androidx.compose.foundation", name = "foundation" }
+androidx-compose-foundation = { group = "androidx.compose.foundation", name = "foundation", version.ref = "androidxComposeUI" }
 androidx-compose-foundation-layout = { group = "androidx.compose.foundation", name = "foundation-layout" }
 androidx-compose-material = { group = "androidx.compose.material", name = "material", version.ref = "androidxComposeUI" }
 androidx-compose-material-iconsExtended = { group = "androidx.compose.material", name = "material-icons-extended" }
@@ -165,11 +164,11 @@ kotlinx-serialization-json = { group = "org.jetbrains.kotlinx", name = "kotlinx-
 
 # 常用知名开源库
 blankj-utils = { group = "com.blankj", name = "utilcodex", version.ref = "blankj-utils" }
-coil-kt = { group = "io.coil-kt", name = "coil", version.ref = "coil" }
-coil-kt-gif = { group = "io.coil-kt", name = "coil-gif", version.ref = "coil" }
-coil-kt-video = { group = "io.coil-kt", name = "coil-video", version.ref = "coil" }
-coil-kt-svg = { group = "io.coil-kt", name = "coil-svg", version.ref = "coil" }
-coil-kt-compose = { group = "io.coil-kt", name = "coil-compose", version.ref = "coil" }
+coil-kt = { group = "io.coil-kt.coil3", name = "coil", version.ref = "coil" }
+coil-kt-gif = { group = "io.coil-kt.coil3", name = "coil-gif", version.ref = "coil" }
+coil-kt-video = { group = "io.coil-kt.coil3", name = "coil-video", version.ref = "coil" }
+coil-kt-svg = { group = "io.coil-kt.coil3", name = "coil-svg", version.ref = "coil" }
+coil-kt-compose = { group = "io.coil-kt.coil3", name = "coil-compose", version.ref = "coil" }
 gson = { module = "com.google.code.gson:gson", version.ref = "gson" }
 koin = { module = "io.insert-koin:koin-android", version.ref = "koin" }
 okhttp-logging = { group = "com.squareup.okhttp3", name = "logging-interceptor", version.ref = "okhttp" }
@@ -179,7 +178,7 @@ retrofit2-converter-gson = { module = "com.squareup.retrofit2:converter-gson", v
 
 
 # test相关库依赖
-junit = { group = "junit", name = "junit", version.ref = "junit" }
+junit = { group = "org.junit.jupiter", name = "junit-jupiter-api", version.ref = "junit" }
 androidx-test-ext-junit = { group = "androidx.test.ext", name = "junit", version.ref = "androidx-test-ext-junit" }
 espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espresso-core" }
 androidx-tracing-ktx = { module = "androidx.tracing:tracing-ktx", version.ref = "tracing" }

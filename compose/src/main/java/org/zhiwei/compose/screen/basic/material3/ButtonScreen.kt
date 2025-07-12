@@ -6,7 +6,6 @@ import androidx.compose.animation.core.tween
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
@@ -26,10 +25,8 @@ import androidx.compose.material.icons.filled.Hub
 import androidx.compose.material.icons.rounded.ColorLens
 import androidx.compose.material.icons.sharp.BluetoothAudio
 import androidx.compose.material.icons.twotone.DeviceHub
-import androidx.compose.material.ripple.rememberRipple
 import androidx.compose.material3.AssistChip
 import androidx.compose.material3.Button
-import androidx.compose.material3.ButtonColors
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.ElevatedAssistChip
 import androidx.compose.material3.ElevatedButton
@@ -204,7 +201,7 @@ internal fun Button_Screen(modifier: Modifier = Modifier) {
                     // 或者ButtonDefaults对应按钮colors的copy或者构建
 //                    colors = ButtonDefaults.buttonColors().copy(),
 //                    colors = ButtonDefaults.buttonColors(),
-                    colors = ButtonColors(
+                    colors = ButtonDefaults.buttonColors(
                         containerColor = Color(0xFFD2D97A),
                         contentColor = Color(0xFFFFFFFF),
                         disabledContainerColor = Color(0xFFD2D97A),
@@ -309,15 +306,7 @@ internal fun Button_Screen(modifier: Modifier = Modifier) {
                         Icon(
                             imageVector = Icons.Default.FavoriteBorder,
                             contentDescription = null,
-                            modifier = Modifier.clickable(
-                                //通过interactionSource配合indication实现自定义点击ripple的效果
-                                interactionSource = remember { MutableInteractionSource() },
-                                indication = rememberRipple(
-                                    bounded = false,//标记ripple是否约束在控件尺寸内
-                                    radius = 20.dp,//ripple的半径
-                                    Color.Green//ripple的颜色
-                                )
-                            ) {
+                            modifier = Modifier.clickable {
                                 /*这里可以单独处理chip内部的icon的点击事件*/
                                 Toast.makeText(
                                     context,

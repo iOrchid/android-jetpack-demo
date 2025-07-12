@@ -1,18 +1,14 @@
 package org.zhiwei.compose.screen.basic.material3
 
-import android.graphics.Bitmap
-import android.graphics.BitmapFactory
 import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.sizeIn
 import androidx.compose.foundation.lazy.LazyColumn
@@ -24,24 +20,17 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.shadow
-import androidx.compose.ui.geometry.CornerRadius
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.graphics.BlendMode
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.graphics.ImageBitmap
-import androidx.compose.ui.graphics.Paint
-import androidx.compose.ui.graphics.asImageBitmap
 import androidx.compose.ui.graphics.drawscope.DrawScope
-import androidx.compose.ui.graphics.drawscope.Stroke
 import androidx.compose.ui.graphics.graphicsLayer
-import androidx.compose.ui.graphics.nativeCanvas
 import androidx.compose.ui.graphics.painter.Painter
-import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.imageResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.vectorResource
@@ -51,7 +40,7 @@ import androidx.compose.ui.text.rememberTextMeasurer
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.LayoutDirection
 import androidx.compose.ui.unit.dp
-import coil.compose.rememberAsyncImagePainter
+import coil3.compose.AsyncImage
 import org.zhiwei.compose.R
 import org.zhiwei.compose.ui.widget.Title_Desc_Text
 import org.zhiwei.compose.ui.widget.Title_Sub_Text
@@ -80,8 +69,8 @@ internal fun Image_Screen(modifier: Modifier = Modifier) {
             Title_Sub_Text(title = "6、coil网络图片库")
             val imageUrl =
                 "https://img.pconline.com.cn/images/upload/upc/tx/itbbs/1404/29/c19/33702528_1398764805257.jpg"
-            Image(
-                painter = rememberAsyncImagePainter(model = imageUrl),
+            AsyncImage(
+                model = imageUrl,
                 contentDescription = null,
                 //加载网络图片资源，需要给Image控件一个初始尺寸，不然无从显示
                 modifier = Modifier
@@ -167,117 +156,88 @@ private fun withCanvas() {
     //这里可以注意，⚠️，modifier的限定区域是浅灰色，但是drawImage的尺寸会超出限制范围
     Canvas(
         modifier = Modifier
-            .background(Color.LightGray)//画布背景色
-            .size(imageBitmap2.width.dp, (imageBitmap2.height / 3).dp)
+            .fillMaxWidth()
+            .height(200.dp)
+            .background(Color(0xFFE0E0E0))
     ) {
         drawImage(imageBitmap2)
         drawText(
             textMeasurer = measurer,
-            text = "自定义绘制的文本，机车帅哥美女一起来啊",
-            topLeft = Offset(100f, 200f),
-            TextStyle(Color.Yellow),
+            text = "在图片上绘制文字",
+            topLeft = Offset(50f, 50f),
+            style = TextStyle(color = Color.White)
         )
-        //画一个矩形框
-        drawRoundRect(
-            color = Color.Yellow,
-            topLeft = Offset(imageBitmap2.width / 4f, imageBitmap2.height / 4f),
-            style = Stroke(width = 5f),
-            size = Size(imageBitmap2.width / 2f, imageBitmap2.height / 2f),
-            cornerRadius = CornerRadius(5f)
-        )
-
-        //使用旧view体系的绘制text的方式
-        val paint = android.graphics.Paint().apply {
-            textSize = 50f
-            color = Color.Red.toArgb()
-        }
-        drawContext.canvas.nativeCanvas.drawText(
-            "旧的view方式drawText",
-            center.x / 3,
-            center.y / 3,
-            paint
+        drawCircle(
+            color = Color.Red,
+            radius = 30f,
+            center = Offset(200f, 100f)
         )
     }
-    //加一个间距，便于看上面的图片效果
-    Spacer(modifier = Modifier.height(50.dp))
-    Title_Desc_Text(desc = "> 2.3 旧体系的bitmap的方式")
-    //添加水印给图片，并可以保存图片
-    val gufengBitmap = BitmapFactory.decodeResource(
-        LocalContext.current.resources,
-        R.drawable.img_gufeng,
-        BitmapFactory.Options()
-            .also { it.inPreferredConfig = Bitmap.Config.ARGB_8888;it.inMutable = true })
-        .asImageBitmap()
-    androidx.compose.ui.graphics.Canvas(gufengBitmap).apply {
-        //图片上绘制一个圆
-        drawCircle(Offset(1200f, 180f), 100f, Paint().also { it.color = Color.Magenta })
-    }
-    //显示添加水印操作后的bitmap
-    Image(bitmap = gufengBitmap, contentDescription = "", Modifier.size(300.dp))
-
 }
 
 @Composable
 private fun shapeAndFilter() {
-    Title_Sub_Text(title = "3、Shape&Filter 图形和滤色")
-    Title_Desc_Text(desc = "> shape ")
-    val icon01 = painterResource(id = R.drawable.avatar01)
-    val icon02 = painterResource(id = R.drawable.avatar02)
-    val icon03 = painterResource(id = R.drawable.avatar03)
-    val icon04 = painterResource(id = R.drawable.avatar04)
-    Row(
-        Modifier
-            .fillMaxWidth()
-            .background(Color(0XFFFFFEFA))
-            .padding(8.dp),
-        horizontalArrangement = Arrangement.SpaceEvenly
-    ) {
+    Title_Sub_Text(title = "3、通过modifier的clip和shadow来裁剪和阴影效果")
+    Title_Desc_Text(desc = "> 3.1 圆形裁剪")
+    Row {
         Image(
-            painter = icon01, contentDescription = "圆角矩形",
-            Modifier
+            painter = painterResource(id = R.drawable.avatar01),
+            contentDescription = null,
+            modifier = Modifier
                 .size(80.dp)
-                .clip(
-                    RoundedCornerShape(10.dp)
-                )
+                .clip(CircleShape)
         )
         Image(
-            painter = icon02, contentDescription = "圆形",
-            Modifier
+            painter = painterResource(id = R.drawable.avatar02),
+            contentDescription = null,
+            modifier = Modifier
                 .size(80.dp)
-                .shadow(
-                    4.dp,
-                    CircleShape
-                )
-        )
-        Image(
-            painter = icon03, contentDescription = "切角矩形",
-            Modifier
-                .size(80.dp)
-                .clip(
-                    CutCornerShape(10.dp)
-                )
-        )
-        //使用自定义的shape，菱形💠
-        Image(
-            painter = icon04, contentDescription = "菱形",
-            Modifier
-                .size(80.dp)
-                .shadow(
-                    2.dp,
-                    diamondShape, clip = true
-                )
+                .clip(CircleShape)
+                .shadow(4.dp, CircleShape)
         )
     }
-    Title_Desc_Text(desc = "> filter ")
-    //颜色过滤，ColorFilter有tint，lighting，colorMatrix；在tint中有BlendMode有28种方式，指定融合方式
-    //todo 注意⚠️，该功能，可用于实现图片滤镜效果
-    Row(
-        Modifier
-            .fillMaxWidth()
-            .background(Color(0XFFFFFEFA))
-            .padding(8.dp),
-        horizontalArrangement = Arrangement.SpaceEvenly
-    ) {
+    Title_Desc_Text(desc = "> 3.2 圆角矩形裁剪")
+    Row {
+        Image(
+            painter = painterResource(id = R.drawable.avatar01),
+            contentDescription = null,
+            modifier = Modifier
+                .size(80.dp)
+                .clip(RoundedCornerShape(10.dp))
+        )
+        Image(
+            painter = painterResource(id = R.drawable.avatar02),
+            contentDescription = null,
+            modifier = Modifier
+                .size(80.dp)
+                .clip(RoundedCornerShape(10.dp))
+                .shadow(4.dp, RoundedCornerShape(10.dp))
+        )
+    }
+    Title_Desc_Text(desc = "> 3.3 自定义形状裁剪")
+    Row {
+        Image(
+            painter = painterResource(id = R.drawable.avatar01),
+            contentDescription = null,
+            modifier = Modifier
+                .size(80.dp)
+                .clip(diamondShape)
+        )
+        Image(
+            painter = painterResource(id = R.drawable.avatar02),
+            contentDescription = null,
+            modifier = Modifier
+                .size(80.dp)
+                .clip(diamondShape)
+                .shadow(4.dp, diamondShape)
+        )
+    }
+    Title_Desc_Text(desc = "> 3.4 颜色过滤效果")
+    Row {
+        val icon01 = painterResource(id = R.drawable.icon_car_light)
+        val icon02 = painterResource(id = R.drawable.icon_car_light)
+        val icon03 = painterResource(id = R.drawable.icon_car_light)
+        val icon04 = painterResource(id = R.drawable.icon_car_light)
         Image(
             painter = icon01, contentDescription = "",
             Modifier
@@ -323,59 +283,10 @@ private fun shapeAndFilter() {
 
 @Composable
 private fun withGraphics() {
-    Title_Sub_Text(title = "4、graphicLayer修饰符，用于图形的变形处理")
-    Title_Desc_Text(desc = "rotate旋转")
+    Title_Sub_Text(title = "4、通过graphicsLayer实现图像的变换效果")
+    Title_Desc_Text(desc = "> 4.1 缩放、平移、旋转等变换")
     Row(
-        Modifier
-            .fillMaxWidth()
-            .background(Color(0XFFFFFEFA))
-            .padding(8.dp),
-        horizontalArrangement = Arrangement.SpaceEvenly
-    ) {
-        //以x轴对称 旋转45度
-        Image(
-            painter = painterResource(id = R.drawable.avatar01),
-            contentDescription = null,
-            Modifier
-                .size(80.dp)
-                .graphicsLayer(rotationX = 45f)
-        )
-        //以y轴对称 旋转45度
-        Image(
-            painter = painterResource(id = R.drawable.avatar01),
-            contentDescription = null,
-            Modifier
-                .size(80.dp)
-                .graphicsLayer(rotationY = 45f)
-        )
-        //以z轴对称 旋转45度
-        Image(
-            painter = painterResource(id = R.drawable.avatar01),
-            contentDescription = null,
-            Modifier
-                .size(80.dp)
-                .graphicsLayer(rotationZ = 45f)
-        )
-        //x,y,z轴 都旋转45度
-        Image(
-            painter = painterResource(id = R.drawable.avatar01),
-            contentDescription = null,
-            Modifier
-                .size(80.dp)
-                .graphicsLayer(
-                    rotationX = 45f,
-                    rotationY = 45f,
-                    rotationZ = 45f,
-                )
-        )
-    }
-    Title_Desc_Text(desc = "缩放、平移，视角转换等")
-    //todo 此外在graphicsLayer还可以做shape，clip，阴影和renderEffect等更多样的处理
-    Row(
-        Modifier
-            .fillMaxWidth()
-            .background(Color(0XFFFFFEFA))
-            .padding(8.dp),
+        modifier = Modifier.fillMaxWidth(),
         horizontalArrangement = Arrangement.SpaceEvenly
     ) {
         //scaleX 0.8倍

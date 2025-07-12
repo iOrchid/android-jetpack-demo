@@ -21,10 +21,6 @@
   * [六、示例内容(部分）]()
   * [七、关于作者]()[![jianshu](./docs/images/jianshu.svg)](https://www.jianshu.com/u/72294e6848c0)[![github](./docs/images/github.svg)](https://github.com/iOrchid)[![csdn](./docs/images/csdn.svg)](https://blog.csdn.net/zhiwei9001)
 
-> 前言：业务时间用**Kotlin+Compose**写了一个项目，欢迎下载体验
->
-> ![摩托mate](./docs/images/motomate.png)
-
 ####  一、项目简介
 
 学习主要以项目代码为准，主要分三个部分模块：

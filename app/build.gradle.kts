@@ -5,12 +5,12 @@ plugins {
 
 android {
     namespace = "org.zhiwei.jetpack"
-    compileSdk = 34
+    compileSdk = 36
 
     defaultConfig {
         applicationId = "org.zhiwei.jetpack"
         minSdk = 24
-        targetSdk = 34
+        targetSdk = 36
         versionCode = 200
         versionName = "2.0.0"
 
@@ -27,11 +27,11 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
+        sourceCompatibility = JavaVersion.VERSION_21
+        targetCompatibility = JavaVersion.VERSION_21
     }
     kotlinOptions {
-        jvmTarget = "1.8"
+        jvmTarget = "21"
     }
 
     //使用动态模块的形式，用于隔离代码module的依赖,本项目为了方便module划分和依赖关系处理，才使用了feature，

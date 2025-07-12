@@ -3,14 +3,11 @@ package org.zhiwei.compose.screen.gesture
 import android.widget.Toast
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.foundation.Indication
-import androidx.compose.foundation.IndicationInstance
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.interaction.InteractionSource
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.interaction.PressInteraction
 import androidx.compose.foundation.interaction.collectIsPressedAsState
-import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -25,19 +22,13 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ShoppingCart
-import androidx.compose.material.ripple.LocalRippleTheme
-import androidx.compose.material.ripple.RippleAlpha
-import androidx.compose.material.ripple.RippleTheme
-import androidx.compose.material.ripple.rememberRipple
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.State
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
@@ -47,7 +38,6 @@ import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.geometry.CornerRadius
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.drawscope.ContentDrawScope
 import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.style.TextAlign
@@ -95,7 +85,7 @@ private inline fun BasicClickable() {
     Title_Desc_Text(desc = "水波ripple的范围限定，通过interactionSource来设置。")
     UI_RippleBounded(modifierWithClip)
     Title_Desc_Text(desc = "通过主题theme来设置控件的点击效果的水波ripple")
-    UI_ThemeRipple(modifierWithClip)
+//    UI_ThemeRipple(modifierWithClip)
     Title_Desc_Text(desc = "自定义的点击交互，这里简单演示的是ripple")
     UI_Indication()
 }
@@ -110,28 +100,19 @@ private fun UI_Clip2Clickable(modifierWithClip: Modifier) {
     ) {
 
         Box(
-            contentAlignment = Alignment.Center,
-            modifier = modifierWithClip
-                .clickable {}
-        ) {
+            contentAlignment = Alignment.Center, modifier = modifierWithClip.clickable {}) {
             Text(
-                text = "点击在clip前",
-                color = Color.White,
-                textAlign = TextAlign.Center
+                text = "点击在clip前", color = Color.White, textAlign = TextAlign.Center
             )
         }
         Spacer(modifier = Modifier.height(8.dp))
         Box(
-            contentAlignment = Alignment.Center,
-            modifier = Modifier
+            contentAlignment = Alignment.Center, modifier = Modifier
                 //clickable而后再应用clip的modifier。这里用到了then操作符，就是将另外的modifier作用于当前
                 .clickable {}
-                .then(modifierWithClip)
-        ) {
+                .then(modifierWithClip)) {
             Text(
-                text = "Clip后写clickable",
-                color = Color.White,
-                textAlign = TextAlign.Center
+                text = "Clip后写clickable", color = Color.White, textAlign = TextAlign.Center
             )
         }
     }
@@ -149,79 +130,62 @@ private fun UI_RippleBounded(modifierWithClip: Modifier) {
         val mutableInteractionSource = remember { MutableInteractionSource() }
         val mutableInteractionSource2 = remember { MutableInteractionSource() }
         Box(
-            contentAlignment = Alignment.Center,
-            modifier = modifierWithClip
-                .clickable(
-                    interactionSource = mutableInteractionSource,
-                    //ripple水波的自定义
-                    indication = rememberRipple(
-                        bounded = true,//限定作用范围
-                        radius = 260.dp,//水波半径
-                        color = Color.Yellow,//水波颜色
-                    )
-                ) {}
-        ) {
+            contentAlignment = Alignment.Center, modifier = modifierWithClip.clickable {}) {
             Text(
-                text = "限定ripple范围",
-                color = Color.White,
-                textAlign = TextAlign.Center
+                text = "限定ripple范围", color = Color.White, textAlign = TextAlign.Center
             )
         }
         Spacer(modifier = Modifier.height(8.dp))
         Box(
-            contentAlignment = Alignment.Center,
-            modifier = Modifier
+            contentAlignment = Alignment.Center, modifier = Modifier
                 .clickable(
-                    interactionSource = mutableInteractionSource2,
-                    //ripple水波的自定义
-                    indication = rememberRipple(
-                        bounded = false,//不限定作用范围
-                        radius = 260.dp,//水波半径
-                        color = Color.Green,//水波颜色
-                    )
+//                    interactionSource = mutableInteractionSource2,
+//                    //ripple水波的自定义
+//                    indication = rememberRipple(
+//                        bounded = false,//不限定作用范围
+//                        radius = 260.dp,//水波半径
+//                        color = Color.Green//水波颜色
+//                    )
                 ) {}
-                .then(modifierWithClip)
-        ) {
+                .then(modifierWithClip)) {
             Text(
-                text = "不限定水波ripple",
-                color = Color.White,
-                textAlign = TextAlign.Center
+                text = "不限定水波ripple", color = Color.White, textAlign = TextAlign.Center
             )
         }
     }
 }
 
 //通过theme主题设置ripple样式
-@Composable
-private fun UI_ThemeRipple(modifierWithClip: Modifier) {
-    //自定义的ripple theme，也可以封装成类，接收color和alpha等需要的参数。
-    val customRippleTheme = object : RippleTheme {
-        @Composable
-        override fun defaultColor(): Color {
-            return Color.Red
-        }
-
-        @Composable
-        override fun rippleAlpha(): RippleAlpha {
-            return RippleTheme.defaultRippleAlpha(
-                Color.Red,
-                lightTheme = !isSystemInDarkTheme()
-            )
-        }
-    }
-    Column(
-        Modifier
-            .fillMaxWidth()
-            .padding(8.dp)
-    ) {
-        //简单理解CompositionLocalProvider就是提供一个限定数据作用域的方式，减少触发compose重组的影响范围，以提升性能。
-        CompositionLocalProvider(value = LocalRippleTheme provides customRippleTheme) {
-            Box(modifier = modifierWithClip.clickable { }, contentAlignment = Alignment.Center) {
-                Text(text = "自定义RippleTheme的演示", color = Color.White)
-            }
-        }
-    }
-}
+//@Composable
+//private fun UI_ThemeRipple(modifierWithClip: Modifier) {
+//    //自定义的ripple theme，也可以封装成类，接收color和alpha等需要的参数。
+//    val customRippleTheme = object : RippleTheme {
+//        @Composable
+//        override fun defaultColor(): Color {
+//            return Color.Red
+//        }
+//
+//        @Composable
+//        override fun rippleAlpha(): RippleAlpha {
+//            return RippleTheme.defaultRippleAlpha(
+//                Color.Red,
+//                lightTheme = !isSystemInDarkTheme()
+//            )
+//        }
+//    }
+//    Column(
+//        Modifier
+//            .fillMaxWidth()
+//            .padding(8.dp)
+//    ) {
+//        //简单理解CompositionLocalProvider就是提供一个限定数据作用域的方式，减少触发compose重组的影响范围，以提升性能。
+//        CompositionLocalProvider(value = LocalRippleTheme provides customRippleTheme) {
+//            Box(modifier = modifierWithClip.clickable { }, contentAlignment = Alignment.Center) {
+//                Text(text = "自定义RippleTheme的演示", color = Color.White)
+//            }
+//        }
+//    }
+//}
 
 //自定义的indication,简单演示按压效果
 @Composable
@@ -240,8 +204,8 @@ private fun UI_Indication() {
                 .shadow(elevation = 2.dp, shape = RoundedCornerShape(16.dp), clip = true)
                 .background(Color(0xffBDBDBD))
                 .clickable(
-                    indication = indicationA,
-                    interactionSource = MutableInteractionSource()
+//                    indication = indicationA,
+//                    interactionSource = MutableInteractionSource()
                 ) { }, contentAlignment = Alignment.Center
         ) {
             Text(text = "自定义indication的演示", color = Color.White)
@@ -253,8 +217,8 @@ private fun UI_Indication() {
                 .height(40.dp)
                 .background(Color(0xffBDBDBD), shape = RoundedCornerShape(16.dp))
                 .clickable(
-                    indication = indicationB,
-                    interactionSource = MutableInteractionSource()
+//                    indication = indicationB,
+//                    interactionSource = MutableInteractionSource()
                 ) { }, contentAlignment = Alignment.Center
         ) {
             Text(text = "自定义indication无边界", color = Color.Black)
@@ -269,44 +233,44 @@ private class CustomIndication(
     private val drawRoundedShape: Boolean = true,//是否绘制ripple在区域内
     private val cornerRadius: CornerRadius = CornerRadius(16f, 16f),//圆角
 ) : Indication {
-    private inner class DefaultIndicationInstance(private val isPressed: State<Boolean>) :
-        IndicationInstance {
-        override fun ContentDrawScope.drawIndication() {
-            //作用对象的compose容器，内容要绘制
-            drawContent()
-            when {
-                //表示 有触压动作时候才会有的逻辑
-                isPressed.value -> {
-                    if (drawRoundedShape) {
-                        //根据设置，绘制
-                        drawRoundRect(
-                            cornerRadius = cornerRadius,
-                            color = pressColor.copy(
-                                alpha = alpha
-                            ), size = size
-                        )
-                    } else {
-                        //绘制一个大大的圆，根据size的宽度，作为半径的圆
-                        drawCircle(
-                            radius = size.width,
-                            color = pressColor.copy(
-                                alpha = alpha
-                            )
-                        )
-                    }
-                }
-            }
-        }
-    }
+//    private inner class DefaultIndicationInstance(private val isPressed: State<Boolean>) :
+//        IndicationInstance {
+//        override fun ContentDrawScope.drawIndication() {
+//            //作用对象的compose容器，内容要绘制
+//            drawContent()
+//            when {
+//                //表示 有触压动作时候才会有的逻辑
+//                isPressed.value -> {
+//                    if (drawRoundedShape) {
+//                        //根据设置，绘制
+//                        drawRoundRect(
+//                            cornerRadius = cornerRadius,
+//                            color = pressColor.copy(
+//                                alpha = alpha
+//                            ), size = size
+//                        )
+//                    } else {
+//                        //绘制一个大大的圆，根据size的宽度，作为半径的圆
+//                        drawCircle(
+//                            radius = size.width,
+//                            color = pressColor.copy(
+//                                alpha = alpha
+//                            )
+//                        )
+//                    }
+//                }
+//            }
+//        }
+//    }
 
-    @Composable
-    override fun rememberUpdatedInstance(interactionSource: InteractionSource): IndicationInstance {
-        //collectIsPressedAsState 按钮的交互状态，
-        val isPressed = interactionSource.collectIsPressedAsState()
-        return remember(interactionSource) {
-            DefaultIndicationInstance(isPressed)
-        }
-    }
+//    @Composable
+//    override fun rememberUpdatedInstance(interactionSource: InteractionSource): IndicationInstance {
+//        //collectIsPressedAsState 按钮的交互状态，
+//        val isPressed = interactionSource.collectIsPressedAsState()
+//        return remember(interactionSource) {
+//            DefaultIndicationInstance(isPressed)
+//        }
+//    }
 }
 
 //endregion
@@ -329,8 +293,7 @@ private fun UI_Interaction() {
         //这里启动一个协程，来搜集box的交互事件,interactions是个flow
         boxInteraction.interactions
             //这里可以看到，搜集到三种状态，press，release，和cancel；
-            .onEach { println("📦：boxInteraction，$it") }
-            .launchIn(this)
+            .onEach { println("📦：boxInteraction，$it") }.launchIn(this)
     }
     //注意点击，按压 按钮时候，看log输出事件
     Box(
@@ -339,14 +302,12 @@ private fun UI_Interaction() {
             .height(40.dp)
             .padding(horizontal = 8.dp)
             .background(
-                Color.LightGray,
-                RoundedCornerShape(8.dp)
+                Color.LightGray, RoundedCornerShape(8.dp)
             )
             .clickable(
-                interactionSource = boxInteraction,
-                indication = rememberRipple(),
-                onClick = {}),
-        contentAlignment = Alignment.Center
+//                interactionSource = boxInteraction,
+//                indication = rememberRipple(),
+                onClick = {}), contentAlignment = Alignment.Center
     ) {
         Text(text = "点击并搜集交互状态")
     }
@@ -360,9 +321,10 @@ private fun UI_Interaction() {
                     text = "点击添加"
                 )
             })
-        ElasticButton(modifier = Modifier.shadow(
-            8.dp, RoundedCornerShape(10.dp)
-        ), onClick = { }) {
+        ElasticButton(
+            modifier = Modifier.shadow(
+                8.dp, RoundedCornerShape(10.dp)
+            ), onClick = { }) {
             Surface(shape = RoundedCornerShape(10.dp)) {
                 Text(
                     text = "缩放效果的按钮",
@@ -428,8 +390,7 @@ private fun ElasticButton(
             }
             .then(
                 modifier.clickable(
-                    interactionSource = interactionSource,
-                    indication = indication
+                    interactionSource = interactionSource, indication = indication
                 ) { onClick() })
     ) { content() }
 }
@@ -465,9 +426,7 @@ private fun ShareInteractionSource() {
                             PressInteraction.Release(press)
                         )
                     }
-                    Toast
-                        .makeText(context, "点击了外部", Toast.LENGTH_SHORT)
-                        .show()
+                    Toast.makeText(context, "点击了外部", Toast.LENGTH_SHORT).show()
 
                 }
                 .padding(8.dp)
@@ -483,20 +442,15 @@ private fun ShareInteractionSource() {
                     .shadow(2.dp, RoundedCornerShape(8.dp), clip = true)
                     .background(color = Color.Cyan)
                     .clickable(
-                        interactionSource = interactionSource,
-                        indication = rememberRipple(),
+//                        interactionSource = interactionSource,
+//                        indication = rememberRipple(),
                         onClick = {
-                            Toast
-                                .makeText(context, "内部click点击", Toast.LENGTH_SHORT)
-                                .show()
-                        }
-                    )
+                            Toast.makeText(context, "内部click点击", Toast.LENGTH_SHORT).show()
+                        })
                     .padding(8.dp)
             ) {
                 Text(
-                    "Inner Composable",
-                    color = Color.White,
-                    modifier = Modifier.fillMaxWidth()
+                    "Inner Composable", color = Color.White, modifier = Modifier.fillMaxWidth()
                 )
             }
         }

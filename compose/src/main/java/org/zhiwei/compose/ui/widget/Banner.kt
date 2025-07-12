@@ -42,7 +42,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.util.lerp
 import androidx.compose.ui.zIndex
-import coil.compose.AsyncImage
+import coil3.compose.AsyncImage
 import org.zhiwei.compose.R
 import kotlin.math.absoluteValue
 
@@ -172,7 +172,7 @@ fun PhotoCarrousel(
             modifier = Modifier.fillMaxWidth(),
             contentPadding = PaddingValues(horizontal = 50.dp, vertical = 15.dp),
             pageSize = PageSize.Fill,
-            beyondBoundsPageCount = PagerDefaults.BeyondBoundsPageCount,
+//            beyondBoundsPageCount = PagerDefaults.BeyondBoundsPageCount,
             pageSpacing = (-90).dp,
             flingBehavior = PagerDefaults.flingBehavior(state = pagerState)
         ) { page ->

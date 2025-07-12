@@ -31,14 +31,11 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.composed
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.draw.clipToBounds
 import androidx.compose.ui.draw.drawWithContent
 import androidx.compose.ui.geometry.Offset
-import androidx.compose.ui.geometry.Rect
 import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.drawscope.withTransform
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.AnnotatedString
@@ -51,7 +48,6 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import org.zhiwei.compose.R
 import org.zhiwei.compose.ui.widget.Title_Sub_Text
-import kotlin.math.sqrt
 
 
 @Composable
@@ -76,7 +72,7 @@ internal fun ShimmerEffect_Screen(modifier: Modifier = Modifier) {
             }
         }
 
-        val transition = rememberInfiniteTransition(label = "shimmer")
+        val transition = rememberInfiniteTransition()
         val progress by transition.animateFloat(
             initialValue = -2f,
             targetValue = 2f,
@@ -84,7 +80,7 @@ internal fun ShimmerEffect_Screen(modifier: Modifier = Modifier) {
                 animation = tween(
                     durationMillis = 3000,
                 )
-            ), label = "shimmer"
+            )
         )
 
         Title_Sub_Text(
@@ -199,7 +195,7 @@ private fun ShimmerRow(progress: Float) {
 fun Modifier.shimmer(
     durationMillis: Int = 2500,
 ) = composed {
-    val transition = rememberInfiniteTransition(label = "shimmer")
+    val transition = rememberInfiniteTransition()
     val progress by transition.animateFloat(
         initialValue = -2f,
         targetValue = 2f,
@@ -207,36 +203,29 @@ fun Modifier.shimmer(
             animation = tween(
                 durationMillis = durationMillis,
             )
-        ), label = "shimmer"
+        )
     )
     drawShimmer(progress)
 }
 
 fun Modifier.drawShimmer(progress: Float) = this.then(
+    Modifier.drawWithContent {
+        val shimmerWidth = 200f
+        val shimmerColor = Color.White.copy(alpha = 0.6f)
+        val shimmerBrush = Brush.linearGradient(
+            colors = listOf(
+                Color.Transparent,
+                shimmerColor,
+                Color.Transparent,
+            ),
+            start = Offset(progress - shimmerWidth, progress - shimmerWidth),
+            end = Offset(progress, progress)
+        )
 
-    Modifier
-        .drawWithContent {
-
-            val width = size.width
-            val height = size.height
-            val offset = progress * width
-
-            drawContent()
-            val brush = Brush.linearGradient(
-                colors = listOf(
-                    Color.LightGray,
-                    Color.LightGray,
-                    Color.White,
-                    Color.LightGray,
-                    Color.LightGray
-                ),
-                start = Offset(offset, 0f),
-                end = Offset(offset + width, height)
-            )
-            drawRect(brush)
-        }
+        drawContent()
+        drawRect(brush = shimmerBrush, blendMode = androidx.compose.ui.graphics.BlendMode.DstIn)
+    }
 )
-
 
 fun Modifier.drawDiagonalLabel(
     text: String,
@@ -255,60 +244,53 @@ fun Modifier.drawDiagonalLabel(
             textMeasurer.measure(text = AnnotatedString(text), style = style)
         }
 
+        val transition = rememberInfiniteTransition()
 
-        this
-            .clipToBounds()
-            .drawWithContent {
-                val canvasWidth = size.width
-                val canvasHeight = size.height
+        val progress by transition.animateFloat(
+            initialValue = 0f,
+            targetValue = 1f,
+            animationSpec = infiniteRepeatable(
+                animation = tween(3000, easing = LinearEasing),
+                repeatMode = RepeatMode.Reverse
+            )
+        )
 
-                val textSize = textLayoutResult.size
-                val textWidth = textSize.width
-                val textHeight = textSize.height
+        this.drawWithContent {
+            val canvasWidth = size.width
+            val canvasHeight = size.height
 
-                val rectWidth = textWidth * labelTextRatio
-                val rectHeight = textHeight * 1.1f
+            // Draw the main content
+            drawContent()
 
-                val rect = Rect(
-                    offset = Offset(canvasWidth - rectWidth, 0f),
-                    size = Size(rectWidth, rectHeight)
-                )
+            // Calculate label dimensions
+            val labelWidth = canvasWidth / labelTextRatio
+            val labelHeight = textLayoutResult.size.height + 20.dp.toPx()
 
-                val sqrt = sqrt(rectWidth / 2f)
-                val translatePos = sqrt * sqrt
+            // Calculate diagonal position
+            val diagonalOffset = labelWidth * progress
+            val labelX = canvasWidth - diagonalOffset
+            val labelY = diagonalOffset
 
-                drawContent()
-                withTransform(
-                    {
-                        rotate(
-                            degrees = 45f,
-                            pivot = Offset(
-                                canvasWidth - rectWidth / 2,
-                                translatePos
-                            )
-                        )
-                    }
-                ) {
-                    drawRect(
-                        color = color,
-                        topLeft = rect.topLeft,
-                        size = rect.size
-                    )
-                    drawText(
-                        textMeasurer = textMeasurer,
-                        text = text,
-                        style = style,
-                        topLeft = Offset(
-                            rect.left + (rectWidth - textWidth) / 2f,
-                            rect.top + (rect.bottom - textHeight) / 2f
-                        )
-                    )
-                }
+            // Draw label background
+            drawRect(
+                color = color,
+                topLeft = Offset(labelX, labelY),
+                size = Size(labelWidth, labelHeight)
+            )
 
-            }
+            // Draw text
+            drawText(
+                textMeasurer = textMeasurer,
+                text = AnnotatedString(text),
+                topLeft = Offset(
+                    labelX + (labelWidth - textLayoutResult.size.width) / 2,
+                    labelY + (labelHeight - textLayoutResult.size.height) / 2
+                ),
+                style = style
+            )
+        }
     }
 )
-
 
 fun Modifier.drawDiagonalShimmerLabel(
     text: String,
@@ -327,7 +309,7 @@ fun Modifier.drawDiagonalShimmerLabel(
             textMeasurer.measure(text = AnnotatedString(text), style = style)
         }
 
-        val transition = rememberInfiniteTransition(label = "")
+        val transition = rememberInfiniteTransition()
 
         val progress by transition.animateFloat(
             initialValue = 0f,
@@ -335,72 +317,53 @@ fun Modifier.drawDiagonalShimmerLabel(
             animationSpec = infiniteRepeatable(
                 animation = tween(3000, easing = LinearEasing),
                 repeatMode = RepeatMode.Reverse
-            ), label = ""
+            )
         )
 
-        this
-            .clipToBounds()
-            .drawWithContent {
-                val canvasWidth = size.width
-                val canvasHeight = size.height
+        this.drawWithContent {
+            val canvasWidth = size.width
+            val canvasHeight = size.height
 
-                val textSize = textLayoutResult.size
-                val textWidth = textSize.width
-                val textHeight = textSize.height
+            // Draw the main content
+            drawContent()
 
-                val rectWidth = textWidth * labelTextRatio
-                val rectHeight = textHeight * 1.1f
+            // Calculate label dimensions
+            val labelWidth = canvasWidth / labelTextRatio
+            val labelHeight = textLayoutResult.size.height + 20.dp.toPx()
 
-                val rect = Rect(
-                    offset = Offset(canvasWidth - rectWidth, 0f),
-                    size = Size(rectWidth, rectHeight)
-                )
+            // Calculate diagonal position
+            val diagonalOffset = labelWidth * progress
+            val labelX = canvasWidth - diagonalOffset
+            val labelY = diagonalOffset
 
-                val sqrt = sqrt(rectWidth / 2f)
-                val translatePos = sqrt * sqrt
+            // Draw shimmer effect on label background
+            val shimmerBrush = Brush.linearGradient(
+                colors = listOf(
+                    color.copy(alpha = 0.7f),
+                    color,
+                    color.copy(alpha = 0.7f),
+                ),
+                start = Offset(labelX - 50f, labelY - 50f),
+                end = Offset(labelX + labelWidth + 50f, labelY + labelHeight + 50f)
+            )
 
-                val brush = Brush.linearGradient(
-                    colors = listOf(
-                        color,
-                        style.color,
-                        color,
-                    ),
-                    start = Offset(progress * canvasWidth, progress * canvasHeight),
-                    end = Offset(
-                        x = progress * canvasWidth + rectHeight,
-                        y = progress * canvasHeight + rectHeight
-                    ),
-                )
+            drawRect(
+                brush = shimmerBrush,
+                topLeft = Offset(labelX, labelY),
+                size = Size(labelWidth, labelHeight)
+            )
 
-                drawContent()
-                withTransform(
-                    {
-                        rotate(
-                            degrees = 45f,
-                            pivot = Offset(
-                                canvasWidth - rectWidth / 2,
-                                translatePos
-                            )
-                        )
-                    }
-                ) {
-                    drawRect(
-                        brush = brush,
-                        topLeft = rect.topLeft,
-                        size = rect.size
-                    )
-                    drawText(
-                        textMeasurer = textMeasurer,
-                        text = text,
-                        style = style,
-                        topLeft = Offset(
-                            rect.left + (rectWidth - textWidth) / 2f,
-                            rect.top + (rect.bottom - textHeight) / 2f
-                        )
-                    )
-                }
-
-            }
+            // Draw text
+            drawText(
+                textMeasurer = textMeasurer,
+                text = AnnotatedString(text),
+                topLeft = Offset(
+                    labelX + (labelWidth - textLayoutResult.size.width) / 2,
+                    labelY + (labelHeight - textLayoutResult.size.height) / 2
+                ),
+                style = style
+            )
+        }
     }
 )
 

@@ -76,7 +76,7 @@ private fun NeonSample() {
 
         val color = Color.Red
 
-        val transition: InfiniteTransition = rememberInfiniteTransition(label = "")
+        val transition: InfiniteTransition = rememberInfiniteTransition()
 
         // Infinite phase animation for PathEffect
         val phase by transition.animateFloat(
@@ -88,7 +88,7 @@ private fun NeonSample() {
                     easing = FastOutSlowInEasing
                 ),
                 repeatMode = RepeatMode.Reverse
-            ), label = ""
+            )
         )
 
 
@@ -174,7 +174,7 @@ private fun NeonDrawingSample() {
     var previousPosition by remember { mutableStateOf(Offset.Unspecified) }
 
 
-    val transition: InfiniteTransition = rememberInfiniteTransition(label = "")
+    val transition: InfiniteTransition = rememberInfiniteTransition()
 
     // Infinite phase animation for PathEffect
     val phase by transition.animateFloat(
@@ -186,7 +186,7 @@ private fun NeonDrawingSample() {
                 easing = FastOutSlowInEasing
             ),
             repeatMode = RepeatMode.Reverse
-        ), label = ""
+        )
     )
 
     val color = Color.Magenta

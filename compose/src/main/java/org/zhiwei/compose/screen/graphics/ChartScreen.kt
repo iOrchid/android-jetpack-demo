@@ -485,7 +485,7 @@ private fun ProjectionLerpSample() {
         mutableStateOf(false)
     }
 
-    val transition = rememberInfiniteTransition(label = "infinite angle transition")
+    val transition = rememberInfiniteTransition()
 
     val angle by transition.animateFloat(
         initialValue = 0f,
@@ -497,7 +497,7 @@ private fun ProjectionLerpSample() {
                 360f at 3000 with LinearEasing
             },
             repeatMode = RepeatMode.Restart
-        ), label = "angle"
+        )
     )
 
     val progress by animateFloatAsState(

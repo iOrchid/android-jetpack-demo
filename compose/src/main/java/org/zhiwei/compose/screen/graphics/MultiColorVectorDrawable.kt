@@ -205,7 +205,7 @@ private fun ShimmerIconSample() {
 
     val vectorRes2: Painter = painterResource(id = R.drawable.sexy_girl)
 
-    val transition = rememberInfiniteTransition(label = "")
+    val transition = rememberInfiniteTransition()
 
     val progress by transition.animateFloat(
         initialValue = 0f,
@@ -213,7 +213,7 @@ private fun ShimmerIconSample() {
         animationSpec = infiniteRepeatable(
             animation = tween(1500, easing = LinearEasing),
             repeatMode = RepeatMode.Restart
-        ), label = ""
+        )
     )
 
     Icon(

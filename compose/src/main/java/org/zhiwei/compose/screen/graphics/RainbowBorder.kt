@@ -216,14 +216,14 @@ fun Modifier.drawRainbowBorder(
     durationMillis: Int,
 ) = composed {
 
-    val infiniteTransition = rememberInfiniteTransition(label = "rotation")
+    val infiniteTransition = rememberInfiniteTransition()
     val angle by infiniteTransition.animateFloat(
         initialValue = 0f,
         targetValue = 360f,
         animationSpec = infiniteRepeatable(
             animation = tween(durationMillis, easing = LinearEasing),
             repeatMode = RepeatMode.Restart
-        ), label = "rotation"
+        )
     )
 
     val brush = Brush.sweepGradient(gradientColors)
@@ -271,14 +271,14 @@ fun Modifier.drawAnimatedBorder(
     durationMillis: Int,
 ) = composed {
 
-    val infiniteTransition = rememberInfiniteTransition(label = "rotation")
+    val infiniteTransition = rememberInfiniteTransition()
     val angle by infiniteTransition.animateFloat(
         initialValue = 0f,
         targetValue = 360f,
         animationSpec = infiniteRepeatable(
             animation = tween(durationMillis, easing = LinearEasing),
             repeatMode = RepeatMode.Restart
-        ), label = "rotation"
+        )
     )
 
     Modifier
