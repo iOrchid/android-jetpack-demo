@@ -8,7 +8,6 @@
 ![Alt](https://repobeats.axiom.co/api/embed/c5eaf3c2f1e3cdb7a5545393195f6b26014cd91d.svg "Repobeats analytics image")
 
 
-
 目录
 =================
 
@@ -165,7 +164,7 @@ private class Rectangle(var height: Double, var length: Double) : Shape {
 - **License**
 
 ```markdown
-Copyright 2018--2024 ©️iOrchid
+Copyright 2018--2025 ©️iOrchid
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -182,7 +181,7 @@ limitations under the License.
 
 [![Stargazers over time](https://starchart.cc/iOrchid/android-jetpack-demo.svg)](https://starchart.cc/iOrchid/android-jetpack-demo)
 
-[^1]: 使用最新`Jetpack`组件的版本，项目`(2024/05/06)`开发环境为**AndroidStudio Iguana** `2023.3.1`
+[^1]: 使用最新`Jetpack`组件的版本，项目`(2025年7月)`开发环境为**AndroidStudio Narwhal** `2025.1.1`
 [^2]: **项目使用`AS`及相关环境配置可能与你本地不同，**参照 [配置gradle](https://github.com/iOrchid/android-jetpack-demo/issues/3#issuecomment-840276571)
 [^3]: 参照`Compose`项目有[compose cookbook](https://github.com/Gurupreet/ComposeCookBook)，[compose tutorial](https://github.com/SmartToolFactory/Jetpack-Compose-Tutorials),[compose codelab](https://github.com/android/codelab-android-compose),[compose sample](https://github.com/android/compose-samples)
 致敬感谢.
