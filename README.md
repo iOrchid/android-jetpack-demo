@@ -149,16 +149,6 @@ private class Rectangle(var height: Double, var length: Double) : Shape {
 
 倘若本项目对你有一丝丝的帮助和价值，烦请给个`star`,或者有什么好的建议或意见，也可以发个`issues`，谢谢！:happy:
 
-- **Donations**![donation](./docs/images/donation.svg)
-
-  > 测试一下`Github`爱心💗**sponsor**功能,说不定您心血来潮了呢😂
-
-  ![img](./docs/images/admireCode.png)![alipay](./docs/images/alipay2QR.png)
-
-- **感谢以下捐助者**，您的鼓励更是我的动力。
-
-  ![01](./docs/images/admire/01.jpg)![02](./docs/images/admire/02.jpg)![03](./docs/images/admire/03.jpg)![04](./docs/images/admire/04.jpg)![05](./docs/images/admire/05.jpg)![06](./docs/images/admire/06.jpg)![07](./docs/images/admire/07.jpg)![anjing](./docs/images/admire/anjing.jpg )![beiying](./docs/images/admire/beiying.jpg)![chuifeng](./docs/images/admire/chuifeng.jpg)![feizhai](./docs/images/admire/feizhai.jpg)![haizei](./docs/images/admire/haizei.jpg)![panda](./docs/images/admire/panda.jpg)![pig](./docs/images/admire/pig.jpg)![yaya](./docs/images/admire/yaya.jpg)![yijia](./docs/images/admire/yijia.jpg)
-
 [![Github stars](https://img.shields.io/github/stars/iOrchid/android-jetpack-demo.svg?style=social&label=star)](https://github.com/iOrchid/android-jetpack-demo)[![Github followers](https://img.shields.io/github/followers/iOrchid.svg?style=social&label=follow)](https://github.com/iOrchid/android-jetpack-demo)[![Github issues](https://img.shields.io/github/issues/iOrchid/android-jetpack-demo.svg?style=social&label=issues)](https://github.com/iOrchid/android-jetpack-demo)
 
 - **License**
